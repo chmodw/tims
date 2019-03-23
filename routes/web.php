@@ -11,10 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
+
+Route::get('/programs', 'ProgramController@index')->name('program')->middleware('auth');
+
+Route::get('/trainees', 'TraineeController@index')->name('Trainee')->middleware('auth');
+
+Route::get('/programs/local', 'LocalProgramController@index')->name('programs/local')->middleware('auth');
+
+Route::get('/programs/foreign', 'ForeignController@index')->name('programs/foreign')->middleware('auth');
+
+Route::get('/programs/inhouse', 'InHouseProgramController@index')->name('programs/inhouse')->middleware('auth');
+
+Route::get('/programs/postgrad', 'PostGradProgramController@index')->name('programs/postgrad')->middleware('auth');
+
