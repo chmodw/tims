@@ -9,68 +9,44 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navigation">
         <ul class="nav navbar-nav mr-auto">
-          <li class="nav-item">
-            <a href="#" class="nav-link" data-toggle="dropdown">
-                <i class="nc-icon nc-palette"></i>
-                <span class="d-lg-none">Dashboard</span>
+          <li class="nav-item ">
+            <a href="/dash" class="nav-link active">
+              Dashboard
             </a>
           </li>
-          <li class="dropdown nav-item">
-            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-              <i class="nc-icon nc-planet"></i>
-              <span class="notification">5</span>
-              <span class="d-lg-none">Notification</span>
+          <li class="nav-item">
+            <a href="/programs" class="nav-link ">
+              Programs
             </a>
-            <ul class="dropdown-menu">
-              <a class="dropdown-item" href="#">Notification 1</a>
-              <a class="dropdown-item" href="#">Notification 2</a>
-              <a class="dropdown-item" href="#">Notification 3</a>
-              <a class="dropdown-item" href="#">Notification 4</a>
-              <a class="dropdown-item" href="#">Another notification</a>
-            </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nc-icon nc-zoom-split"></i>
-              <span class="d-lg-block">&nbsp;Search</span>
+            <a href="/reports" class="nav-link">
+              Reports
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/trainees" class="nav-link">
+              Trainees
             </a>
           </li>
         </ul>
 
         <ul class="navbar-nav ml-auto">
           @if (auth()->check())
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <span class="no-icon">Account</span>
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="no-icon">Dropdown</span>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <a class="dropdown-item" href="#">Something</a>
-              <a class="dropdown-item" href="#">Something else here</a>
-              <div class="divider"></div>
-              <a class="dropdown-item" href="#">Separated link</a>
-            </div>
-          </li>
-          <li class="nav-item">
+            <li class="nav-item">
               <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
                 {{ csrf_field() }}
               </form>
               <a class="nav-link" href="#" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                 <span class="no-icon">Logout</span>
               </a>
-          </li>
+            </li>
           @elseif(!isset($exception))
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">
-              <span class="no-icon">Login</span>
-            </a>
-          </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('login') }}">
+                <span class="no-icon">Login</span>
+              </a>
+            </li>
           @endif
         </ul>
       </div>
