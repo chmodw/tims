@@ -15,18 +15,19 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('trainee_id');
-            $table->string('local_program_id')->default(0);
-            $table->string('foreign_program_id')->default(0);
-            $table->string('inhouse_program_id')->default(0);
-            $table->string('post_grad_program_id')->default(0);
+            $table->unsignedBigInteger('trainee_id')->nullable();
+            $table->string('local_program_id')->nullable();
+            $table->string('foreign_program_id')->nullable();
+            $table->string('inhouse_program_id')->nullable();
+            $table->string('post_grad_program_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('trainee_id')->references('id')->on('Trainee');
-            $table->foreign('local_program_id')->references('programId')->on('LocalProgram');
-            $table->foreign('foreign_program_id')->references('programId')->on('ForeignProgram');
-            $table->foreign('inhouse_program_id')->references('programId')->on('InHouseProgram');
-            $table->foreign('post_grad_program_id')->references('programId')->on('PostGradProgram');
+//            $table->foreign('trainee_id')->references('id')->on('Trainee');
+            $table->foreign('local_program_id')->references('programId')->on('local_programs');
+//            $table->foreign('foreign_program_id')->references('programId')->on('ForeignProgram');
+//            $table->foreign('inhouse_program_id')->references('programId')->on('InHouseProgram');
+//            $table->foreign('post_grad_program_id')->references('programId')->on('PostGradProgram');
+
         });
     }
 
