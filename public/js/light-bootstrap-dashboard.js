@@ -535,7 +535,7 @@ function debounce(func, wait, immediate) {
  */
 
 $('.form-control').on("focus", function () {
-  removeClass('is-invalid');
+  $(this).removeClass('is-invalid');
 });
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 

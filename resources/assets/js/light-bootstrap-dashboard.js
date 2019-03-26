@@ -279,5 +279,7 @@ function debounce(func, wait, immediate) {
  * Remove Errors from the text fields
  */
 $('.form-control').on("focus", function(){
-  removeClass('is-invalid');
+
+    $(this).removeClass('is-invalid');
+
 });
