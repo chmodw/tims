@@ -21,6 +21,8 @@ Route::get('/trainees', 'TraineeController@index')->name('Trainee')->middleware(
 
 Route::get('/programs/local', 'LocalProgramController@index')->name('programs/local')->middleware('auth');
 
+Route::POST('/programs/local', 'LocalProgramController@store')->name('programs/local')->middleware('auth');
+
 Route::get('/programs/foreign', 'ForeignController@index')->name('programs/foreign')->middleware('auth');
 
 Route::get('/programs/inhouse', 'InHouseProgramController@index')->name('programs/inhouse')->middleware('auth');

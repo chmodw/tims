@@ -272,3 +272,12 @@ function debounce(func, wait, immediate) {
     if (immediate && !timeout) func.apply(context, args);
   };
 };
+
+
+
+/**
+ * Remove Errors from the text fields
+ */
+$('.form-control').on("focus", function(){
+  removeClass('is-invalid');
+});

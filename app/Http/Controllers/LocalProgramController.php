@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LocalForm;
 use Illuminate\Http\Request;
 
 class LocalProgramController extends Controller
@@ -32,9 +33,11 @@ class LocalProgramController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LocalForm $request)
     {
-        //
+        $validated = $request->validated();
+
+        var_dump($request->all());
     }
 
     /**

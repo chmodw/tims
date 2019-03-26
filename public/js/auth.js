@@ -541,6 +541,13 @@ function debounce(func, wait, immediate) {
 }
 
 ;
+/**
+ * Remove Errors from the text fields
+ */
+
+$('.form-control').on("focus", function () {
+  removeClass('is-invalid');
+});
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js")))
 
 /***/ }),
