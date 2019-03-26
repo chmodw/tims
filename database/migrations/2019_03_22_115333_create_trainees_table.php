@@ -18,6 +18,7 @@ class CreateTraineesTable extends Migration
             $table->integer('latest_version');
             $table->string('created_by');
             $table->timestamp('created_at');
+
         });
     }
 
