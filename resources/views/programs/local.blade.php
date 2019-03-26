@@ -23,6 +23,7 @@
 
             <div class="row">
               {{ csrf_field() }}
+              <input type="hidden" name="program_type" id="programType" value="LocalTrainingProgram" />
               <div class="col col-md-12">
                 <div class="form-group">
                   <label for="programTitle">Program Title</label>

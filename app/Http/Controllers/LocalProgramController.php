@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper\Helper;
 use App\Http\Requests\LocalForm;
 use App\LocalProgram;
+use App\Program;
 use Illuminate\Http\Request;
 
 class LocalProgramController extends Controller
@@ -35,14 +36,35 @@ class LocalProgramController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LocalForm $request)
     {
 
-//        $validated = $request->validated();
+        $validated = $request->validated();
 
-        echo Helper::uId([123]);
+        $localProgram = new LocalProgram();
 
-//        return back()->with('success', "Your answer has been submitted successfully");
+        $randomProgramId = Helper::uId([$validated['programTitle'],auth()->user()->email,$request->program_type,$validated['startDate']]);
+
+        $localProgram->programId = $randomProgramId;
+        $localProgram->title = $validated['programTitle'];
+        $localProgram->organisedBy = $validated['organisedBy'];
+        $localProgram->targetGroup = $validated['targetGroup'];
+        $localProgram->startDate = Helper::jointDateTime($validated['startDate'],$validated['startTime']);
+        $localProgram->endDate = Helper::jointDateTime($validated['endDate'],$validated['endTime']);
+        $localProgram->applicationClosingDateTime = Helper::jointDateTime($validated['applicationClosingDate'], $validated['applicationClosingTime']);
+        $localProgram->nonMemberFee = $validated['nonMemberFee'];
+        $localProgram->memberFee = $validated['memberFee'];
+        $localProgram->studentFee = $validated['studentFee'];
+        //get the file ext
+        $ext = $request->file('programBrochure')->getClientOriginalExtension();
+        //save the file in the storage
+        $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $randomProgramId.".".$ext);
+        //save the file name in the database
+        $localProgram->brochureUrl = $savedFile;
+        $localProgram->createdBy = auth()->user()->email;
+        $localProgram->save($validated);
+
+        return back()->with('success', "Your answer has been submitted successfully");
     }
 
     /**
