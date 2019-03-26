@@ -15,11 +15,11 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('trainee_id');
-            $table->string('local_program_id')->nullable();
-            $table->string('foreign_program_id')->nullable();
-            $table->string('inhouse_program_id')->nullable();
-            $table->string('post_grad_program_id')->nullable();
+            $table->unsignedBigInteger('trainee_id');
+            $table->string('local_program_id')->default(0);
+            $table->string('foreign_program_id')->default(0);
+            $table->string('inhouse_program_id')->default(0);
+            $table->string('post_grad_program_id')->default(0);
             $table->timestamps();
 
             $table->foreign('trainee_id')->references('id')->on('Trainee');
