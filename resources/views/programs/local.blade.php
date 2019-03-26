@@ -10,9 +10,12 @@
         <h4 class="card-title">New Local Program</h4>
       </div>
       <div class="card-body  p-4">
-        @if (session('status'))
-          <div class="alert alert-success">
-            {{ session('status') }}
+        @if (session('success'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong>{{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         @endif
 
@@ -142,9 +145,9 @@
                   {{--<p class="help-block">Example block-level help text here.</p>--}}
                 </div>
               </div>
-              <div class="col col-md-6 trainingFormBtnContainer d-flex justify-content-end">
-                <a class="btn btn-default trainingFormBtn mr-2" href="/programs">Cancel</a>
-                <input type="submit" class="btn btn-primary trainingFormBtn" value="Save" name="submitLocalTrainingForm">
+              <div class="col col-md-6 trainingFormBtnContainer">
+                <a class="btn btn-default trainingFormBtn  d-flex justify-content-end mr-2" href="/programs">Cancel</a>
+                <input type="submit" class="btn btn-primary  d-flex justify-content-end trainingFormBtn" value="Save" name="submitLocalTrainingForm">
               </div>
             </div>
       </form>

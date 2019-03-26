@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\Helper;
 use App\Http\Requests\LocalForm;
+use App\LocalProgram;
 use Illuminate\Http\Request;
 
 class LocalProgramController extends Controller
@@ -33,11 +35,14 @@ class LocalProgramController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LocalForm $request)
+    public function store(Request $request)
     {
-        $validated = $request->validated();
 
-        var_dump($request->all());
+//        $validated = $request->validated();
+
+        echo Helper::uId([123]);
+
+//        return back()->with('success', "Your answer has been submitted successfully");
     }
 
     /**
