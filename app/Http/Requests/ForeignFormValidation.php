@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class LocalForm extends FormRequest
+class ForeignFormValidation extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +26,6 @@ class LocalForm extends FormRequest
      *
      * @return array
      */
-
-//array(14) { ["_token"]=> string(40) "t9uQ12FAkfBcVpOjz2s47rGtX3eXrThwYoJSH6qi" ["programTitle"]=> NULL ["organisedBy"]=> NULL ["targetGroup"]=> NULL ["startDate"]=> NULL ["startTime"]=> NULL ["endDate"]=> NULL ["endTime"]=> NULL ["applicationClosingDate"]=> NULL ["applicationClosingTime"]=> NULL ["nonMemberFee"]=> NULL ["memberFee"]=> NULL ["studentFee"]=> NULL ["submitLocalTrainingForm"]=> string(4) "Save" }
     public function rules()
     {
         return [

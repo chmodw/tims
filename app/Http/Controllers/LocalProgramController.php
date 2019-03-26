@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helper\Helper;
-use App\Http\Requests\LocalForm;
+use App\Http\Requests\LocalFormValidation;
 use App\LocalProgram;
 use App\Program;
 use Illuminate\Http\Request;
@@ -36,7 +36,7 @@ class LocalProgramController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LocalForm $request)
+    public function store(LocalFormValidation $request)
     {
 
         $validated = $request->validated();
