@@ -15,7 +15,7 @@ class CreateLocalProgramsTable extends Migration
     {
         Schema::create('local_programs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('programId');
+            $table->string('programId')->unique();
             $table->string('title');
             $table->string('organisedBy');
             $table->string('targetGroup');

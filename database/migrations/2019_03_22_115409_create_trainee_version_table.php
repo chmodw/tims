@@ -48,6 +48,6 @@ class CreateTraineeVersionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('trainee_versions');
+        Schema::dropIfExists('trainee_version');
     }
 }

@@ -14,7 +14,7 @@ class CreateTraineesTable extends Migration
     public function up()
     {
         Schema::create('trainees', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('id');
             $table->integer('latest_version');
             $table->string('created_by');
             $table->timestamp('created_at');

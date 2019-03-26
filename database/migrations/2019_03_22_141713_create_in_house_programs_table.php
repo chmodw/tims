@@ -15,7 +15,7 @@ class CreateInHouseProgramsTable extends Migration
     {
         Schema::create('in_house_programs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('programId');
+            $table->string('programId')->unique();
             $table->string('title');
             $table->string('content'); //serialized array
             $table->string('targetGroup');
