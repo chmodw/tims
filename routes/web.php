@@ -31,8 +31,16 @@ Route::get('/programs/foreign', 'ForeignProgramController@create')->name('progra
  * Handle the Foreign Training Program Form submition request
  */
 Route::POST('/programs/foreign', 'ForeignProgramController@store')->name('programs/foreign')->middleware('auth');
+/**
+ * Show the new in house training program form
+ */
+Route::get('/programs/inhouse', 'InHouseProgramController@create')->name('programs/inhouse')->middleware('auth');
+/**
+ * handle the new in house program request form
+ */
+Route::POST('/programs/inhouse', 'InHouseProgramController@store')->name('programs/inhouse')->middleware('auth');
 
-Route::get('/programs/inhouse', 'InHouseProgramController@index')->name('programs/inhouse')->middleware('auth');
+
 
 Route::get('/programs/postgrad', 'PostGradProgramController@index')->name('programs/postgrad')->middleware('auth');
 

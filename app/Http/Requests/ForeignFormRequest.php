@@ -36,7 +36,7 @@ class ForeignFormRequest extends FormRequest
             'targetGroup' => 'required|max:191',
             'startDate' => 'required|max:255|date|after_or_equal:today',
             'endDate' => 'required|max:191|date|after_or_equal:startDate',
-            'applicationClosingDate' => 'required|max:191|after_or_equal:startDate|before:endDate',
+            'applicationClosingDate' => 'required|max:191|before_or_equal:startDate',
             'applicationClosingTime' => 'required|max:191',
             'programBrochure' => 'required|image|max:1999',
 
