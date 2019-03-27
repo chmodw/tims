@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d123ddb2-4f6b-4ab2-af33-9b6af484b763" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ForeignProgramController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ForeignProgramController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LocalProgramController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocalProgramController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ForeignFormRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ForeignFormRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/LocalFormRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/LocalFormRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/programs/foreign.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/programs/foreign.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/programs/local.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/programs/local.blade.php" afterDir="false" />
-    </list>
+    <list default="true" id="d123ddb2-4f6b-4ab2-af33-9b6af484b763" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,8 +17,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ForeignProgramController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="284">
-              <caret line="45" column="54" selection-start-line="45" selection-start-column="54" selection-end-line="45" selection-end-column="54" />
+            <state relative-caret-position="153">
+              <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
               <folding>
                 <element signature="e#40#63#0#PHP" expanded="true" />
               </folding>
@@ -373,12 +364,12 @@
       <option name="presentableId" value="Default" />
       <updated>1553336248329</updated>
       <workItem from="1553336249643" duration="7572000" />
-      <workItem from="1553481381172" duration="45891000" />
+      <workItem from="1553481381172" duration="46536000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="53463000" />
+    <option name="totallyTimeSpent" value="54108000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -391,7 +382,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
@@ -719,8 +709,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ForeignProgramController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="284">
-          <caret line="45" column="54" selection-start-line="45" selection-start-column="54" selection-end-line="45" selection-end-column="54" />
+        <state relative-caret-position="153">
+          <caret line="9" column="6" selection-start-line="9" selection-start-column="6" selection-end-line="9" selection-end-column="6" />
           <folding>
             <element signature="e#40#63#0#PHP" expanded="true" />
           </folding>
