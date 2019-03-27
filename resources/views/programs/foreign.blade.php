@@ -25,7 +25,7 @@
               <div class="col col-md-12">
                 <div class="form-group">
                   <label for="programTitle">Program Title</label>
-                  <input type="text" class="form-control  {{ $errors->has('programTitle') ? 'is-invalid' : '' }}" id="programTitle" name="programTitle" placeholder="Title">
+                  <input type="text" value="{{old('programTitle')}}" class="form-control  {{ $errors->has('programTitle') ? 'is-invalid' : '' }}" id="programTitle" name="programTitle" placeholder="Title">
                   @if ($errors->has('programTitle'))
                     <span class="invalid-feedback">{{ $errors->first('programTitle') }}</span>
                   @endif
@@ -34,7 +34,7 @@
               <div class="col col-md-5">
                 <div class="form-group">
                   <label for="organisedBy">Organised By</label>
-                  <input type="text" class="form-control {{ $errors->has('organisedBy') ? 'is-invalid' : '' }}" name="organisedBy" id="organisedBy" placeholder="Program organiser">
+                  <input type="text" value="{{old('organisedBy')}}" class="form-control {{ $errors->has('organisedBy') ? 'is-invalid' : '' }}" name="organisedBy" id="organisedBy" placeholder="Program organiser">
                   @if ($errors->has('organisedBy'))
                     <span class="invalid-feedback">{{ $errors->first('organisedBy') }}</span>
                   @endif
@@ -43,7 +43,7 @@
               <div class="col col-md-7">
                 <div class="form-group">
                   <label for="notifiedBy">Notified By</label>
-                  <input type="text" name="notifiedBy" class="form-control {{ $errors->has('notifiedBy') ? 'is-invalid' : '' }}" id="notifiedBy" placeholder="Notified By">
+                  <input type="text" value="{{old('notifiedBy')}}" name="notifiedBy" class="form-control {{ $errors->has('notifiedBy') ? 'is-invalid' : '' }}" id="notifiedBy" placeholder="Notified By">
                   @if ($errors->has('notifiedBy'))
                     <span class="invalid-feedback">{{ $errors->first('notifiedBy') }}</span>
                   @endif
@@ -52,7 +52,7 @@
               <div class="col col-md-12">
                 <div class="form-group">
                   <label for="targetGroup">Target Group</label>
-                  <input type="text" name="targetGroup" class="form-control {{ $errors->has('targetGroup') ? 'is-invalid' : '' }}" id="targetGroup" placeholder="Target Group">
+                  <input type="text" value="{{old('targetGroup')}}" name="targetGroup" class="form-control {{ $errors->has('targetGroup') ? 'is-invalid' : '' }}" id="targetGroup" placeholder="Target Group">
                   @if ($errors->has('targetGroup'))
                     <span class="invalid-feedback">{{ $errors->first('targetGroup') }}</span>
                   @endif
@@ -61,7 +61,7 @@
               <div class="col col-md-3">
                 <div class="form-group">
                   <label for="startDate">Start Date</label>
-                  <input type="date" class="form-control {{ $errors->has('startDate') ? 'is-invalid' : '' }}" id="startDate" name="startDate">
+                  <input type="date" value="{{old('startDate')}}" class="form-control {{ $errors->has('startDate') ? 'is-invalid' : '' }}" id="startDate" name="startDate">
                   @if ($errors->has('startDate'))
                     <span class="invalid-feedback">{{ $errors->first('startDate') }}</span>
                   @endif
@@ -70,7 +70,7 @@
               <div class="col col-md-3">
                 <div class="form-group">
                   <label for="endDate">End Date</label>
-                  <input type="date" class="form-control {{ $errors->has('endDate') ? 'is-invalid' : '' }}" id="endDate" name="endDate">
+                  <input type="date" value="{{old('endDate')}}" class="form-control {{ $errors->has('endDate') ? 'is-invalid' : '' }}" id="endDate" name="endDate">
                   @if ($errors->has('endDate'))
                     <span class="invalid-feedback">{{ $errors->first('endDate') }}</span>
                   @endif
@@ -79,7 +79,7 @@
               <div class="col col-md-3">
                 <div class="form-group">
                   <label for="applicationClosingDate">Application Closing Date</label>
-                  <input type="date" class="form-control {{ $errors->has('applicationClosingDate') ? 'is-invalid' : '' }}" id="applicationClosingDate" name="applicationClosingDate" placeholder="">
+                  <input type="date" value="{{old('applicationClosingDate')}}" class="form-control {{ $errors->has('applicationClosingDate') ? 'is-invalid' : '' }}" id="applicationClosingDate" name="applicationClosingDate" placeholder="">
                   @if ($errors->has('applicationClosingDate'))
                     <span class="invalid-feedback">{{ $errors->first('applicationClosingDate') }}</span>
                   @endif
@@ -88,7 +88,7 @@
               <div class="col col-md-3">
                 <div class="form-group">
                   <label for="applicationClosingTime">Application Closing Time</label>
-                  <input type="time" class="form-control {{ $errors->has('applicationClosingTime') ? 'is-invalid' : '' }}" id="applicationClosingTime" name="applicationClosingTime" placeholder="">
+                  <input type="time" value="{{old('applicationClosingTime')}}" class="form-control {{ $errors->has('applicationClosingTime') ? 'is-invalid' : '' }}" id="applicationClosingTime" name="applicationClosingTime" placeholder="">
                   @if ($errors->has('applicationClosingTime'))
                     <span class="invalid-feedback">{{ $errors->first('applicationClosingTime') }}</span>
                   @endif

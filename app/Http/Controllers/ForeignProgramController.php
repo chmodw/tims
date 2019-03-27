@@ -37,18 +37,20 @@ class ForeignProgramController extends Controller
      */
     public function store(ForeignFormRequest $request)
     {
+
         $validated = $request->validated();
 
         $foreignProgram = new ForeignProgram();
         //Generate a program id
         $randomProgramId = Helper::uId([$validated['programTitle'],auth()->user()->email,$request->program_type,$validated['startDate']]);
+        $foreignProgram->programId = $randomProgramId;
         $foreignProgram->title = $validated['programTitle'];
         $foreignProgram->organisedBy = $validated['organisedBy'];
         $foreignProgram->notifiedBy = $validated['notifiedBy'];
         $foreignProgram->targetGroup = $validated['targetGroup'];
         $foreignProgram->startDate = $validated['startDate'];
         $foreignProgram->endDate = $validated['endDate'];
-        $foreignProgram->applicationClosingDateTime = $validated['applicationClosingDateTime'];
+        $foreignProgram->applicationClosingDateTime = Helper::jointDateTime($validated['applicationClosingDate'], $validated['applicationClosingTime']);
         //get the file ext
         $ext = $request->file('programBrochure')->getClientOriginalExtension();
         //save the file in the storage
@@ -59,7 +61,7 @@ class ForeignProgramController extends Controller
         /**
          * Save the data on the database
          */
-        $foreignProgram->save();
+        $foreignProgram->save($validated);
         /**
          * return to the Form
          */

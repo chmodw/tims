@@ -61,7 +61,7 @@ class LocalProgramController extends Controller
         //save the file name in the database
         $localProgram->brochureUrl = $savedFile;
         $localProgram->createdBy = auth()->user()->email;
-        $localProgram->save();
+        $localProgram->save($validated);
 
         return back()->with('success', "Program has been saved successfully");
     }
