@@ -10,9 +10,12 @@
         <h4 class="card-title">New Foreign Program</h4>
       </div>
       <div class="card-body  p-4">
-        @if (session('status'))
-          <div class="alert alert-success">
-            {{ session('status') }}
+        @if (session('success'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Success!</strong>{{ session('status') }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
         @endif
           <form action="{{ route('programs/foreign') }}" method="POST" enctype="multipart/form-data">
@@ -94,9 +97,12 @@
               <div class="col col-md-6">
                 <div class="form-group">
                   <label for="programBrochure">Program Brochure</label>
-                  <input type="file" id="programBrochure" name="programBrochure">
+                  <input type="file" name="programBrochure" id="programBrochure" name="programBrochure">
                   @if ($errors->has('programBrochure'))
                     <span class="invalid-feedback">{{ $errors->first('programBrochure') }}</span>
+                    @if ($errors->has('programBrochure'))
+                      <span class="help-block" style="display: block;width: 100%;margin-top: 0.25rem;font-size: 80%;color: #dc3545;">{{ $errors->first('programBrochure') }}</span>
+                    @endif
                   @endif
                 </div>
               </div>

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Helper\Helper;
-use App\Http\Requests\LocalFormRequest;
-use App\LocalProgram;
+use App\ForeignProgram;
+use App\Http\Requests\ForeignFormRequest;
 use Illuminate\Http\Request;
+use App\Helper\Helper;
 
-class LocalProgramController extends Controller
+class ForeignProgramController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,7 +26,7 @@ class LocalProgramController extends Controller
      */
     public function create()
     {
-        return view('programs.local');
+        return(view('programs.foreign'));
     }
 
     /**
@@ -35,34 +35,34 @@ class LocalProgramController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(LocalFormRequest $request)
+    public function store(ForeignFormRequest $request)
     {
-
         $validated = $request->validated();
 
-        $localProgram = new LocalProgram();
-
+        $foreignProgram = new ForeignProgram();
+        //Generate a program id
         $randomProgramId = Helper::uId([$validated['programTitle'],auth()->user()->email,$request->program_type,$validated['startDate']]);
-
-        $localProgram->programId = $randomProgramId;
-        $localProgram->title = $validated['programTitle'];
-        $localProgram->organisedBy = $validated['organisedBy'];
-        $localProgram->targetGroup = $validated['targetGroup'];
-        $localProgram->startDate = Helper::jointDateTime($validated['startDate'],$validated['startTime']);
-        $localProgram->endDate = Helper::jointDateTime($validated['endDate'],$validated['endTime']);
-        $localProgram->applicationClosingDateTime = Helper::jointDateTime($validated['applicationClosingDate'], $validated['applicationClosingTime']);
-        $localProgram->nonMemberFee = $validated['nonMemberFee'];
-        $localProgram->memberFee = $validated['memberFee'];
-        $localProgram->studentFee = $validated['studentFee'];
+        $foreignProgram->title = $validated['programTitle'];
+        $foreignProgram->organisedBy = $validated['organisedBy'];
+        $foreignProgram->notifiedBy = $validated['notifiedBy'];
+        $foreignProgram->targetGroup = $validated['targetGroup'];
+        $foreignProgram->startDate = $validated['startDate'];
+        $foreignProgram->endDate = $validated['endDate'];
+        $foreignProgram->applicationClosingDateTime = $validated['applicationClosingDateTime'];
         //get the file ext
         $ext = $request->file('programBrochure')->getClientOriginalExtension();
         //save the file in the storage
         $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $randomProgramId.".".$ext);
         //save the file name in the database
-        $localProgram->brochureUrl = $savedFile;
-        $localProgram->createdBy = auth()->user()->email;
-        $localProgram->save();
-
+        $foreignProgram->brochureUrl = $savedFile;
+        $foreignProgram->createdBy = auth()->user()->email;
+        /**
+         * Save the data on the database
+         */
+        $foreignProgram->save();
+        /**
+         * return to the Form
+         */
         return back()->with('success', "Program has been saved successfully");
     }
 
