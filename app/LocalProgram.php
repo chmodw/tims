@@ -24,4 +24,12 @@ class LocalProgram extends Model
         return $this->belongsTo(Program::class);
     }
 
+    public function getApplicationClosingDateAttribute(){
+        return date("Y-m-d", strtotime($this->applicationClosingDateTime));
+    }
+
+    public function getStartDateAttribute(){
+        return date("Y-m-d", strtotime($this->startDate));
+    }
+
 }
