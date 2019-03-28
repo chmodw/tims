@@ -13,6 +13,11 @@ class PostGradFromRequest extends FormRequest
      */
     public function authorize()
     {
+        if(\Auth::user())
+        {
+            return true;
+        }
+
         return false;
     }
 
@@ -21,10 +26,20 @@ class PostGradFromRequest extends FormRequest
      *
      * @return array
      */
+
     public function rules()
     {
         return [
-            //
+            'programTitle' => 'required|max:191',
+            'institute' => 'required|max:191',
+            'department' => 'required',
+            'programs' => 'required',
+            'requirements' => 'required|max:255',
+            'applicationClosingDate' => 'required|max:191|after_or_equal:today',
+            'applicationClosingTime' => 'required|max:191',
+            'registrationFees' => 'required|max:191',
+            'firstYearFees' => 'required|max:191',
+            'secondYearFees' => 'required|max:191',
         ];
     }
 }

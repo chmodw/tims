@@ -54,10 +54,15 @@ class LocalProgramController extends Controller
         $localProgram->nonMemberFee = $validated['nonMemberFee'];
         $localProgram->memberFee = $validated['memberFee'];
         $localProgram->studentFee = $validated['studentFee'];
-        //get the file ext
-        $ext = $request->file('programBrochure')->getClientOriginalExtension();
-        //save the file in the storage
-        $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $randomProgramId.".".$ext);
+        // check if a program brochure is present
+        if($request->file('programBrochure') != null){
+            //get the file ext
+            $ext = $request->file('programBrochure')->getClientOriginalExtension();
+            //save the file in the storage
+            $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $randomProgramId.".".$ext);
+        }else{
+            $savedFile = 'Null';
+        }
         //save the file name in the database
         $localProgram->brochureUrl = $savedFile;
         $localProgram->createdBy = auth()->user()->email;

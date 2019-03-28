@@ -51,10 +51,15 @@ class ForeignProgramController extends Controller
         $foreignProgram->startDate = $validated['startDate'];
         $foreignProgram->endDate = $validated['endDate'];
         $foreignProgram->applicationClosingDateTime = Helper::jointDateTime($validated['applicationClosingDate'], $validated['applicationClosingTime']);
-        //get the file ext
-        $ext = $request->file('programBrochure')->getClientOriginalExtension();
-        //save the file in the storage
-        $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $randomProgramId.".".$ext);
+        // check if a program brochure is present
+        if($request->file('programBrochure') != null){
+            //get the file ext
+            $ext = $request->file('programBrochure')->getClientOriginalExtension();
+            //save the file in the storage
+            $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $randomProgramId.".".$ext);
+        }else{
+            $savedFile = 'Null';
+        }
         //save the file name in the database
         $foreignProgram->brochureUrl = $savedFile;
         $foreignProgram->createdBy = auth()->user()->email;

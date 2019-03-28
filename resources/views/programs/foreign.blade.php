@@ -100,10 +100,10 @@
                   <input type="file" class="form-control-file" name="programBrochure" id="programBrochure" name="programBrochure">
                   @if ($errors->has('programBrochure'))
                     <span class="invalid-feedback">{{ $errors->first('programBrochure') }}</span>
-                    @if ($errors->has('programBrochure'))
-                      <span class="help-block" style="display: block;width: 100%;margin-top: 0.25rem;font-size: 80%;color: #dc3545;">{{ $errors->first('programBrochure') }}</span>
-                    @endif
                   @endif
+                  <small id="programBrochureHelpBlock" class="form-text text-muted">
+                    Only JPEG are allowed. Max size 1999KB.
+                  </small>
                 </div>
               </div>
               <div class="col col-md-6 trainingFormBtnContainer d-flex justify-content-end">

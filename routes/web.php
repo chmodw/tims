@@ -42,5 +42,8 @@ Route::POST('/programs/inhouse', 'InHouseProgramController@store')->name('progra
 
 
 
-Route::get('/programs/postgrad', 'PostGradProgramController@index')->name('programs/postgrad')->middleware('auth');
+Route::get('/programs/postgrad', 'PostGradProgramController@create')->name('programs/postgrad')->middleware('auth');
+
+
+Route::POST('/programs/postgrad', 'PostGradProgramController@store')->name('programs/postgrad')->middleware('auth');
 
