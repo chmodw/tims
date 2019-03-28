@@ -7,8 +7,8 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header d-flex justify-content-between">
-                    <h4 class="card-title">Local Programs</h4>
-                    <a href="/programs/local/create" class="btn btn-primary">New</a>
+                    <h4 class="card-title">Post-Graduation Programs</h4>
+                    <a href="/programs/postgrad/create" class="btn btn-primary">New</a>
                 </div>
                 <div class="card-body  p-4">
                     @if (session('success'))
@@ -29,16 +29,34 @@
                                     <th class="">Application Closing Date</th>
                                     <th class="">Start Date</th>
                                     <th></th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($localPrograms as $program)
+                                @foreach ($programs as $program)
                                     <tr>
                                         <td>1</td>
                                         <td>{{$program->title}}</td>
                                         <td>{{$program->applicationClosingDate}}</td>
-                                        <td>sdkjnsdfdjfsjkndf</td>
-                                        <td><a href="/programs/local/{{$program->programId}}">View</a></td>
+                                        <td>{{$program->startingDate}}</td>
+                                        <td><a href="/programs/local/{{$program->programId}}">
+                                                <i class="fa fa-eye" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                        <td><a href="/programs/local/{{$program->programId}}">
+                                                <i class="fa fa-plus" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                        <td><a href="/programs/local/{{$program->programId}}">
+                                                <i class="fa fa-pencil" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
+                                        <td><a href="/programs/local/{{$program->programId}}">
+                                                <i class="fa fa-trash" aria-hidden="true"></i>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

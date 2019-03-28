@@ -28,7 +28,7 @@ class LocalProgram extends Model
         return date("Y-m-d", strtotime($this->applicationClosingDateTime));
     }
 
-    public function getStartDateAttribute(){
+    public function getStartingDateAttribute(){
         return date("Y-m-d", strtotime($this->startDate));
     }
 

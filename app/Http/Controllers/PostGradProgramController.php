@@ -1,5 +1,6 @@
 <?php
 namespace App\Http\Controllers;
+use App\ForeignProgram;
 use App\Http\Requests\PostGradFromRequest;
 use App\PostGradProgram;
 use Illuminate\Http\Request;
@@ -14,7 +15,9 @@ class PostGradProgramController extends Controller
      */
     public function index()
     {
+        $programs = ForeignProgram::paginate(10);
 
+        return view('programs.PostGradProgram.index', compact('programs'));
     }
     /**
      * Show the form for creating a new resource.
@@ -23,7 +26,7 @@ class PostGradProgramController extends Controller
      */
     public function create()
     {
-        return view('programs.postgrad');
+        return view('programs.PostGradProgram.form');
     }
     /**
      * Store a newly created resource in storage.

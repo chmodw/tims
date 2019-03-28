@@ -7,7 +7,7 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">New Local Program</h4>
+                    <h4 class="card-title">New Post-Graduation Program</h4>
                 </div>
                 <div class="card-body  p-4">
                     @if (session('success'))
@@ -18,81 +18,64 @@
                             </button>
                         </div>
                     @endif
-
-                    <form action="{{ route('programs/local/store') }}" method="POST" enctype="multipart/form-data">
-
+                    <form action="{{ route('programs/postgrad/create') }}" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             {{ csrf_field() }}
-                            <input type="hidden" name="program_type" id="programType" value="LocalTrainingProgram" />
                             <div class="col col-md-12">
                                 <div class="form-group">
-                                    <label for="programTitle">Program Title</label>
-                                    <input type="text" class="form-control {{ $errors->has('programTitle') ? 'is-invalid' : '' }}" value="{{old('programTitle')}}" id="programTitle" name="programTitle" placeholder="Title">
-                                    @if ($errors->has('programTitle'))
-                                        <span class="invalid-feedback">{{ $errors->first('programTitle') }}</span>
+                                    <label for="programTitle">Title</label>
+                                    <input type="text" value="{{old('programTitle')}}" class="form-control {{$errors->has('programTitle') ? 'is-invalid' : '' }}" id="programTitle" name="programTitle" placeholder="Title">
+                                    @if ($errors->has('institute'))
+                                        <span class="invalid-feedback">{{$errors->first('programTitle')}}</span>
                                     @endif
                                 </div>
                             </div>
-
-                            <div class="col col-md-4">
+                            <div class="col col-md-7">
                                 <div class="form-group">
-                                    <label for="organisedBy">Organised By</label>
-                                    <input type="text" value="{{old('organisedBy')}}" class="form-control  {{ $errors->has('organisedBy') ? 'is-invalid' : '' }}" name="organisedBy" id="organisedBy" placeholder="Program organiser">
-                                    @if ($errors->has('organisedBy'))
-                                        <span class="invalid-feedback">{{ $errors->first('organisedBy') }}</span>
+                                    <label for="institute">Institute</label>
+                                    <input type="text" value="{{old('institute')}}" class="form-control {{ $errors->has('institute') ? 'is-invalid' : '' }}" name="institute" id="institute" placeholder="Institute of The Program">
+                                    @if ($errors->has('institute'))
+                                        <span class="invalid-feedback">{{ $errors->first('institute') }}</span>
                                     @endif
                                 </div>
                             </div>
-                            <div class="col col-md-8">
+                            <div class="col col-md-5">
                                 <div class="form-group">
-                                    <label for="targetGroup">Target Group</label>
-                                    <input type="text" value="{{old('targetGroup')}}" name="targetGroup" class="form-control  {{ $errors->has('targetGroup') ? 'is-invalid' : '' }}" id="targetGroup" placeholder="Target Group">
-                                    @if ($errors->has('targetGroup'))
-                                        <span class="invalid-feedback">{{ $errors->first('targetGroup') }}</span>
+                                    <label for="department">Department</label>
+                                    <input type="text" value="{{old('department')}}" name="department" class="form-control {{ $errors->has('department') ? 'is-invalid' : '' }}" id="department" placeholder="Department">
+                                    @if ($errors->has('department'))
+                                        <span class="invalid-feedback">{{ $errors->first('department')}}</span>
                                     @endif
                                 </div>
                             </div>
-                            <div class="col col-md-3">
+                            <div class="col col-md-12">
                                 <div class="form-group">
-                                    <label for="startDate">Start Date</label>
-                                    <input type="date" value="{{old('startDate')}}" class="form-control  {{ $errors->has('startDate') ? 'is-invalid' : '' }}" id="startDate" name="startDate">
-                                    @if ($errors->has('startDate'))
-                                        <span class="invalid-feedback">{{ $errors->first('startDate') }}</span>
+                                    <label for="programs">Courses</label>
+                                    <textarea class="form-control {{ $errors->has('programs') ? 'is-invalid' : '' }}" style="resize: vertical; min-height: 4em; max-height: 10em;" name="programs" id="programs" placeholder="Available Courses" rows="3">{{old('programs')}}</textarea>
+                                    @if ($errors->has('programs'))
+                                        <span class="invalid-feedback">{{ $errors->first('programs') }}</span>
                                     @endif
+                                    <small id="contentHelpBlock" class="form-text text-muted">
+                                        separate content by a single comma
+                                    </small>
                                 </div>
                             </div>
-                            <div class="col col-md-3">
+                            <div class="col col-md-12">
                                 <div class="form-group">
-                                    <label for="startTime">Start Time</label>
-                                    <input type="time" value="{{old('startTime')}}" class="form-control  {{ $errors->has('startTime') ? 'is-invalid' : '' }}" id="startTime" name="startTime">
-                                    @if ($errors->has('startTime'))
-                                        <span class="invalid-feedback">{{ $errors->first('startTime') }}</span>
+                                    <label for="requirements">Requirements</label>
+                                    <textarea class="form-control {{ $errors->has('requirements') ? 'is-invalid' : '' }}" style="resize: vertical; min-height: 4em; max-height: 10em;" name="requirements" id="requirements" placeholder="Requirements" rows="3">{{old('requirements')}}</textarea>
+                                    @if ($errors->has('requirements'))
+                                        <span class="invalid-feedback">{{ $errors->first('requirements')}}</span>
                                     @endif
+                                    <small id="contentHelpBlock" class="form-text text-muted">
+                                        separate content by a single comma
+                                    </small>
                                 </div>
                             </div>
-                            <div class="col col-md-3">
-                                <div class="form-group">
-                                    <label for="endDate">End Date</label>
-                                    <input type="date" value="{{old('endDate')}}" class="form-control {{ $errors->has('endDate') ? 'is-invalid' : '' }}" id="endDate" name="endDate">
-                                    @if ($errors->has('endDate'))
-                                        <span class="invalid-feedback">{{ $errors->first('endDate') }}</span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="col col-md-3">
-                                <div class="form-group">
-                                    <label for="endTime">End Time</label>
-                                    <input type="time" value="{{old('endTime')}}" class="form-control  {{ $errors->has('endTime') ? 'is-invalid' : '' }}" id="endTime" name="endTime">
-                                    @if ($errors->has('endTime'))
-                                        <span class="invalid-feedback">{{ $errors->first('endTime') }}</span>
-                                    @endif
-                                </div>
-                            </div>
-
                             <div class="col col-md-6">
                                 <div class="form-group">
                                     <label for="applicationClosingDate">Application Closing Date</label>
-                                    <input type="date" value="{{old('applicationClosingDate')}}" class="form-control  {{ $errors->has('applicationClosingDate') ? 'is-invalid' : '' }}" id="applicationClosingDate" name="applicationClosingDate" placeholder="">
+                                    <input type="date" value="{{old('applicationClosingDate')}}" class="form-control {{ $errors->has('applicationClosingDate') ? 'is-invalid' : '' }}" id="applicationClosingDate" name="applicationClosingDate" placeholder="">
                                     @if ($errors->has('applicationClosingDate'))
                                         <span class="invalid-feedback">{{ $errors->first('applicationClosingDate') }}</span>
                                     @endif
@@ -101,7 +84,7 @@
                             <div class="col col-md-6">
                                 <div class="form-group">
                                     <label for="applicationClosingTime">Application Closing Time</label>
-                                    <input type="time" value="{{old('applicationClosingTime')}}" class="form-control  {{ $errors->has('applicationClosingTime') ? 'is-invalid' : '' }}" id="applicationClosingTime" name="applicationClosingTime" placeholder="">
+                                    <input type="time" value="{{old('applicationClosingTime')}}" class="form-control {{ $errors->has('applicationClosingTime') ? 'is-invalid' : '' }}" id="applicationClosingTime" name="applicationClosingTime" placeholder="HH:MM">
                                     @if ($errors->has('applicationClosingTime'))
                                         <span class="invalid-feedback">{{ $errors->first('applicationClosingTime') }}</span>
                                     @endif
@@ -110,28 +93,28 @@
 
                             <div class="col col-md-4">
                                 <div class="form-group">
-                                    <label for="nonMemberFee">Non Member Fee (Rs)</label>
-                                    <input type="number" value="{{old('nonMemberFee')}}" class="form-control  {{ $errors->has('nonMemberFee') ? 'is-invalid' : '' }}" id="nonMemberFee" name="nonMemberFee" placeholder="Non-Member Fee">
-                                    @if ($errors->has('nonMemberFee'))
-                                        <span class="invalid-feedback">{{ $errors->first('nonMemberFee') }}</span>
+                                    <label for="registrationFees">Registration Fees (Rs)</label>
+                                    <input type="number"  value="{{old('registrationFees')}}" class="form-control {{ $errors->has('registrationFees') ? 'is-invalid' : '' }}" id="registrationFees" name="registrationFees" placeholder="Registration Fees">
+                                    @if ($errors->has('registrationFees'))
+                                        <span class="invalid-feedback">{{ $errors->first('registrationFees') }}</span>
                                     @endif
                                 </div>
                             </div>
                             <div class="col col-md-4">
                                 <div class="form-group">
-                                    <label for="memberFee">Member Fee (Rs)</label>
-                                    <input type="number" value="{{old('memberFee')}}" class="form-control  {{ $errors->has('memberFee') ? 'is-invalid' : '' }}" id="memberFee" name="memberFee" placeholder="Member Fee">
-                                    @if ($errors->has('memberFee'))
-                                        <span class="invalid-feedback">{{ $errors->first('memberFee') }}</span>
+                                    <label for="firstYearFees">First Year (Rs)</label>
+                                    <input type="number" value="{{old('firstYearFees')}}" class="form-control {{ $errors->has('firstYearFees') ? 'is-invalid' : '' }}" id="firstYearFees" name="firstYearFees" placeholder="First Year Fees">
+                                    @if ($errors->has('firstYearFees'))
+                                        <span class="invalid-feedback">{{ $errors->first('firstYearFees') }}</span>
                                     @endif
                                 </div>
                             </div>
                             <div class="col col-md-4">
                                 <div class="form-group">
-                                    <label for="studentFee">Student Fee (Rs)</label>
-                                    <input type="number" value="{{old('studentFee')}}" class="form-control  {{ $errors->has('studentFee') ? 'is-invalid' : '' }}" id="studentFee" name="studentFee" placeholder="Student Fee">
-                                    @if ($errors->has('studentFee'))
-                                        <span class="invalid-feedback">{{ $errors->first('studentFee') }}</span>
+                                    <label for="secondYearFees">Second Year (Rs)</label>
+                                    <input type="number" value="{{old('secondYearFees')}}" class="form-control {{ $errors->has('secondYearFees') ? 'is-invalid' : '' }}" id="secondYearFees" name="secondYearFees" placeholder="Second Year Fees">
+                                    @if ($errors->has('secondYearFees'))
+                                        <span class="invalid-feedback">{{ $errors->first('secondYearFees') }}</span>
                                     @endif
                                 </div>
                             </div>
@@ -139,18 +122,18 @@
                             <div class="col col-md-6">
                                 <div class="form-group">
                                     <label for="programBrochure">Program Brochure</label>
-                                    <input type="file" class="form-control-file"  id="programBrochure" name="programBrochure" class="{{ $errors->has('programBrochure') ? 'is-invalid' : '' }}" name="programBrochure">
+                                    <input type="file" value="{{old('programBrochure')}}" class="form-control-file {{ $errors->has('programBrochure') ? 'is-invalid' : '' }}" id="programBrochure" name="programBrochure">
                                     @if ($errors->has('programBrochure'))
-                                        <span class="help-block" style="display: block;width: 100%;margin-top: 0.25rem;font-size: 80%;color: #dc3545;">{{ $errors->first('programBrochure') }}</span>
+                                        <span class="invalid-feedback">{{ $errors->first('programBrochure') }}</span>
                                     @endif
                                     <small id="programBrochureHelpBlock" class="form-text text-muted">
                                         Only JPEG are allowed. Max size 1999KB.
                                     </small>
                                 </div>
                             </div>
-                            <div class="col col-md-6 trainingFormBtnContainer">
-                                <a class="btn btn-default trainingFormBtn  d-flex justify-content-end mr-2" href="/programs/local">Cancel</a>
-                                <input type="submit" class="btn btn-primary  d-flex justify-content-end trainingFormBtn" value="Save" name="submitLocalTrainingForm">
+                            <div class="col col-md-6 trainingFormBtnContainer d-flex justify-content-end">
+                                <a class="btn btn-default trainingFormBtn mr-2" href="/programs">Cancel</a>
+                                <input type="submit" class="btn btn-primary trainingFormBtn" value="Save" name="submitLocalTrainingForm">
                             </div>
                         </div>
                     </form>

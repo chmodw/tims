@@ -16,7 +16,9 @@ class InHouseProgramController extends Controller
      */
     public function index()
     {
+        $programs = InHouseProgram::paginate(10);
 
+        return view('programs.InHouseProgram.index', compact('programs'));
     }
 
     /**
@@ -26,7 +28,7 @@ class InHouseProgramController extends Controller
      */
     public function create()
     {
-        return view('programs.inhouse');
+        return view('programs.InHouseProgram.form');
     }
 
     /**

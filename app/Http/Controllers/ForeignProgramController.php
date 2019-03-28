@@ -16,7 +16,9 @@ class ForeignProgramController extends Controller
      */
     public function index()
     {
+        $programs = ForeignProgram::paginate(10);
 
+        return view('programs.foreignProgram.index', compact('programs'));
     }
 
     /**
@@ -26,7 +28,7 @@ class ForeignProgramController extends Controller
      */
     public function create()
     {
-        return(view('programs.foreign'));
+        return(view('programs.ForeignProgram.form'));
     }
 
     /**

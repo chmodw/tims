@@ -18,7 +18,7 @@
                             </button>
                         </div>
                     @endif
-                    <form action="{{ route('programs/foreign') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('programs/foreign/create') }}" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             {{ csrf_field() }}
                             <input type="hidden" name="program_type" id="programType" value="ForeignTrainingProgram" />
