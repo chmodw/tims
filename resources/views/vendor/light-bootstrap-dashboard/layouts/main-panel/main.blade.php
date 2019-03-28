@@ -32,6 +32,15 @@
         </ul>
 
         <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <div class="clock">
+              <span id="hr">00</span>
+              <span> : </span>
+              <span id="min">00</span>
+              <span> : </span>
+              <span id="sec">00</span>
+            </div>
+          </li>
           @if (auth()->check())
             <li class="nav-item">
               <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">

@@ -11,32 +11,32 @@
         <form action="{{ route('register') }}" method="POST">
           {{ csrf_field() }}
           <fieldset>
-            <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
+            <div class="form-group">
               <label for="name">Name</label>
-              <input name="name" type="text" class="form-control" required>
+              <input name="name" type="text" class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}" required>
               @if ($errors->has('name'))
-              <span class="help-block">{{ $errors->first('name') }}</span>
+              <span class="invalid-feedback">{{ $errors->first('name') }}</span>
               @endif
             </div>
-            <div class="form-group {{ $errors->has('email') ? 'has-error' : '' }}">
+            <div class="form-group">
               <label for="email">Email address</label>
-              <input name="email" type="email" class="form-control" required>
+              <input name="email" type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" required>
               @if ($errors->has('email'))
-              <span class="help-block">{{ $errors->first('email') }}</span>
+              <span class="invalid-feedback">{{ $errors->first('email') }}</span>
               @endif
             </div>
-            <div class="form-group {{ $errors->has('password') ? 'has-error' : '' }}">
+            <div class="form-group">
               <label for="password">Password</label>
-              <input name="password" type="password" class="form-control" required>
+              <input name="password" type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" required>
               @if ($errors->has('password'))
-              <span class="help-block">{{ $errors->first('password') }}</span>
+              <span class="invalid-feedback">{{ $errors->first('password') }}</span>
               @endif
             </div>
-            <div class="form-group {{ $errors->has('password_confirmation') ? 'has-error' : '' }}">
+            <div class="form-group">
               <label for="password_confirmation">Password Confirmation</label>
-              <input name="password_confirmation" type="password" class="form-control" required>
+              <input name="password_confirmation" type="password" class="form-control {{ $errors->has('password_confirmation') ? 'is-invalid' : '' }}" required>
               @if ($errors->has('password_confirmation'))
-              <span class="help-block">{{ $errors->first('password_confirmation') }}</span>
+              <span class="invalid-feedback">{{ $errors->first('password_confirmation') }}</span>
               @endif
             </div>
             <!-- Change this to a button or input when using this as a form -->

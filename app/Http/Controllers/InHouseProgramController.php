@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InHouseFormRequest;
 use App\InHouseProgram;
 use Illuminate\Http\Request;
+use App\Helper\Helper;
 
 class InHouseProgramController extends Controller
 {
@@ -36,7 +37,6 @@ class InHouseProgramController extends Controller
      */
     public function store(InHouseFormRequest $request)
     {
-//        array(19) { ["_token"]=> string(40) "NRhYogxrvg2sCcPVMO4O0pYRBx4JDnlfQrLKrAED" ["programTitle"]=> NULL ["programContent"]=> string(1) """ ["targetGroup"]=> NULL ["organizedBy"]=> NULL ["venue"]=> NULL ["startDate"]=> NULL ["startTime"]=> NULL ["endDate"]=> NULL ["applicationClosingDate"]=> NULL ["applicationClosingTime"]=> NULL ["keyPerson"]=> NULL ["keyPersonDesignation"]=> NULL ["registrationCost"]=> NULL ["nonRegistrationCost"]=> NULL ["headCost"]=> NULL ["lecturerCost"]=> NULL ["lecturerCostHours"]=> NULL ["submitLocalTrainingForm"]=> string(4) "Save" }
 
         $validated = $request->validated();
 
@@ -47,12 +47,12 @@ class InHouseProgramController extends Controller
         $inhouse->programId = $randomProgramId;
         $inhouse->title = $validated['programTitle'];
         //save the content as a serialized array
-        $inhouse->programContent = Serialize(explode(', ', $validated['programContent']));
+        $inhouse->content = Serialize(explode(', ', $validated['programContent']));
         $inhouse->targetGroup = $validated['targetGroup'];
         $inhouse->organisedBy = $validated['organisedBy'];
         $inhouse->venue = $validated['venue'];
-        $inhouse->startDate = Helper::jointDateTime($validated['startDate'],$validated['startTime']);
-        $inhouse->endDate = Helper::jointDateTime($validated['endDate'],$validated['endTime']);
+        $inhouse->startDateTime = Helper::jointDateTime($validated['startDate'],$validated['startTime']);
+        $inhouse->endDateTime = Helper::jointDateTime($validated['endDate'],$validated['endTime']);
         $inhouse->applicationClosingDateTime = Helper::jointDateTime($validated['applicationClosingDate'], $validated['applicationClosingTime']);
         $inhouse->keyPerson = $validated['keyPerson'];
         $inhouse->keyPersonDesignation = $validated['keyPersonDesignation'];
@@ -60,7 +60,7 @@ class InHouseProgramController extends Controller
         $inhouse->nonRegistrationCost = $validated['nonRegistrationCost'];
         $inhouse->headCost = $validated['headCost'];
         $inhouse->lecturerCost = $validated['lecturerCost'];
-        $inhouse->hours = $validated['hours'];
+        $inhouse->hours = $validated['lecturerCostHours'];
         $inhouse->createdBy = auth()->user()->email;
         $inhouse->save($validated);
 

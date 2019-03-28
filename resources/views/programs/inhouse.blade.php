@@ -10,11 +10,14 @@
         <h4 class="card-title">New Foreign Program</h4>
       </div>
       <div class="card-body  p-4">
-        @if (session('status'))
-          <div class="alert alert-success">
-            {{ session('status') }}
-          </div>
-        @endif
+          @if (session('success'))
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  <strong>Success!</strong>{{ session('status') }}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          @endif
           <form action="{{ route('programs/inhouse') }}" method="POST" enctype="multipart/form-data">
             <div class="row">
               {{ csrf_field() }}
@@ -30,7 +33,7 @@
                 <div class="col col-md-12">
                     <div class="form-group">
                         <label for="programContent">Program Content</label>
-                        <textarea class="form-control {{ $errors->has('ProgramContent') ? 'is-invalid' : '' }}" style="resize: vertical; min-height: 4em; max-height: 10em;" name="programContent" id="programContent" placeholder="Content" rows="3">{{old('ProgramContent')}}</textarea>
+                        <textarea class="form-control {{ $errors->has('programContent') ? 'is-invalid' : '' }}" style="resize: vertical; min-height: 4em; max-height: 10em;" name="programContent" id="programContent" placeholder="Content" rows="3">{{old('programContent')}}</textarea>
                         <small id="contentHelpBlock" class="form-text text-muted">
                             separate content by a single comma
                         </small>
