@@ -16,7 +16,7 @@ class LocalProgramController extends Controller
      */
     public function index()
     {
-        $programs = LocalProgram::paginate(10);
+        $programs = LocalProgram::paginate(16);
 
         return view('programs.localProgram.index', compact('programs'));
     }

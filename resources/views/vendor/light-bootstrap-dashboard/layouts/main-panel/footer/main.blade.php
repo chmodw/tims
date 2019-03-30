@@ -8,25 +8,10 @@
             Home
           </a>
         </li>
-        <li>
-          <a href="#">
-            Company
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Portfolio
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            Blog
-          </a>
-        </li>
       </ul>
       @show
       <p class="copyright text-center">
-        &copy; {{ date('Y') }}
+       TIMS &copy; {{ date('Y') }}
       </p>
     </nav>
   </div>

@@ -35,9 +35,9 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                @foreach ($programs as $program)
+                                @foreach ($programs as $i=>$program)
                                     <tr>
-                                        <td>1</td>
+                                        <td>{{$i+1}}</td>
                                         <td>{{$program->title}}</td>
                                         <td>{{$program->applicationClosingDate}}</td>
                                         <td>{{$program->startingDate}}</td>
@@ -61,6 +61,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
+                            {{$programs->links()}}
                         </div>
 
                 </div>
