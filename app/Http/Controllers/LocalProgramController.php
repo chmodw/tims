@@ -92,7 +92,8 @@ class LocalProgramController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editProgram = LocalProgram::where('programId', $id)->get();
+        return view('programs.localProgram.form', compact('editProgram'));
     }
 
     /**

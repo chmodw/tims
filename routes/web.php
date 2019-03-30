@@ -28,6 +28,7 @@ Route::get('/programs/local', 'LocalProgramController@index')->name('programs/lo
 Route::get('/programs/local/create', 'LocalProgramController@create')->name('programs/local/create')->middleware('auth');
 Route::POST('/programs/local/store', 'LocalProgramController@store')->name('programs/local/store')->middleware('auth');
 Route::get('/programs/local/{programId}', 'LocalProgramController@show')->name('programs/local/show')->middleware('auth');
+Route::get('/programs/local/edit/{id}', 'LocalProgramController@edit')->name('programs/local/edit')->middleware('auth');
 /**
  * Foreign Program
  */
