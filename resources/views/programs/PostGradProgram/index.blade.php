@@ -19,50 +19,9 @@
                             </button>
                         </div>
                     @endif
-
                         <div class="table-responsive table-full-width">
-                            <table class="table table-hover table-striped">
-                                <thead>
-                                <tr>
-                                    <th class="">#</th>
-                                    <th class="">Title</th>
-                                    <th class="">Application Closing Date</th>
-                                    <th class="">Start Date</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach ($programs as $program)
-                                    <tr>
-                                        <td>1</td>
-                                        <td>{{$program->title}}</td>
-                                        <td>{{$program->applicationClosingDate}}</td>
-                                        <td>{{$program->startingDate}}</td>
-                                        <td><a href="/programs/local/{{$program->programId}}">
-                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                        <td><a href="/programs/local/{{$program->programId}}">
-                                                <i class="fa fa-plus" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                        <td><a href="/programs/local/{{$program->programId}}">
-                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                        <td><a href="/programs/local/{{$program->programId}}">
-                                                <i class="fa fa-trash" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
+                            @include('programs/_table')
                         </div>
-
                 </div>
             </div>
         </div>

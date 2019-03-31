@@ -70,7 +70,7 @@ class LocalProgramController extends Controller
         $localProgram->createdBy = auth()->user()->email;
         $localProgram->save($validated);
 
-        return back()->with('success', "Program has been saved successfully");
+        return back()->with('status', "Program has been saved successfully");
     }
 
     /**
@@ -132,7 +132,7 @@ class LocalProgramController extends Controller
         $program->updatedBy = auth()->user()->email;
         $program->save();
 
-        return back()->with('success', "Program has been updated successfully");
+        return back()->with('status', "Program has been updated successfully");
     }
 
     /**
