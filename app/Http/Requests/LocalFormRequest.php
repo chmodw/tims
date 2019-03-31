@@ -41,7 +41,7 @@ class LocalFormRequest extends FormRequest
             'nonMemberFee' => 'required|max:255',
             'memberFee' => 'required|max:255',
             'studentFee' => 'required|max:255',
-            'programBrochure' => 'required|image|max:1999',
+            'programBrochure' => 'image|max:1999',
 
 
             $messages = [

@@ -10,7 +10,6 @@
                     <h4 class="card-title">
                         New Local Program
                     </h4>
-                    {{$editProgram}}
                 </div>
                 <div class="card-body  p-4">
                     @if (session('success'))
@@ -21,9 +20,7 @@
                             </button>
                         </div>
                     @endif
-
-                    <form action="{{ route('programs/local/store') }}" method="POST" enctype="multipart/form-data">
-
+                    <form action="{{route('programs/local/store')}}" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             {{ csrf_field() }}
                             <input type="hidden" name="program_type" id="programType" value="LocalTrainingProgram" />

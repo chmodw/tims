@@ -27,6 +27,7 @@ class CreateLocalProgramsTable extends Migration
             $table->float('studentFee');
             $table->string('brochureUrl');
             $table->string('createdBy');
+            $table->string('updatedBy')->nullable();
             $table->timestamps();
         });
     }

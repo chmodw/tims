@@ -25,6 +25,7 @@ class CreateForeignProgramsTable extends Migration
             $table->string('applicationClosingDateTime');
             $table->string('brochureURL');
             $table->string('createdBy');
+            $table->string('updatedBy')->nullable();
             $table->timestamps();
         });
     }

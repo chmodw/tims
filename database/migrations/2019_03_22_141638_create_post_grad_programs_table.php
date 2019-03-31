@@ -27,6 +27,7 @@ class CreatePostGradProgramsTable extends Migration
             $table->float('secondYearFees');
             $table->string('brochureURL');
             $table->string('createdBy');
+            $table->string('updatedBy')->nullable();
             $table->timestamps();
         });
     }

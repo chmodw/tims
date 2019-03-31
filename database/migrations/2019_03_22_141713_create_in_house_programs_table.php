@@ -32,6 +32,7 @@ class CreateInHouseProgramsTable extends Migration
             $table->float('lecturerCost');
             $table->integer('hours');
             $table->string('createdBy');
+            $table->string('updatedBy')->nullable();
             $table->timestamps();
         });
     }

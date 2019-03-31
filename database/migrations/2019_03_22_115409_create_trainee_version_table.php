@@ -26,8 +26,8 @@ class CreateTraineeVersionTable extends Migration
             $table->string('telephone');
             $table->date('birthday');
             $table->string('grade');
-            $table->integer('designation_id');
-            $table->integer('section_id');
+            $table->integer('designation_id')->unsigned();
+            $table->integer('section_id')->unsigned();
             $table->string('nic');
             $table->string('passport_no');
             $table->string('passport_issued_on');
@@ -36,8 +36,12 @@ class CreateTraineeVersionTable extends Migration
             $table->string('nature_of_employment');
             $table->date('date_of_employment');
             $table->date('date_of_appointment');
+            $table->string('updatedBy')->nullable();
             $table->timestamp('updated_at');
             $table->timestamp('deleted_at')->useCurrent = true;
+
+            $table->foreign('designation_id')->references('id')->on('designations');
+            $table->foreign('section_id')->references('id')->on('sections');
         });
     }
 

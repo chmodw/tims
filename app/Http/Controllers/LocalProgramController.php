@@ -93,7 +93,7 @@ class LocalProgramController extends Controller
     public function edit($id)
     {
         $editProgram = LocalProgram::where('programId', $id)->get();
-        return view('programs.localProgram.form', compact('editProgram'));
+        return view('programs.localProgram.edit', compact('editProgram'));
     }
 
     /**
@@ -103,9 +103,36 @@ class LocalProgramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(LocalFormRequest $request, $id)
     {
-        //
+        $program = LocalProgram::find($id);
+
+        $validated = $request->validated();
+
+        $program->title = $validated['programTitle'];
+        $program->title = $validated['programTitle'];
+        $program->organisedBy = $validated['organisedBy'];
+        $program->targetGroup = $validated['targetGroup'];
+        $program->startDate = Helper::jointDateTime($validated['startDate'],$validated['startTime']);
+        $program->endDate = Helper::jointDateTime($validated['endDate'],$validated['endTime']);
+        $program->applicationClosingDateTime = Helper::jointDateTime($validated['applicationClosingDate'], $validated['applicationClosingTime']);
+        $program->nonMemberFee = $validated['nonMemberFee'];
+        $program->memberFee = $validated['memberFee'];
+        $program->studentFee = $validated['studentFee'];
+        // check if a program brochure is present
+        if($request->file('programBrochure') != null){
+            //get the file ext
+            $ext = $request->file('programBrochure')->getClientOriginalExtension();
+            //save the file in the storage
+            $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $validated['programId'].".".$ext);
+            //save the file name in the database
+            $program->brochureUrl = $savedFile;
+        }
+
+        $program->updatedBy = auth()->user()->email;
+        $program->save();
+
+        return back()->with('success', "Program has been updated successfully");
     }
 
     /**
