@@ -31,7 +31,8 @@
                 <th>Section Email</th>
                 <th>Created at</th>
                 <th>Updated at</th>
-                <th>ID | Edit</th>
+                <th>ID </th>
+                <th>Edit </th>
                 <th>Allocated budget</th>
                 <th>Existing budget</th>
               </thead>
@@ -46,8 +47,8 @@
                   <td>{{$section->section_email}}</td>
                   <td>{{$section->created_at}}</td>
                   <td>{{$section->updated_at}}</td>
-                  {{--impliment edit here--}}
-                  <td><a href="{{route('section.edit',$section->id)}}" >{{$section->id}}</a></td>
+                  <td>{{$section->id}}</td>
+                  <td><a href="{{route('section.edit',$section->id)}}" class="btn btn-primary btn-xs" > Edit | {{$section->id}}</a></td>
                 </tr>
               @endforeach
               </tbody>

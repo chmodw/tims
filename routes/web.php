@@ -57,3 +57,9 @@ Route::resource('/budget','budgetController');
 //trainee routs
 
 Route::resource('/trainee','TraineeController');
+
+Route::get('/bubu/stats',function(){
+
+    return view('budget.budgetStats');
+
+});
