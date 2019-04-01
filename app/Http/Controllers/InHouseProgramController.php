@@ -88,7 +88,9 @@ class InHouseProgramController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editProgram = InHouseProgram::where('programId', $id)->get();
+//        return(view('programs.InHouseProgram.edit', compact('editProgram')));
+        return(view('programs.InHouseProgram.edit')->with();
     }
 
     /**

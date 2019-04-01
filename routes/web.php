@@ -30,6 +30,9 @@ Route::POST('/programs/local/store', 'LocalProgramController@store')->name('prog
 Route::get('/programs/local/{programId}', 'LocalProgramController@show')->name('programs/local/show')->middleware('auth');
 Route::get('/programs/local/edit/{id}', 'LocalProgramController@edit')->name('programs/local/edit')->middleware('auth');
 Route::PATCH('/programs/local/update/{id}', 'LocalProgramController@update')->name('programs/local/update')->middleware('auth');
+
+
+//Route::resource('/programs/local', 'LocalProgramController')->middleware('auth');
 /**
  * Foreign Program
  */
@@ -46,6 +49,8 @@ Route::get('/programs/inhouse', 'InHouseProgramController@index')->name('program
 Route::get('/programs/inhouse/create', 'InHouseProgramController@create')->name('programs/inhouse/store')->middleware('auth');
 Route::POST('/programs/inhouse/create', 'InHouseProgramController@store')->name('programs/inhouse/create')->middleware('auth');
 Route::get('/programs/inhouse/{programId}', 'InHouseProgramController@show')->name('programs/inhouse/show')->middleware('auth');
+Route::get('/programs/inhouse/edit/{id}', 'InHouseProgramController@edit')->name('programs/inhouse/edit')->middleware('auth');
+Route::PATCH('/programs/inhouse/update/{id}', 'InHouseProgramController@update')->name('programs/inhouse/update')->middleware('auth');
 /**
  * Post Grad Program
  */

@@ -94,7 +94,8 @@ class ForeignProgramController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {   $editProgram = ForeignProgram::where('programId', $id)->get();
+    {
+        $editProgram = ForeignProgram::where('programId', $id)->get();
         return(view('programs.ForeignProgram.edit', compact('editProgram')));
     }
 
