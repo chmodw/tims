@@ -89,8 +89,7 @@ class InHouseProgramController extends Controller
     public function edit($id)
     {
         $editProgram = InHouseProgram::where('programId', $id)->get();
-//        return(view('programs.InHouseProgram.edit', compact('editProgram')));
-        return(view('programs.InHouseProgram.edit')->with();
+        return(view('programs.InHouseProgram.edit', compact('editProgram')));
     }
 
     /**
@@ -100,9 +99,31 @@ class InHouseProgramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(InHouseFormRequest $request, $id)
     {
-        //
+
+        $validated = $request->validated();
+        $inhouse = InHouseProgram::find($id);
+
+        $inhouse->title = $validated['programTitle'];
+        $inhouse->content = Serialize(explode(', ', $validated['programContent']));
+        $inhouse->targetGroup = $validated['targetGroup'];
+        $inhouse->organisedBy = $validated['organisedBy'];
+        $inhouse->venue = $validated['venue'];
+        $inhouse->startDateTime = Helper::jointDateTime($validated['startDate'],$validated['startTime']);
+        $inhouse->endDateTime = Helper::jointDateTime($validated['endDate'],$validated['endTime']);
+        $inhouse->applicationClosingDateTime = Helper::jointDateTime($validated['applicationClosingDate'], $validated['applicationClosingTime']);
+        $inhouse->keyPerson = $validated['keyPerson'];
+        $inhouse->keyPersonDesignation = $validated['keyPersonDesignation'];
+        $inhouse->registrationCost = $validated['registrationCost'];
+        $inhouse->nonRegistrationCost = $validated['nonRegistrationCost'];
+        $inhouse->headCost = $validated['headCost'];
+        $inhouse->lecturerCost = $validated['lecturerCost'];
+        $inhouse->hours = $validated['lecturerCostHours'];
+        $inhouse->updatedBy = auth()->user()->email;
+        $inhouse->save();
+
+        return back()->with('status', "Program has been updated successfully");
     }
 
     /**
