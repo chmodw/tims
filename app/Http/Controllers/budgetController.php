@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Budget;
+use App\Section;
 use Illuminate\Http\Request;
 
 class budgetController extends Controller
@@ -13,7 +15,9 @@ class budgetController extends Controller
      */
     public function index()
     {
-        return view('budget.main');
+        $budgets = Budget::all();
+        $sections = Section::all();
+        return view('budget.main',compact('sections'),compact('budgets'));
     }
 
     /**
@@ -23,7 +27,8 @@ class budgetController extends Controller
      */
     public function create()
     {
-        //
+        return view('budget.createBudget');
+
     }
 
     /**
@@ -34,7 +39,10 @@ class budgetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        Budget::create($request->all());
+
+        return redirect('budget');
     }
 
     /**
@@ -56,7 +64,12 @@ class budgetController extends Controller
      */
     public function edit($id)
     {
-        //
+        $budgets =Budget::findOrFail($id);
+
+        return view('budget.editBudget',compact('budgets'));
+//        $sections = Section::findOrFail($id);
+//
+//        return view('budget.editBudget',compact('sections'));
     }
 
     /**
@@ -68,7 +81,12 @@ class budgetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $budgets = Budget::findOrFail($id);
+
+        $budgets->update($request->all());
+
+        return redirect('budget');
     }
 
     /**

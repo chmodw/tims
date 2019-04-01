@@ -32,6 +32,8 @@
                 <th>Created at</th>
                 <th>Updated at</th>
                 <th>ID | Edit</th>
+                <th>Allocated budget</th>
+                <th>Existing budget</th>
               </thead>
               <tbody>
               @foreach($sections as $section)

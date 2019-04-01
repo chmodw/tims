@@ -21,24 +21,35 @@
           <div class="table-responsive table-full-width">
             <table class="table table-hover">
               <thead>
-                <th>#</th>
-                <th class="w-50">Program Title</th>
-                <th>Start Date</th>
-                <th>Closing Date</th>
-                <th>No.of Trainees</th>
-                <th>Attending</th>
+              <th>Section ID</th>
+              {{--<th class="w-50">fdfd</th>--}}
+              <th>Section Name</th>
+              <th>Section HOD</th>
+              <th>Section Email</th>
+              <th>Allocated budget</th>
+              <th>Existing budget</th>
+              <th>Create</th>
+              <th>Edit</th>
               </thead>
               <tbody>
-              @for($i=0; $i<20; $i++)
+              @foreach($sections as $section )
+
                 <tr>
-                  <td>{{$i}}</td>
-                  <td><a href="" >Dakota Rice</a></td>
-                  <td>$36,738</td>
-                  <td>Niger</td>
-                  <td>Oud-Turnhout</td>
-                  <td>Oud-Turnhout</td>
+                  <td>{{$section->id}}</td>
+
+                  <td>{{$section->sectionName}}</td>
+                  <td>{{$section->section_hod}}</td>
+                  <td>{{$section->section_email}}</td>
+                  <td>Sample data</td>
+                  <td>Sample data</td>
+                  {{--<td> <button class="btn btn-primary btn-xs" href="{{route('budget.create',$section->id)}}">Create</button> </td>--}}
+                  <td><a href="{{route('budget.create',$section->id)}}" class="btn btn-primary btn-xs" > Create | {{$section->id}}</a></td>
+                  <td><a href="{{route('budget.edit',$section->id)}}" class="btn btn-primary btn-xs" > Edit | {{$section->id}}</a></td>
+                  {{--impliment edit here--}}
+
                 </tr>
-              @endfor
+              @endforeach
+
               </tbody>
             </table>
           </div>

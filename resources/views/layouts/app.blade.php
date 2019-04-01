@@ -34,8 +34,8 @@
 
       @if(\Request::is('budget') || \Request::is('budget/*'))
 
-        <li><a class="nav-link" href="{!! url('budget/create') !!}"><i class="fa fa-location-arrow"></i> Allocate Budget </a></li>
-        <li><a class="nav-link" href="{!! url('budget/edit') !!}"><i class="fa fa-location-arrow"></i> Edit Budget </a></li>
+        {{--<li><a class="nav-link" href="{!! url('budget/create') !!}"><i class="fa fa-location-arrow"></i> Allocate Budget </a></li>--}}
+        {{--<li><a class="nav-link" href="{!! url('budget/edit') !!}"><i class="fa fa-location-arrow"></i> Edit Budget </a></li>--}}
 
 
 
@@ -46,7 +46,7 @@
 
       @if(\Request::is('section') || \Request::is('section/*'))
         <li><a class="nav-link" href="{!! url('section/create') !!}"><i class="fa fa-location-arrow"></i> Create a new section </a></li>
-        {{--<li><a class="nav-link" href="{!! url('section/edit') !!}"><i class="fa fa-location-arrow"></i> Edit section information </a></li>--}}
+        <li><a class="nav-link" href="{!! url('section/#') !!}"><i class="fa fa-location-arrow"></i> View allocated trainees </a></li>
 
 
 
