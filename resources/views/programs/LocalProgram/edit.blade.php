@@ -158,7 +158,7 @@
                             </form>
 
                     @else
-                        {{redirect('programs/local')}}
+                            <script>window.location = "/programs/local";</script>
                     @endif
                 </div>
             </div>

@@ -90,7 +90,6 @@
                                     @endif
                                 </div>
                             </div>
-
                             <div class="col col-md-4">
                                 <div class="form-group">
                                     <label for="registrationFees">Registration Fees (Rs)</label>

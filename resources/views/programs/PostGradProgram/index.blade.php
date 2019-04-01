@@ -20,7 +20,7 @@
                         </div>
                     @endif
                         <div class="table-responsive table-full-width">
-                            @include('programs/_table')
+                            @include('programs/_table', ['rootLink'=>'/programs/postgrad/'])
                         </div>
                 </div>
             </div>

@@ -15,7 +15,7 @@ class PostGradProgramController extends Controller
      */
     public function index()
     {
-        $programs = ForeignProgram::paginate(10);
+        $programs = PostGradProgram::paginate(10);
 
         return view('programs.PostGradProgram.index', compact('programs'));
     }
@@ -36,18 +36,6 @@ class PostGradProgramController extends Controller
      */
     public function store(PostGradFromRequest $request)
     {
-//        'programTitle' => 'required|max:191',
-//            'institute' => 'required|max:191',
-//            'department' => 'required',
-//            'programs' => 'required',
-//            'requirements' => 'required|max:255',
-//            'applicationClosingDate' => 'required|max:191|after_or_equal:today',
-//            'applicationClosingTime' => 'required|max:191',
-//            'registrationFees' => 'required|max:191',
-//            'firstYearFees' => 'required|max:191',
-//            'secondYearFees' => 'required|max:191',
-
-
         $validated = $request->validated();
 
         $postGrad = new PostGradProgram();
@@ -64,7 +52,6 @@ class PostGradProgramController extends Controller
         $postGrad->registrationFees = $validated['registrationFees'];
         $postGrad->firstYearFees = $validated['firstYearFees'];
         $postGrad->secondYearFees = $validated['secondYearFees'];
-
         // check if a program brochure is present
         if($request->file('programBrochure') != null){
             //get the file ext
@@ -100,7 +87,8 @@ class PostGradProgramController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editProgram = PostGradProgram::where('programId', $id)->get();
+        return view('programs.PostGradProgram.edit', compact('editProgram'));
     }
     /**
      * Update the specified resource in storage.
@@ -109,9 +97,36 @@ class PostGradProgramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostGradFromRequest $request, $id)
     {
-        //
+
+        $postGrad = PostGradProgram::find($id);
+
+        $validated = $request->validated();
+
+        $postGrad->title = $validated['programTitle'];
+        $postGrad->institute = $validated['institute'];
+        $postGrad->department = $validated['department'];
+        $postGrad->programs = Serialize(explode(', ', $validated['programs']));
+        $postGrad->requirements = Serialize(explode(', ', $validated['requirements']));
+        $postGrad->applicationClosingDateTime = Helper::jointDateTime($validated['applicationClosingDate'], $validated['applicationClosingTime']);
+        $postGrad->registrationFees = $validated['registrationFees'];
+        $postGrad->firstYearFees = $validated['firstYearFees'];
+        $postGrad->secondYearFees = $validated['secondYearFees'];
+        // check if a program brochure is present
+        if($request->file('programBrochure') != null){
+            //get the file ext
+            $ext = $request->file('programBrochure')->getClientOriginalExtension();
+            //save the file in the storage
+            $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $validated['programId'].".".$ext);
+            //save the file name in the database
+            $postGrad->brochureUrl = $savedFile;
+        }
+
+        $postGrad->updatedBy = auth()->user()->email;
+        $postGrad->save();
+
+        return back()->with('success', "Program has been Updated successfully");
     }
     /**
      * Remove the specified resource from storage.
