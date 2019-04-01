@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Trainee;
+use App\Section;
 use Illuminate\Http\Request;
 
-class TraineeController extends Controller
+class sectionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class TraineeController extends Controller
      */
     public function index()
     {
-//        $trainees = Trainee::all();
-
-        return view('trainee.main');
+        $sections = Section::all();
+        return view('section.main',compact('sections'));
     }
 
     /**
@@ -26,8 +25,7 @@ class TraineeController extends Controller
      */
     public function create()
     {
-
-        return view('trainee.createTrainee');
+        return view('section.createSection');
     }
 
     /**
@@ -38,7 +36,8 @@ class TraineeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Section::create($request->all());
+        return redirect('section');
     }
 
     /**
@@ -49,7 +48,7 @@ class TraineeController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -60,7 +59,10 @@ class TraineeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sections = Section::findOrFail($id);
+
+        return view('section.editSection',compact('sections'));
+
     }
 
     /**
@@ -72,7 +74,12 @@ class TraineeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $sections = Section::findOrFail($id);
+
+        $sections->update($request->all());
+
+        return redirect('section');
+
     }
 
     /**

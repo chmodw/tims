@@ -40,7 +40,8 @@ class Trainee extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Il
+     * luminate\Database\Eloquent\Relations\BelongsTo
      */
     public function designationId(){
         return $this->belongsTo('App\Designation');

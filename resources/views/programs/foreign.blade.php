@@ -97,7 +97,7 @@
               <div class="col col-md-6">
                 <div class="form-group">
                   <label for="programBrochure">Program Brochure</label>
-                  <input type="file" name="programBrochure" id="programBrochure" name="programBrochure">
+                  <input type="file" class="form-control-file" name="programBrochure" id="programBrochure" name="programBrochure">
                   @if ($errors->has('programBrochure'))
                     <span class="invalid-feedback">{{ $errors->first('programBrochure') }}</span>
                     @if ($errors->has('programBrochure'))

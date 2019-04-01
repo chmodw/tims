@@ -139,7 +139,7 @@
               <div class="col col-md-6">
                 <div class="form-group">
                   <label for="programBrochure">Program Brochure</label>
-                  <input type="file"  id="programBrochure" name="programBrochure" class="{{ $errors->has('programBrochure') ? 'is-invalid' : '' }}" name="programBrochure">
+                  <input type="file" class="form-control-file"  id="programBrochure" name="programBrochure" class="{{ $errors->has('programBrochure') ? 'is-invalid' : '' }}" name="programBrochure">
                   @if ($errors->has('programBrochure'))
                     <span class="help-block" style="display: block;width: 100%;margin-top: 0.25rem;font-size: 80%;color: #dc3545;">{{ $errors->first('programBrochure') }}</span>
                   @endif

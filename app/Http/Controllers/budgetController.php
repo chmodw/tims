@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Trainee;
 use Illuminate\Http\Request;
 
-class TraineeController extends Controller
+class budgetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,7 @@ class TraineeController extends Controller
      */
     public function index()
     {
-//        $trainees = Trainee::all();
-
-        return view('trainee.main');
+        return view('budget.main');
     }
 
     /**
@@ -26,8 +23,7 @@ class TraineeController extends Controller
      */
     public function create()
     {
-
-        return view('trainee.createTrainee');
+        //
     }
 
     /**
@@ -49,7 +45,7 @@ class TraineeController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**

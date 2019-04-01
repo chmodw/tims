@@ -25,10 +25,23 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/trainees" class="nav-link">
+            <a href="/trainee" class="nav-link">
               Trainees
             </a>
           </li>
+
+          <li class="nav-item">
+            <a href="/section" class="nav-link">
+              Section's
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="/budget" class="nav-link">
+              Budget
+            </a>
+          </li>
+
         </ul>
 
         <ul class="navbar-nav ml-auto">
