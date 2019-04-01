@@ -12,14 +12,7 @@
                     </h4>
                 </div>
                 <div class="card-body  p-4">
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Success!</strong>{{ session('status') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
+                    @include('_alert')
                     <form action="{{route('programs/local/store')}}" method="POST" enctype="multipart/form-data">
                         <div class="row">
                             {{ csrf_field() }}

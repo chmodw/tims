@@ -15,7 +15,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/programs" class="nav-link ">
+            <a href="{{url('/programs')}}" class="nav-link ">
               Programs
             </a>
           </li>
@@ -25,7 +25,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="/trainees" class="nav-link">
+            <a href="{{url('/trainees')}}" class="nav-link">
               Trainees
             </a>
           </li>

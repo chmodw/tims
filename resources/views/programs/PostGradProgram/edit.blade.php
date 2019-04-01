@@ -10,14 +10,7 @@
                     <h4 class="card-title">Update Post-Graduation Program</h4>
                 </div>
                 <div class="card-body  p-4">
-                    @if (session('success'))
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Success!</strong>{{ session('status') }}
-                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    @endif
+                    @include('_alert')
                         @if(!isset($editProgram) || empty($editProgram))
                             <script>window.location = "/programs/postgrad";</script>
                         @endif
@@ -29,7 +22,7 @@
                                     <div class="form-group">
                                         <label for="programTitle">Title</label>
                                         <input type="text" value="{{old('programTitle', $editProgram[0]->title)}}" class="form-control {{$errors->has('programTitle') ? 'is-invalid' : '' }}" id="programTitle" name="programTitle" placeholder="Title">
-                                        @if ($errors->has('institute'))
+                                        @if ($errors->has('programTitle'))
                                             <span class="invalid-feedback">{{$errors->first('programTitle')}}</span>
                                         @endif
                                     </div>

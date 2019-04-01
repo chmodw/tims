@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Designation;
+use App\Section;
 use Illuminate\Http\Request;
 
 class TraineeController extends Controller
@@ -13,7 +15,7 @@ class TraineeController extends Controller
      */
     public function index()
     {
-        return view('trainee/main');
+        return view('trainees/index');
     }
 
     /**
@@ -23,7 +25,14 @@ class TraineeController extends Controller
      */
     public function create()
     {
-        //
+
+        // Get the designations from the database
+        $designations = Designation::all(['id', 'designationName']);
+        // get the sections from the database
+        $sections = Section::all(['id', 'sectionName']);
+
+
+        return view('trainees/create', ['designations' => $designations, 'sections' => $sections]);
     }
 
     /**
