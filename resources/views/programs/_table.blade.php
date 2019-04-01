@@ -18,27 +18,27 @@
             <td><a href="/programs/local/{{$program->programId}}">{{$program->title}}</a></td>
             <td>{{$program->applicationClosingDate}}</td>
             <td>{{$program->startingDate}}</td>
-            <td><a href="/programs/local/{{$program->programId}}">
+            <td><a href="{{url($rootLink.$program->programId)}}">
                     <i class="fa fa-eye" style="color: blue" aria-hidden="true"></i>
                 </a>
             </td>
             <td>
                 @if(strtotime($program->applicationClosingDate) > strtotime('now'))
-                    <a href="{{url('/programs/local/'.$program->programId)}}">
+                    <a href="{{url($rootLink.$program->programId)}}">
                         <i class="fa fa-plus" style="color: green;" aria-hidden="true"></i>
                     </a>
                 @endif
             </td>
             <td>
                 @if(strtotime($program->applicationClosingDate) > strtotime('now'))
-                    <a href="{{url('programs/local/edit/'.$program->programId)}}">
+                    <a href="{{url($rootLink.'edit/'.$program->programId)}}">
                         <i class="fa fa-pencil" style="color: orange;" aria-hidden="true"></i>
                     </a>
                 @endif
             </td>
             <td>
                 @if(strtotime($program->applicationClosingDate) > strtotime('now'))
-                    <a href="/programs/local/{{$program->programId}}">
+                    <a href="{{url($rootLink.$program->programId)}}">
                         <i class="fa fa-trash " style="color: red" aria-hidden="true"></i>
                     </a>
                 @endif

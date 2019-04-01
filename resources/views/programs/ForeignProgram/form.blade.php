@@ -106,9 +106,11 @@
                                     </small>
                                 </div>
                             </div>
-                            <div class="col col-md-6 trainingFormBtnContainer d-flex justify-content-end">
-                                <a class="btn btn-default trainingFormBtn mr-2" href="/programs">Cancel</a>
-                                <input type="submit" class="btn btn-primary trainingFormBtn" value="Save" name="submitLocalTrainingForm">
+                            <div class="col col-md-12">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-primary form-submit-btn" value="Save" name="submit">
+                                    <a class="btn btn-default mr-2 form-cancel-link" href="{{url('/programs/foreign')}}">Cancel</a>
+                                </div>
                             </div>
                         </div>
                     </form>

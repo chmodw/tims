@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ForeignProgram;
 use App\Http\Requests\ForeignFormRequest;
+use App\LocalProgram;
 use Illuminate\Http\Request;
 use App\Helper\Helper;
 
@@ -93,8 +94,8 @@ class ForeignProgramController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {   $editProgram = ForeignProgram::where('programId', $id)->get();
+        return(view('programs.ForeignProgram.edit', compact('editProgram')));
     }
 
     /**
@@ -104,9 +105,32 @@ class ForeignProgramController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ForeignFormRequest $request, $id)
     {
-        //
+        $validated = $request->validated();
+        $program = ForeignProgram::find($id);
+
+        $program->title = $validated['programTitle'];
+        $program->organisedBy = $validated['organisedBy'];
+        $program->notifiedBy = $validated['notifiedBy'];
+        $program->targetGroup = $validated['targetGroup'];
+        $program->startDate = $validated['startDate'];
+        $program->endDate = $validated['endDate'];
+        $program->applicationClosingDateTime = Helper::jointDateTime($validated['applicationClosingDate'], $validated['applicationClosingTime']);
+        // check if a program brochure is present
+        if($request->file('programBrochure') != null){
+            //get the file ext
+            $ext = $request->file('programBrochure')->getClientOriginalExtension();
+            //save the file in the storage
+            $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $validated['programId'].".".$ext);
+            //save the file name in the database
+            $program->brochureUrl = $savedFile;
+        }
+
+        $program->updatedBy = auth()->user()->email;
+        $program->save();
+
+        return back()->with('status', "Program has been updated successfully");
     }
 
     /**

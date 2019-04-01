@@ -81,7 +81,10 @@ class LocalProgramController extends Controller
      */
     public function show($id)
     {
-        //
+        $program = LocalProgram::where('programId', $id)->get();
+//        $trinees = App\ProgramController::get
+
+        var_dump($program);
     }
 
     /**
@@ -109,7 +112,6 @@ class LocalProgramController extends Controller
 
         $validated = $request->validated();
 
-        $program->title = $validated['programTitle'];
         $program->title = $validated['programTitle'];
         $program->organisedBy = $validated['organisedBy'];
         $program->targetGroup = $validated['targetGroup'];

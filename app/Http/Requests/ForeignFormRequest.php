@@ -38,7 +38,7 @@ class ForeignFormRequest extends FormRequest
             'endDate' => 'required|max:191|date|after_or_equal:startDate',
             'applicationClosingDate' => 'required|max:191|before_or_equal:startDate',
             'applicationClosingTime' => 'required|max:191',
-            'programBrochure' => 'required|image|max:1999',
+            'programBrochure' => 'image|max:1999',
 
             $messages = [
                 'mimes' => 'Only images are allowed.',

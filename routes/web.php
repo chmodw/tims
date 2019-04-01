@@ -36,7 +36,9 @@ Route::PATCH('/programs/local/update/{id}', 'LocalProgramController@update')->na
 Route::get('/programs/foreign', 'ForeignProgramController@index')->name('programs/foreign')->middleware('auth');
 Route::get('/programs/foreign/create', 'ForeignProgramController@create')->name('programs/foreign/create')->middleware('auth');
 Route::POST('/programs/foreign/create', 'ForeignProgramController@store')->name('programs/foreign/store')->middleware('auth');
+Route::get('/programs/foreign/edit/{id}', 'ForeignProgramController@edit')->name('programs/foreign/edit')->middleware('auth');
 Route::get('/programs/foreign/{programId}', 'ForeignProgramController@show')->name('programs/foreign/show')->middleware('auth');
+Route::PATCH('/programs/foreign/update/{id}', 'ForeignProgramController@update')->name('programs/foreign/update')->middleware('auth');
 /**
  * In House Program
  */

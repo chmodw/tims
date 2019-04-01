@@ -24005,3 +24005,15 @@ License - nucleoapp.com/license/
 
 /* all icon font classes list here */
 
+/**
+  Custom Styles
+ */
+
+.form-cancel-link {
+  float: right;
+}
+
+.form-submit-btn {
+  float: right;
+}
+

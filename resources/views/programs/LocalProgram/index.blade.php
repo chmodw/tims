@@ -20,7 +20,7 @@
                         </div>
                     @endif
                     <div class="table-responsive-md">
-                        @include('programs/_table')
+                        @include('programs/_table', ['rootLink'=>'/programs/local/'])
                     </div>
                     {{$programs->links()}}
                 </div>
