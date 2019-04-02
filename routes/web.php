@@ -58,8 +58,3 @@ Route::resource('/budget','budgetController');
 
 Route::resource('/trainee','TraineeController');
 
-Route::get('/bubu/stats',function(){
-
-    return view('budget.budgetStats');
-
-});
