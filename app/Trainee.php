@@ -33,6 +33,7 @@ class Trainee extends Model
         'passport_expire_on',
         'meal_pref',
         'nature_of_employment',
+        'date_of_employment',
         'date_of_appointment',
     ];
     /**
@@ -58,15 +59,15 @@ class Trainee extends Model
         'passport_expire_on',
         'meal_pref',
         'nature_of_employment',
+        'date_of_employment',
         'date_of_appointment',
-        'updated_by',
         'updated_at',
         'deleted_at'
     ];
 
-//    protected $attributes = [
-//        'created_by' => auth()->user()->email,
-//    ];
+    protected $attributes = [
+
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

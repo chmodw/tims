@@ -72,8 +72,9 @@ class TraineeController extends Controller
             'passport_expire_on'=> $validated['passportExpireOn'],
             'meal_pref'=> $validated['mealPreference'],
             'nature_of_employment'=> $validated['natureOfEmployment'],
-            'date_of_employment'=> $validated['dateOfEmployment'],
+            'date_of_employment' => $validated['dateOfEmployment'],
             'date_of_appointment'=> $validated['dateOfAppointment'],
+            'created_by' => auth()->user()->email
         ]);
 
         $trainee->save();

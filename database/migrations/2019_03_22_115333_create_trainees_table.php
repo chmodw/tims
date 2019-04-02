@@ -17,8 +17,9 @@ class CreateTraineesTable extends Migration
             $table->increments('id');
             $table->integer('latest_version');
             $table->string('created_by');
+            $table->string('updated_by')->nullable();
             $table->timestamp('created_at');
-
+            $table->timestamp('updated_at')->nullable();
         });
     }
 
