@@ -82,9 +82,9 @@ class LocalProgramController extends Controller
     public function show($id)
     {
         $program = LocalProgram::where('programId', $id)->get();
-//        $trinees = App\ProgramController::get
+        $trinees = App\Program::where('local_program_id', '=', $id)->get();
+        return view('programs.localProgram.show', compact('program'));
 
-        var_dump($program);
     }
 
     /**

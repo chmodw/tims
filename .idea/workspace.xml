@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d123ddb2-4f6b-4ab2-af33-9b6af484b763" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/TraineeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/TraineeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Trainee.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Trainee.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_22_115333_create_trainees_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_03_22_115333_create_trainees_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_03_22_115409_create_trainee_version_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_03_22_115409_create_trainees_version_table.php" afterDir="false" />
+    <list default="true" id="d123ddb2-4f6b-4ab2-af33-9b6af484b763" name="Default Changelist" comment="random commit">
+      <change afterPath="$PROJECT_DIR$/resources/views/programs/single.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/LocalProgramController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/LocalProgramController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/programs/LocalProgram/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/programs/LocalProgram/show.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -21,52 +19,31 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/trainees/create.blade.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/programs/LocalProgram/show.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="44">
-              <caret line="195" column="214" selection-start-line="195" selection-start-column="198" selection-end-line="195" selection-end-column="214" />
+            <state relative-caret-position="391">
+              <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalProgramController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="75" column="7" lean-forward="true" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+              <folding>
+                <element signature="e#40#62#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TraineeController.php">
+        <entry file="file://$PROJECT_DIR$/resources/views/programs/single.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
-              <folding>
-                <element signature="e#40#60#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Requests/TraineeRequestForm.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="51" column="29" selection-start-line="51" selection-start-column="13" selection-end-line="51" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Trainee.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
-              <folding>
-                <marker date="1554215307636" expanded="true" signature="1376:1413" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/routes/web.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="1" selection-start-column="1" selection-end-column="1" />
+            <state relative-caret-position="17">
+              <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -96,8 +73,8 @@
       <find>applica</find>
       <find>help</find>
       <find>date_of_employment</find>
-      <find>date_of_employment</find>
       <find>dateOfAppointment</find>
+      <find>date_of_employment</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -111,8 +88,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/vendor/pagination/simple-default.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/vendor/pagination/simple-bootstrap-4.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/vendor/pagination/bootstrap-4.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_03_22_141713_create_in_house_programs_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_03_22_141835_create_local_programs_table.php" />
@@ -134,7 +109,6 @@
         <option value="$PROJECT_DIR$/app/Http/Requests/ForeignFormRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ForeignProgramController.php" />
         <option value="$PROJECT_DIR$/resources/views/programs/_table.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/LocalProgramController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/InHouseProgramController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/PostGradProgramController.php" />
         <option value="$PROJECT_DIR$/resources/views/_alert.blade.php" />
@@ -162,6 +136,9 @@
         <option value="$PROJECT_DIR$/resources/views/trainees/create.blade.php" />
         <option value="$PROJECT_DIR$/app/Trainee.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/TraineeController.php" />
+        <option value="$PROJECT_DIR$/resources/views/programs/LocalProgram/show.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/LocalProgramController.php" />
+        <option value="$PROJECT_DIR$/resources/views/programs/single.blade.php" />
       </list>
     </option>
   </component>
@@ -445,7 +422,7 @@
       <workItem from="1553818400636" duration="1827000" />
       <workItem from="1553933020121" duration="259000" />
       <workItem from="1553933479301" duration="43490000" />
-      <workItem from="1554168663074" duration="14333000" />
+      <workItem from="1554168663074" duration="17027000" />
     </task>
     <task id="LOCAL-00001" summary="In house form submit done">
       <created>1553765216045</created>
@@ -486,7 +463,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="168962000" />
+    <option name="totallyTimeSpent" value="171656000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -535,13 +512,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="random commit" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/storage/framework/views/aa2e44a97532d84532b5a155af12e58681cf00b7.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1411">
-          <caret line="80" column="34" lean-forward="true" selection-start-line="80" selection-start-column="34" selection-end-line="80" selection-end-column="126" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/programs/index.blade.php" />
     <entry file="file://$PROJECT_DIR$/storage/framework/views/7fe2232a7df3197fd05539cce45ef2064c141720.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -573,16 +543,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/routes/console.php">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalProgramController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="128" selection-start-line="128" selection-end-line="134" selection-end-column="25" />
-          <folding>
-            <element signature="e#40#62#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/trainees/edit.blade.php">
       <provider selected="true" editor-type-id="text-editor" />
@@ -653,13 +613,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/programs/LocalProgram/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="38" selection-start-line="13" selection-start-column="38" selection-end-line="13" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/browser.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
@@ -700,9 +653,6 @@
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/programs/PostGradProgram/show.blade.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/programs/LocalProgram/show.blade.php">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/programs/InHouseProgram/show.blade.php">
@@ -853,11 +803,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TraineeController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="81" column="4" selection-start-line="81" selection-start-column="4" selection-end-line="81" selection-end-column="4" />
+        <state relative-caret-position="265">
+          <caret line="84" column="7" lean-forward="true" selection-start-line="84" selection-start-column="7" selection-end-line="84" selection-end-column="7" />
           <folding>
             <element signature="e#40#60#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/programs/LocalProgram/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="10" lean-forward="true" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/programs/LocalProgram/show.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="11" lean-forward="true" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalProgramController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="75" column="7" lean-forward="true" selection-start-line="75" selection-start-column="7" selection-end-line="75" selection-end-column="7" />
+          <folding>
+            <element signature="e#40#62#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/programs/single.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
         </state>
       </provider>
     </entry>
