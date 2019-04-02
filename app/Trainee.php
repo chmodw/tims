@@ -13,6 +13,28 @@ class Trainee extends Model
      * @var bool
      */
     public $timestamps = true;
+
+    protected $fillable = [
+        'epf_no',
+        'title',
+        'name_with_initials',
+        'full_name',
+        'office_email',
+        'personal_email',
+        'mobile',
+        'telephone',
+        'birthday',
+        'grade',
+        'designation_id',
+        'section_id',
+        'nic',
+        'passport_no',
+        'passport_issued_on',
+        'passport_expire_on',
+        'meal_pref',
+        'nature_of_employment',
+        'date_of_appointment',
+    ];
     /**
      * @var array
      * versioned columns
@@ -36,8 +58,15 @@ class Trainee extends Model
         'passport_expire_on',
         'meal_pref',
         'nature_of_employment',
-        'date_of_appointment'
+        'date_of_appointment',
+        'updated_by',
+        'updated_at',
+        'deleted_at'
     ];
+
+//    protected $attributes = [
+//        'created_by' => auth()->user()->email,
+//    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

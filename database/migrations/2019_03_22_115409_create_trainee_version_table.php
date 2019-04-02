@@ -36,9 +36,9 @@ class CreateTraineeVersionTable extends Migration
             $table->string('nature_of_employment');
             $table->date('date_of_employment');
             $table->date('date_of_appointment');
-            $table->string('updatedBy')->nullable();
-            $table->timestamp('updated_at');
-            $table->timestamp('deleted_at')->useCurrent = true;
+            $table->string('updated_by')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
 
             $table->foreign('designation_id')->references('id')->on('designations');
             $table->foreign('section_id')->references('id')->on('sections');
