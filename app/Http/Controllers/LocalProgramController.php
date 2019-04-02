@@ -70,7 +70,8 @@ class LocalProgramController extends Controller
         $localProgram->createdBy = auth()->user()->email;
         $localProgram->save($validated);
 
-        return back()->with('status', "Program has been saved successfully");
+//        return back()->with('status', "Program has been saved successfully");
+        return redirect('/programs/local')->with('status', 'Program has been saved successfully');
     }
 
     /**
@@ -82,7 +83,7 @@ class LocalProgramController extends Controller
     public function show($id)
     {
         $program = LocalProgram::where('programId', $id)->get();
-        $trinees = App\Program::where('local_program_id', '=', $id)->get();
+//        $trinees = App\Program::where('local_program_id', '=', $id)->get();
         return view('programs.localProgram.show', compact('program'));
 
     }
@@ -108,6 +109,7 @@ class LocalProgramController extends Controller
      */
     public function update(LocalFormRequest $request, $id)
     {
+
         $program = LocalProgram::find($id);
 
         $validated = $request->validated();
@@ -126,7 +128,7 @@ class LocalProgramController extends Controller
             //get the file ext
             $ext = $request->file('programBrochure')->getClientOriginalExtension();
             //save the file in the storage
-            $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $validated['programId'].".".$ext);
+            $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $request->programId.".".$ext);
             //save the file name in the database
             $program->brochureUrl = $savedFile;
         }
@@ -134,7 +136,9 @@ class LocalProgramController extends Controller
         $program->updatedBy = auth()->user()->email;
         $program->save();
 
-        return back()->with('status', "Program has been updated successfully");
+//        return back()->with('status', "Program has been updated successfully");
+        return redirect('/programs/local')->with('status', 'Program has been updated successfully');
+
     }
 
     /**

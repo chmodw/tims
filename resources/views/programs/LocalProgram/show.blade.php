@@ -1,3 +1,7 @@
+{{--search employees--}}
+{{--add employees--}}
+{{--show program results--}}
+
 @extends('layouts.app')
 
 @section('content-title', 'Programs')

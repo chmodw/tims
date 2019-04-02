@@ -66,8 +66,8 @@ class PostGradProgramController extends Controller
         $postGrad->createdBy = auth()->user()->email;
         $postGrad->save($validated);
 
-        return back()->with('success', "Program has been saved successfully");
-
+//        return back()->with('success', "Program has been saved successfully");
+        return redirect('/programs/postgrad')->with('status', 'Program has been saved successfully');
     }
     /**
      * Display the specified resource.
@@ -118,7 +118,7 @@ class PostGradProgramController extends Controller
             //get the file ext
             $ext = $request->file('programBrochure')->getClientOriginalExtension();
             //save the file in the storage
-            $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $validated['programId'].".".$ext);
+            $savedFile = $request->file('programBrochure')->storeAs('public/brochures', $request->programId.".".$ext);
             //save the file name in the database
             $postGrad->brochureUrl = $savedFile;
         }
@@ -126,7 +126,8 @@ class PostGradProgramController extends Controller
         $postGrad->updatedBy = auth()->user()->email;
         $postGrad->save();
 
-        return back()->with('success', "Program has been Updated successfully");
+//        return back()->with('success', "Program has been Updated successfully");
+        return redirect('/programs/postgrad')->with('status', 'Program has been updated successfully');
     }
     /**
      * Remove the specified resource from storage.

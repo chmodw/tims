@@ -73,7 +73,8 @@ class ForeignProgramController extends Controller
         /**
          * return to the Form
          */
-        return back()->with('success', "Program has been saved successfully");
+//        return back()->with('success', "Program has been saved successfully");
+        return redirect('/programs/foreign')->with('status', 'Program has been saved successfully');
     }
 
     /**
@@ -131,7 +132,8 @@ class ForeignProgramController extends Controller
         $program->updatedBy = auth()->user()->email;
         $program->save();
 
-        return back()->with('status', "Program has been updated successfully");
+//        return back()->with('status', "Program has been updated successfully");
+        return redirect('/programs/foreign')->with('status', 'Program has been updated successfully');
     }
 
     /**

@@ -66,7 +66,8 @@ class InHouseProgramController extends Controller
         $inhouse->createdBy = auth()->user()->email;
         $inhouse->save($validated);
 
-        return back()->with('success', "Program has been saved successfully");
+//        return back()->with('success', "Program has been saved successfully");
+        return redirect('/programs/inhouse')->with('status', 'Program has been saved successfully');
     }
 
     /**
@@ -123,7 +124,8 @@ class InHouseProgramController extends Controller
         $inhouse->updatedBy = auth()->user()->email;
         $inhouse->save();
 
-        return back()->with('status', "Program has been updated successfully");
+//        return back()->with('status', "Program has been updated successfully");
+        return redirect('/programs/inhouse')->with('status', 'Program has been updated successfully');
     }
 
     /**
