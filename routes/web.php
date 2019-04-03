@@ -13,7 +13,6 @@
 
 Auth::routes();
 
-
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::get('/programs', 'ProgramController@index')->name('program')->middleware('auth');
