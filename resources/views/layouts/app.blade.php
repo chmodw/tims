@@ -34,7 +34,7 @@
 
       @if(\Request::is('budget') || \Request::is('budget/*'))
 
-        <li><a class="nav-link" href="{!! url('budget/stats') !!}"><i class="fa fa-location-arrow"></i> Budget Stats </a></li>
+        <li><a class="nav-link" href="{!! url('/budget_stats') !!}"><i class="fa fa-location-arrow"></i> Budget Stats </a></li>
         {{--<li><a class="nav-link" href="{!! url('budget/edit') !!}"><i class="fa fa-location-arrow"></i> Edit Budget </a></li>--}}
 
 

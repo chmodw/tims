@@ -33,6 +33,19 @@
                 </div>
               </div>
 
+              <div class="col col-md-12">
+                <div class="form-group">
+                  <label for="sectionName">Section Id</label>
+                  <input type="text" value="{{old('section_id')}}" class="form-control  {{ $errors->has('section_id') ? 'is-invalid' : '' }}" id="section_id" name="section_id" placeholder="section id">
+                  {{--@if ($errors->has('sectionName'))--}}
+                  {{--<span class="invalid-feedback">{{ $errors->first('sectionName') }}</span>--}}
+                  {{--@endif--}}
+                </div>
+              </div>
+
+
+
+
               {{--<div class="col col-md-5">--}}
                 {{--<div class="form-group">--}}
                   {{--<label for="organisedBy">Created By</label>--}}

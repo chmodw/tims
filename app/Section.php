@@ -20,4 +20,8 @@ class Section extends Model
     public function trainees(){
         return $this->hasMany(Trainee::class);
     }
+
+    public function budget(){
+        return $this->hasOne('App\Budget');
+    }
 }
