@@ -4,58 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "57301ab27359de32bfb1f6e27f3f56d8",
+    "content-hash": "e186fa21406d96c9701367c00415212a",
     "packages": [
-        {
-            "name": "atnic/laravel-light-bootstrap-dashboard",
-            "version": "v0.3.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Atnic/laravel-light-bootstrap-dashboard.git",
-                "reference": "8e9ae16cf2ed307998022fcba7a432ad0f7e83cf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Atnic/laravel-light-bootstrap-dashboard/zipball/8e9ae16cf2ed307998022fcba7a432ad0f7e83cf",
-                "reference": "8e9ae16cf2ed307998022fcba7a432ad0f7e83cf",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": "^5.4",
-                "php": ">=5.6.4"
-            },
-            "require-dev": {
-                "fzaninotto/faker": "~1.4",
-                "laravel/tinker": "~1.0",
-                "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": "~5.7"
-            },
-            "type": "package",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Atnic\\LightBootstrapDashboard\\Providers\\AppServiceProvider"
-                    ]
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Atnic\\LightBootstrapDashboard\\": "app/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Laravel package for integrating Light Bootstrap Dashboard.",
-            "keywords": [
-                "composer",
-                "laravel",
-                "light-bootstrap-dashboard",
-                "package"
-            ],
-            "time": "2018-04-19T03:12:14+00:00"
-        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",
@@ -4417,16 +4367,16 @@
         },
         {
             "name": "theseer/tokenizer",
-            "version": "1.1.0",
+            "version": "1.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/theseer/tokenizer.git",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b"
+                "reference": "06b6ce404ee574e9c1787fb67bb9980ca4387c34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/cb2f008f3f05af2893a87208fe6a6c4985483f8b",
-                "reference": "cb2f008f3f05af2893a87208fe6a6c4985483f8b",
+                "url": "https://api.github.com/repos/theseer/tokenizer/zipball/06b6ce404ee574e9c1787fb67bb9980ca4387c34",
+                "reference": "06b6ce404ee574e9c1787fb67bb9980ca4387c34",
                 "shasum": ""
             },
             "require": {
@@ -4453,7 +4403,7 @@
                 }
             ],
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
-            "time": "2017-04-07T12:08:54+00:00"
+            "time": "2019-04-03T18:37:40+00:00"
         },
         {
             "name": "webmozart/assert",

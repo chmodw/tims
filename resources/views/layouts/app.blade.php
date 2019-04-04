@@ -1,4 +1,4 @@
-@extends('light-bootstrap-dashboard::layouts.main')
+@extends('layouts.main')
 
 @section('sidebar-menu')
   <ul class="nav">

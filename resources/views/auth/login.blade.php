@@ -1,4 +1,4 @@
-@extends('light-bootstrap-dashboard::layouts.auth')
+@extends('layouts.main')
 
 @section('content')
 <div class="row">
