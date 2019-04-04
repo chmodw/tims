@@ -85,6 +85,18 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'sql_get' => [
+            'driver' => 'sqlsrv',
+            'host' => env('DB_EXT_HOST', 'localhost'),
+            'port' => env('DB_EXT_PORT', '1433'),
+            'database' => env('DB_EXT_DATABASE', 'forge'),
+            'username' => env('DB_EXT_USERNAME', 'forge'),
+            'password' => env('DB_EXT_PASSWORD', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
     ],
 
     /*

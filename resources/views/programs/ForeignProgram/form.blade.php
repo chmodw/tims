@@ -8,7 +8,7 @@
         <div class="card-header">
             <h4 class="card-title">New Foreign Program</h4>
         </div>
-        <div class="card-body  p-4">
+        <div class="card-body">
             @include('layouts._alert')
             <form action="{{ route('programs/foreign/create') }}" method="POST" enctype="multipart/form-data">
                 <div class="row">
