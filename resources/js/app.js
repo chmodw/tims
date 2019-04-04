@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+feather.replace();
+
 window.Vue = require('vue');
 
 /**

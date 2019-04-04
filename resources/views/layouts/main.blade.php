@@ -1,30 +1,19 @@
-<!DOCTYPE html>
-<html lang="@yield('lang', config('app.locale', 'en'))">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
-    <meta name="viewport" content="width=device-width" />
+@section('main')
 
-    <title>@yield('title', config('app.name', 'TIMS'))</title>
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    @include('layouts._nav')
+    <div class="container ">
+        <div class="row">
+            {{--SIDE BAR--}}
+            @include('layouts._side')
 
-    <!-- Styles -->
-    @section('styles')
-        <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
-    @show
-    @stack('head')
-</head>
-<body>
-<div id="app" class="wrapper">
-    @yield('content')
-</div>
+            <div class="col-md-10 col-lg-10 main-container">
 
-@section('scripts')
-    <script src="{{ mix('/js/app.js') }}" charset="utf-8"></script>
-@show
-@stack('body')
-</body>
-</html>
+                @yield('content')
+
+            </div>
+
+        </div>
+    </div>
+@endsection

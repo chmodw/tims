@@ -1,46 +1,35 @@
-@extends('layouts.main')
+@extends('layouts.app')
 
 @section('content')
-<div class="row">
-  <div class="col-md-4 offset-md-4">
-    <div class="auth-card card">
-      <div class="card-header">
-        <h4 class="card-title">Login</h4>
-      </div>
-      <div class="card-body">
-        <form action="{{ route('login') }}" method="POST">
-          {{ csrf_field() }}
+    <div class="text-center login-container">
+        <form action="{{ route('login') }}" class="form-signin" method="POST">
+            {{ csrf_field() }}
+{{--            <img class="mb-4" src="/docs/4.3/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">--}}
+            <h1>TIMS</h1>
+            <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+            <label for="inputEmail" class="sr-only">
+                Email address
+            </label>
+            <input type="email" name="email" id="inputEmail" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" placeholder="Email address" required autofocus>
+            @if ($errors->has('email'))
+                <span class="invalid-feedback">{{ $errors->first('email') }}</span>
+            @endif
+            <label for="inputPassword" class="sr-only">
+                Password
+            </label>
+            <input type="password" name="password" id="inputPassword" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}" placeholder="Password" required>
             <div class="form-group">
-              <label for="email">Email address</label>
-              <input name="email" type="email" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" required>
-              @if ($errors->has('email'))
-              <span class="invalid-feedback">{{ $errors->first('email') }}</span>
-              @endif
+                <div>
+                    <label class="checkbox">
+                        <input type="checkbox" data-toggle="checkbox"> Remember
+                    </label>
+                </div>
             </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <input name="password" type="password" class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" required>
-              @if ($errors->has('password'))
-              <span class="invalid-feedback">{{ $errors->first('password') }}</span>
-              @endif
-            </div>
-            <div class="form-group">
-              <div>
-                <label class="checkbox">
-                  <input type="checkbox" data-toggle="checkbox"> Remember
-                </label>
-              </div>
-            </div>
-            <!-- Change this to a button or input when using this as a form -->
             <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
             <a href="{{ route('register') }}" class="btn btn-lg btn-default btn-block">Register</a>
             <div class="text-right">
-              <a href="{{ route('password.request') }}" class="text-muted">Forgot Password</a>
+                <a href="{{ route('password.request') }}" class="text-muted">Forgot Password</a>
             </div>
-          </fieldset>
         </form>
-      </div>
     </div>
-  </div>
-</div>
 @endsection

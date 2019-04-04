@@ -33,6 +33,7 @@
     },
     "dependencies": {
         "bootstrap-sass": "^3.4.1",
+        "feather-icons": "^4.21.0",
         "vue-router": "^3.0.2"
     }
 }
