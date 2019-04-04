@@ -55,4 +55,6 @@ class Trainee extends Model
     }
 
 
+
+
 }

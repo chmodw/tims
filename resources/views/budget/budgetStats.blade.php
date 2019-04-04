@@ -11,15 +11,17 @@
         google.charts.setOnLoadCallback(drawChart);
         function drawChart() {
 
+            let budgetData = {!! $budgetData !!};
 
-            var data = google.visualization.arrayToDataTable([
+            let pie = [
                 ['Section', 'Amount'],
-                ['fdfd',     11],
-                ['Eat',      2],
-                ['Commute',  2],
-                ['Watch TV', 2],
-                ['Sleep',    7]
-            ]);
+            ];
+
+            Object.keys(budgetData).forEach(function(key) {
+                pie.push([key, budgetData[key]])
+            });
+
+            var data = google.visualization.arrayToDataTable(pie);
 
             var options = {
                 title: 'Budget Allocated for Sections',

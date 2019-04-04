@@ -27,8 +27,12 @@ class budgetController extends Controller
      */
     public function create()
     {
-        return view('budget.createBudget');
 
+        $budgets = Budget::all();
+
+        $sections = Section::all();
+
+        return view('budget.createBudget',compact('budgets'), compact('sections'));
     }
 
     /**
@@ -40,7 +44,14 @@ class budgetController extends Controller
     public function store(Request $request)
     {
 
-        Budget::create($request->all());
+        $budgets = Budget::where("section_id", $request->get("section_id"))->get();
+
+        if ($budgets->isNotEmpty()) {
+            dd("Section has an allocated budget already.");
+        }
+
+        Budget::create($request->except(["_token"]));
+
 
         return redirect('budget');
     }

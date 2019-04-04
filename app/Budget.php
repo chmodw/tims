@@ -6,12 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Budget extends Model
 {
-    protected $fillable =['amount'];
-
-
+    protected $guarded = ["id"];
 
     public  function section(){
 
-        return $this->hasOne('App\Section');
+        return $this->belongsTo('App\Section');
     }
 }

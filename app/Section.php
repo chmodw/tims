@@ -7,21 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Section extends Model
 {
 
-    protected $fillable = [
+    protected $guarded = ["id"];
 
-        'sectionName',
-        'createdBy',
-        'section_hod',
-        'section_contact',
-        'section_email'
-
-    ];
-
-    public function trainees(){
-        return $this->hasMany(Trainee::class);
+    /**
+     * Get Trainees
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function trainees()
+    {
+        return $this->hasMany(TraineeVersion::class);
     }
 
-    public function budget(){
-        return $this->hasOne('App\Budget');
+    public function budget()
+    {
+        return $this->hasOne(Budget::class);
     }
+
+
+
 }

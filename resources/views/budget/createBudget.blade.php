@@ -21,7 +21,6 @@
           <form action="{!! url('budget') !!}" method="POST" enctype="multipart/form-data">
             <div class="row">
               {{ csrf_field() }}
-              <input type="hidden" name="budgets" id="budgets" value="budgets" />
 
               <div class="col col-md-12">
                 <div class="form-group">
@@ -33,63 +32,36 @@
                 </div>
               </div>
 
-              <div class="col col-md-12">
-                <div class="form-group">
-                  <label for="sectionName">Section Id</label>
-                  <input type="text" value="{{old('section_id')}}" class="form-control  {{ $errors->has('section_id') ? 'is-invalid' : '' }}" id="section_id" name="section_id" placeholder="section id">
+              {{--<div class="col col-md-12">--}}
+                {{--<div class="form-group">--}}
+                  {{--<label for="sectionName">Section Id</label>--}}
+                  {{--<input type="text" value="{{old('section_id')}}" class="form-control  {{ $errors->has('section_id') ? 'is-invalid' : '' }}" id="section_id" name="section_id" placeholder="section id">--}}
                   {{--@if ($errors->has('sectionName'))--}}
                   {{--<span class="invalid-feedback">{{ $errors->first('sectionName') }}</span>--}}
                   {{--@endif--}}
-                </div>
+                {{--</div>--}}
+              {{--</div>--}}
+
+
+
+              <div class="input-group mb-3">
+                {{--<div class="input-group-prepend">--}}
+                  {{--<label class="input-group-text" for="inputGroupSelect01">Select Sections</label>--}}
+                {{--</div>--}}
+                <select name="section_id" id="section_id" class="custom-select">
+                  <option selected>Choose...</option>
+                  @foreach($sections as $section)
+
+                    <option value="{{$section->id}}">{{$section->sectionName}}</option>
+
+                  @endforeach
+
+                </select>
               </div>
-
-
-
-
-              {{--<div class="col col-md-5">--}}
-                {{--<div class="form-group">--}}
-                  {{--<label for="organisedBy">Created By</label>--}}
-                  {{--<input type="text" value="{{old('createdBy')}}" class="form-control {{ $errors->has('createdBy') ? 'is-invalid' : '' }}" name="createdBy" id="createdBy" placeholder="Created by">--}}
-                  {{--@if ($errors->has('createdBy'))--}}
-                    {{--<span class="invalid-feedback">{{ $errors->first('createdBy') }}</span>--}}
-                  {{--@endif--}}
-                {{--</div>--}}
-              {{--</div>--}}
-
-              {{--<div class="col col-md-7">--}}
-                {{--<div class="form-group">--}}
-                  {{--<label for="notifiedBy">HOD</label>--}}
-                  {{--<input type="text" value="{{old('section_hod')}}" name="section_hod" class="form-control {{ $errors->has('section_hod') ? 'is-invalid' : '' }}" id="section_hod" placeholder="Section Head ">--}}
-                  {{--@if ($errors->has('section_hod'))--}}
-                    {{--<span class="invalid-feedback">{{ $errors->first('section_hod') }}</span>--}}
-                  {{--@endif--}}
-                {{--</div>--}}
-              {{--</div>--}}
-
-              {{--<div class="col col-md-12">--}}
-                {{--<div class="form-group">--}}
-                  {{--<label for="targetGroup">Email</label>--}}
-                  {{--<input type="text" value="{{old('section_email')}}" name="section_email" class="form-control {{ $errors->has('section_email') ? 'is-invalid' : '' }}" id="section_email" placeholder="Section email">--}}
-                  {{--@if ($errors->has('section_email'))--}}
-                    {{--<span class="invalid-feedback">{{ $errors->first('section_email') }}</span>--}}
-                  {{--@endif--}}
-                {{--</div>--}}
-              {{--</div>--}}
-
-              {{--<div class="col col-md-3">--}}
-                {{--<div class="form-group">--}}
-                  {{--<label for="startDate">Contact Number</label>--}}
-                  {{--<input type="number" value="{{old('section_contact')}}" class="form-control {{ $errors->has('section_contact') ? 'is-invalid' : '' }}" id="section_contact" name="section_contact">--}}
-                  {{--@if ($errors->has('section_contact'))--}}
-                    {{--<span class="invalid-feedback">{{ $errors->first('section_contact') }}</span>--}}
-                  {{--@endif--}}
-                {{--</div>--}}
-              {{--</div>--}}
-
 
               <div class="col col-md-6 trainingFormBtnContainer d-flex justify-content-end">
                 <a class="btn btn-default trainingFormBtn mr-2" href="/budget">Cancel</a>
-                <input type="submit" class="btn btn-primary trainingFormBtn" value="Save" name="sectionForm">
+                <input type="submit" class="btn btn-primary trainingFormBtn" value="Save">
               </div>
             </div>
           </form>

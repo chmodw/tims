@@ -14,6 +14,7 @@ class sectionController extends Controller
      */
     public function index()
     {
+
         $sections = Section::all();
         return view('section.main',compact('sections'));
     }
@@ -91,5 +92,17 @@ class sectionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    // trainees
+
+    public function getTrainees()
+    {
+
+        $sections = Section::with("trainees")->get();
+
+        return view('section.trainees.index', compact('sections'));
+
     }
 }

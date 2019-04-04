@@ -11,6 +11,11 @@
 |
 */
 
+use App\Budget;
+use App\Section;
+
+Route::get('test', "HomeController@test");
+
 Auth::routes();
 
 
@@ -48,6 +53,7 @@ Route::get('/programs/postgrad', 'PostGradProgramController@index')->name('progr
 
 // section routs
 
+Route::get('/section/trainees','sectionController@getTrainees');
 Route::resource('/section','sectionController');
 
 //budget routs
@@ -56,11 +62,29 @@ Route::resource('/budget','budgetController');
 
 //trainee routs
 
-Route::resource('/trainee','TraineeController');
+
 
 Route::get('/budget_stats',function(){
 
+    $budgets = Budget::with("section")->get();
+
+    $budgetData = $budgets->pluck( "amount", "section.sectionName")->toJson();
+
+    return view('budget.budgetStats', compact('budgetData'));
+});
 
 
-    return view('budget.budgetStats');
+Route::get('/budgetSection',function(){
+
+
+    $budgets = Budget::all();
+    $budgets->section;
+
+    return $budgets;
+
+
+//return $sections;
+
+
+
 });
