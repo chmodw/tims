@@ -549,7 +549,7 @@ $('.form-control').on("focus", function () {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\Users\chamodya wimansha\Documents\TIMS\Code\tims\resources\assets\js\light-bootstrap-dashboard.js */"./resources/assets/js/light-bootstrap-dashboard.js");
+module.exports = __webpack_require__(/*! C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\assets\js\light-bootstrap-dashboard.js */"./resources/assets/js/light-bootstrap-dashboard.js");
 
 
 /***/ })

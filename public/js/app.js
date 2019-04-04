@@ -957,10 +957,10 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\chamodya wimansha\Documents\TIMS\Code\tims\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\Users\chamodya wimansha\Documents\TIMS\Code\tims\resources\sass\app.scss */"./resources/sass/app.scss");
-__webpack_require__(/*! C:\Users\chamodya wimansha\Documents\TIMS\Code\tims\resources\assets\sass\auth.scss */"./resources/assets/sass/auth.scss");
-module.exports = __webpack_require__(/*! C:\Users\chamodya wimansha\Documents\TIMS\Code\tims\resources\assets\sass\light-bootstrap-dashboard.scss */"./resources/assets/sass/light-bootstrap-dashboard.scss");
+__webpack_require__(/*! C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\assets\sass\auth.scss */"./resources/assets/sass/auth.scss");
+module.exports = __webpack_require__(/*! C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\assets\sass\light-bootstrap-dashboard.scss */"./resources/assets/sass/light-bootstrap-dashboard.scss");
 
 
 /***/ })

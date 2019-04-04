@@ -6,8 +6,10 @@
 @import 'variables';
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
-//@import "bootstrap";
+//@import '~bootstrap/scss/bootstrap';
+
+//Custom bootstrap
+@import "bootstrap";
 
 @import 'login';
 
