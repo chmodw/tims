@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+//        $users = DB::connection('sql_get')->select('');
+
         return view('home');
     }
 }

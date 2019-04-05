@@ -20,7 +20,7 @@ Route::get('/programs', 'ProgramController@index')->name('program')->middleware(
 //Route::get('/trainees', 'TraineeController@index')->name('Trainee')->middleware('auth');
 //Route::get('/trainees/create', 'TraineeController@create')->name('Trainee')->middleware('auth');
 
-Route::resource('/trainees', 'TraineeController')->middleware('auth');
+Route::resource('/trainees', 'TraineeController')->except('destroy', 'create', 'edit')->middleware('auth');
 
 
 /**

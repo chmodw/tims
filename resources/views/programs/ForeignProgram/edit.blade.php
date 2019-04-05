@@ -1,16 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content-title', 'Programs')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h4 class="card-title">Update Foreign Program</h4>
                 </div>
                 <div class="card-body  p-4">
-                    @include('_alert')
+                    @include('layouts._alert')
                     @if(isset($editProgram))
                         <form action="{{ route('programs/foreign/update',$editProgram[0]->id)}}" method="POST" enctype="multipart/form-data">
                             <div class="row">
@@ -114,6 +112,4 @@
                     @endif
                 </div>
             </div>
-        </div>
-    </div>
 @endsection
