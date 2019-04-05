@@ -92,6 +92,7 @@ class ForeignProgramController extends Controller
         //get the trainee list
         $traineeIds = Program::where('program_id', $id)->where('type', 'ForeignProgram')->get('trainee_id')->toArray();
 
+        //get the trainee information
         $trainees = [];
         foreach($traineeIds as $id){
             $trainee = Trainee::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);

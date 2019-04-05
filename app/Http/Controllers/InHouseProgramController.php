@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InHouseFormRequest;
 use App\InHouseProgram;
+use App\Program;
+use App\Trainee;
 use Illuminate\Http\Request;
 use App\Helper\Helper;
 
@@ -78,8 +80,21 @@ class InHouseProgramController extends Controller
      */
     public function show($id)
     {
-        //
+        $program = InHouseProgram::where('programId', $id)->get();
+
+        //get the trainee list
+        $traineeIds = Program::where('program_id', $id)->where('type', 'InHouseProgram')->get('trainee_id')->toArray();
+
+        $trainees = [];
+        foreach($traineeIds as $id){
+            $trainee = Trainee::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
+            $trainees[] = $trainee;
+        }
+
+        return view('programs.InHouseProgram.show')->with(compact('program'))->with(compact('trainees'));
+
     }
+
 
     /**
      * Show the form for editing the specified resource.

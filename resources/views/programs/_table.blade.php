@@ -15,7 +15,7 @@
     @foreach ($programs as $i => $program)
         <tr>
             <td scope="row">{{isset($_GET['page']) ? (16 * $_GET['page']) - (16-$i) + 1 : $i+1}}</td>
-            <td><a href="/programs/local/{{$program->programId}}">{{$program->title}}</a></td>
+            <td><a href="{{$rootLink.$program->programId}}">{{$program->title}}</a></td>
             <td>{{$program->applicationClosingDate}}</td>
             <td>{{$program->startingDate}}</td>
             <td><a href="{{url($rootLink.$program->programId)}}">

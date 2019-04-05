@@ -3,6 +3,8 @@ namespace App\Http\Controllers;
 use App\ForeignProgram;
 use App\Http\Requests\PostGradFromRequest;
 use App\PostGradProgram;
+use App\Program;
+use App\Trainee;
 use Illuminate\Http\Request;
 use App\Helper\Helper;
 
@@ -77,7 +79,19 @@ class PostGradProgramController extends Controller
      */
     public function show($id)
     {
-        //
+        $program = PostGradProgram::where('programId', $id)->get();
+
+        //get the trainee list
+        $traineeIds = Program::where('program_id', $id)->where('type', 'PostGradProgram')->get('trainee_id')->toArray();
+
+        //get the trainee information
+        $trainees = [];
+        foreach($traineeIds as $id){
+            $trainee = Trainee::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
+            $trainees[] = $trainee;
+        }
+
+        return view('programs.PostGradProgram.show')->with(compact('program'))->with(compact('trainees'));
     }
     /**
      * Show the form for editing the specified resource.

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content-title', 'Programs')
 
@@ -10,8 +10,8 @@
                     <h4 class="card-title"></h4>
                 </div>
                 <div class="card-body p-4">
-                    @include('_alert')
-
+                    @include('layouts._alert')
+                    {{$programs[0]}}
                 </div>
             </div>
         </div>
