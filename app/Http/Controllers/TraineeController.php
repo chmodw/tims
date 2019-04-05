@@ -35,7 +35,15 @@ class TraineeController extends Controller
         //get the designation name
         $designation = Designation::where('DesignationId',$trainee[0]->DesignationId)->get()[0]->DesignationName;
 
+        //calculate experiance time
+        $d1 = new \DateTime( $trainee[0]->DateOfAppointment);
+        $d2 = new \DateTime(strtotime('today'));
+
+        $dateDiff = ($d1->diff($d2)->m);
+
         $trainee[0]['designationName'] = $designation;
+        $trainee[0]['experience'] = $dateDiff;
+
 
         return back()->with(["trainee" => $trainee]);
 

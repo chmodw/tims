@@ -9,7 +9,7 @@
                 <div class="card-header d-flex justify-content-between">
                     <h4 class="card-title"></h4>
                 </div>
-                <div class="card-body  p-4">
+                <div class="card-body p-4">
                     @include('_alert')
 
                 </div>

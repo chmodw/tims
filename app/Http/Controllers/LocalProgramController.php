@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Helper\Helper;
 use App\Http\Requests\LocalFormRequest;
 use App\LocalProgram;
+use App\Program;
 use App\Trainee;
 use Illuminate\Http\Request;
 
@@ -85,7 +86,16 @@ class LocalProgramController extends Controller
     {
         $program = LocalProgram::where('programId', $id)->get();
 
-        return view('programs.localProgram.show', compact('program'));
+        //get the trainee list
+        $traineeIds = Program::where('program_id', $id)->where('type', 'LocalProgram')->get('trainee_id')->toArray();
+
+        $trainees = [];
+        foreach($traineeIds as $id){
+            $trainee = Trainee::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
+            $trainees[] = $trainee;
+        }
+
+        return view('programs.localProgram.show')->with(compact('program'))->with(compact('trainees'));
 
     }
 
@@ -110,7 +120,6 @@ class LocalProgramController extends Controller
      */
     public function update(LocalFormRequest $request, $id)
     {
-
         $program = LocalProgram::find($id);
 
         $validated = $request->validated();

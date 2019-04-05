@@ -15,18 +15,16 @@ class CreateProgramsTable extends Migration
     {
         Schema::create('programs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedInteger('trainee_id');
-            $table->string('local_program_id');
-            $table->string('foreign_program_id');
-            $table->string('inhouse_program_id');
-            $table->string('post_grad_program_id');
+            $table->string('trainee_id');
+            $table->string('program_id');
+            $table->string('type');
             $table->timestamps();
 
-            $table->foreign('trainee_id')->references('id')->on('trainees');
-            $table->foreign('local_program_id')->references('programId')->on('local_programs');
-            $table->foreign('foreign_program_id')->references('programId')->on('foreign_programs');
-            $table->foreign('inhouse_program_id')->references('programId')->on('in_house_programs');
-            $table->foreign('post_grad_program_id')->references('programId')->on('post_grad_programs');
+//            $table->foreign('trainee_id')->references('id')->on('trainees');
+//            $table->foreign('local_program_id')->references('programId')->on('local_programs');
+//            $table->foreign('foreign_program_id')->references('programId')->on('foreign_programs');
+//            $table->foreign('inhouse_program_id')->references('programId')->on('in_house_programs');
+//            $table->foreign('post_grad_program_id')->references('programId')->on('post_grad_programs');
 
         });
     }

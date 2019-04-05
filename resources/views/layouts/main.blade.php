@@ -7,7 +7,7 @@
         <div class="row">
             {{--SIDE BAR--}}
             @include('layouts._side')
-            <main role="main" class="col-md-10 ml-sm-auto col-lg-10">
+            <main role="main" class="col-md-10 ml-sm-auto mt-4 col-lg-10">
                 @yield('content')
             </main>
         </div>
