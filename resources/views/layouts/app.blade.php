@@ -46,7 +46,7 @@
 
       @if(\Request::is('section') || \Request::is('section/*'))
         {{--<li><a class="nav-link" href="{!! url('section/create') !!}"><i class="fa fa-location-arrow"></i> Create a new section </a></li>--}}
-        <li><a class="nav-link" href="{!! url('section/#') !!}"><i class="fa fa-location-arrow"></i> View allocated trainees </a></li>
+        <li><a class="nav-link" href="{!! url('section/trainees') !!}"><i class="fa fa-location-arrow"></i> View allocated trainees </a></li>
 
 
 
@@ -63,6 +63,15 @@
 
       @endif
 
+      @if(\Request::is('traineeFollowUp') || \Request::is('traineeFollowUp/*'))
+
+        <li><a class="nav-link" href="{!! url('/traineeFollowUp/create') !!}"><i class="fa fa-location-arrow"></i> Add Payment</a></li>
+        <li><a class="nav-link" href="{!! url('/traineeFollowUp/edit') !!}"><i class="fa fa-location-arrow"></i> Edit Payment </a></li>
+
+
+
+
+      @endif
 
 
   </ul>

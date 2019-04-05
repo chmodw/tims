@@ -88,3 +88,7 @@ Route::get('/budgetSection',function(){
 
 
 });
+
+//payment followup
+
+Route::resource('/traineeFollowUp','paymentController');

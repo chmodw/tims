@@ -19,12 +19,16 @@
                             @foreach($section->trainees as $trainee)
                                 <li>
                                     Full name: {!! $trainee->full_name !!}
+
                                 </li>
 
                                 <li>
                                     Birthday: {!! $trainee->birthday !!}
+
                                 </li>
+
                             @endforeach
+
                         </ul>
 
                     </div>

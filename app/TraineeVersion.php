@@ -19,4 +19,10 @@ class TraineeVersion extends Model
     {
         return $this->belongsToMany(Program::class, "program_trainee", "trainee_id", "program_id");
     }
+
+    public function payment(){
+
+        return $this->hasMany('App\Payment');
+
+    }
 }

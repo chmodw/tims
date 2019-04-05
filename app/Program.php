@@ -26,4 +26,8 @@ class Program extends Model
         return $this->belongsTo('App\PostGradProgram');
     }
 
+    public function  payment_program(){
+        return $this->hasMany('App\Payment');
+    }
+
 }

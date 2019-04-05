@@ -42,6 +42,12 @@
             </a>
           </li>
 
+          <li class="nav-item">
+            <a href="/traineeFollowUp" class="nav-link">
+             Trainee Follow up
+            </a>
+          </li>
+
         </ul>
 
         <ul class="navbar-nav ml-auto">
