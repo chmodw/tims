@@ -14,22 +14,33 @@
                         <h4 class="card-title">Section Name : {!! $section->sectionName !!}</h4>
                     </div>
                     <div class="card-body">
+                        {{--table start--}}
+                        <div class="table-responsive table-full-width">
+                            <table class="table table-hover">
+                                <thead>
+                                <th>Program ID</th>
+                                <th>Full name </th>
+                                <th>Mobile Number</th>
+                                <th>Email</th>
+                                </thead>
+                                <tbody>
+                                @foreach($section->trainees as $trainee)
 
-                        <ul>
-                            @foreach($section->trainees as $trainee)
-                                <li>
-                                    Full name: {!! $trainee->full_name !!}
+                                    <tr>
+                                        <td>{!! $trainee->program_id !!}</td>
+                                        <td>{!! $trainee->full_name !!}</td>
+                                        {{--<td>{{$section->createdBy}}</td>--}}
 
-                                </li>
+                                        <td>{!! $trainee->mobile !!}</td>
+                                        <td>{!! $trainee->office_email !!}</td>
 
-                                <li>
-                                    Birthday: {!! $trainee->birthday !!}
+                                        {{--<td><a href="{{route('section.edit',$section->id)}}" class="btn btn-primary btn-xs" > Edit | {{$section->id}}</a></td>--}}
+                                    </tr>
+                                @endforeach
+                                </tbody>
+                            </table>
+                        </div>
 
-                                </li>
-
-                            @endforeach
-
-                        </ul>
 
                     </div>
                 </div>

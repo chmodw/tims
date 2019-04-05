@@ -15,9 +15,13 @@ class budgetController extends Controller
      */
     public function index()
     {
+
+
+
         $budgets = Budget::all();
         $sections = Section::all();
-        return view('budget.main',compact('sections'),compact('budgets'));
+
+        return view('budget.main',compact('sections','budgets'));
     }
 
     /**

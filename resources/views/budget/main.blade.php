@@ -39,8 +39,8 @@
                   <td>{{$section->sectionName}}</td>
                   <td>{{$section->section_hod}}</td>
                   <td>{{$section->section_email}}</td>
-                  <td>Rs. {{$section->budget->amount}}</td>
-                  {{--<td>Sample data</td>--}}
+                  <td>Rs.{{$section->budget->amount}}</td>
+
                   {{--<td> <button class="btn btn-primary btn-xs" href="{{route('budget.create',$section->id)}}">Create</button> </td>--}}
                   {{--<td><a href="{{route('budget.create',$section->id)}}" class="btn btn-primary btn-xs" > Create | {{$section->id}}</a></td>--}}
                   {{--<td><a href="{{route('budget.edit',$section->id)}}" class="btn btn-primary btn-xs" > Edit | {{$section->id}}</a></td>--}}
