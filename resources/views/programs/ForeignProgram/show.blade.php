@@ -1,12 +1,13 @@
 @extends('layouts.main')
 
-@section('content-title', 'Programs')
+@section('content-title', 'Foreign Program')
 
 @section('content')
+
     {{--Messages--}}
     @include('layouts._alert')
 
-    @include('layouts._addTrainee' , ['programType' => 'LocalProgram'])
+    @include('layouts._addTrainee', ['programType' => 'ForeignProgram'])
 
     <div class="card mb-3">
         <div class="card-header d-flex justify-content-between">
@@ -36,15 +37,7 @@
                 </tr>
                 <tr>
                     <th style="width: 10%">Application Closing Date And Time</th>
-                    <td>{{$program[0]->applicationClosingDateTime}}</td>
-                    <th style="width: 10%">Non Member Fee (RS)</th>
-                    <td>{{$program[0]->nonMemberFee}}</td>
-                </tr>
-                <tr>
-                    <th style="width: 10%">Member Fee (RS)</th>
-                    <td>{{$program[0]->memberFee}}</td>
-                    <th style="width: 10%">Student Fee (RS)</th>
-                    <td>{{$program[0]->studentFee}}</td>
+                    <td colspan="3">{{$program[0]->applicationClosingDateTime}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -52,5 +45,6 @@
     </div>
 
     @include('layouts._selectedTrainees')
+
 
 @endsection
