@@ -64,15 +64,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-        @foreach($trainees[0] as $key => $trainee)
+        @foreach($trainees as $key => $trainee)
+            <tr>
             <td class="text-center" width="5%">{{$key+1}}.</td>
-            <td width="35%">{{$trainee->FullName}}</td>
-            <td width="20%" class="text-center">{{$trainee->DesignationName}}</td>
+            <td width="35%">{{$trainee[0]['FullName']}}</td>
+            <td width="20%" class="text-center">{{$trainee[0]['DesignationName']}}</td>
             <td width="20%" class="text-center">Permanent</td>
             <td width="20%" class="text-center">AGM (D1)</td>
+            </tr>
         @endforeach
-    </tr>
     </tbody>
 </table>
 
