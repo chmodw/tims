@@ -51,6 +51,15 @@
         </div>
     </div>
 
+    <div class="card-body">
+        <div class="card-header">
+            <div class="card-title">Available Documents</div>
+        </div>
+        <div class="card-body">
+            <a href="/gen/{{$program[0]->programId}}/LocalProgram" class="btn btn-outline-primary">GM Approval Letter</a>
+        </div>
+    </div>
+
     @include('layouts._selectedTrainees')
 
 @endsection
