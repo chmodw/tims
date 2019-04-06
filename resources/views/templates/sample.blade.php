@@ -28,9 +28,9 @@
         font-weight: bold;
     }
 
-    .manger-name, .manger-posi{
+    .manger-name{
         font-family: "Times New Roman";
-        line-height: 0;
+        line-height: 16px;
     }
 
     td,th{
@@ -78,7 +78,8 @@
 
 <p class="thrid">Our approval is sought for the above nominations and programme fee Rs. {{$program[0]->memberFee}} (per member), Rs. {{$program[0]->nonMemberFee}} (per non-member), Rs. {{$program[0]->studentFee}} (per student Memberships) Per participant should be paid by the respective AGM Section
 </p>
-
-<p class="manger-name">Eng. L C K Karunarathne</p>
-<p class="manger-posi">Training Manager</p>
+<div class="spacer">
+    &nbsp;
+</div>
+<p class="manger-name">Eng. L C K Karunarathne<br>Training Manager</p>
 
