@@ -1,2 +1,0 @@
-
-require('./light-bootstrap-dashboard');
