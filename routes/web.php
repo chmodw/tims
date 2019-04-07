@@ -10,18 +10,18 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Route::get('/', function () {
-////   return redirect('/admin');
-//    return view('welcome');
-//});
-
-Route::get('/', 'BackendController@index')->name('Admin');
-
-//Route::get('/', function () {
-////   return redirect('/admin');
+////Route::get('/', function () {
+//////   return redirect('/admin');
+////    return view('welcome');
+////});
+//
+////Route::get('/', 'BackendController@index')->name('Admin');
+//
+////Route::get('/', function () {
+//////   return redirect('/admin');
+////    return 123;
+////});
+//
+//Route::middleware('auth:api')->get('/programs', function () {
 //    return 123;
 //});
-
-Route::middleware('auth:api')->get('/programs', function () {
-    return 123;
-});

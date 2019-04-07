@@ -4,7 +4,7 @@
 @section('child-content')
     <h2>@yield('title')</h2>
 
-    <form method="POST" action="{{ route('admin.settings') }}" novalidate data-ajax-form>
+    <form method="POST" action="{{ route('settings') }}" novalidate data-ajax-form>
         @csrf
         @method('PATCH')
 

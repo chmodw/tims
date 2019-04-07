@@ -18,9 +18,9 @@
                         <i class="fal fa-user-circle"></i> <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                        <a href="{{ route('admin.profile') }}" class="dropdown-item{{ request()->is('admin/profile') ? ' active' : '' }}">Update Profile</a>
-                        <a href="{{ route('admin.password.change') }}" class="dropdown-item{{ request()->is('admin/password/change') ? ' active' : '' }}">Change Password</a>
-                        <form method="POST" action="{{ route('admin.logout') }}">
+                        <a href="{{ route('profile') }}" class="dropdown-item{{ request()->is('profile') ? ' active' : '' }}">Update Profile</a>
+                        <a href="{{ route('password.change') }}" class="dropdown-item{{ request()->is('password/change') ? ' active' : '' }}">Change Password</a>
+                        <form method="POST" action="{{ route('logout') }}">
                             @csrf
                             <a href="#" id="logout_link" class="dropdown-item">Logout</a>
                         </form>
