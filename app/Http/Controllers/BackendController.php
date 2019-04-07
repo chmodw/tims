@@ -1,11 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use Kjjdion\LaravelAdminPanel\Controllers\BackendController as LapBackendController;
 
 class BackendController extends LapBackendController
 {
+
+    public function index()
+    {
+        return redirect()->route('/' . (auth()->check() ? 'dashboard' : 'login'));
+    }
+
     public function dashboard()
     {
         return view('lap::backend.dashboard');

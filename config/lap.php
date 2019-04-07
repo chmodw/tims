@@ -2,22 +2,22 @@
 
 return [
 
-    'demo' => [
-        // enable/disable demo mode
-        'enabled' => env('DEMO_ENABLED', false),
-
-        // allow routes with the following methods or uris in demo mode
-        'whitelist' => [
-            'methods' => ['get'],
-            'routes' => ['admin/login', 'admin/logout'],
-        ],
-
-        // demo user credentials (populates login form in demo mode)
+//    'demo' => [
+//        // enable/disable demo mode
+//        'enabled' => env('DEMO_ENABLED', false),
+//
+//        // allow routes with the following methods or uris in demo mode
+//        'whitelist' => [
+//            'methods' => ['get'],
+//            'routes' => ['admin/login', 'admin/logout'],
+//        ],
+//
+//         //demo user credentials (populates login form in demo mode)
 //        'user' => [
 //            'email' => env('DEMO_USER_EMAIL', 'admin@example.com'),
 //            'password' => env('DEMO_USER_PASSWORD', 'admin123'),
 //        ],
-    ],
+//    ],
 
     // controllers used by package
     'controllers' => [
