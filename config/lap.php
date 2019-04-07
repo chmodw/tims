@@ -13,10 +13,10 @@ return [
         ],
 
         // demo user credentials (populates login form in demo mode)
-        'user' => [
-            'email' => env('DEMO_USER_EMAIL', 'admin@example.com'),
-            'password' => env('DEMO_USER_PASSWORD', 'admin123'),
-        ],
+//        'user' => [
+//            'email' => env('DEMO_USER_EMAIL', 'admin@example.com'),
+//            'password' => env('DEMO_USER_PASSWORD', 'admin123'),
+//        ],
     ],
 
     // controllers used by package

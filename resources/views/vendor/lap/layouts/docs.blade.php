@@ -28,7 +28,7 @@
         </div>
 
         <div class="content markdown p-3 p-md-5">
-            {!! $doc->markdown() !!}
+            {{ $doc->markdown() }}
         </div>
     </div>
 @endsection
