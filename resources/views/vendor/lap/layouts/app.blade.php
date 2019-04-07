@@ -6,12 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:regular,bold" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="{{ asset('lap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('lap/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('lap/css/datatables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('lap/css/easymde.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('lap/css/lap.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <title>@yield('title') | {{ config('app.name') }}</title>
 </head>
 <body class="@yield('body-class')"{!! session('flash') ? ' data-flash-class="'.session('flash.0').'" data-flash-message="'.session('flash.1').'"' : '' !!}>

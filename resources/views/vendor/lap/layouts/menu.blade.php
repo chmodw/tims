@@ -1,6 +1,15 @@
 <li{!! request()->is('dashboard') ? ' class="active"' : '' !!}>
     <a href="{{ route('dashboard') }}"><i class="fal fa-fw fa-tachometer mr-3"></i>Dashboard</a>
 </li>
+
+<li>
+    <a href="" ><i class="fal fa-fw fa-file-alt mr-3"></i>Programs</a>
+    <ul>
+        <li class="second-list-item">
+            <a href="">Local Program</a>
+        </li>
+    </ul>
+</li>
 @can('Read Roles')
     <li{!! request()->is('roles') ? ' class="active"' : '' !!}>
         <a href="{{ route('roles') }}"><i class="fal fa-fw fa-shield-alt mr-3"></i>Roles</a>

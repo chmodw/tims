@@ -7,8 +7,16 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import "vendor/fontawesome";
+@import "vendor/datatables.min";
+@import "vendor/easymde.min";
+@import "vendor/lap";
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.second-list-item a .chamodya{
+  font-size: 100px;
 }
