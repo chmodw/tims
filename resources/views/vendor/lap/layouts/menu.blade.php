@@ -2,11 +2,22 @@
     <a href="{{ route('dashboard') }}"><i class="fal fa-fw fa-tachometer mr-3"></i>Dashboard</a>
 </li>
 
-<li>
-    <a href="" ><i class="fal fa-fw fa-file-alt mr-3"></i>Programs</a>
+<li id="program-options">
+    <a href="" >
+        <i class="fal fa-fw fa-file-alt mr-3"></i>Programs<i class="fa fa-caret-down ml-3"></i>
+    </a>
     <ul>
         <li class="second-list-item">
-            <a href="">Local Program</a>
+            <a href="{{ route('programs', 'LocalProgram')}}">Local Program</a>
+        </li>
+        <li class="second-list-item">
+            <a href="{{ route('programs', 'ForeignProgram')}}">Foreign Program</a>
+        </li>
+        <li class="second-list-item">
+            <a href="{{ route('programs', 'InHouseProgram')}}">In-House Program</a>
+        </li>
+        <li class="second-list-item">
+            <a href="{{ route('programs', 'PostGradProgram')}}">Post-Grad Program</a>
         </li>
     </ul>
 </li>

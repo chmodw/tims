@@ -1,3 +1,13 @@
-.second-list-item a{
-  //font-size: 100px;
+#program-options ul{
+  display: none;
+  padding: 0;
+  li {
+    list-style: none;
+
+    a {
+      //width: 230px;
+      padding: .75rem 1rem !important;
+      margin-left: 3rem;
+    }
+  }
 }

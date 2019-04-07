@@ -5,20 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d123ddb2-4f6b-4ab2-af33-9b6af484b763" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/js/bootstrap.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/components/datatables.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/jquery.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/lap.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/sass/_custom.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/programs/ForeignProgram/Index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/programs/InHouseProgram/Index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/programs/LocalProgram/Index.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/programs/PostGradProgram/Index.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProgramsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProgramsController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/lap/js/lap.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/lap/js/lap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/_custom.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/_custom.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/vendor/lap/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/lap/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/lap/layouts/menu.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/lap/layouts/menu.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -31,26 +32,7 @@
     <executablePath>composer</executablePath>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/js/app.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/vendor/lap/layouts/app.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="22" column="17" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -102,13 +84,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/.env" />
-        <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/Auth/LoginController.php" />
-        <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/Auth/ResetPasswordController.php" />
-        <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/BackendController.php" />
-        <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/DocController.php" />
-        <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/RoleController.php" />
-        <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/UserController.php" />
         <option value="$PROJECT_DIR$/resources/views/vendor/lap/backend/settings.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/vendor/lap/layouts/auth.blade.php" />
         <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/users/datatable/actions.blade.php" />
@@ -123,7 +98,6 @@
         <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/roles/index.blade.php" />
         <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/roles/read.blade.php" />
         <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/roles/update.blade.php" />
-        <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/layouts/auth.blade.php" />
         <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/layouts/guest.blade.php" />
         <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/layouts/menu.blade.php" />
         <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/docs/index.blade.php" />
@@ -137,22 +111,30 @@
         <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Middleware/GuestAdmin.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_04_07_090115_create_local_programs_table.php" />
         <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/auth/login.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/vendor/lap/layouts/menu.blade.php" />
         <option value="$PROJECT_DIR$/resources/sass/datatables.min.scss" />
         <option value="$PROJECT_DIR$/resources/sass/_easymde.min.scss" />
         <option value="$PROJECT_DIR$/resources/sass/vendor/lap.scss" />
         <option value="$PROJECT_DIR$/resources/sass/vendor/fontawesome.min.scss" />
         <option value="$PROJECT_DIR$/resources/sass/vendor/fontawesome.scss" />
-        <option value="$PROJECT_DIR$/resources/sass/app.scss" />
         <option value="$PROJECT_DIR$/public/lap/js/lap.js" />
         <option value="$PROJECT_DIR$/resources/js/lap.js" />
         <option value="$PROJECT_DIR$/resources/js/datatables.min.js" />
         <option value="$PROJECT_DIR$/resources/js/easymde.min.js" />
         <option value="$PROJECT_DIR$/resources/js/bootstrap.bundle.min.js" />
-        <option value="$PROJECT_DIR$/resources/sass/_custom.scss" />
         <option value="$PROJECT_DIR$/package.json" />
+        <option value="$PROJECT_DIR$/resources/sass/app.scss" />
+        <option value="$PROJECT_DIR$/resources/sass/_custom.scss" />
         <option value="$PROJECT_DIR$/resources/views/vendor/lap/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/resources/js/app.js" />
+        <option value="$PROJECT_DIR$/resources/views/vendor/lap/layouts/menu.blade.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/resources/views/programs/LocalProgram.Index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ProgramsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/programs/LocalProgram/Index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/programs/ForeignProgram/Index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/programs/InHouseProgram/Index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/programs/PostGradProgram/Index.blade.php" />
+        <option value="$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/layouts/auth.blade.php" />
       </list>
     </option>
   </component>
@@ -262,7 +244,7 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="156" />
+    <option name="x" value="165" />
     <option name="y" value="-8" />
     <option name="width" value="1217" />
     <option name="height" value="548" />
@@ -290,60 +272,65 @@
             <path>
               <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-              <item name="migrations" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="lap" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="lap" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-              <item name="sass" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="programs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="programs" type="462c0819:PsiDirectoryNode" />
+              <item name="ForeignProgram" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="programs" type="462c0819:PsiDirectoryNode" />
+              <item name="InHouseProgram" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="programs" type="462c0819:PsiDirectoryNode" />
+              <item name="LocalProgram" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="programs" type="462c0819:PsiDirectoryNode" />
+              <item name="PostGradProgram" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
@@ -383,6 +370,61 @@
               <item name="TIMS" type="462c0819:PsiDirectoryNode" />
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="kjjdion" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="kjjdion" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel-admin-panel" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="kjjdion" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel-admin-panel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="kjjdion" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel-admin-panel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="kjjdion" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel-admin-panel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="backend" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS" type="462c0819:PsiDirectoryNode" />
+              <item name="vendor" type="462c0819:PsiDirectoryNode" />
+              <item name="kjjdion" type="462c0819:PsiDirectoryNode" />
+              <item name="laravel-admin-panel" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="layouts" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -393,7 +435,7 @@
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/programs" />
     <property name="list.type.of.created.stylesheet" value="SCSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -404,19 +446,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\views\programs" />
+      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\public\lap" />
+      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\js" />
+      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\sass" />
+      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\sass\vendor" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\views\programs\LocalProgram" />
       <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\sass\vendor" />
       <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\app\Http\Controllers\Admin" />
       <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\app\Http\Controllers" />
       <recent name="C:\Users\chamodya wimansha\Documents\TIMS\tims\resources\views\layouts" />
-      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\tims\resources\assets\js" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\js" />
-      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\sass" />
-      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\sass\vendor" />
-      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\Code\TIMS\resources\views\programs\InHouseProgram" />
-      <recent name="C:\Users\chamodya wimansha\Documents\TIMS\tims\resources\sass" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -510,7 +552,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="278167000" />
+    <option name="totallyTimeSpent" value="283104000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -523,7 +565,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
@@ -561,125 +602,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="new dash" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/BackendController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-325">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/DocController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-235">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/RoleController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1510">
-          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/UserController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1918">
-          <caret line="20" column="29" lean-forward="true" selection-start-line="20" selection-start-column="29" selection-end-line="20" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/Auth/LoginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="27" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/Auth/ProfileController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="35" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/Auth/ResetPasswordController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="14" column="35" selection-start-line="14" selection-start-column="33" selection-end-line="14" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/Auth/ChangePasswordController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="11" column="35" selection-start-line="11" selection-start-column="33" selection-end-line="11" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/BackendController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="5" lean-forward="true" selection-start-line="10" selection-start-column="5" selection-end-line="10" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Middleware/AuthAdmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Middleware/GuestAdmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="38" lean-forward="true" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Middleware/NotAdminRole.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Middleware/IntendUrl.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Middleware/NotSystemDoc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Middleware/RestrictDemo.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="28" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_100000_create_password_resets_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2014_10_12_000000_create_users_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="36" lean-forward="true" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_07_090115_create_local_programs_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -747,13 +669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/lap/css/lap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1552">
-          <caret line="13" column="17" lean-forward="true" selection-end-line="219" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/sass/vendor/lap.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3191">
@@ -768,16 +683,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/vendor/fontawesome.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="4" column="765" lean-forward="true" selection-start-line="4" selection-start-column="765" selection-end-line="4" selection-end-column="765" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/vendor/fontawesome.min.scss">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/vendor/fontawesome.min.css" />
+    <entry file="file://$PROJECT_DIR$/resources/sass/vendor/fontawesome.min.scss" />
     <entry file="file://$PROJECT_DIR$/resources/sass/vendor/fontawesome.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -785,33 +692,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/vendor/lap/layouts/menu.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/components/datatables.min.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/easymde.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="6" column="3926" lean-forward="true" selection-start-line="6" selection-start-column="3926" selection-end-line="6" selection-end-column="3926" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/lap/js/lap.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/easymde.min.js" />
     <entry file="file://$PROJECT_DIR$/public/lap/js/easymde.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -858,27 +742,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/datatables.min.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="539">
-          <caret line="220" selection-start-line="220" selection-end-line="220" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/datatables.min.js" />
     <entry file="file://$PROJECT_DIR$/resources/js/lap.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="21" selection-start-line="7" selection-start-column="21" selection-end-line="7" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/sass/_custom.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -903,17 +771,155 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/vendor/lap/layouts/app.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/LocalProgramController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="22" column="17" lean-forward="true" selection-start-line="22" selection-start-column="17" selection-end-line="22" selection-end-column="17" />
+        <state relative-caret-position="102">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="70" column="22" lean-forward="true" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lap/js/lap.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/lap/css/lap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="25" column="1" lean-forward="true" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/app.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="62" lean-forward="true" selection-start-line="2" selection-start-column="62" selection-end-line="2" selection-end-column="62" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/js/app.js">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="16" column="3" selection-start-line="16" selection-start-column="3" selection-end-line="16" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="14" column="54" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/sass/_custom.scss">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/src/Controllers/UserController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="104" column="30" selection-start-line="104" selection-start-column="30" selection-end-line="104" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProgramsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/programs/LocalProgram/Index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="23" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/programs/ForeignProgram/Index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/programs/InHouseProgram/Index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/programs/PostGradProgram/Index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="11" lean-forward="true" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/vendor/lap/layouts/docs.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/vendor/lap/layouts/menu.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-158">
+          <caret line="10" column="55" selection-start-line="10" selection-start-column="43" selection-end-line="10" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/vendor/lap/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/vendor/lap/backend/dashboard.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="11" lean-forward="true" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/vendor/lap/backend/settings.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/layouts/app.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/backend/settings.blade.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/backend/dashboard.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="11" lean-forward="true" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/kjjdion/laravel-admin-panel/resources/views/layouts/auth.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="43" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
         </state>
       </provider>
     </entry>

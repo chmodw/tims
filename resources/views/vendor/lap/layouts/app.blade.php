@@ -7,6 +7,11 @@
 
     <link href="https://fonts.googleapis.com/css?family=Nunito:regular,bold" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('lap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lap/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lap/css/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lap/css/easymde.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('lap/css/lap.css') }}">
 
     <title>@yield('title') | {{ config('app.name') }}</title>
 </head>
@@ -14,12 +19,12 @@
 
 @yield('parent-content')
 
-<script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('lap/js/jquery.min.js') }}"></script>
 <script src="{{ asset('lap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('lap/js/datatables.min.js') }}"></script>
 <script src="{{ asset('lap/js/easymde.min.js') }}"></script>
 <script src="{{ asset('lap/js/lap.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 @stack('scripts')
 
 </body>

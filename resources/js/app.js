@@ -6,11 +6,24 @@
  */
 
 // require('./jquery.min');
-// require('./bootstrap.bundle.min');
+require('bootstrap');
 // require('./easymde');
 // require('./datatables');
 // require('./lap');
 // window.Vue = require('vue');
+
+/**
+ * Show and Programs menu
+ */
+$('#program-options').hover(
+    function() {
+        //console.log('hover over');
+        $(this).find('ul').slideDown();
+    },
+    function() {
+        //console.log('hover out');
+        $(this).find('ul').slideUp();
+    });
 
 /**
  * The following block of code may be used to automatically register your

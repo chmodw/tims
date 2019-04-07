@@ -14,7 +14,7 @@ class ProgramsController extends Controller
      */
     public function index($programType)
     {
-        return $programType;
+        return view('programs/'.$programType.'/Index');
     }
 
     /**
@@ -35,7 +35,7 @@ class ProgramsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
     }
 
     /**
