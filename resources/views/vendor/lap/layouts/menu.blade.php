@@ -7,16 +7,16 @@
         <i class="fal fa-fw fa-file-alt mr-3"></i>Programs<i class="fa fa-caret-down ml-3"></i>
     </a>
     <ul>
-        <li class="second-list-item">
+        <li class="second-list-item" {!! request()->is('programs/LocalProgram') ? ' class="active"' : '' !!}>
             <a href="{{ route('programs', 'LocalProgram')}}">Local Program</a>
         </li>
-        <li class="second-list-item">
+        <li class="second-list-item" {!! request()->is('programs/ForeignProgram') ? ' class="active"' : '' !!}>
             <a href="{{ route('programs', 'ForeignProgram')}}">Foreign Program</a>
         </li>
-        <li class="second-list-item">
+        <li class="second-list-item" {!! request()->is('programs/InHouseProgram') ? ' class="active"' : '' !!}>
             <a href="{{ route('programs', 'InHouseProgram')}}">In-House Program</a>
         </li>
-        <li class="second-list-item">
+        <li class="second-list-item" {!! request()->is('programs/PostGradProgram') ? ' class="active"' : '' !!}>
             <a href="{{ route('programs', 'PostGradProgram')}}">Post-Grad Program</a>
         </li>
     </ul>

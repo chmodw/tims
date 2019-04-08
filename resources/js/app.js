@@ -25,6 +25,24 @@ $('#program-options').hover(
         $(this).find('ul').slideUp();
     });
 
+
+// $.ajax( {
+//     // url:'/settings/profile',
+//     url:'/programs/LocalProgram',
+//     method:'GET',
+//     // data: {
+//     //     strLang: newLang
+//     // },
+//     success: function( bolUpdated ) {
+//         if( bolUpdated ) {
+//             alert('OK');
+//         }
+//     },
+//     fail: function() {
+//         alert('NO');
+//     }
+// });
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue

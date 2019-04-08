@@ -8,11 +8,6 @@
 
         <div class="navbar-collapse collapse">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a href="{{ route('docs') }}" class="nav-link" target="_blank">
-                        <i class="fal fa-question-circle"></i> <span class="d-none d-md-inline">Docs</span>
-                    </a>
-                </li>
                 <li class="nav-item dropdown">
                     <a href="#" id="userDropdown" class="nav-link dropdown-toggle" data-toggle="dropdown">
                         <i class="fal fa-user-circle"></i> <span class="d-none d-md-inline">{{ auth()->user()->name }}</span>

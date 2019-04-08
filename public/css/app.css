@@ -12,3 +12,13 @@
   margin-left: 3rem;
 }
 
+.diff-from-from-container {
+  border-radius: 0.25rem;
+  padding: 10px;
+  margin-bottom: 16px;
+}
+
+.diff-from-from-container .title {
+  font-size: 1rem;
+}
+
