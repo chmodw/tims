@@ -5,43 +5,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-// require('./jquery.min');
-require('bootstrap');
-// require('./easymde');
-// require('./datatables');
-// require('./lap');
-// window.Vue = require('vue');
+require('./bootstrap');
 
-/**
- * Show and Programs menu
- */
-$('#program-options').hover(
-    function() {
-        //console.log('hover over');
-        $(this).find('ul').slideDown();
-    },
-    function() {
-        //console.log('hover out');
-        $(this).find('ul').slideUp();
-    });
-
-
-// $.ajax( {
-//     // url:'/settings/profile',
-//     url:'/programs/LocalProgram',
-//     method:'GET',
-//     // data: {
-//     //     strLang: newLang
-//     // },
-//     success: function( bolUpdated ) {
-//         if( bolUpdated ) {
-//             alert('OK');
-//         }
-//     },
-//     fail: function() {
-//         alert('NO');
-//     }
-// });
+window.Vue = require('vue');
 
 /**
  * The following block of code may be used to automatically register your
@@ -51,10 +17,10 @@ $('#program-options').hover(
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
+// const files = require.context('./', true, /\.vue$/i);
+// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -62,6 +28,6 @@ $('#program-options').hover(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// const app = new Vue({
-//     el: '#app'
-// });
+const app = new Vue({
+    el: '#app'
+});

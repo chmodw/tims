@@ -5,10 +5,10 @@
 // Variables
 @import 'variables';
 
-//@import '~bootstrap/scss/bootstrap';
-//@import "vendor/fontawesome";
-//@import "vendor/datatables.min";
-//@import "vendor/easymde.min";
-//@import "vendor/lap";
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
 
-@import "_custom";
+.navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
