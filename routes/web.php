@@ -15,22 +15,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-
 Route::get('programs/{programType}', 'ProgramsController@index')->name('programs');
-
 Route::get('programs/create/{programType}', 'ProgramsController@create')->name('programs.create');
-
 Route::POST('programs/create', 'ProgramsController@store')->name('programs.create');
-
 Route::get('programs/get/{programType}', 'ProgramsController@get')->name('programs.get');
+Route::get('programs/{programType}/edit/{programId}', 'ProgramsController@edit')->name('programs.edit');
+Route::get('programs/{programType}/{programId}', 'ProgramsController@show')->name('programs.show');

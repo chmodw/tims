@@ -33,9 +33,22 @@ class ProgramsController extends Controller
 
     }
 
+    /**
+     * Return programs as jason
+     *
+     * @param $programType
+     * @throws \Exception
+     */
     public function get($programType){
         $model = 'App\\'.$programType;
-        return Datatables()->of($model::all())->toJson();
+
+         return Datatables()->of($model::all())
+             ->addIndexColumn()
+             ->addColumn('action', function ($row) use ($programType) {
+                 return '<a href="/programs/'.$programType.'/'.$row->program_id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a><a href="/programs/'.$programType.'/edit'.$row->program_id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a><a href="/programs/'.$programType.'/delete'.$row->program_id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></a>';
+             })
+             ->toJson();
+
     }
     /**
      * Show the form for creating a new resource.
@@ -120,9 +133,20 @@ class ProgramsController extends Controller
      * @param  \App\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function show(Program $program)
+    public function show($programType, $programId)
     {
-        //
+
+        if ( file_exists(base_path().'/App/'.$programType.'.php')) {
+
+            $model = 'App\\'.$programType;
+
+            $program = $model::where('program_id', $programId)->get();
+
+            return view('programs.'.$programType.'.show')->with(compact('program'));
+
+        } else {
+            return abort(404);
+        }
     }
 
     /**
@@ -131,9 +155,9 @@ class ProgramsController extends Controller
      * @param  \App\Program  $program
      * @return \Illuminate\Http\Response
      */
-    public function edit(Program $program)
+    public function edit($programType, $programId)
     {
-        //
+
     }
 
     /**
