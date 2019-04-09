@@ -24255,7 +24255,7 @@ body {
   border: 0;
   font-weight: 900;
   content: "\F105";
-  font-family: "Font Awesome 5 Free";
+  font-family: "FontAwesome";
 }
 
 .navbar-nav .nav-item.dropdown.show .dropdown-toggle::after {
