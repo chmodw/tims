@@ -32,3 +32,5 @@ Route::get('programs/{programType}', 'ProgramsController@index')->name('programs
 Route::get('programs/create/{programType}', 'ProgramsController@create')->name('programs.create');
 
 Route::POST('programs/create', 'ProgramsController@store')->name('programs.create');
+
+Route::get('programs/get/{programType}', 'ProgramsController@get')->name('programs.get');

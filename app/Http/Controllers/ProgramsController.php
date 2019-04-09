@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Program;
 use Illuminate\Http\Request;
+use Yajra\Datatables\Facades\Datatables;
 
 class ProgramsController extends Controller
 {
@@ -18,14 +18,12 @@ class ProgramsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($programType)
+
+
     {
         if ( file_exists(base_path().'/App/'.$programType.'.php')) {
 
-            $model = 'App\\'.$programType;
-
-            $programs = $model::paginate(20);
-
-            return view('programs/'.$programType.'/Index', compact($programs));
+            return view('programs/'.$programType.'/Index');
 
         } else {
 
@@ -33,6 +31,11 @@ class ProgramsController extends Controller
 
         }
 
+    }
+
+    public function get($programType){
+        $model = 'App\\'.$programType;
+        return Datatables()->of($model::all())->toJson();
     }
     /**
      * Show the form for creating a new resource.
