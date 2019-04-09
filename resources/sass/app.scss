@@ -8,7 +8,21 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import "helpers";
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.diff-from-from-container{
+
+  border-radius: .25rem;
+  padding: 10px;
+  margin-bottom: 16px;
+
+  .title{
+    font-size: 1rem;
+  }
+
 }
