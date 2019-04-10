@@ -37,3 +37,6 @@ Route::get('programs/trainees/{programType}/{programId}', 'ProgramsController@ge
 //Route::POST('programs/trainees/{programType}/{programId}', 'ProgramsController@getTraineesData')->name('programs.trainees');
 
 
+// Routes for Budget
+
+Route::resource('budget','budgetController')->middleware('auth');
