@@ -14,6 +14,12 @@ class DatabaseSeeder extends Seeder
     {
         // $this->call(UsersTableSeeder::class);
 
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('password')
+        ]);
+
         \DB::table('local_programs')->delete();
 
         for($x=0; $x<2000; $x++){

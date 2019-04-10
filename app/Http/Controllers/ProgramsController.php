@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Program;
+use App\Trainee;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
 
@@ -49,6 +51,52 @@ class ProgramsController extends Controller
              })
              ->toJson();
 
+    }
+
+    public function getTraineesData($programType, $programId)
+    {
+        $model = Program::where('program_id',$programId)->where('type', $programType);
+        $json = Datatables()->of($model)->toJson();
+        return $json;
+    }
+
+    public function getTrainees($programType, $programId)
+    {
+        /**
+         * get trainee data
+         */
+        //get the trainee list
+
+        $traineeIds = Program::where('program_id', $programId)->where('type', 'LocalProgram')->get('trainee_id', '')->toArray();
+
+        $trainees = [];
+        foreach($traineeIds as $id){
+            $trainee = Trainee::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
+            $trainees[] = $trainee;
+        }
+
+        return view('programs.'.$programType.'.trainee')->with('program_id', $programId)->with('program_type', $programType)->with(compact('trainees'));
+    }
+
+    public function addTrainee(Request $request)
+    {
+        /**
+         * save trainee on the programs database
+         */
+        $program = new Program();
+
+        $program->trainee_id = $request['userId'];
+        $program->program_id = $request['programId'];
+        $program->recommendation = $request['recommendation'];
+        $program->type = $request['type'];
+
+        /**
+         * ADD CREATED BY
+         */
+//        $postGrad->createdBy = auth()->user()->email;
+        $program->save($request->all());
+
+        return back()->with('status', "Trainee Added successfully");
     }
     /**
      * Show the form for creating a new resource.
