@@ -34,6 +34,7 @@ class CreateForeignProgramsTable extends Migration
             $table->string('updated_by')->nullable();
             $table->timestamps();
 
+            $table->foreign('organised_by')->references('id')->on('organisations');
             //Possible default value
 
 

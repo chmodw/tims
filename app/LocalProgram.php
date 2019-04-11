@@ -31,4 +31,9 @@ class LocalProgram extends Model
     {
         return $this->morphMany('App\Program', 'program_id');
     }
+
+    public function organised_by()
+    {
+        return $this->belongsTo('App\Organisation', 'id');
+    }
 }
