@@ -8,7 +8,7 @@
             <a class="btn btn-default pull-right" href="/budget/create"><i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
         </div>
         <div class="panel-body">
-            <table class="table table-striped" style="width: 100%;" id="table">
+            <table class="table table-striped tab" style="width: 100%;" id="table">
                 <thead>
                 <tr>
                     <th>#</th>

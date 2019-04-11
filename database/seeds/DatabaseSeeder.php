@@ -20,13 +20,20 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password')
         ]);
 
+        for($x=0; $x<10; $x++) {
+            DB::table('organisations')->insert([
+                'name' => rtrim($faker->sentence(rand(1, 2)), "."),
+                'created_by' => $faker->unique()->safeEmail,
+            ]);
+        }
+
         \DB::table('local_programs')->delete();
 
         for($x=0; $x<2000; $x++){
             DB::table('local_programs')->insert([
                 'program_id' => md5(date("Y-m-d H:i:s").rand(0,99999999)),
                 'program_title' => rtrim($faker->sentence(rand(3, 6)), "."),
-                'organised_by' => rtrim($faker->sentence(rand(2, 5)), "."),
+                'organised_by' => rand(1,11),
                 'target_group' => rtrim($faker->sentence(rand(5, 10)), "."),
                 'start_date' => $faker->dateTimeBetween('now', '+3 years'),
                 'end_date' => $faker->dateTimeBetween('now', '+3 years'),

@@ -19,7 +19,7 @@ class CreateInHouseProgramsTable extends Migration
             $table->string('title');
             $table->string('content'); //serialized array
             $table->string('target_group');
-            $table->string('organised_by');
+            $table->integer('organised_by')->unsigned();
             $table->string('venue');
             $table->timestamp('start_date_time')->useCurrent = true;
             $table->timestamp('endDate_time')->useCurrent = true;
