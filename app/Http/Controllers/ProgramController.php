@@ -44,12 +44,26 @@ class ProgramController extends Controller
     public function get($programType){
         $model = 'App\\'.$programType;
 
-         return Datatables()->of($model::all())
-             ->addIndexColumn()
-             ->addColumn('action', function ($row) use ($programType) {
-                 return '<a href="/programs/'.$programType.'/'.$row->program_id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a><a href="/programs/'.$programType.'/edit'.$row->program_id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a><a href="/programs/'.$programType.'/delete'.$row->program_id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></a>';
-             })
-             ->toJson();
+
+
+        $programs = $model::select(['program_title','target_group','application_closing_date_time','start_date','organised_by','venue']);
+
+        return Datatables()->of($programs)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) use ($programType) {
+                return '<a href="/programs/'.$programType.'/'.$row->program_id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a><a href="/programs/'.$programType.'/edit'.$row->program_id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a><a href="/programs/'.$programType.'/delete'.$row->program_id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></a>';
+            })
+            ->toJson();
+
+
+
+
+//         return Datatables()->of($model::all())
+//             ->addIndexColumn()
+//             ->addColumn('action', function ($row) use ($programType) {
+//                 return '<a href="/programs/'.$programType.'/'.$row->program_id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a><a href="/programs/'.$programType.'/edit'.$row->program_id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a><a href="/programs/'.$programType.'/delete'.$row->program_id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></a>';
+//             })
+//             ->toJson();
 
     }
 

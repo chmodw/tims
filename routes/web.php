@@ -29,7 +29,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('programs/{programType}', 'ProgramController@index')->name('programs');
 Route::get('programs/create/{programType}', 'ProgramController@create')->name('programs.create');
 Route::POST('programs/create', 'ProgramController@store')->name('programs.create');
-Route::get('programs/get/{programType}', 'ProgramsController@get')->name('programs.get');
 Route::get('programs/{programType}/edit/{programId}', 'ProgramController@edit')->name('programs.edit');
 Route::get('programs/{programType}/{programId}', 'ProgramController@show')->name('programs.show');
 Route::POST('programs/trainees', 'ProgramController@addTrainee')->name('programs.trainees');
