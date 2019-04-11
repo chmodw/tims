@@ -9,7 +9,7 @@ use App\Section;
 use App\Employer;
 use Illuminate\Http\Request;
 
-class TraineeController extends Controller
+class EmployerController extends Controller
 {
     /**
      * Display a listing of the resource.

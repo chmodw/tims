@@ -7,7 +7,7 @@ use App\Employer;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
 
-class ProgramsController extends Controller
+class ProgramController extends Controller
 {
 
     /**

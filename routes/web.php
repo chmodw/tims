@@ -26,14 +26,14 @@ Route::resource('/trainees', 'TraineeController')->except('destroy', 'create', '
 Route::get('/pdf/{programType}/{programId}', 'PdfController@create')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('programs/{programType}', 'ProgramsController@index')->name('programs');
-Route::get('programs/create/{programType}', 'ProgramsController@create')->name('programs.create');
-Route::POST('programs/create', 'ProgramsController@store')->name('programs.create');
+Route::get('programs/{programType}', 'ProgramController@index')->name('programs');
+Route::get('programs/create/{programType}', 'ProgramController@create')->name('programs.create');
+Route::POST('programs/create', 'ProgramController@store')->name('programs.create');
 Route::get('programs/get/{programType}', 'ProgramsController@get')->name('programs.get');
-Route::get('programs/{programType}/edit/{programId}', 'ProgramsController@edit')->name('programs.edit');
-Route::get('programs/{programType}/{programId}', 'ProgramsController@show')->name('programs.show');
-Route::POST('programs/trainees', 'ProgramsController@addTrainee')->name('programs.trainees');
-Route::get('programs/trainees/{programType}/{programId}', 'ProgramsController@getTrainees')->name('programs.LocalProgram.trainees');
+Route::get('programs/{programType}/edit/{programId}', 'ProgramController@edit')->name('programs.edit');
+Route::get('programs/{programType}/{programId}', 'ProgramController@show')->name('programs.show');
+Route::POST('programs/trainees', 'ProgramController@addTrainee')->name('programs.trainees');
+Route::get('programs/trainees/{programType}/{programId}', 'ProgramController@getTrainees')->name('programs.LocalProgram.trainees');
 //Route::POST('programs/trainees/{programType}/{programId}', 'ProgramsController@getTraineesData')->name('programs.trainees');
 
 
