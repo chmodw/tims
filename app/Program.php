@@ -7,13 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Program extends Model
 {
 
-    public function trainee_id()
-    {
-        return $this->belongsTo('App\Employer', 'EmployeeId');
+
+    public function payments(){
+
+        return $this->hasMany(Payment::class);
+
     }
 
-    public function program_id()
+    public function trainees()
     {
-        return $this->morphTo();
+        return $this->belongsTo('App\Employer', 'trainee_id','EmployeeId');
     }
+
+//
+//
+
+//    public function program_id()
+//    {
+//        return $this->morphTo();
+//    }
 }

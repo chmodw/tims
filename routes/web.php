@@ -39,3 +39,7 @@ Route::get('programs/trainees/{programType}/{programId}', 'ProgramController@get
 // Routes for Budget
 
 Route::resource('budget','budgetController')->middleware('auth');
+
+//Routes for payment
+
+Route::resource('payment','paymentController')->middleware('auth');

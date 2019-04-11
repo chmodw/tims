@@ -118,4 +118,11 @@ class budgetController extends Controller
 //        ];
 //    }
 
+public function calculateActualAmount(){
+
+
+
+
+}
+
 }

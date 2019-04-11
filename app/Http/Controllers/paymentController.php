@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Payment;
+use App\Program;
 use Illuminate\Http\Request;
+use vendor\project\StatusTest;
 
 class paymentController extends Controller
 {
@@ -13,7 +16,9 @@ class paymentController extends Controller
      */
     public function index()
     {
-        //
+        $payments = Payment::paginate(15);
+
+        return view('payment.Index',compact('payments'));
     }
 
     /**
@@ -23,7 +28,11 @@ class paymentController extends Controller
      */
     public function create()
     {
-        //
+
+        $programs = Program::with('trainees')->get();
+
+        return view('payment.Create',compact('programs'));
+
     }
 
     /**
@@ -34,7 +43,9 @@ class paymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $payment = Payment::create($request->all());
+
+        return redirect('payment');
     }
 
     /**
