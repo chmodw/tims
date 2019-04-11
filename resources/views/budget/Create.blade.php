@@ -11,7 +11,6 @@
         <form method="POST" action="{!! url('budget') !!}" enctype="multipart/form-data">
             @csrf
             <input type="hidden" value="section_Id" name="section_Id">
-
             <div class="col-md-3">
                 <div class="form-group has-feedback {{$errors->has('section_Id') ? 'has-error' : ''}}">
                     <label for="section_Id">Section ID</label>

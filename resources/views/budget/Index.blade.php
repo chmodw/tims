@@ -18,6 +18,7 @@
                     <th>Budget Year</th>
                     <th>Allocated Amount</th>
                     <th>Actual Amount</th>
+                    <th>Edit</th>
                 </tr>
                 </thead>
 
@@ -32,7 +33,12 @@
                             <td>{{$budget->section_name}}</td>
                             <td>{{$budget->budget_year}}</td>
                             <td>{{$budget->budget_amount}}</td>
-
+                            <td>Sample data</td>
+                            <td>
+                                <a href="{{url('/budget/'.$budget->id.'/edit')}}">
+                                    <i  class="fa fa-eye" style="color: blue" aria-hidden="true"></i>
+                                </a>
+                            </td>
                         </tr>
                             @endforeach
 
