@@ -67,26 +67,9 @@ class ProgramController extends Controller
         return $json;
     }
 
-    public function getTrainees($programType, $programId)
+    public function getTrainees( Request $request)
     {
-        /**
-         * get trainee data
-         */
-        //get the trainee list
 
-        $traineeIds = Program::where('program_id', $programId)->where('type', 'LocalProgram')->get('trainee_id', '')->toArray();
-
-        $trainees = [];
-        foreach($traineeIds as $id){
-            $trainee = Employer::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
-            $trainees[] = $trainee;
-        }
-
-        return view('programs.'.$programType.'.trainee')->with('program_id', $programId)->with('program_type', $programType)->with(compact('trainees'));
-    }
-
-    public function addTrainee(Request $request)
-    {
         /**
          * save trainee on the programs database
          */
@@ -104,7 +87,9 @@ class ProgramController extends Controller
         $program->save($request->all());
 
         return back()->with('status', "Trainee Added successfully");
+
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -236,6 +221,42 @@ class ProgramController extends Controller
     public function destroy(Program $program)
     {
         //
+    }
+
+    /**
+     * get allocated trainees for a program
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function trainee($programType, $programId)
+    {
+
+        return $programType;
+        /**
+         * get trainee data
+         */
+        //get the trainee list
+//
+//        $trainee = Program::where('program_id', $programId)->where('type', 'LocalProgram')
+//                    ->join('employees');
+
+        Program::Where('program_id', $programId)->where('type', 'LocalProgram')->chunk(10, function($program)
+        {
+            return $program;
+        });
+
+
+
+//        $traineeIds = Program::where('program_id', $programId)->where('type', 'LocalProgram')->get('trainee_id', '')->toArray();
+//
+//        $trainees = [];
+//        foreach($traineeIds as $id){
+//            $trainee = Employer::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
+//            $trainees[] = $trainee;
+//        }
+//
+//        return view('programs.'.$programType.'.trainee')->with('program_id', $programId)->with('program_type', $programType)->with(compact('trainees'));
     }
 
 

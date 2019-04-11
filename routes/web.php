@@ -31,8 +31,10 @@ Route::get  ('programs/create/{programType}', 'ProgramController@create')->name(
 Route::POST ('programs/create', 'ProgramController@store')->name('programs.create');
 Route::get  ('programs/{programType}/edit/{programId}', 'ProgramController@edit')->name('programs.edit');
 Route::get  ('programs/{programType}/{programId}', 'ProgramController@show')->name('programs.show');
-Route::POST ('programs/trainees', 'ProgramController@addTrainee')->name('programs.trainees');
-Route::get  ('programs/trainees/{programType}/{programId}', 'ProgramController@getTrainees')->name('programs.LocalProgram.trainees');
+Route::POST ('programs/trainee', 'ProgramController@addTrainee')->name('programs.trainees');
+
+Route::get  ('programs/trainee/{programType}/{programId}','ProgramController@trainee')->name('programs.LocalProgram.trainee');
+
 Route::DELETE('/programs/delete', 'ProgramController@delete')->name('programs.delete')->middleware('auth');
 
 // Routes for Budget

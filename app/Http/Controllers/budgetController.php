@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Budget;
 use App\WorkSpaceType;
+use DemeterChain\B;
 use Illuminate\Http\Request;
 
 class budgetController extends Controller
@@ -69,8 +70,15 @@ class budgetController extends Controller
      */
     public function edit($id)
     {
-        //
+
+        $editBudget = Budget::where('id',$id)->get();
+
+        return view('budget.edit',compact('editBudget'));
+
+
+
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -81,7 +89,11 @@ class budgetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $budget = Budget::findOrFail($id);
+
+        $budget->update($request->all());
+
+        return redirect('budget');
     }
 
     /**
