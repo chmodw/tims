@@ -26,4 +26,9 @@ class LocalProgram extends Model
         'created_by',
         'updated_by'
     ];
+
+    public function program_id()
+    {
+        return $this->morphMany('App\Program', 'program_id');
+    }
 }

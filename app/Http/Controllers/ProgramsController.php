@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Program;
-use App\Trainee;
+use App\Employer;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
 
@@ -71,7 +71,7 @@ class ProgramsController extends Controller
 
         $trainees = [];
         foreach($traineeIds as $id){
-            $trainee = Trainee::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
+            $trainee = Employer::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
             $trainees[] = $trainee;
         }
 

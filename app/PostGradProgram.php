@@ -4,23 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ForeignProgram extends Model
+class PostGradProgram extends Model
 {
     protected $fillable =[
+        'id',
         'program_id',
         'title',
-        'organised_by',
-        'notified_by',
-        'target_group',
-        'nature_of_the_appointment',
-        'employee_category',
-        'venue',
-        'currency',
-        'course_fee',
-        'start_date',
-        'end_date',
+        'institute',
+        'department',
+        'programs',
+        'requirements',
         'application_closing_date_time',
-        'duration',
+        'registration_fees',
+        'firstYear_fees',
+        'secondYear_fees',
         'brochure_url',
         'created_by',
         'updated_by',
