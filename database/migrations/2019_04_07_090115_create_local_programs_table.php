@@ -36,7 +36,7 @@ class CreateLocalProgramsTable extends Migration
             $table->string('updated_by')->nullable();
             $table->timestamps();
 
-            //Possible default value
+            $table->foreign('organised_by')->references('id')->on('organisations');
 
 
         });

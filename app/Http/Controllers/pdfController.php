@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Designation;
 use App\LocalProgram;
 use App\Program;
-use App\Trainee;
+use App\Employer;
 use Illuminate\Http\Request;
 use Elibyy\TCPDF\Facades\TCPDF;
 
@@ -27,7 +27,7 @@ class PdfController extends Controller
         $trainees = array();
         foreach($traineeIds as $id){
 
-            $trainee = Trainee::where('EmployeeId', $id['trainee_id'])->get(['NameWithInitial','DesignationId','EmployeeRecruitmentType']);
+            $trainee = Employer::where('EmployeeId', $id['trainee_id'])->get(['NameWithInitial','DesignationId','EmployeeRecruitmentType']);
 
 
             $designation = Designation::where('DesignationId', $trainee[0]->DesignationId)->get()[0]->DesignationName;

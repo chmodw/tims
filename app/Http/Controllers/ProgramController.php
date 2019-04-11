@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Program;
-use App\Trainee;
+use App\Employer;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
 
-class ProgramsController extends Controller
+class ProgramController extends Controller
 {
 
     /**
@@ -44,12 +44,26 @@ class ProgramsController extends Controller
     public function get($programType){
         $model = 'App\\'.$programType;
 
-         return Datatables()->of($model::all())
-             ->addIndexColumn()
-             ->addColumn('action', function ($row) use ($programType) {
-                 return '<a href="/programs/'.$programType.'/'.$row->program_id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a><a href="/programs/'.$programType.'/edit'.$row->program_id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a><a href="/programs/'.$programType.'/delete'.$row->program_id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></a>';
-             })
-             ->toJson();
+
+
+        $programs = $model::select(['program_title','target_group','application_closing_date_time','start_date','organised_by','venue']);
+
+        return Datatables()->of($programs)
+            ->addIndexColumn()
+            ->addColumn('action', function ($row) use ($programType) {
+                return '<a href="/programs/'.$programType.'/'.$row->program_id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a><a href="/programs/'.$programType.'/edit'.$row->program_id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a><a href="/programs/'.$programType.'/delete'.$row->program_id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></a>';
+            })
+            ->toJson();
+
+
+
+
+//         return Datatables()->of($model::all())
+//             ->addIndexColumn()
+//             ->addColumn('action', function ($row) use ($programType) {
+//                 return '<a href="/programs/'.$programType.'/'.$row->program_id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a><a href="/programs/'.$programType.'/edit'.$row->program_id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a><a href="/programs/'.$programType.'/delete'.$row->program_id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></a>';
+//             })
+//             ->toJson();
 
     }
 
@@ -71,7 +85,7 @@ class ProgramsController extends Controller
 
         $trainees = [];
         foreach($traineeIds as $id){
-            $trainee = Trainee::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
+            $trainee = Employer::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
             $trainees[] = $trainee;
         }
 
