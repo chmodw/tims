@@ -6,10 +6,10 @@ use App\Designation;
 use App\Http\Requests\TraineeRequestForm;
 use App\Program;
 use App\Section;
-use App\Employer;
+use App\Trainee;
 use Illuminate\Http\Request;
 
-class EmployerController extends Controller
+class TraineeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -32,7 +32,7 @@ class EmployerController extends Controller
     public function show(Request $req)
     {
 
-        $trainee = Employer::where('EPFNo', $req->epfNo)->get();
+        $trainee = Trainee::where('EPFNo', $req->epfNo)->get();
         //get the designation name
         $designation = Designation::where('DesignationId',$trainee[0]->DesignationId)->get()[0]->DesignationName;
 

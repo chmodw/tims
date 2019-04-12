@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Program;
-use App\Employer;
+use App\Trainee;
+use App\Workspace;
+use App\WorkSpaceType;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Facades\Datatables;
 
@@ -67,7 +69,7 @@ class ProgramController extends Controller
         return $json;
     }
 
-    public function getTrainees( Request $request)
+    public function addTrainee( Request $request)
     {
 
         /**
@@ -232,24 +234,29 @@ class ProgramController extends Controller
     public function trainee($programType, $programId)
     {
 
-        return $programType;
-        /**
-         * get trainee data
-         */
-        //get the trainee list
+        $traineeIds = Program::where('program_id', $programId)
+                        ->where('type', 'LocalProgram')->get('trainee_id')
+                        ->toArray();
+
+        $trainees =  Trainee::whereIn('EmployeeId', $traineeIds )
+                        ->where('IsActive', 1)
+                        ->join('cmn_WorkSpace', 'cmn_EmployeeVersion.WorkSpaceId', '=', 'cmn_WorkSpace.WorkSpaceId')
+//                        ->select('Initial','name','DesignationId','WorkSpaceId','AGMWorkSpaceId','DGMWorkSpaceId')
 //
-//        $trainee = Program::where('program_id', $programId)->where('type', 'LocalProgram')
-//                    ->join('employees');
-
-        Program::Where('program_id', $programId)->where('type', 'LocalProgram')->chunk(10, function($program)
-        {
-            return $program;
-        });
+//            ->join('orders', 'users.id', '=', 'orders.user_id')
+                        ->get();
 
 
-
-//        $traineeIds = Program::where('program_id', $programId)->where('type', 'LocalProgram')->get('trainee_id', '')->toArray();
+//        $id = Workspace::where('WorkspaceID', $trainees[0]['AGMWorkSpaceId'])->get('WorkSpaceTypeId');
 //
+//        return WorkSpaceType::where('WorkSpaceTypeId', $id[0]['WorkSpaceTypeId'])->get();
+
+        return $trainees;
+
+//        return ;
+//
+
+
 //        $trainees = [];
 //        foreach($traineeIds as $id){
 //            $trainee = Employer::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);

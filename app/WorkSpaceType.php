@@ -10,4 +10,6 @@ class WorkSpaceType extends Model
     protected $connection = 'sql_get';
     //Table name
     protected $table = 'dbo.cmn_WorkSpaceType';
+
+
 }

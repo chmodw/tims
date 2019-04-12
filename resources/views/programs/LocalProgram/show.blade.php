@@ -5,7 +5,7 @@
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
             <a class="btn btn-danger pull-right" style="margin-right:8px;" href="/programs/delete/LocalProgram/{{$program[0]->program_id}}"><i class="glyphicon glyphicon-trash margin-right-md"></i>&nbsp;Delete</a>
-            <a class="btn btn-default pull-right" style="margin-right:8px;" href="/programs/trainees/LocalProgram/{{$program[0]->program_id}}"><i class="glyphicon glyphicon-user margin-right-md"></i>&nbsp;Trainees</a>
+            <a class="btn btn-default pull-right" style="margin-right:8px;" href="/programs/trainee/LocalProgram/{{$program[0]->program_id}}"><i class="glyphicon glyphicon-user margin-right-md"></i>&nbsp;Trainees</a>
             <a class="btn btn-warning pull-right" style="margin-right:8px;" href="/programs/edit/LocalProgram/{{$program[0]->program_id}}"><i class="glyphicon glyphicon-pencil margin-right-md"></i>&nbsp;Edit</a>
             <a class="btn btn-primary pull-right" style="margin-right:8px;" href="/programs/create/LocalProgram"><i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
         </div>

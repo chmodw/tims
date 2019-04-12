@@ -9,7 +9,7 @@ class Program extends Model
 
     public function trainee_id()
     {
-        return $this->belongsTo('App\Employer', 'EmployeeId');
+        return $this->belongsTo('App\Trainee', 'EmployeeId');
     }
 
     public function program_id()
