@@ -11,7 +11,7 @@
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
             Local Programs
-            <a class="btn btn-default pull-right" href="{{url('programs.create.LocalProgram')}}"><i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
+            <a class="btn btn-default pull-right" href="{{url('programs/create/LocalProgram')}}"><i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
         </div>
         <div class="panel-body">
             <table class="table table-bordered table-striped" style="width: 100%;" id="table">

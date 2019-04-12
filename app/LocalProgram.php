@@ -23,7 +23,7 @@ class LocalProgram extends Model
         'non_member_fee',
         'member_fee',
         'student_fee',
-        'program_brochure',
+        'brochure_url',
         'created_by',
         'updated_by'
     ];
