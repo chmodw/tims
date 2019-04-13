@@ -17,17 +17,16 @@ class CreateLocalProgramsTable extends Migration
             $table->bigIncrements('id');
             $table->string('program_id')->unique();
             $table->string('program_title');
-            $table->integer('organised_by')->unsigned();
+            $table->integer('organised_by_id')->unsigned();
             $table->string('target_group');
             $table->timestamp('start_date')->useCurrent = true;
-            $table->timestamp('end_date')->useCurrent = true;
+            $table->integer('duration');
             $table->timestamp('application_closing_date_time')->useCurrent = true;
-            $table->enum('nature_of_the_appointment',['permanent', 'fixed', 'contract']);
-            $table->enum('employee_category',['technical', 'non-technical', 'both']);
+            $table->string('nature_of_the_employment');//['permanent', 'fixed', 'contract']
+            $table->string('employee_category');//,['technical', 'non-technical', 'both']
             $table->string('venue');
             $table->boolean('is_long_term')->default(false);
-            $table->float('course_fee')->nullable();
-            $table->integer('duration');
+            $table->float('program_fee')->nullable();
             $table->float('non_member_fee')->nullable();
             $table->float('member_fee')->nullable();
             $table->float('student_fee')->nullable();

@@ -10,16 +10,15 @@ class LocalProgram extends Model
     protected $fillable = [
         'program_id',
         'program_title',
-        'organised_by',
+        'organised_by_id',
         'target_group',
         'start_date',
-        'end_date',
+        'duration',
         'application_closing_date_time',
         'nature_of_the_appointment',
         'employee_category',
         'venue',
         'course_fee',
-        'duration',
         'non_member_fee',
         'member_fee',
         'student_fee',
@@ -29,6 +28,11 @@ class LocalProgram extends Model
     ];
 
     protected $dates = ['created_at'];
+
+    public function organisedById()
+    {
+        return $this->belongsTo('Organisation\Trainee', 'organisation_id');
+    }
 
     public function getCreatedAtAttribute()
     {

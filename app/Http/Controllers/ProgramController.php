@@ -22,9 +22,8 @@ class ProgramController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index($programType)
-
-
     {
+
         if ( file_exists(base_path().'/App/'.$programType.'.php')) {
 
             return view('programs/'.$programType.'/Index');
@@ -44,21 +43,16 @@ class ProgramController extends Controller
      * @throws \Exception
      */
     public function get($programType){
+
         $model = 'App\\'.$programType;
 
         $programs = $model::select(['program_id','program_title','target_group','application_closing_date_time','start_date','organised_by','venue', 'created_at']);
 
         return Datatables()->of($programs)
             ->addIndexColumn()
-//            ->editColumn('start_date', function ($row) {
-//                return date('Y-m-d', strtotime($row->start_date));
-//            })
             ->editColumn('program_title', function($row) use ($programType){
                 return '<a href="'.url('/programs/'.$programType.'/'.$row->program_id).'">'.$row->program_title.'</a>';
             })
-//            ->editColumn('application_closing_date_time', function($row){
-//                return date('Y-m-d', strtotime($row->application_closing_date_time));
-//            })
             ->toJson();
     }
 

@@ -4,6 +4,11 @@
   font-size: 1.25rem !important;
 }
 
+label.required::after {
+  content: "*";
+  color: red;
+}
+
 .padding-xs {
   padding: 0.25em;
 }
