@@ -19,7 +19,7 @@ class CreateInHouseProgramsTable extends Migration
             $table->string('title');
             $table->string('content'); //serialized array
             $table->string('target_group');
-            $table->integer('organised_by_id')->unsigned();
+            $table->string('organised_by_id')->unique();
             $table->string('venue');
             $table->timestamp('start_date_time')->useCurrent = true;
             $table->timestamp('endDate_time')->useCurrent = true;
@@ -35,7 +35,7 @@ class CreateInHouseProgramsTable extends Migration
             $table->string('updated_by')->nullable();
             $table->timestamps();
 
-            $table->foreign('organised_by')->references('organisation_id')->on('organisations');
+            $table->foreign('organised_by_id')->references('organisation_id')->on('organisations');
         });
     }
 

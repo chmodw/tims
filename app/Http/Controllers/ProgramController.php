@@ -7,6 +7,7 @@ use App\Trainee;
 use App\Workspace;
 use App\WorkSpaceType;
 use Illuminate\Http\Request;
+use PhpParser\Node\Expr\Array_;
 use Yajra\Datatables\Facades\Datatables;
 
 class ProgramController extends Controller
@@ -17,6 +18,16 @@ class ProgramController extends Controller
      */
 
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -24,9 +35,9 @@ class ProgramController extends Controller
     public function index($programType)
     {
 
-        if ( file_exists(base_path().'/App/'.$programType.'.php')) {
+        if (file_exists(base_path() . '/App/' . $programType . '.php')) {
 
-            return view('programs/'.$programType.'/Index');
+            return view('programs/' . $programType . '/Index');
 
         } else {
 
@@ -42,28 +53,29 @@ class ProgramController extends Controller
      * @param $programType
      * @throws \Exception
      */
-    public function get($programType){
+    public function get($programType)
+    {
 
-        $model = 'App\\'.$programType;
+        $model = 'App\\' . $programType;
 
-        $programs = $model::select(['program_id','program_title','target_group','application_closing_date_time','start_date','organised_by','venue', 'created_at']);
+        $programs = $model::select(['program_id', 'program_title', 'target_group', 'application_closing_date_time', 'start_date', 'organised_by', 'venue', 'created_at']);
 
         return Datatables()->of($programs)
             ->addIndexColumn()
-            ->editColumn('program_title', function($row) use ($programType){
-                return '<a href="'.url('/programs/'.$programType.'/'.$row->program_id).'">'.$row->program_title.'</a>';
+            ->editColumn('program_title', function ($row) use ($programType) {
+                return '<a href="' . url('/programs/' . $programType . '/' . $row->program_id) . '">' . $row->program_title . '</a>';
             })
             ->toJson();
     }
 
     public function getTraineesData($programType, $programId)
     {
-        $model = Program::where('program_id',$programId)->where('type', $programType);
+        $model = Program::where('program_id', $programId)->where('type', $programType);
         $json = Datatables()->of($model)->toJson();
         return $json;
     }
 
-    public function addTrainee( Request $request)
+    public function addTrainee(Request $request)
     {
 
         /**
@@ -94,91 +106,114 @@ class ProgramController extends Controller
     public function create($programType)
     {
 
-        if ( file_exists(base_path().'/App/'.$programType.'.php')) {
+        if (file_exists(base_path() . '/App/' . $programType . '.php')) {
 
-            return view('programs/'.$programType.'/create');
+            return view('programs/' . $programType . '/create');
 
         } else {
             return abort(404);
         }
 
     }
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
 
-        if ( file_exists(base_path().'/App/'.$request->program_type.'.php')) {
+        if (file_exists(base_path() . '/App/' . $request->program_type . '.php')) {
 
-            if($request->program_type == 'LocalProgram'){
+            if ($request->program_type == 'LocalProgram') {
                 $this->validate(request(), $this->LocalFormValidation());
-            }elseif ($request->program_type == 'InHouseProgram'){
+            } elseif ($request->program_type == 'InHouseProgram') {
                 $this->validate(request(), $this->InHouseFormValidation());
-            }elseif ($request->program_type == 'PostGradProgram'){
+            } elseif ($request->program_type == 'PostGradProgram') {
                 $this->validate(request(), $this->PostGradFormValidation());
-            }elseif ($request->program_type == 'ForeignProgram'){
+            } elseif ($request->program_type == 'ForeignProgram') {
                 $this->validate(request(), $this->ForeignFormValidation());
             }
 
-            $model = 'App\\'.$request->program_type;
+            $model = 'App\\' . $request->program_type;
 
             $data = array_merge(request()->all(), [
-                'program_id' => $this->u_id([request()->program_title,auth()->user()->email,request()->program_type,request()->start_date]),
+                'program_id' => $this->u_id([request()->program_title, auth()->user()->email, request()->program_type, request()->start_date]),
                 'created_by' => auth()->user()->email,
+                'nature_of_the_employment' => serialize($request->employment_nature),
+                'employee_category' => serialize(request()->employee_category),
+
             ]);
             /**
              * Add times to dates
              */
-            if(array_key_exists('start_date', $data) && array_key_exists('start_time', $data)){
+            if (array_key_exists('start_date', $data) && array_key_exists('start_time', $data)) {
                 $data['start_date'] = $this->joint_date_time($data['start_date'], $data['start_time']);
-                unset($data['start_time']);
             }
-            if(array_key_exists('end_date', $data) && array_key_exists('end_time', $data)){
-                $data['end_date'] = $this->joint_date_time($data['end_date'], $data['end_time']);
-                unset($data['end_time']);
-            }
-            if(array_key_exists('end_date', $data) && array_key_exists('application_closing_time', $data)){
+            if (array_key_exists('end_date', $data) && array_key_exists('application_closing_time', $data)) {
                 $data['application_closing_date_time'] = $this->joint_date_time($data['application_closing_date'], $data['application_closing_time']);
-                unset($data['application_closing_date']);
-                unset($data['application_closing_time']);
             }
-            if(array_key_exists('program_type', $data)){
-                unset($data['program_type']);
+            if (array_key_exists('employment_nature', $data)) {
+                $emp = serialize($data['employment_nature']);
+                $data['employment_nature'] = $emp;
+            }
+            if (array_key_exists('employee_category', $data)) {
+                $data['employee_category'] = serialize($data['employee_category']);
             }
 
-        }
-        /**
-         * Save the data
-         */
-        $program = $model::create($data);
+            //             check if a program brochure is present
+            if ($request->file('program_brochure') != null) {
+                //get the file ext
+                $ext = $request->file('program_brochure')->getClientOriginalExtension();
+                //save the file in the storage
+                $fileName = $data['program_id'] . "." . $ext;
+                $savedFile = $request->file('program_brochure')->storeAs('public/brochures', $fileName);
+                $finalData = array_merge(request()->all(), [
+                    'program_brochure' => $fileName,
+                ]);
+            }
 
-        if (request()->input('_submit') == 'redirect') {
-            return redirect('/programs/'.request()->program_type)->with('status', 'Program has been saved successfully');
+            /**
+             * Remove unwanted data from the array before saving it on the database
+             */
+//            $finalData = $this->array_unsetter($data, ['start_time', 'end_time', 'application_closing_date', 'application_closing_time', 'program_type']);
+
+//            return $finalData;
+
+            /**
+             * Save the data
+             */
+            $program = $model::create($data);
+
+            if (request()->input('_submit') == 'redirect') {
+                return redirect('/programs/' . request()->program_type)->with('status', 'Program has been saved successfully');
+            } else {
+                return back()->with('success', "Program has been saved successfully");
+            }
+        } else {
+            return abort(404);
         }
-        else {
-            return back()->with('status', "Program has been saved successfully");
-        }
+
     }
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Program  $program
+     * @param \App\Program $program
      * @return \Illuminate\Http\Response
      */
     public function show($programType, $programId)
     {
 
-        if ( file_exists(base_path().'/App/'.$programType.'.php')) {
+        if (file_exists(base_path() . '/App/' . $programType . '.php')) {
 
-            $model = 'App\\'.$programType;
+            $model = 'App\\' . $programType;
 
             $program = $model::where('program_id', $programId)->get();
 
-            return view('programs.'.$programType.'.show')->with(compact('program'));
+            return view('programs.' . $programType . '.show')->with(compact('program'));
 
         } else {
             return abort(404);
@@ -188,7 +223,7 @@ class ProgramController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Program  $program
+     * @param \App\Program $program
      * @return \Illuminate\Http\Response
      */
     public function edit($programType, $programId)
@@ -199,8 +234,8 @@ class ProgramController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Program  $program
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Program $program
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Program $program)
@@ -211,7 +246,7 @@ class ProgramController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Program  $program
+     * @param \App\Program $program
      * @return \Illuminate\Http\Response
      */
     public function destroy(Program $program)
@@ -229,16 +264,16 @@ class ProgramController extends Controller
     {
 
         $traineeIds = Program::where('program_id', $programId)
-                        ->where('type', 'LocalProgram')->get('trainee_id')
-                        ->toArray();
+            ->where('type', 'LocalProgram')->get('trainee_id')
+            ->toArray();
 
-        $trainees =  Trainee::whereIn('EmployeeId', $traineeIds )
-                        ->where('IsActive', 1)
-                        ->join('cmn_WorkSpace', 'cmn_EmployeeVersion.WorkSpaceId', '=', 'cmn_WorkSpace.WorkSpaceId')
+        $trainees = Trainee::whereIn('EmployeeId', $traineeIds)
+            ->where('IsActive', 1)
+            ->join('cmn_WorkSpace', 'cmn_EmployeeVersion.WorkSpaceId', '=', 'cmn_WorkSpace.WorkSpaceId')
 //                        ->select('Initial','name','DesignationId','WorkSpaceId','AGMWorkSpaceId','DGMWorkSpaceId')
 //
 //            ->join('orders', 'users.id', '=', 'orders.user_id')
-                        ->get();
+            ->get();
 
 
 //        $id = Workspace::where('WorkspaceID', $trainees[0]['AGMWorkSpaceId'])->get('WorkSpaceTypeId');
@@ -261,7 +296,9 @@ class ProgramController extends Controller
     }
 
 
-    private function LocalFormValidation(){
+    private function LocalFormValidation()
+    {
+
         return [
             'program_title' => 'required|max:255',
             'organised_by' => 'required|max:255',
@@ -270,25 +307,21 @@ class ProgramController extends Controller
             'start_time' => 'required|max:255',
             'end_date' => 'max:255|date|after_or_equal:start_date',
             'end_time' => 'max:255',
-            'nature_of_the_appointment' => 'required',
-            'employee_category' => 'required',
+            'employment_nature' => 'required',
+            'employee_category' => 'required|max:255',
             'venue' => 'required',
-            'course_fee' => '',
-            'duration' => '',
+            'duration' => 'required',
             'application_closing_date' => 'required|max:191|before_or_equal:start_date',
             'application_closing_time' => 'required|max:255',
-            'non_member_fee' => 'max:255',
-            'member_fee' => 'max:255',
-            'student_fee' => 'max:255',
-            'program_brochure' => 'image|max:1999',
-
-            $messages = [
-                'mimes' => 'Only images are allowed.',
-            ],
+            'non_member_fee' => 'max:100',
+            'member_fee' => 'max:100',
+            'student_fee' => 'max:100',
+            'program_brochure' => 'mimes:doc,pdf,docx,jpg,jpeg,png|max:4999',
         ];
     }
 
-    private function ForeignFormValidation(){
+    private function ForeignFormValidation()
+    {
         return [
             'program_title' => 'required|max:255',
             'organised_by' => 'required|max:255',
@@ -303,33 +336,32 @@ class ProgramController extends Controller
             'end_date' => 'max:255|date|after_or_equal:start_date',
             'application_closing_date_time' => 'required|max:255',
             'duration' => 'required|max:255',
-            'program_brochure' => 'image|max:1999',
             'created_by' => 'required|max:255',
             'updated_by' => 'required|max:255',
-
-            $messages = [
-                'mimes' => 'Only images are allowed.',
-            ],
+            'program_brochure' => 'mimes:doc,pdf,docx,jpg,jpeg,png|max:4999',
         ];
     }
 
-    private function PostGradFormValidation(){
+    private function PostGradFormValidation()
+    {
         return [];
     }
 
-    private function InHouseFormValidation(){
+    private function InHouseFormValidation()
+    {
         return [];
     }
 
     /**
      * generates a unique id from given data
      */
-    private function u_id(Array $params){
-        array_push($params, date("M,d,Y h:i:s A"), rand(1,9999999));
+    private function u_id(Array $params)
+    {
+        array_push($params, date("M,d,Y h:i:s A"), rand(1, 9999999));
         $str = implode($params);
-        $str = str_replace(",","",$str);
-        $str = str_replace(":","",$str);
-        $str = str_replace(" ","",$str);
+        $str = str_replace(",", "", $str);
+        $str = str_replace(":", "", $str);
+        $str = str_replace(" ", "", $str);
 
         return md5($str);
     }
@@ -344,5 +376,19 @@ class ProgramController extends Controller
         $timestamp = strtotime($date . " " . $time);
 
         return date("Y-m-d H:i:s", $timestamp);
+    }
+
+    private function array_unsetter(Array $array, Array $params)
+    {
+
+        foreach ($params as $param) {
+            if (array_key_exists($param, $array)) {
+                $index = array_search($param, array_keys($array));
+//                $array = array_splice($array, $index, $index);
+                unset($array[$index]);
+            }
+        }
+
+        return $array;
     }
 }

@@ -1,5 +1,6 @@
 @extends('home')
 
+@section('title', 'TIMS | Create Local Program')
 
 @section('main-content')
 

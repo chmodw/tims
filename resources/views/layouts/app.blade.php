@@ -17,8 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
-    <link href="{{ HTML::asset('css/app.css') }}" rel="stylesheet" type="text/css" >
-{{--    {{ asset('css/app.css') }}--}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+
 
 </head>
 <body>

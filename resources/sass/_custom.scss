@@ -12,3 +12,7 @@ label.required::after{
   content:"*";
   color:red;
 }
+
+input[type=image]{
+  margin-right: 1rem;
+}

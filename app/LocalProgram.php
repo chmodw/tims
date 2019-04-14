@@ -15,7 +15,7 @@ class LocalProgram extends Model
         'start_date',
         'duration',
         'application_closing_date_time',
-        'nature_of_the_appointment',
+        'nature_of_the_employment',
         'employee_category',
         'venue',
         'course_fee',
