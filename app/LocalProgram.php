@@ -18,13 +18,14 @@ class LocalProgram extends Model
         'nature_of_the_employment',
         'employee_category',
         'venue',
-        'course_fee',
+        'program_fee',
         'non_member_fee',
         'member_fee',
         'student_fee',
         'brochure_url',
         'created_by',
-        'updated_by'
+        'updated_by',
+//        'created_at'
     ];
 
     protected $dates = ['created_at'];

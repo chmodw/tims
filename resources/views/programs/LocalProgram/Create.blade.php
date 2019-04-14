@@ -34,7 +34,7 @@
                 <div class="col-md-4">
                     <div class="form-group has-feedback {{$errors->has('organised_by') ? 'has-error' : ''}}">
                         <label for="organised_by" class="required">Organised By</label>
-                        <input type="text" value="{{old('organised_by')}}" class="form-control" name="organised_by" id="organised_by" placeholder="Program organiser" list="orgs">
+                        <input type="text" value="{{old('organised_by')}}" class="form-control" name="organised_by_id" id="organised_by" placeholder="Program organiser" list="orgs">
                         <datalist id="orgs">
                             <option>Volvo</option>
                             <option>Saab</option>

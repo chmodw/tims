@@ -17,7 +17,7 @@ class CreatePostGradProgramsTable extends Migration
             $table->bigIncrements('id');
             $table->string('program_id')->unique();
             $table->string('title');
-            $table->string('organised_by_id')->unique();
+            $table->string('organised_by_id');
             $table->string('department');
             $table->text('programs'); //serialized array
             $table->text('requirements'); // serialized array

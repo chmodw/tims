@@ -301,7 +301,7 @@ class ProgramController extends Controller
 
         return [
             'program_title' => 'required|max:255',
-            'organised_by' => 'required|max:255',
+            'organised_by_id' => 'required|max:255',
             'target_group' => 'required|max:255',
             'start_date' => 'required|max:255|date|after_or_equal:today',
             'start_time' => 'required|max:255',
@@ -324,7 +324,7 @@ class ProgramController extends Controller
     {
         return [
             'program_title' => 'required|max:255',
-            'organised_by' => 'required|max:255',
+            'organised_by_id' => 'required|max:255',
             'notified_by' => 'required|max:255',
             'target_group' => 'required|max:255',
             'nature_of_the_appointment' => 'required|max:255',

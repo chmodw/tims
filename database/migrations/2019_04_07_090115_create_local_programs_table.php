@@ -19,7 +19,7 @@ class CreateLocalProgramsTable extends Migration
             $table->bigIncrements('id');
             $table->string('program_id')->unique();
             $table->string('program_title');
-            $table->string('organised_by_id')->unique();
+            $table->string('organised_by_id');
             $table->string('target_group');
             $table->timestamp('start_date')->useCurrent = true;
             $table->integer('duration');
