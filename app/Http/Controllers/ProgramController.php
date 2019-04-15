@@ -56,16 +56,6 @@ class ProgramController extends Controller
     public function get($programType)
     {
 
-        $model = 'App\\' . $programType;
-
-        $programs = $model::select(['program_id', 'program_title', 'target_group', 'application_closing_date_time', 'start_date', 'organised_by', 'venue', 'created_at']);
-
-        return Datatables()->of($programs)
-            ->addIndexColumn()
-            ->editColumn('program_title', function ($row) use ($programType) {
-                return '<a href="' . url('/programs/' . $programType . '/' . $row->program_id) . '">' . $row->program_title . '</a>';
-            })
-            ->toJson();
     }
 
     public function getTraineesData($programType, $programId)
