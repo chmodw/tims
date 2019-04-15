@@ -34,7 +34,7 @@
             $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "{{'/api/programs/get/LocalProgram?api_token='.$token}}",
+                ajax: "/api/programs/get/LocalProgram",
                 order: [7, 'desc'],
 
                 columns: [
