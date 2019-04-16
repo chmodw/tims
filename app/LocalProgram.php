@@ -30,6 +30,11 @@ class LocalProgram extends Model
 
     protected $dates = ['created_at'];
 
+    public static function getTableName()
+    {
+        return with(new static)->getTable();
+    }
+
     public function organisedById()
     {
         return $this->belongsTo('Organisation\Trainee', 'organisation_id');
@@ -60,8 +65,8 @@ class LocalProgram extends Model
         return $this->morphMany('App\Program', 'program_id');
     }
 
-    public function organised_by()
+    public function organised_by_id()
     {
-        return $this->belongsTo('App\Organisation', 'id');
+        return $this->hasOne('App\Organisation', 'organisation_id', 'organised_by_id');
     }
 }

@@ -10,8 +10,11 @@ class ApiController extends Controller
     {
 
         $model = 'App\\' . $programType;
+        $tbl = $model::getTableName();
 
-        $programs = $model::select(['program_id', 'program_title', 'target_group', 'application_closing_date_time', 'start_date', 'organised_by_id', 'venue', 'created_at']);
+        $programs = $model::join('organisations', 'organisations.organisation_id', $tbl.'.organised_by_id')
+                        ->select($tbl.'.program_id', $tbl.'.program_title', $tbl.'.target_group', $tbl.'.application_closing_date_time',$tbl.'.start_date',$tbl.'.venue',$tbl.'.created_at','organisations.name')
+                        ->get();
 
         return Datatables()->of($programs)
             ->addIndexColumn()

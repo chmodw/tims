@@ -43,10 +43,9 @@
                     {data: 'target_group', name: 'target_group'},
                     {data: 'application_closing_date_time', name: 'application_closing_date_time'},
                     {data: 'start_date', name: 'start_date'},
-                    {data: 'organised_by', name: 'organised_by'},
+                    {data: 'name', name: 'name'},
                     {data: 'venue', name: 'venue'},
                     {data: 'created_at', name: 'created_at'},
-                    // { data: 'action', name: 'action', orderable: false, searchable: false},
                 ]
             });
         }
