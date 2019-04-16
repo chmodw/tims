@@ -50,14 +50,14 @@ class LocalProgram extends Model
         return Carbon::parse($this->attributes['start_date'])->format('Y-m-d H:i');
     }
 
-    public function getEndDateAttribute()
-    {
-        return Carbon::parse($this->attributes['end_date'])->format('Y-m-d H:i');
-    }
-
     public function getApplicationClosingDateTimeAttribute()
     {
         return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
+    }
+
+    public function getEmployeeCategory()
+    {
+        return unserialize($this->attributes['application_closing_date_time']);
     }
 
     public function program_id()

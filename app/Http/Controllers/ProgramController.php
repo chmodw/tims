@@ -1,4 +1,7 @@
 <?php
+/**
+ * This controller handles all the four types of programs
+ */
 
 namespace App\Http\Controllers;
 
@@ -9,11 +12,6 @@ use Illuminate\Http\Request;
 
 class ProgramController extends Controller
 {
-
-    /**
-     * This controller handles all the four types of programs
-     */
-
     /**
      * Create a new controller instance.
      *
@@ -206,7 +204,12 @@ class ProgramController extends Controller
 
             $model = 'App\\' . $programType;
 
-            $program = $model::where('program_id', $programId)->get();
+            $tbl = $model::getTableName();
+
+            $program = $model::join('organisations', 'organisations.organisation_id', $tbl.'.organised_by_id')
+                        ->where('program_id', $programId)
+                        ->select($tbl.'.program_id', $tbl.'.program_title', $tbl.'.target_group', $tbl.'.start_date', $tbl.'.duration', $tbl.'.application_closing_date_time', $tbl.'.nature_of_the_employment', $tbl.'.employee_category', $tbl.'.venue',$tbl.'.is_long_term', $tbl.'.program_fee', $tbl.'.non_member_fee', $tbl.'.member_fee',$tbl.'.student_fee', $tbl.'.brochure_url', 'organisations.name')
+                        ->get();
 
             return view('programs.' . $programType . '.show')->with(compact('program'));
 
@@ -223,6 +226,21 @@ class ProgramController extends Controller
      */
     public function edit($programType, $programId)
     {
+        if (file_exists(base_path() . '/App/' .$programType. '.php')) {
+
+            $model = 'App\\' . $programType;
+            $tbl = $model::getTableName();
+
+            if($programType == 'LocalProgram') {
+                $program = $this->getLocalProgram($programId, $model, $tbl);
+            }
+
+
+            return $program;
+
+        }else {
+            return abort(404);
+        }
 
     }
 
@@ -373,17 +391,12 @@ class ProgramController extends Controller
         return date("Y-m-d H:i:s", $timestamp);
     }
 
-    private function array_unsetter(Array $array, Array $params)
+    private function getLocalProgram($programId, $model, $tbl)
     {
-
-        foreach ($params as $param) {
-            if (array_key_exists($param, $array)) {
-                $index = array_search($param, array_keys($array));
-//                $array = array_splice($array, $index, $index);
-                unset($array[$index]);
-            }
-        }
-
-        return $array;
+            $program = $model::join('organisations', 'organisations.organisation_id', $tbl . '.organised_by_id')
+                ->select($tbl . '.*', 'organisations.organisation_id', 'organisations.name')
+                ->where('program_id', $programId)
+                ->get();
+        return $program;
     }
 }

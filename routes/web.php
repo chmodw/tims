@@ -33,7 +33,7 @@ Route::get  ('/home', 'HomeController@index')->name('home');
 Route::get  ('programs/{programType}', 'ProgramController@index')->name('programs')->middleware('auth');
 Route::get  ('programs/create/{programType}', 'ProgramController@create')->name('programs.create');
 Route::POST ('programs/create', 'ProgramController@store')->name('programs.create');
-Route::get  ('programs/{programType}/edit/{programId}', 'ProgramController@edit')->name('programs.edit');
+Route::get  ('programs/edit/{programType}/{programId}', 'ProgramController@edit')->name('programs.edit');
 Route::get  ('programs/{programType}/{programId}', 'ProgramController@show')->name('programs.show');
 Route::POST ('programs/trainee', 'ProgramController@addTrainee')->name('programs.trainees');
 
