@@ -36,10 +36,9 @@
                         <label for="organised_by" class="required">Organised By</label>
                         <input type="text" value="{{old('organised_by')}}" class="form-control" name="organised_by_id" id="organised_by" placeholder="Program organiser" list="orgs">
                         <datalist id="orgs">
-                            <option>Volvo</option>
-                            <option>Saab</option>
-                            <option>Mercedes</option>
-                            <option>Audi</option>
+                            @foreach($orgs as $org)
+                                <option value="{{$org->organisation_id}}">{{$org->name}}</option>
+                            @endforeach
                         </datalist>
                         @if ($errors->has('organised_by'))
                             <span class="help-block">{{ $errors->first('organised_by') }}</span>

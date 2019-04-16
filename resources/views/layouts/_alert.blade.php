@@ -2,7 +2,7 @@
     <div class="alert alert-success alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-        <strong></strong>{{ session('status') }}
+        <strong>Success!</strong>{{ session('success') }}
     </div>
 @endif
 
@@ -10,6 +10,6 @@
     <div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-        <strong></strong>{{ session('failed') }}
+        <strong>Failed!</strong>{{ session('failed') }}
     </div>
 @endif

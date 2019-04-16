@@ -2,13 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Organisation;
 use App\Program;
 use App\Trainee;
-use App\Workspace;
-use App\WorkSpaceType;
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\Array_;
-use Yajra\Datatables\Facades\Datatables;
 
 class ProgramController extends Controller
 {
@@ -95,10 +92,12 @@ class ProgramController extends Controller
      */
     public function create($programType)
     {
+        //get the organisations to show in the text field
+        $orgs = Organisation::select(['organisation_id','name'])->get();
 
         if (file_exists(base_path() . '/App/' . $programType . '.php')) {
 
-            return view('programs/' . $programType . '/create');
+            return view('programs/' . $programType . '/create')->with('orgs', $orgs);
 
         } else {
             return abort(404);
@@ -152,8 +151,18 @@ class ProgramController extends Controller
             if (array_key_exists('employee_category', $data)) {
                 $data['employee_category'] = serialize($data['employee_category']);
             }
+            /**
+             * Save the organization in the organizations table and get the id
+             */
+            if (array_key_exists('organised_by_id', $data)) {
 
-            //             check if a program brochure is present
+                if(is_null(Organisation::where('organisation_id', $data['organised_by_id'])->first())){
+                    $orgId = $this->u_id([$data['organised_by_id'], auth()->user()->email, request()->program_type]);
+                    Organisation::create(['organisation_id' => $orgId, 'name' => $data['organised_by_id'], 'created_by' => auth()->user()->email]);
+                    $data['organised_by_id'] = $orgId;
+                }
+            }
+            //  check if a program brochure is present
             if ($request->file('program_brochure') != null) {
                 //get the file ext
                 $ext = $request->file('program_brochure')->getClientOriginalExtension();
@@ -164,18 +173,14 @@ class ProgramController extends Controller
                     'program_brochure' => $fileName,
                 ]);
             }
-
-            /**
-             * Remove unwanted data from the array before saving it on the database
-             */
-//            $finalData = $this->array_unsetter($data, ['start_time', 'end_time', 'application_closing_date', 'application_closing_time', 'program_type']);
-
-//            return $finalData;
-
             /**
              * Save the data
              */
-            $program = $model::create($data);
+            $saved = $model::create($data);
+
+            if(!$saved){
+                return 'save faild';
+            }
 
             if (request()->input('_submit') == 'redirect') {
                 return redirect('/programs/' . request()->program_type)->with('status', 'Program has been saved successfully');
