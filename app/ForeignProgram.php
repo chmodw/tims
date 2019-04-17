@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class ForeignProgram extends Model
@@ -35,4 +36,36 @@ class ForeignProgram extends Model
     {
         return $this->hasOne('App\Organisation', 'organisation_id', 'organised_by_id');
     }
+
+    public static function getTableName()
+    {
+        return with(new static)->getTable();
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');
+    }
+
+    public function getStartDateAttribute()
+    {
+        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d H:i');
+    }
+
+    public function getNatureOfTheEmploymentAttribute()
+    {
+        return implode(", ",unserialize($this->attributes['nature_of_the_employment']));
+    }
+
+    public function getEmployeeCategoryAttribute()
+    {
+        $arr = unserialize($this->attributes['employee_category']);
+        return implode(", ",unserialize($arr));
+    }
+
+    public function getApplicationClosingDateTimeAttribute()
+    {
+        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
+    }
+
 }

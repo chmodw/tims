@@ -332,9 +332,9 @@ class ProgramController extends Controller
      * @param \App\Program $program
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Program $program)
+    public function destroy(Request $request)
     {
-        //
+        return $request;
     }
 
     /**
@@ -350,32 +350,43 @@ class ProgramController extends Controller
             ->where('type', 'LocalProgram')->get('trainee_id')
             ->toArray();
 
-        $trainees = Trainee::whereIn('EmployeeId', $traineeIds)
-            ->where('IsActive', 1)
-            ->join('cmn_WorkSpace', 'cmn_EmployeeVersion.WorkSpaceId', '=', 'cmn_WorkSpace.WorkSpaceId')
-//                        ->select('Initial','name','DesignationId','WorkSpaceId','AGMWorkSpaceId','DGMWorkSpaceId')
-//
-//            ->join('orders', 'users.id', '=', 'orders.user_id')
-            ->get();
+        return $traineeIds;
+
+
+
+
+//        $program = $model::join('organisations', 'organisations.organisation_id', $tbl.'.organised_by_id')
+//            ->where('program_id', $programId)
+//            ->select($tbl.'.program_id', $tbl.'.program_title', $tbl.'.target_group', $tbl.'.start_date', $tbl.'.duration', $tbl.'.application_closing_date_time', $tbl.'.nature_of_the_employment', $tbl.'.employee_category', $tbl.'.venue',$tbl.'.is_long_term', $tbl.'.program_fee', $tbl.'.non_member_fee', $tbl.'.member_fee',$tbl.'.student_fee', $tbl.'.brochure_url', 'organisations.name')
+//            ->get();
+
+//        $trainees = Trainee::join('cmn_WorkSpace', 'cmn_WorkSpace.WorkSpaceId')
+//        $trainees = Trainee::whereIn('EmployeeId', $traineeIds)
+//            ->where('IsActive', 1)
+//            ->join('cmn_WorkSpace', 'cmn_EmployeeVersion.WorkSpaceId', '=', 'cmn_WorkSpace.WorkSpaceId')
+////                        ->select('Initial','name','DesignationId','WorkSpaceId','AGMWorkSpaceId','DGMWorkSpaceId')
+////
+////            ->join('orders', 'users.id', '=', 'orders.user_id')
+//            ->get();
 
 
 //        $id = Workspace::where('WorkspaceID', $trainees[0]['AGMWorkSpaceId'])->get('WorkSpaceTypeId');
 //
 //        return WorkSpaceType::where('WorkSpaceTypeId', $id[0]['WorkSpaceTypeId'])->get();
 
-        return $trainees;
+//        return $trainees;
 
 //        return ;
 //
 
 
-//        $trainees = [];
+        $trainees = [];
 //        foreach($traineeIds as $id){
 //            $trainee = Employer::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
 //            $trainees[] = $trainee;
 //        }
 //
-//        return view('programs.'.$programType.'.trainee')->with('program_id', $programId)->with('program_type', $programType)->with(compact('trainees'));
+        return view('programs.'.$programType.'.trainee')->with('program_id', $programId)->with('program_type', $programType)->with(compact('trainees'));
     }
 
 

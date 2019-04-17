@@ -2,8 +2,10 @@
 
 @section('content_header')
     <h1 class="inline">New Local Program</h1>
-    <a href="{{url('programs/LocalPrograms')}}" class="btn btn-default">Back</a>
+    <a href="{{url('programs/LocalPrograms')}}" class="btn btn-default pull-right">Back</a>
 @stop
+
+@section('title', 'TIMS | Create Local Program')
 
 @section('main-content')
 
