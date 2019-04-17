@@ -34,6 +34,7 @@ Route::get  ('programs/{programType}', 'ProgramController@index')->name('program
 Route::get  ('programs/create/{programType}', 'ProgramController@create')->name('programs.create');
 Route::POST ('programs/create', 'ProgramController@store')->name('programs.create');
 Route::get  ('programs/edit/{programType}/{programId}', 'ProgramController@edit')->name('programs.edit');
+Route::PATCH  ('programs/update', 'ProgramController@update')->name('programs.update');
 Route::get  ('programs/{programType}/{programId}', 'ProgramController@show')->name('programs.show');
 Route::POST ('programs/trainee', 'ProgramController@addTrainee')->name('programs.trainees');
 

@@ -40,6 +40,17 @@ class LocalProgram extends Model
         return $this->belongsTo('Organisation\Trainee', 'organisation_id');
     }
 
+    public function program_id()
+    {
+        return $this->morphMany('App\Program', 'program_id');
+    }
+
+    public function organised_by_id()
+    {
+        return $this->hasOne('App\Organisation', 'organisation_id', 'organised_by_id');
+    }
+
+
     public function getCreatedAtAttribute()
     {
         return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');
@@ -50,23 +61,20 @@ class LocalProgram extends Model
         return Carbon::parse($this->attributes['start_date'])->format('Y-m-d H:i');
     }
 
+    public function getNatureOfTheEmploymentAttribute()
+    {
+        return implode(", ",unserialize($this->attributes['nature_of_the_employment']));
+    }
+
+    public function getEmployeeCategoryAttribute()
+    {
+        $arr = unserialize($this->attributes['employee_category']);
+        return implode(", ",unserialize($arr));
+    }
+
     public function getApplicationClosingDateTimeAttribute()
     {
         return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
     }
 
-    public function getEmployeeCategory()
-    {
-        return unserialize($this->attributes['application_closing_date_time']);
-    }
-
-    public function program_id()
-    {
-        return $this->morphMany('App\Program', 'program_id');
-    }
-
-    public function organised_by_id()
-    {
-        return $this->hasOne('App\Organisation', 'organisation_id', 'organised_by_id');
-    }
 }

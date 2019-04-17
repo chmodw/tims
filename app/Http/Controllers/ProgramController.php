@@ -90,8 +90,7 @@ class ProgramController extends Controller
      */
     public function create($programType)
     {
-        //get the organisations to show in the text field
-        $orgs = Organisation::select(['organisation_id','name'])->get();
+        $orgs = app('App\Http\Controllers\OrganisationController')->index();
 
         if (file_exists(base_path() . '/App/' . $programType . '.php')) {
 
@@ -130,7 +129,7 @@ class ProgramController extends Controller
                 'program_id' => $this->u_id([request()->program_title, auth()->user()->email, request()->program_type, request()->start_date]),
                 'created_by' => auth()->user()->email,
                 'nature_of_the_employment' => serialize($request->employment_nature),
-                'employee_category' => serialize(request()->employee_category),
+                'employee_category' => serialize($request->employee_category),
 
             ]);
             /**
@@ -139,7 +138,7 @@ class ProgramController extends Controller
             if (array_key_exists('start_date', $data) && array_key_exists('start_time', $data)) {
                 $data['start_date'] = $this->joint_date_time($data['start_date'], $data['start_time']);
             }
-            if (array_key_exists('end_date', $data) && array_key_exists('application_closing_time', $data)) {
+            if (array_key_exists('application_closing_date', $data) && array_key_exists('application_closing_time', $data)) {
                 $data['application_closing_date_time'] = $this->joint_date_time($data['application_closing_date'], $data['application_closing_time']);
             }
             if (array_key_exists('employment_nature', $data)) {
@@ -230,13 +229,13 @@ class ProgramController extends Controller
 
             $model = 'App\\' . $programType;
             $tbl = $model::getTableName();
+            $orgs = app('App\Http\Controllers\OrganisationController')->index();
 
             if($programType == 'LocalProgram') {
                 $program = $this->getLocalProgram($programId, $model, $tbl);
             }
 
-
-            return $program;
+            return view('programs.' . $programType . '.edit')->with(compact('program'))->with(compact('orgs'));
 
         }else {
             return abort(404);
@@ -251,9 +250,80 @@ class ProgramController extends Controller
      * @param \App\Program $program
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Program $program)
+    public function update(Request $request)
     {
-        //
+        if ($request->program_type == 'LocalProgram') {
+            $this->validate(request(), $this->LocalFormValidation());
+        } elseif ($request->program_type == 'InHouseProgram') {
+            $this->validate(request(), $this->InHouseFormValidation());
+        } elseif ($request->program_type == 'PostGradProgram') {
+            $this->validate(request(), $this->PostGradFormValidation());
+        } elseif ($request->program_type == 'ForeignProgram') {
+            $this->validate(request(), $this->ForeignFormValidation());
+        }
+
+        $model = 'App\\' . $request->program_type;
+
+        $data = array_merge(request()->all(), [
+            'updated_by' => auth()->user()->email,
+            'nature_of_the_employment' => serialize($request->employment_nature),
+            'employee_category' => serialize($request->employee_category),
+
+        ]);
+        /**
+         * Add times to dates
+         */
+        if (array_key_exists('start_date', $data) && array_key_exists('start_time', $data)) {
+            $data['start_date'] = $this->joint_date_time($data['start_date'], $data['start_time']);
+        }
+        if (array_key_exists('application_closing_date', $data) && array_key_exists('application_closing_time', $data)) {
+            $data['application_closing_date_time'] = $this->joint_date_time($data['application_closing_date'], $data['application_closing_time']);
+        }
+        if (array_key_exists('employment_nature', $data)) {
+            $emp = serialize($data['employment_nature']);
+            $data['employment_nature'] = $emp;
+        }
+        if (array_key_exists('employee_category', $data)) {
+            $data['employee_category'] = serialize($data['employee_category']);
+        }
+        /**
+         * Save the organization in the organizations table and get the id
+         */
+        if (array_key_exists('organised_by_id', $data)) {
+
+            if(is_null(Organisation::where('organisation_id', $data['organised_by_id'])->first())){
+                $orgId = $this->u_id([$data['organised_by_id'], auth()->user()->email, request()->program_type]);
+                Organisation::create(['organisation_id' => $orgId, 'name' => $data['organised_by_id'], 'created_by' => auth()->user()->email]);
+                $data['organised_by_id'] = $orgId;
+            }
+        }
+        //  check if a program brochure is present
+        if ($request->file('program_brochure') != null) {
+            //get the file ext
+            $ext = $request->file('program_brochure')->getClientOriginalExtension();
+            //save the file in the storage
+            $fileName = $data['program_id'] . "." . $ext;
+            $savedFile = $request->file('program_brochure')->storeAs('public/brochures', $fileName);
+            $finalData = array_merge(request()->all(), [
+                'program_brochure' => $fileName,
+            ]);
+        }
+        //remove unwanted data before update
+        $data = $this->array_un_setter($data, ['_method','_token','program_type','employment_nature','program_id','start_time', '_submit','application_closing_time','application_closing_date']);
+        /**
+         * Save the data
+         */
+        $saved = $model::where('program_id', request()->program_id)->update($data);
+
+        if(!$saved){
+            return 'save faild';
+        }
+
+        if (request()->input('_submit') == 'redirect') {
+            return redirect('/programs/' . request()->program_type)->with('status', 'Program has been saved successfully');
+        } else {
+            return back()->with('success', "Program has been saved successfully");
+        }
     }
 
     /**
@@ -391,10 +461,22 @@ class ProgramController extends Controller
         return date("Y-m-d H:i:s", $timestamp);
     }
 
+    private function array_un_setter(Array $array, Array $params)
+    {
+        foreach ($params as $param) {
+            if (array_key_exists($param, $array)) {
+//                $index = array_search($param, array_keys($array));
+//                $array = array_splice($array, $index, $index);
+                unset($array[$param]);
+            }
+        }
+        return $array;
+    }
+
     private function getLocalProgram($programId, $model, $tbl)
     {
             $program = $model::join('organisations', 'organisations.organisation_id', $tbl . '.organised_by_id')
-                ->select($tbl . '.*', 'organisations.organisation_id', 'organisations.name')
+                ->select($tbl . '.program_id', $tbl . '.program_title', $tbl . '.organised_by_id', $tbl . '.target_group',$tbl . '.start_date',$tbl . '.duration', $tbl . '.application_closing_date_time',$tbl . '.nature_of_the_employment',$tbl . '.employee_category', $tbl . '.venue',$tbl . '.is_long_term',$tbl . '.program_fee', $tbl . '.non_member_fee', $tbl . '.member_fee', $tbl . '.student_fee', $tbl . '.brochure_url',  'organisations.organisation_id', 'organisations.name')
                 ->where('program_id', $programId)
                 ->get();
         return $program;
