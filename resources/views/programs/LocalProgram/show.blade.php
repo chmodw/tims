@@ -47,7 +47,7 @@
                     <tr class="row">
                         <div class="col-md-12">
                             <th class="col-md-2">Employee Category</th>
-                            <td class="col-md-4">{{$program[0]->nature_of_the_employment}}</td>
+                            <td class="col-md-4">{{$program[0]->employee_category}}</td>
                             <th class="col-md-2">Venue</th>
                             <td class="col-md-4">{{$program[0]->venue}}</td>
                         </div>

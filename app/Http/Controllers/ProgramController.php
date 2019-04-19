@@ -380,7 +380,7 @@ class ProgramController extends Controller
 //
 
 
-        $trainees = [];
+//        $trainees = [];
 //        foreach($traineeIds as $id){
 //            $trainee = Employer::where('EmployeeId', $id)->get(['NameWithInitial','DesignationId','DateOfAppointment']);
 //            $trainees[] = $trainee;
