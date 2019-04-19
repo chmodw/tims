@@ -166,7 +166,6 @@ class ForeignProgramController extends Controller
             $orgId = Organisation::where('name', strtolower($validated['organised_by_id']))->get('organisation_id')->first();
             $ForeignProgram->organised_by_id = $orgId['organisation_id'];
         }
-
         $ForeignProgram->notified_by = $validated['notified_by'];
         $ForeignProgram->target_group = $validated['target_group'];
         $ForeignProgram->venue = $validated['venue'];
@@ -202,7 +201,13 @@ class ForeignProgramController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $deletedRows = ForeignProgram::where('program_id', $id)->delete();
+
+        if($deletedRows > 0){
+            return redirect('/foreign')->with('success', ' The New Local Program has been successfully Deleted');
+        }else{
+            return back()->with('failed', "System Could not Delete the Requested Program");
+        }
     }
 
     /**

@@ -7,8 +7,9 @@
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
             <form method="POST" action="{{ route('foreign.destroy', $program[0]->program_id) }}">
+                {{ csrf_field() }}
                 {{method_field('DELETE')}}
-                <button  class="btn btn-danger pull-right" style="margin-right:8px;"><i class="glyphicon glyphicon-trash margin-right-sm"></i>&nbsp;Delete</button>
+                <button  class="btn btn-danger pull-right" onclick="return confirm('Are you sure?')" style="margin-right:8px;"><i class="glyphicon glyphicon-trash margin-right-sm"></i>&nbsp;Delete</button>
             </form>
             <a class="btn btn-default pull-right" style="margin-right:8px;" href="/programs/trainee/LocalProgram/{{$program[0]->program_id}}"><i class="glyphicon glyphicon-user margin-right-sm"></i>Employees</a>
             <a class="btn btn-warning pull-right" style="margin-right:8px;" href="{{route('foreign.edit', $program[0]->program_id)}}"><i class="glyphicon glyphicon-pencil margin-right-sm"></i>&nbsp;Edit</a>
