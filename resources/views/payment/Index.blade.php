@@ -14,6 +14,7 @@
                     <th>#</th>
                     <th>Payment ID</th>
                     <th>Program ID</th>
+                    <th>Program Name</th>
                     <th>Trainee ID</th>
                     <th>Trainee Name</th>
                     <th>Payment date</th>
@@ -31,6 +32,7 @@
                             <td>{{$payment->id}}</td>
                             <td>{{$payment->program_id}}</td>
                             <td>{{$payment->trainee_id}}</td>
+                            <td>{{$payment->program_name}}</td>
                             <td>{{$payment->trainee_name}}</td>
                             <td>{{$payment->payment_Date}}</td>
                             <td>{{$payment->payment_amount}}</td>
@@ -47,6 +49,7 @@
 
         </div>
         {{$payments->links()}}
+
     </div>
 
 @endsection

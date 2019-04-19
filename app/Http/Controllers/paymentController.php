@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Employer;
 use App\Payment;
 use App\Program;
 use Illuminate\Http\Request;
@@ -43,6 +44,21 @@ class paymentController extends Controller
      */
     public function store(Request $request)
     {
+
+//        dd($request->all());
+
+        foreach ($request->row as $item){
+
+            $trainee_id = $request->trainee_name;
+
+            $amount =  $item['amount'];
+            $program_id = $item['program_id'];
+            $program_title = $item['program_title'];
+
+
+
+        }
+
         $payment = Payment::create($request->all());
 
         return redirect('payment');
@@ -54,9 +70,11 @@ class paymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+    public function show(Request $req)
     {
-        //
+
+
     }
 
     /**

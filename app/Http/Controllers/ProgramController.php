@@ -44,27 +44,20 @@ class ProgramController extends Controller
     public function get($programType){
         $model = 'App\\'.$programType;
 
-
-
-        $programs = $model::select(['program_title','target_group','application_closing_date_time','start_date','organised_by','venue']);
+        $programs = $model::select(['program_id','program_title','target_group','application_closing_date_time','start_date','organised_by','venue', 'created_at']);
 
         return Datatables()->of($programs)
             ->addIndexColumn()
-            ->addColumn('action', function ($row) use ($programType) {
-                return '<a href="/programs/'.$programType.'/'.$row->program_id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a><a href="/programs/'.$programType.'/edit'.$row->program_id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a><a href="/programs/'.$programType.'/delete'.$row->program_id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></a>';
+//            ->editColumn('start_date', function ($row) {
+//                return date('Y-m-d', strtotime($row->start_date));
+//            })
+            ->editColumn('program_title', function($row) use ($programType){
+                return '<a href="'.url('/programs/'.$programType.'/'.$row->program_id).'">'.$row->program_title.'</a>';
             })
+//            ->editColumn('application_closing_date_time', function($row){
+//                return date('Y-m-d', strtotime($row->application_closing_date_time));
+//            })
             ->toJson();
-
-
-
-
-//         return Datatables()->of($model::all())
-//             ->addIndexColumn()
-//             ->addColumn('action', function ($row) use ($programType) {
-//                 return '<a href="/programs/'.$programType.'/'.$row->program_id.'" class="btn btn-xs btn-primary"><i class="glyphicon glyphicon-eye-open"></i></a><a href="/programs/'.$programType.'/edit'.$row->program_id.'" class="btn btn-xs btn-warning"><i class="glyphicon glyphicon-pencil"></i></a><a href="/programs/'.$programType.'/delete'.$row->program_id.'" class="btn btn-xs btn-danger"><i class="glyphicon glyphicon-trash"></i></a>';
-//             })
-//             ->toJson();
-
     }
 
     public function getTraineesData($programType, $programId)

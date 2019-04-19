@@ -8,7 +8,7 @@
             <a class="btn btn-default pull-right" href="/budget/create"><i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
         </div>
         <div class="panel-body">
-            <table class="table table-striped" style="width: 100%;" id="table">
+            <table class="table table-striped tab" style="width: 100%;" id="table">
                 <thead>
                 <tr>
                     <th>#</th>
@@ -17,7 +17,7 @@
                     <th>Section Name</th>
                     <th>Budget Year</th>
                     <th>Allocated Amount</th>
-                    <th>Actual Amount</th>
+
                     <th>Edit</th>
                 </tr>
                 </thead>
@@ -33,7 +33,7 @@
                             <td>{{$budget->section_name}}</td>
                             <td>{{$budget->budget_year}}</td>
                             <td>{{$budget->budget_amount}}</td>
-                            <td>Sample data</td>
+
                             <td>
                                 <a href="{{url('/budget/'.$budget->id.'/edit')}}">
                                     <i  class="fa fa-eye" style="color: blue" aria-hidden="true"></i>

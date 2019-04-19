@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrganisationsTable extends Migration
+class AddProgramTitleToPayments extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateOrganisationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('organisations', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('name');
-            $table->string('updated_by');
-            $table->timestamps();
+        Schema::table('payments', function (Blueprint $table) {
+            $table->string('program_title');
+
         });
     }
 
@@ -28,6 +26,8 @@ class CreateOrganisationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organisations');
+        Schema::table('payments', function (Blueprint $table) {
+            //
+        });
     }
 }

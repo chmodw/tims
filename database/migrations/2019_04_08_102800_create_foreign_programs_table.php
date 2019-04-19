@@ -17,7 +17,7 @@ class CreateForeignProgramsTable extends Migration
             $table->bigIncrements('id');
             $table->string('program_id')->unique()->index();
             $table->string('program_title');
-            $table->string('organised_by');
+            $table->integer('organised_by')->unsigned();
             $table->string('notified_by');
             $table->string('target_group');
             $table->enum('nature_of_the_appointment',['permanent', 'fixed', 'contract']);

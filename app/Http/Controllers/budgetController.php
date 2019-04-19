@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Budget;
 use App\WorkSpaceType;
+use Carbon\Carbon;
 use DemeterChain\B;
 use Illuminate\Http\Request;
 
@@ -43,6 +44,24 @@ class budgetController extends Controller
      */
     public function store(Request $request)
     {
+
+
+        $request->validate([
+            'section_Id'=> 'required',
+            'section_name' => 'required',
+            'budget_year' => 'required',
+            'budget_amount' => 'required'
+        ]);
+
+        $submitedDate = Carbon::parse($request->budget_year);
+
+        $submitedDate = $submitedDate->year;
+
+        $CurrentRecords = Budget::where('section_name',$request->section_name)->where('budget_year','like','%'.$submitedDate.'%')->get();
+
+        if(!$CurrentRecords->isEmpty()){
+            return redirect('budget')->withErrors('Already Allocated...');
+        }
 
         Budget::create($request->all());
 

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class LocalProgram extends Model
@@ -26,6 +27,28 @@ class LocalProgram extends Model
         'created_by',
         'updated_by'
     ];
+
+    protected $dates = ['created_at'];
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');
+    }
+
+    public function getStartDateAttribute()
+    {
+        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d H:i');
+    }
+
+    public function getEndDateAttribute()
+    {
+        return Carbon::parse($this->attributes['end_date'])->format('Y-m-d H:i');
+    }
+
+    public function getApplicationClosingDateTimeAttribute()
+    {
+        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
+    }
 
     public function program_id()
     {

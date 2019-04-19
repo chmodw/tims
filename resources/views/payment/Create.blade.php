@@ -23,32 +23,114 @@
                 </div>
             </div>
 
-            <div class="col-md-4">
-                <div class="form-group has-feedback {{$errors->has('payment_Date') ? 'has-error' : ''}}">
-                    <label for="payment_Date">Payment Date</label>
-                    <input type="date" value="{{old('payment_Date')}}" class="form-control" id="payment_Date" name="payment_Date" >
-                    @if ($errors->has('payment_Date'))
-                        <span class="help-block">{{ $errors->first('payment_Date') }}</span>
-                    @endif
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <div class="form-group has-feedback {{$errors->has('payment_amount') ? 'has-error' : ''}}">
-                    <label for="payment_amount">amount</label>
-                    <input type="text" value="{{old('payment_amount')}}" class="form-control" id="payment_amount" name="payment_amount" placeholder="Rs.">
-                    @if ($errors->has('payment_amount'))
-                        <span class="help-block">{{ $errors->first('payment_amount') }}</span>
-                    @endif
-                </div>
-            </div>
-
             <div class="col-md-12">
                 <button type="submit" name="_submit" class="btn btn-primary mb-2 mr-2 pull-right" value="reload_page">Save</button>
                 <button type="submit" name="_submit" class="btn btn-primary mb-2 pull-right" style="margin-right: 15px;" value="redirect">Save &amp; Go Back</button>
             </div>
+
+            <div class="col-md-12">
+
+                <table id="AssignedProjectTable" class="table table-responsive table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Program ID</th>
+                            <th>Program Name</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tbody id="AssignedProjectTableBody"></tbody>
+                </table>
+            </div>
         </form>
     </div>
 </div>
+
+@endsection
+
+@section('js')
+
+    <script type="application/javascript">
+
+        'use strict'
+
+        var traineeeNameSelector = $( "#trainee_name" );
+
+        $(function() {
+
+            fetchAssignedProgrames();
+
+          traineeeNameSelector.click(function() {
+
+                if(validateTraineeNameisEmpty){
+                    fetchAssignedProgrames();
+                }else {
+                    alert('Trainee name cannot be empty...');
+                }
+
+            });
+
+            traineeeNameSelector.change(function() {
+                if(validateTraineeNameisEmpty){
+                    fetchAssignedProgrames();
+                }else {
+                    alert('Trainee name cannot be empty...');
+                }
+            });
+
+        });
+
+        function validateTraineeNameisEmpty()
+        {
+
+            var traineeName = traineeeNameSelector.val();
+            if(traineeName === 'undefine' || traineeName === null || traineeName ===''){
+                return false;
+            }
+            return true;
+
+        }
+
+        function fetchAssignedProgrames()
+        {
+
+
+            var url = '{!! url('api/user') !!}/'+traineeeNameSelector.val()+'/assigned-programs';
+            $('.removeRW').remove();
+            $.ajax({
+                url: url,
+                success: filler,
+                statusCode: {
+                    404: function() {
+                        alert( "Error Request" );
+                    }
+                }
+            });
+
+        }
+
+        function filler(data) {
+            var count =0 ;
+            data.forEach(function (item) {
+               addRow(item,count);
+               count++;
+            });
+        }
+
+        function addRow(data,count) {
+            $('#AssignedProjectTableBody')
+                .append(
+                    '<tr class="removeRW">' +
+                        '<td>'+data.info.program_id+'</td>'+
+                        '<td>'+data.info.program_title+'</td>'+
+                        '<td>' +
+                    '<input type="number" name="row['+count+'][amount]"> ' +
+                    '<input style="display: none" type="text" name="row['+count+'][program_id]" readonly value="'+data.info.program_id+'"> ' +
+                    '<input style="display: none" type="text" name="row['+count+'][program_title]" readonly value="'+data.info.program_title+'">' +
+                    '</td>'+
+                    '</tr>');
+        }
+
+    </script>
 
 @endsection
