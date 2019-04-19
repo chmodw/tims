@@ -8,46 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class LocalProgram extends Model
 {
     protected $fillable = [
-        'program_id',
-        'program_title',
-        'organised_by',
-        'target_group',
-        'start_date',
-        'end_date',
-        'application_closing_date_time',
-        'nature_of_the_appointment',
-        'employee_category',
-        'venue',
-        'course_fee',
-        'duration',
-        'non_member_fee',
-        'member_fee',
-        'student_fee',
-        'program_brochure',
-        'created_by',
-        'updated_by'
+
     ];
 
     protected $dates = ['created_at'];
 
-    public function getCreatedAtAttribute()
+    public static function getTableName()
     {
-        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');
+        return with(new static)->getTable();
     }
 
-    public function getStartDateAttribute()
+    public function organisedById()
     {
-        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d H:i');
-    }
-
-    public function getEndDateAttribute()
-    {
-        return Carbon::parse($this->attributes['end_date'])->format('Y-m-d H:i');
-    }
-
-    public function getApplicationClosingDateTimeAttribute()
-    {
-        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
+        return $this->belongsTo('Organisation\Trainee', 'organisation_id');
     }
 
     public function program_id()
@@ -55,8 +28,31 @@ class LocalProgram extends Model
         return $this->morphMany('App\Program', 'program_id');
     }
 
-    public function organised_by()
+    public function organised_by_id()
     {
-        return $this->belongsTo('App\Organisation', 'id');
+        return $this->hasOne('App\Organisation', 'organisation_id', 'organised_by_id');
     }
+
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d');
+    }
+
+    public function getStartDateAttribute()
+    {
+        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d');
+    }
+
+    public function getNatureOfTheEmploymentAttribute()
+    {
+        return implode(", ", unserialize($this->attributes['nature_of_the_employment']));
+    }
+
+    public function getApplicationClosingDateTimeAttribute()
+    {
+        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d');
+    }
+
+
 }

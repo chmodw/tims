@@ -1,7 +1,16 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);.panel .panel-heading h2 {
+.panel .panel-heading h2 {
   display: inline !important;
   text-transform: uppercase !important;
   font-size: 1.25rem !important;
+}
+
+label.required::after {
+  content: "*";
+  color: red;
+}
+
+input[type=image] {
+  margin-right: 1rem;
 }
 
 .padding-xs {

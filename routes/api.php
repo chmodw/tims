@@ -28,13 +28,14 @@ Route::get('sections/get/{WorkSpaceTypeName}',function ($WorkSpaceTypeName){
 
 Route::get('user/{id}/assigned-programs',function ($id){
 
-    $ProgrameSet = \App\Program::where('trainee_id',$id)->get();
+    $ProgrameSet = \App\Program::with('trainees')->where('trainee_id', $id)->get();
 
     $arr = [];
 
     foreach ($ProgrameSet as $item){
-        $trainee_id = $item['trainee_id'];
+        $trainee_id = $item->trainees->NameWithInitial;
         $program_id = $item['program_id'];
+
         $type = $item['type'];
 
         $Sub_programe = [];
@@ -58,3 +59,4 @@ Route::get('user/{id}/assigned-programs',function ($id){
     return $arr;
 });
 
+Route::get('programs/get/{programType}', 'ApiController@getPrograms')->name('Programs.Get');

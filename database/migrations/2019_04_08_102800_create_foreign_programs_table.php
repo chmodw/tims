@@ -17,14 +17,14 @@ class CreateForeignProgramsTable extends Migration
             $table->bigIncrements('id');
             $table->string('program_id')->unique()->index();
             $table->string('program_title');
-            $table->integer('organised_by')->unsigned();
+            $table->string('organised_by_id');
             $table->string('notified_by');
             $table->string('target_group');
             $table->enum('nature_of_the_appointment',['permanent', 'fixed', 'contract']);
             $table->enum('employee_category',['technical', 'non-technical', 'both']);
             $table->string('venue');
             $table->enum('currency',['usd', 'non-euro', 'gbp', 'lkr']);
-            $table->float('course_fee')->nullable();
+            $table->float('program_fee')->nullable();
             $table->date('start_date');
             $table->date('end_date');
             $table->string('application_closing_date_time');
@@ -34,7 +34,7 @@ class CreateForeignProgramsTable extends Migration
             $table->string('updated_by')->nullable();
             $table->timestamps();
 
-            $table->foreign('organised_by')->references('id')->on('organisations');
+            $table->foreign('organised_by_id')->references('organisation_id')->on('organisations');
             //Possible default value
 
 

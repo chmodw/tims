@@ -11,14 +11,8 @@ class WorkSpaceType extends Model
     //Table name
     protected $table = 'dbo.cmn_WorkSpaceType';
 
-
-
-
-
     public function workSpaceId (){
 
         return $this->belongsTo(WorkSpace::class);
     }
-
-
 }

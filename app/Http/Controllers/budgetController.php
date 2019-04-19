@@ -18,8 +18,11 @@ class budgetController extends Controller
     public function index()
     {
 
-        $budgets = Budget::paginate(15);
-        return view('budget.Index',compact('budgets'));
+        $budgets = Budget::with("getWorkSpaceTypeId")->get();
+
+        $budgetData = $budgets->pluck( "budget_amount", "getWorkSpaceTypeId.WorkSpaceTypeName")->toJson();
+
+        return view('budget.Index',compact('budgets', 'budgetData'));
     }
 
     /**

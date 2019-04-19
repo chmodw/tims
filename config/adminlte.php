@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>TIMS</b>',
+    'logo' => '<b>CECB-</b>TIMS',
 
-    'logo_mini' => '<b>T</b>S',
+    'logo_mini' => '<b>C</b>T',
 
     /*
     |--------------------------------------------------------------------------
@@ -58,7 +58,7 @@ return [
     |
     */
 
-    'layout' => null,
+    'layout' => 'fixed',
 
     /*
     |--------------------------------------------------------------------------
@@ -109,51 +109,61 @@ return [
 
     'menu' => [
         [
-            'text'    => 'PROGRAMS',
-            'icon'    => 'tasks',
-            'submenu' => [
-                [
-                    'text' => 'Local Program',
-                    'url'  => 'programs/LocalProgram',
-                ],
-                [
-                    'text' => 'Foreign Program',
-                    'url'  => 'programs/ForeignProgram',
-                ],
-                [
-                    'text' => 'Post-Grad Program',
-                    'url'  => 'programs/PostGradProgram',
-                ],
-                [
-                    'text' => 'In-House Program',
-                    'url'  => 'programs/InHouseProgram',
-                ],
-            ],
+            'text' => 'Dashboard',
+            'url'  => 'home/',
+            'icon' => 'tachometer',
         ],
-        'SYSTEM SETTINGS',
+        'PROGRAMS',
         [
-            'text' => 'Blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text' => 'Local',
+            'url'  => 'local/',
+            'icon' => 'location-arrow',
         ],
         [
-            'text'        => 'Pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'text' => 'Foreign',
+            'url'  => 'foreign/',
+            'icon' => 'globe',
         ],
-        'ACCOUNT SETTINGS',
         [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
+            'text' => 'Post-Grad',
+            'url'  => 'postgrad/',
+            'icon' => 'graduation-cap',
+        ],
+        [
+            'text' => 'In-House',
+            'url'  => 'inhouse/',
+            'icon' => 'thumb-tack',
+        ],
+        'EMPLOYEES',
+        [
+            'text' => 'List',
+            'url'  => 'employee/',
             'icon' => 'user',
         ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],
+//        'SYSTEM SETTINGS',
+//        [
+//            'text' => 'Blog',
+//            'url'  => 'admin/blog',
+//            'can'  => 'manage-blog',
+//        ],
+//        [
+//            'text'        => 'Pages',
+//            'url'         => 'admin/pages',
+//            'icon'        => 'file',
+//            'label'       => 4,
+//            'label_color' => 'success',
+//        ],
+//        'ACCOUNT SETTINGS',
+//        [
+//            'text' => 'Profile',
+//            'url'  => 'admin/settings',
+//            'icon' => 'user',
+//        ],
+//        [
+//            'text' => 'Change Password',
+//            'url'  => 'admin/settings',
+//            'icon' => 'lock',
+//        ],
     ],
 
     /*
@@ -189,7 +199,7 @@ return [
 
     'plugins' => [
         'datatables' => true,
-        'select2'    => true,
-        'chartjs'    => true,
+        'select2'    => false,
+        'chartjs'    => false,
     ],
 ];

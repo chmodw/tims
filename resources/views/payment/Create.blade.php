@@ -8,7 +8,7 @@
        Payments
     </div>
     <div class="panel-body">
-        <form method="POST" action="{!! url('payment') !!}" enctype="multipart/form-data">
+        <form method="POST" id="create_payment_form" action="{!! url('payment') !!}" enctype="multipart/form-data">
             @csrf
             <input type="hidden" value="trainee_name" name="trainee_name">
             <div class="col-md-10">
@@ -23,28 +23,34 @@
                 </div>
             </div>
 
-            <div class="col-md-12">
-                <button type="submit" name="_submit" class="btn btn-primary mb-2 mr-2 pull-right" value="reload_page">Save</button>
-                <button type="submit" name="_submit" class="btn btn-primary mb-2 pull-right" style="margin-right: 15px;" value="redirect">Save &amp; Go Back</button>
-            </div>
+                <div class="col-md-12">
+                    <button type="submit" name="_submit" class="btn btn-primary mb-2 mr-2 pull-right"
+                            value="reload_page">Save
+                    </button>
+                    <button type="submit" name="_submit" class="btn btn-primary mb-2 pull-right"
+                            style="margin-right: 15px;" value="redirect">Save &amp; Go Back
+                    </button>
+                </div>
 
-            <div class="col-md-12">
+                <div class="col-md-12">
 
-                <table id="AssignedProjectTable" class="table table-responsive table-bordered table-striped">
-                    <thead>
+                    <table id="AssignedProjectTable" class="table table-responsive table-bordered table-striped">
+                        <thead>
                         <tr>
                             <th>Program ID</th>
                             <th>Program Name</th>
                             <th>Amount</th>
                         </tr>
-                    </thead>
-                    <tbody>
-                    <tbody id="AssignedProjectTableBody"></tbody>
-                </table>
-            </div>
-        </form>
+                        </thead>
+                        <tbody>
+                        <tbody id="AssignedProjectTableBody"></tbody>
+                    </table>
+                </div>
+
+            <input type="hidden" id="trainee_name_hidden" name="trainee_name_hidden">
+            </form>
+        </div>
     </div>
-</div>
 
 @endsection
 
@@ -54,55 +60,65 @@
 
         'use strict'
 
-        var traineeeNameSelector = $( "#trainee_name" );
+        var traineeeNameSelector = $("#trainee_name");
 
-        $(function() {
-
+        $(function () {
             fetchAssignedProgrames();
 
-          traineeeNameSelector.click(function() {
+            traineeeNameSelector.click(function () {
 
-                if(validateTraineeNameisEmpty){
+                const trainee_name =  $("#trainee_name option:selected").text();
+
+                $("#trainee_name_hidden").val(trainee_name);
+
+                if (validateTraineeNameisEmpty)
+                {
                     fetchAssignedProgrames();
-                }else {
+
+
+
+                }
+                else
+                {
                     alert('Trainee name cannot be empty...');
                 }
 
             });
 
-            traineeeNameSelector.change(function() {
-                if(validateTraineeNameisEmpty){
+            traineeeNameSelector.change(function () {
+                if (validateTraineeNameisEmpty) {
                     fetchAssignedProgrames();
-                }else {
+                } else {
                     alert('Trainee name cannot be empty...');
                 }
             });
 
         });
 
-        function validateTraineeNameisEmpty()
-        {
+        function validateTraineeNameisEmpty() {
 
             var traineeName = traineeeNameSelector.val();
-            if(traineeName === 'undefine' || traineeName === null || traineeName ===''){
+            if (traineeName === 'undefine' || traineeName === null || traineeName === '') {
                 return false;
             }
             return true;
 
         }
 
-        function fetchAssignedProgrames()
-        {
+        function fetchAssignedProgrames() {
 
 
-            var url = '{!! url('api/user') !!}/'+traineeeNameSelector.val()+'/assigned-programs';
+            var url = '{!! url('api/user') !!}/' + traineeeNameSelector.val() + '/assigned-programs';
             $('.removeRW').remove();
             $.ajax({
                 url: url,
-                success: filler,
+                success: function(data) {
+
+                    filler(data);
+                },
                 statusCode: {
-                    404: function() {
-                        alert( "Error Request" );
+                    404: function () {
+                        alert("Error Request");
                     }
                 }
             });
@@ -110,24 +126,24 @@
         }
 
         function filler(data) {
-            var count =0 ;
+            var count = 0;
             data.forEach(function (item) {
-               addRow(item,count);
-               count++;
+                addRow(item, count);
+                count++;
             });
         }
 
-        function addRow(data,count) {
+        function addRow(data, count) {
             $('#AssignedProjectTableBody')
                 .append(
                     '<tr class="removeRW">' +
-                        '<td>'+data.info.program_id+'</td>'+
-                        '<td>'+data.info.program_title+'</td>'+
-                        '<td>' +
-                    '<input type="number" name="row['+count+'][amount]"> ' +
-                    '<input style="display: none" type="text" name="row['+count+'][program_id]" readonly value="'+data.info.program_id+'"> ' +
-                    '<input style="display: none" type="text" name="row['+count+'][program_title]" readonly value="'+data.info.program_title+'">' +
-                    '</td>'+
+                    '<td>' + data.info.program_id + '</td>' +
+                    '<td>' + data.info.program_title + '</td>' +
+                    '<td>' +
+                    '<input type="number" name="row[' + count + '][amount]"> ' +
+                    '<input style="display: none" type="text" name="row[' + count + '][program_id]" readonly value="' + data.info.program_id + '"> ' +
+                    '<input style="display: none" type="text" name="row[' + count + '][program_title]" readonly value="' + data.info.program_title + '">' +
+                    '</td>' +
                     '</tr>');
         }
 

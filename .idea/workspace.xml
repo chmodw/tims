@@ -2,13 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="a24a4a9d-3a8f-4a26-9dab-a6c7538a7921" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Program.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Program.php" afterDir="false" />
     </list>
 =======
+=======
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
     <list default="true" id="a645d273-6974-4b67-9712-7ace24befa14" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/LocalProgram.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/LocalProgram.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/programs/LocalProgram/Index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/programs/LocalProgram/Index.blade.php" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/vendor/beyondcode/laravel-dump-server/" />
     <ignored path="$PROJECT_DIR$/vendor/composer/" />
@@ -91,7 +100,19 @@
     <ignored path="$PROJECT_DIR$/vendor/vlucas/phpdotenv/" />
     <ignored path="$PROJECT_DIR$/vendor/webmozart/assert/" />
     <ignored path="$PROJECT_DIR$/vendor/yajra/laravel-datatables-oracle/" />
+<<<<<<< HEAD
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+=======
+    <list default="true" id="a24a4a9d-3a8f-4a26-9dab-a6c7538a7921" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/budget/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/budgetController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/budgetController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/budget/Create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/budget/Create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/budget/Index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/budget/Index.blade.php" afterDir="false" />
+    </list>
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +120,25 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+=======
+  <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="73">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+=======
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
   </component>
@@ -107,13 +147,40 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Employer.php">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="238">
               <caret line="14" selection-start-line="14" selection-end-line="14" />
+=======
+            <state relative-caret-position="221">
+              <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+=======
+            <state relative-caret-position="82">
+              <caret line="16" selection-start-line="16" selection-start-column="2" selection-end-line="20" selection-end-column="13" />
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
+<<<<<<< HEAD
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
+=======
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProgramController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="58" column="16" lean-forward="true" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
+            </state>
+          </provider>
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/app/ForeignProgram.php">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
@@ -140,13 +207,31 @@
             <state relative-caret-position="73">
               <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+        <entry file="file://$PROJECT_DIR$/app/LocalProgram.php">
+          <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+            <state relative-caret-position="323">
+              <caret line="21" column="11" lean-forward="true" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/budget/Index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="35" column="48" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
 <<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/app/Program.php">
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/budgetController.php">
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
               <caret line="5" selection-start-line="5" selection-end-line="5" />
@@ -184,6 +269,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_08_141840_create_programs_table.php">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="255">
               <caret line="17" column="35" selection-start-line="17" selection-start-column="35" selection-end-line="17" selection-end-column="35" />
             </state>
@@ -201,6 +287,18 @@
             <state relative-caret-position="323">
               <caret line="21" column="11" lean-forward="true" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+            <state relative-caret-position="187">
+              <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+=======
+            <state relative-caret-position="269">
+              <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+              <folding>
+                <element signature="e#23#41#0#PHP" expanded="true" />
+              </folding>
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
             </state>
           </provider>
         </entry>
@@ -210,6 +308,13 @@
   <component name="FindInProjectRecents">
     <findStrings>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <find>programs</find>
+      <find>program_brochure</find>
+    </findStrings>
+=======
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
       <find>bg-l</find>
       <find>invalid-feedback</find>
       <find>is-invalid</find>
@@ -250,10 +355,14 @@
       <replace>payment</replace>
       <replace>payment_amount</replace>
     </replaceStrings>
+<<<<<<< HEAD
 =======
       <find>programs</find>
     </findStrings>
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -262,6 +371,43 @@
     <option name="CHANGED_PATHS">
       <list>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/app/Employers.php" />
+        <option value="$PROJECT_DIR$/app/Budget.php" />
+        <option value="$PROJECT_DIR$/app/Program.php" />
+        <option value="$PROJECT_DIR$/app/ForeignProgram.php" />
+        <option value="$PROJECT_DIR$/app/PostGradProgram.php" />
+        <option value="$PROJECT_DIR$/app/InHouseProgram.php" />
+        <option value="$PROJECT_DIR$/app/Employer.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_04_11_025344_create_organisations_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_04_8_141841_create_in_house_programs_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_04_8_141842_create_post_grad_programs_table.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/EmployerController.php" />
+        <option value="$PROJECT_DIR$/routes/api.php" />
+        <option value="$PROJECT_DIR$/config/datatables.php" />
+        <option value="$PROJECT_DIR$/resources/views/budget/show.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/budget/Index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ProgramController.php" />
+        <option value="$PROJECT_DIR$/config/app.php" />
+        <option value="$PROJECT_DIR$/routes/web.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_04_7_090114_create_organisations_table.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_04_07_090115_create_local_programs_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_04_08_102800_create_foreign_programs_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_04_08_141841_create_in_house_programs_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_04_08_141842_create_post_grad_programs_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_04_06_090014_create_organisations_table.php" />
+        <option value="$PROJECT_DIR$/resources/views/programs/LocalProgram/Index.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/programs/LocalProgram/Create.blade.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/app/LocalProgram.php" />
+        <option value="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" />
+      </list>
+    </option>
+  </component>
+=======
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
         <option value="$PROJECT_DIR$/resources/views/layouts/app.blade.php" />
         <option value="$PROJECT_DIR$/config/adminlte.php" />
         <option value="$PROJECT_DIR$/resources/views/home.blade.php" />
@@ -311,6 +457,7 @@
   <component name="PackageJsonUpdateNotifier">
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
+<<<<<<< HEAD
 =======
         <option value="$PROJECT_DIR$/app/Employers.php" />
         <option value="$PROJECT_DIR$/app/Budget.php" />
@@ -345,6 +492,9 @@
     </option>
   </component>
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
   <component name="PhpServers">
     <servers />
   </component>
@@ -434,13 +584,25 @@
     </include_path>
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <component name="ProjectFrameBounds">
+=======
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="453" />
+    <option name="y" value="113" />
+    <option name="width" value="1217" />
+<<<<<<< HEAD
+    <option name="height" value="548" />
+=======
+  <component name="ProjectFrameBounds" extendedState="1">
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
     <option name="x" value="953" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
+<<<<<<< HEAD
 =======
   <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="115" />
@@ -448,20 +610,41 @@
     <option name="width" value="1217" />
     <option name="height" value="548" />
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+=======
+    <option name="height" value="546" />
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="Scope" />
+=======
+<<<<<<< HEAD
+      <pane id="Scope" />
+=======
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+              <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+=======
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
               <item name="tims" type="b2602c69:ProjectViewProjectNode" />
               <item name="tims" type="462c0819:PsiDirectoryNode" />
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
             </path>
             <path>
               <item name="tims" type="b2602c69:ProjectViewProjectNode" />
@@ -469,25 +652,57 @@
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
+<<<<<<< HEAD
               <item name="tims" type="b2602c69:ProjectViewProjectNode" />
               <item name="tims" type="462c0819:PsiDirectoryNode" />
 =======
+=======
+<<<<<<< HEAD
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
               <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
               <item name="app" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+=======
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Exceptions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+<<<<<<< HEAD
+<<<<<<< HEAD
               <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+=======
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+=======
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
               <item name="app" type="462c0819:PsiDirectoryNode" />
               <item name="Http" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
+<<<<<<< HEAD
 <<<<<<< HEAD
               <item name="tims" type="b2602c69:ProjectViewProjectNode" />
               <item name="tims" type="462c0819:PsiDirectoryNode" />
@@ -495,38 +710,85 @@
               <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
-              <item name="app" type="462c0819:PsiDirectoryNode" />
-              <item name="Http" type="462c0819:PsiDirectoryNode" />
-              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-<<<<<<< HEAD
-              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tims" type="462c0819:PsiDirectoryNode" />
-              <item name="database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
-              <item name="tims" type="462c0819:PsiDirectoryNode" />
 =======
+<<<<<<< HEAD
               <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
+              <item name="app" type="462c0819:PsiDirectoryNode" />
+              <item name="Http" type="462c0819:PsiDirectoryNode" />
+              <item name="Controllers" type="462c0819:PsiDirectoryNode" />
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
             </path>
             <path>
-              <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
-              <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
+<<<<<<< HEAD
               <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+=======
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="migrations" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+<<<<<<< HEAD
+<<<<<<< HEAD
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
+              <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="seeds" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
               <item name="database" type="462c0819:PsiDirectoryNode" />
               <item name="migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
 <<<<<<< HEAD
+=======
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+=======
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
               <item name="tims" type="b2602c69:ProjectViewProjectNode" />
               <item name="tims" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
@@ -547,6 +809,7 @@
             <path>
               <item name="tims" type="b2602c69:ProjectViewProjectNode" />
               <item name="tims" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="payment" type="462c0819:PsiDirectoryNode" />
@@ -575,12 +838,18 @@
             <path>
               <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+=======
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="programs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
+<<<<<<< HEAD
               <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+<<<<<<< HEAD
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="programs" type="462c0819:PsiDirectoryNode" />
@@ -588,27 +857,65 @@
             <path>
               <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+=======
+=======
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
               <item name="resources" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="programs" type="462c0819:PsiDirectoryNode" />
               <item name="LocalProgram" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
+<<<<<<< HEAD
               <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
               <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+<<<<<<< HEAD
+              <item name="TIMS_2.0" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TIMS_2.0" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
               <item name="routes" type="462c0819:PsiDirectoryNode" />
             </path>
+=======
+              <item name="tims" type="b2602c69:ProjectViewProjectNode" />
+              <item name="tims" type="462c0819:PsiDirectoryNode" />
+              <item name="database" type="462c0819:PsiDirectoryNode" />
+              <item name="seeds" type="462c0819:PsiDirectoryNode" />
+            </path>
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+      <pane id="Scope" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+=======
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../../UpdateTIMS/cw_tims/tims-newbranch" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -622,12 +929,16 @@
       <recent name="C:\Users\Dilz-PC\Desktop\Finalized Client v2\tims\resources\views\payment" />
       <recent name="C:\Users\Dilz-PC\Desktop\Finalized Client v2\tims\resources\views\budget" />
     </key>
+<<<<<<< HEAD
 =======
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -642,20 +953,39 @@
     </option>
   </component>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
   <component name="RunManager">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner scope="XML" />
       <method v="2" />
     </configuration>
   </component>
+<<<<<<< HEAD
 =======
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+      <changelist id="a645d273-6974-4b67-9712-7ace24befa14" name="Default Changelist" comment="" />
+      <created>1554946450050</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1554946450050</updated>
+      <workItem from="1554946451956" duration="24823000" />
+<<<<<<< HEAD
+=======
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
       <changelist id="a24a4a9d-3a8f-4a26-9dab-a6c7538a7921" name="Default Changelist" comment="" />
       <created>1554733710081</created>
       <option name="number" value="Default" />
@@ -665,6 +995,7 @@
       <workItem from="1554785745204" duration="40587000" />
       <workItem from="1554895358996" duration="17024000" />
       <workItem from="1554962969295" duration="3043000" />
+<<<<<<< HEAD
       <workItem from="1554967585186" duration="1205000" />
       <workItem from="1554969456559" duration="1232000" />
       <workItem from="1554975770375" duration="9055000" />
@@ -677,10 +1008,19 @@
       <updated>1554946450050</updated>
       <workItem from="1554946451956" duration="24823000" />
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+      <workItem from="1554967585186" duration="836000" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+=======
+      <workItem from="1555054713553" duration="2011000" />
+      <workItem from="1555058140796" duration="579000" />
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="72294000" />
   </component>
@@ -721,13 +1061,23 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
+=======
+<<<<<<< HEAD
+    <option name="totallyTimeSpent" value="24823000" />
+=======
+    <option name="totallyTimeSpent" value="27413000" />
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
       <window_info id="npm" order="1" side_tool="true" />
-      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.25189108" />
+      <window_info active="true" content_ui="combo" id="Project" order="2" visible="true" weight="0.25746268" />
       <window_info id="Structure" order="3" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.73429954" />
+      <window_info anchor="bottom" id="Terminal" order="0" weight="0.5254605" />
       <window_info anchor="bottom" id="Database Changes" order="1" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="3" />
@@ -743,7 +1093,47 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+<<<<<<< HEAD
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+=======
+    <option name="totallyTimeSpent" value="61632000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.04595186" />
+      <window_info id="Structure" order="1" sideWeight="0.5005417" side_tool="true" weight="0.28784648" />
+      <window_info id="npm" order="2" side_tool="true" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" />
+      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.32850242" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.30306345" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32850242" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -751,7 +1141,90 @@
   </component>
   <component name="editorHistoryManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/resources/sass/_custom.scss">
+=======
+    <entry file="file://$PROJECT_DIR$/app/Budget.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="4" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/WorkSpaceType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="33" lean-forward="true" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/ForeignProgram.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="3" lean-forward="true" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/PostGradProgram.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/InHouseProgram.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Employer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Program.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="62" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/budget/Create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="57" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/api.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/datatables.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="89" column="10" lean-forward="true" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmployerController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+          <folding>
+            <element signature="e#40#60#0#PHP" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/Helpers/custom.php" />
+    <entry file="file://$PROJECT_DIR$/app/Http/custom_helpers.php" />
+    <entry file="file://$PROJECT_DIR$/composer.json">
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
@@ -883,6 +1356,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/TraineeController.php" />
     <entry file="file://$PROJECT_DIR$/resources/views/programs/LocalProgram/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="221">
           <caret line="13" column="17" selection-start-line="13" selection-start-column="17" selection-end-line="13" selection-end-column="17" />
 =======
@@ -918,55 +1392,75 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
           <caret line="8" lean-forward="true" selection-start-line="8" selection-end-line="8" />
+=======
+        <state relative-caret-position="-170">
+          <caret line="5" column="6" selection-start-line="5" selection-start-column="6" selection-end-line="5" selection-end-column="6" />
+          <folding>
+            <element signature="e#7#38#0#PHP" expanded="true" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+          </folding>
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Employer.php">
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/resources/views/budget/Index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="80">
+          <caret line="10" column="49" selection-start-line="10" selection-start-column="49" selection-end-line="10" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Program.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/budget/show.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="62" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="62" />
+        <state relative-caret-position="391">
+          <caret line="13" column="754" lean-forward="true" selection-start-line="13" selection-start-column="754" selection-end-line="13" selection-end-column="754" />
+          <folding>
+            <element signature="e#2126#2144#0#HTML" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_07_090115_create_local_programs_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/budget/Create.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/pdfController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="57" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/api.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="5" lean-forward="true" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/datatables.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="89" column="10" lean-forward="true" selection-start-line="89" selection-start-column="10" selection-end-line="89" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmployerController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
+        <state relative-caret-position="340">
+          <caret line="37" column="9" selection-start-line="37" selection-start-column="9" selection-end-line="37" selection-end-column="9" />
           <folding>
             <element signature="e#40#60#0#PHP" expanded="true" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/config/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="78" column="27" selection-start-line="78" selection-start-column="27" selection-end-line="78" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/app/LocalProgram.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="40" column="5" lean-forward="true" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+          <folding>
+<<<<<<< HEAD
+            <element signature="e#40#60#0#PHP" expanded="true" />
+=======
+            <element signature="e#23#41#0#PHP" expanded="true" />
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
           </folding>
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/resources/views/budget/Index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
@@ -1010,12 +1504,71 @@
           <folding>
             <element signature="e#2126#2144#0#HTML" expanded="true" />
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProgramController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="58" column="16" lean-forward="true" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/programs/LocalProgram/Index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" selection-start-line="5" selection-start-column="4" selection-end-line="8" selection-end-column="13" />
+          <folding>
+            <element signature="e#1040#1058#0#HTML" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/resources/views/templates/sample.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="36" column="21" selection-start-line="36" selection-start-column="21" selection-end-line="36" selection-end-column="21" />
+          <folding>
+            <element signature="e#2321#2327#0#HTML" expanded="true" />
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
           </folding>
         </state>
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/resources/views/payment/Create.blade.php">
+=======
+    <entry file="file://$PROJECT_DIR$/public/index.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/vendor/adminlte/css/auth.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/vendor/adminlte/dist/css/AdminLTE.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-619">
+          <caret line="979" column="57" selection-start-line="979" selection-start-column="57" selection-end-line="979" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_10_120016_create_program_trainee_table.php" />
+    <entry file="file://$PROJECT_DIR$/resources/views/programs/LocalProgram/trainee.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="58" column="42" lean-forward="true" selection-start-line="58" selection-start-column="42" selection-end-line="58" selection-end-column="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/budget/trainee.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-184" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Designation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Trainee.php">
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="29" column="45" selection-start-line="29" selection-start-column="45" selection-end-line="29" selection-end-column="45" />
@@ -1027,6 +1580,7 @@
         <state relative-caret-position="306">
           <caret line="48" column="5" lean-forward="true" selection-start-line="48" selection-start-column="5" selection-end-line="48" selection-end-column="5" />
           <folding>
+<<<<<<< HEAD
             <element signature="e#40#56#0#PHP" expanded="true" />
 =======
     <entry file="file://$PROJECT_DIR$/config/app.php">
@@ -1043,12 +1597,20 @@
           <folding>
             <element signature="e#23#41#0#PHP" expanded="true" />
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
+=======
+            <element signature="e#7#389#0#PHP" expanded="true" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProgramController.php">
+<<<<<<< HEAD
+=======
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
+    <entry file="file://$PROJECT_DIR$/routes/web.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="-459" />
       </provider>
@@ -1061,6 +1623,30 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_8_141841_create_in_house_programs_table.php">
+=======
+        <state relative-caret-position="83">
+          <caret line="26" column="60" lean-forward="true" selection-start-line="26" selection-start-column="60" selection-end-line="26" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env.example">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" lean-forward="true" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_07_090115_create_local_programs_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="56" />
+=======
+    <entry file="file://$PROJECT_DIR$/app/Program.php">
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="277">
           <caret line="40" lean-forward="true" selection-start-line="40" selection-end-line="40" />
@@ -1091,6 +1677,7 @@
       </provider>
     </entry>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/EmployerController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-102" />
@@ -1103,6 +1690,71 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
           <caret line="39" column="104" lean-forward="true" selection-start-line="39" selection-start-column="104" selection-end-line="39" selection-end-column="104" />
+=======
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_08_141840_create_programs_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="18" column="37" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+        </state>
+      </provider>
+    </entry>
+=======
+>>>>>>> cbf36f25cd2d91f7e30107ad12bf942cd37b200b
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_08_102800_create_foreign_programs_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state relative-caret-position="187">
+          <caret line="19" column="56" selection-start-line="19" selection-start-column="56" selection-end-line="19" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_08_141842_create_post_grad_programs_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_08_141841_create_in_house_programs_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/programs/LocalProgram/Create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="697">
+          <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
+          <folding>
+            <element signature="e#11308#11393#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_06_090014_create_organisations_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_08_141843_create_programs_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="3" selection-start-column="3" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_10_112756_create_budgets_table.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/programs/LocalProgram/Index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="94" selection-start-line="16" selection-start-column="94" selection-end-line="16" selection-end-column="94" />
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
         </state>
       </provider>
     </entry>
@@ -1111,6 +1763,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_07_090115_create_local_programs_table.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-187">
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
@@ -1120,6 +1773,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
           <caret line="14" selection-start-line="14" selection-end-line="14" />
+=======
+        <state relative-caret-position="282">
+          <caret line="34" column="41" selection-start-line="34" selection-start-column="41" selection-end-line="34" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+=======
+        <state relative-caret-position="374">
+          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
         </state>
       </provider>
     </entry>
@@ -1197,6 +1862,7 @@
           <caret line="19" selection-start-line="19" selection-end-line="19" selection-end-column="56" />
         </state>
       </provider>
+<<<<<<< HEAD
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_08_102800_create_foreign_programs_table.php">
       <provider selected="true" editor-type-id="text-editor">
@@ -1211,38 +1877,40 @@
           <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
         </state>
       </provider>
+=======
+>>>>>>> c77d2449de9d55aac462b6877ae300416974a0cf
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_08_141842_create_post_grad_programs_table.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProgramController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="18" column="36" lean-forward="true" selection-start-line="18" selection-start-column="36" selection-end-line="18" selection-end-column="36" />
+        <state relative-caret-position="136">
+          <caret line="58" column="16" lean-forward="true" selection-start-line="58" selection-start-column="16" selection-end-line="58" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_08_141841_create_in_house_programs_table.php">
+    <entry file="file://$PROJECT_DIR$/app/LocalProgram.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
-          <caret line="51" lean-forward="true" selection-start-line="51" selection-end-line="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_04_06_090014_create_organisations_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="11" lean-forward="true" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
+        <state relative-caret-position="269">
+          <caret line="18" column="28" lean-forward="true" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+          <folding>
+            <element signature="e#23#41#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/DatabaseSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+        <state relative-caret-position="82">
+          <caret line="16" selection-start-line="16" selection-start-column="2" selection-end-line="20" selection-end-column="13" />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
 >>>>>>> 08647a5dcd2bef8e9d293368788f814693b6f9b7
     </entry>
+=======
+>>>>>>> 023b547862a5f9e0739da162c1dd12e5a7e89c1b
   </component>
 </project>

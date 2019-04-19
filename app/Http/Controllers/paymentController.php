@@ -19,6 +19,8 @@ class paymentController extends Controller
     {
         $payments = Payment::paginate(15);
 
+//        dd($payments);
+
         return view('payment.Index',compact('payments'));
     }
 
@@ -45,21 +47,22 @@ class paymentController extends Controller
     public function store(Request $request)
     {
 
-//        dd($request->all());
+        foreach ($request->row as $item)
+        {
 
-        foreach ($request->row as $item){
-
-            $trainee_id = $request->trainee_name;
-
-            $amount =  $item['amount'];
-            $program_id = $item['program_id'];
-            $program_title = $item['program_title'];
-
-
+            if (!is_null($item['amount']))
+            {
+                $trainee_id = $request->trainee_name;
+                $trainee_name = $request->trainee_name_hidden;
+                $payment_amount =  $item['amount'];
+                $program_id = $item['program_id'];
+                $program_title = $item['program_title'];
+                Payment::create(compact('trainee_id', 'trainee_name', 'payment_amount', 'program_id', 'program_title'));
+            }
 
         }
 
-        $payment = Payment::create($request->all());
+        // $payment = Payment::create($request->all());
 
         return redirect('payment');
     }
