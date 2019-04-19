@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\ForeignProgram;
 use App\Http\Requests\ForeignProgramValidate;
+use App\Organisation;
+use App\Helpers;
 
 class ForeignProgramController extends Controller
 {
@@ -42,7 +44,60 @@ class ForeignProgramController extends Controller
      */
     public function store(ForeignProgramValidate $request)
     {
-        //
+        // return $request;
+        $validated = $request->validated();
+        $ForeignProgram = new ForeignProgram();
+
+        $randomProgramId = Helpers::u_id([$validated['program_title'],auth()->user()->email,$request->program_type,$validated['start_date']]);
+
+        $ForeignProgram->program_id = $randomProgramId;
+        $ForeignProgram->program_title = $validated['program_title'];
+        /**
+         * Check the organisation in the database
+         */
+        if(is_null(Organisation::where('organisation_id', $validated['organised_by_id'])->first())){
+            $orgId = Helpers::u_id([$validated['organised_by_id'], auth()->user()->email, request()->program_type]);
+            Organisation::create(['organisation_id' => $orgId, 'name' => $validated['organised_by_id'], 'created_by' => auth()->user()->email]);
+            $ForeignProgram->organised_by_id = $orgId;
+        }else{
+            $orgId = Organisation::where('name', strtolower($validated['organised_by_id']))->get('organisation_id')->first();
+            $ForeignProgram->organised_by_id = $orgId['organisation_id'];
+        }
+
+        $ForeignProgram->notified_by = $validated['notified_by'];
+
+        $ForeignProgram->target_group = $validated['target_group'];
+        $ForeignProgram->start_date = $validated['start_date'];
+        $ForeignProgram->end_date = $validated['end_date'];
+        $ForeignProgram->duration = $validated['duration'];
+
+        $ForeignProgram->venue = $validated['venue'];
+        $ForeignProgram->currency = $validated['currency'];
+        $ForeignProgram->program_fee = $validated['program_fee'];
+
+        $ForeignProgram->application_closing_date_time = Helpers::joint_date_time($validated['application_closing_date'], $validated['application_closing_time']);
+        $ForeignProgram->nature_of_the_employment = serialize($validated['employment_nature']);
+        $ForeignProgram->employee_category = serialize($validated['employee_category']);
+//        $ForeignProgram->end_date =
+        //  check if a program brochure is present
+        if ($request->file('program_brochure') != null) {
+            //get the file ext
+            $ext = $request->file('program_brochure')->getClientOriginalExtension();
+            //save the file in the storage
+            $fileName = $randomProgramId . "." . $ext;
+            $savedFile = $request->file('program_brochure')->storeAs('public/brochures', $fileName);
+            $ForeignProgram->brochure_url = $fileName;
+        }
+
+        $ForeignProgram->created_by = auth()->user()->email;
+
+        $saved = $ForeignProgram->save($validated);
+
+        if($saved){
+            return redirect('/foreign')->with('success', ' The New Local Program has been saved successfully');
+        }else{
+            return Redirect::back()->withInput(Input::all())->with('failed ', ' System Could not save the program. please contact the administrator');
+        }
     }
 
     /**
@@ -53,7 +108,17 @@ class ForeignProgramController extends Controller
      */
     public function show($id)
     {
-        //
+        $program = ForeignProgram::join('organisations', 'organisations.organisation_id', 'foreign_programs.organised_by_id')
+            ->where('program_id', $id)
+            ->select('foreign_programs.*', 'organisations.name')
+            ->get();
+
+        if(sizeof($program) > 0){
+            return view('programs.ForeignProgram.show')->with(compact('program'));
+        }
+
+        return redirect('/foreign')->with('failed', ' Requested program not found in the database');
+
     }
 
     /**
@@ -64,7 +129,14 @@ class ForeignProgramController extends Controller
      */
     public function edit($id)
     {
-        //
+        $orgs = app('App\Http\Controllers\OrganisationController')->index();
+
+        $program = ForeignProgram::join('organisations', 'organisations.organisation_id', 'foreign_programs.organised_by_id')
+            ->where('program_id', $id)
+            ->select('foreign_programs.*', 'organisations.name')
+            ->get();
+
+        return view('programs.ForeignProgram.edit')->with(compact('program'))->with(compact('orgs'));
     }
 
     /**
@@ -76,7 +148,50 @@ class ForeignProgramController extends Controller
      */
     public function update(ForeignProgramValidate $request, $id)
     {
-        //
+        $ForeignProgram = ForeignProgram::where('program_id', $id)->first();
+
+        $validated = $request->validated();
+
+        $randomProgramId = Helpers::u_id([$validated['program_title'],auth()->user()->email,$request->program_type,$validated['start_date']]);
+
+        $ForeignProgram->program_title = $validated['program_title'];
+        /**
+         * Check the organisation in the database
+         */
+        if(is_null(Organisation::where('name', $validated['organised_by_id'])->first())){
+            $orgId = Helpers::u_id([$validated['organised_by_id'], auth()->user()->email, request()->program_type]);
+            Organisation::create(['organisation_id' => $orgId, 'name' => $validated['organised_by_id'], 'created_by' => auth()->user()->email]);
+            $ForeignProgram->organised_by_id = $orgId;
+        }else{
+            $orgId = Organisation::where('name', strtolower($validated['organised_by_id']))->get('organisation_id')->first();
+            $ForeignProgram->organised_by_id = $orgId['organisation_id'];
+        }
+
+        $ForeignProgram->notified_by = $validated['notified_by'];
+        $ForeignProgram->target_group = $validated['target_group'];
+        $ForeignProgram->venue = $validated['venue'];
+        $ForeignProgram->currency = $validated['currency'];
+        $ForeignProgram->program_fee = $validated['program_fee'];
+        $ForeignProgram->nature_of_the_employment = serialize($validated['employment_nature']);
+        $ForeignProgram->employee_category = serialize($validated['employee_category']);
+        $ForeignProgram->application_closing_date_time = Helpers::joint_date_time($validated['application_closing_date'], $validated['application_closing_time']);
+        $ForeignProgram->start_date = $validated['start_date'];
+        $ForeignProgram->end_date = $validated['end_date'];
+        $ForeignProgram->duration = $validated['duration'];
+        //  check if a program brochure is present
+        if ($request->file('program_brochure') != null) {
+            //get the file ext
+            $ext = $request->file('program_brochure')->getClientOriginalExtension();
+            //save the file in the storage
+            $fileName = $randomProgramId . "." . $ext;
+            $savedFile = $request->file('program_brochure')->storeAs('public/brochures', $fileName);
+            $ForeignProgram->brochure_url = $fileName;
+        }
+
+        $ForeignProgram->updated_by = auth()->user()->email;
+        $st = $ForeignProgram->save();
+
+        return redirect('/foreign')->with('success', ' Requested program successfully updated');
     }
 
     /**
@@ -105,7 +220,7 @@ class ForeignProgramController extends Controller
         return Datatables()->of($programs)
             ->addIndexColumn()
             ->editColumn('program_title', function ($row) {
-                return '<a href="' . url('/local/' . $row->program_id) . '">' . $row->program_title . '</a>';
+                return '<a href="' . url('/foreign/' . $row->program_id) . '">' . $row->program_title . '</a>';
             })
             ->toJson();
     }

@@ -39,7 +39,7 @@
                         <input type="text" value="{{old('organised_by')}}" class="form-control" name="organised_by_id" id="organised_by" placeholder="Program organiser" list="orgs">
                         <datalist id="orgs">
                             @foreach($orgs as $org)
-                                <option value="{{$org->organisation_id}}">{{$org->name}}</option>
+                                <option value="{{$org->name}}"></option>
                             @endforeach
                         </datalist>
                         @if ($errors->has('organised_by'))
@@ -83,19 +83,21 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-5">
                     <div class="form-group has-feedback {{$errors->has('employment_nature') ? 'has-error' : ''}}">
-                        <label for="nature_of_the_employment" class="required">Employment</label>
                         <div>
-                            <input type="checkbox" id="employment_permanent" value="permanent" name="employment_nature[]">
+                            <label for="nature_of_the_employment" class="required">Employment</label>
+                        </div>
+                        <div class="inline margin-right-md">
+                            <input type="checkbox" id="employment_permanent" class="styled-checkbox" value="permanent" name="employment_nature[]">
                             <label for="employment_permanent">Permanent</label>
                         </div>
-                        <div>
-                            <input type="checkbox" id="employment_fixed_contract" value="fixed contract" name="employment_nature[]">
+                        <div class="inline margin-right-md">
+                            <input type="checkbox" id="employment_fixed_contract" class="styled-checkbox" value="fixed contract" name="employment_nature[]">
                             <label for="employment_fixed_contract">Fixed Contract</label>
                         </div>
-                        <div>
-                            <input type="checkbox" id="employment_job_contract" value="job contract" name="employment_nature[]">
+                        <div class="inline margin-right-md">
+                            <input type="checkbox" id="employment_job_contract" class="styled-checkbox" value="job contract" name="employment_nature[]">
                             <label for="employment_job_contract">Job Contract</label>
                         </div>
                         @if ($errors->has('employment_nature'))
@@ -103,16 +105,18 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div class="form-group has-feedback {{$errors->has('employee_category') ? 'has-error' : ''}}">
-                        <label for="employee_category" class="required">Employee Category</label>
                         <div>
-                            <input type="checkbox" id="employee_category_tech" value="technical" name="employee_category[]">
-                            <label for="employee_category_tech">Technical</label>
+                            <label class="required">Employee Category</label>
                         </div>
-                        <div>
-                            <input type="checkbox" id="employee_category_nontech" value="non-technical" name="employee_category[]">
-                            <label for="employee_category_nontech">Non-Technical</label>
+                        <div class="inline margin-right-md">
+                            <input type="checkbox" id="employee_category_tech" class="styled-checkbox" value="technical" name="employee_category[]">
+                            <label for="employee_category_tech" >Technical</label>
+                        </div>
+                        <div class="inline">
+                            <input type="checkbox" id="employee_category_nontech" class="styled-checkbox" value="non-technical" name="employee_category[]">
+                            <label for="employee_category_nontech" class="">Non-Technical</label>
                         </div>
                         @if ($errors->has('employee_category'))
                             <span class="help-block">{{ $errors->first('employee_category') }}</span>

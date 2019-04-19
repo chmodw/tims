@@ -6,18 +6,15 @@
 
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
-            <form method="POST" action="{{ route('programs.delete') }}">
+            <form method="POST" action="{{ route('foreign.destroy', $program[0]->program_id) }}">
                 {{method_field('DELETE')}}
-                <input type="hidden" value="LocalProgram" name="program_type">
-                <input type="hidden" value="{{$program[0]->program_id}}" name="program_id">
-                <button  class="btn btn-danger pull-right" style="margin-right:8px;"><i class="glyphicon glyphicon-trash margin-right-md"></i>&nbsp;Delete</button>
+                <button  class="btn btn-danger pull-right" style="margin-right:8px;"><i class="glyphicon glyphicon-trash margin-right-sm"></i>&nbsp;Delete</button>
             </form>
-            <a class="btn btn-default pull-right" style="margin-right:8px;" href="/programs/trainee/LocalProgram/{{$program[0]->program_id}}"><i class="glyphicon glyphicon-user margin-right-md"></i>Employees</a>
-            <a class="btn btn-warning pull-right" style="margin-right:8px;" href="/programs/edit/LocalProgram/{{$program[0]->program_id}}"><i class="glyphicon glyphicon-pencil margin-right-md"></i>&nbsp;Edit</a>
-            <a class="btn btn-primary pull-right" style="margin-right:8px;" href="/programs/create/LocalProgram"><i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
+            <a class="btn btn-default pull-right" style="margin-right:8px;" href="/programs/trainee/LocalProgram/{{$program[0]->program_id}}"><i class="glyphicon glyphicon-user margin-right-sm"></i>Employees</a>
+            <a class="btn btn-warning pull-right" style="margin-right:8px;" href="{{route('foreign.edit', $program[0]->program_id)}}"><i class="glyphicon glyphicon-pencil margin-right-sm"></i>&nbsp;Edit</a>
+            <a class="btn btn-primary pull-right" style="margin-right:8px;" href="{{route('foreign.create')}}"><i class="glyphicon glyphicon-plus margin-right-sm"></i>&nbsp;New</a>
         </div>
         <div class="panel-body">
-
             <table class="table table-striped table-bordered">
                 <tbody>
                     <tr class="row">
@@ -47,7 +44,7 @@
                     <tr class="row">
                         <div class="col-md-12">
                             <th class="col-md-2">Employee Category</th>
-                            <td class="col-md-4">{{$program[0]->nature_of_the_employment}}</td>
+                            <td class="col-md-4">{{$program[0]->employee_category}}</td>
                             <th class="col-md-2">Venue</th>
                             <td class="col-md-4">{{$program[0]->venue}}</td>
                         </div>
@@ -56,23 +53,13 @@
                         <div class="col-md-12">
                             <th class="col-md-2">Program Fee</th>
                             <td class="col-md-4">{{$program[0]->program_fee}}</td>
-                            <th class="col-md-2">Non Member Fee</th>
-                            <td class="col-md-4">{{$program[0]->non_member_fee}}</td>
-                        </div>
-                    </tr>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Member Fee</th>
-                            <td class="col-md-4">{{$program[0]->member_fee}}</td>
-                            <th class="col-md-2">Student Fee</th>
-                            <td class="col-md-4">{{$program[0]->student_fee}}</td>
                         </div>
                     </tr>
 
                     <tr class="row">
                         <div class="col-md-12">
                             <th class="col-md-2">Program Brochure</th>
-                            <td class="col-md-4"><a href="{{$program[0]->brochure_url}}" class="{{$program[0]->brochure_url == null ? ' hide' : ''}}">View</a></td>
+                            <td class="col-md-4"><a href="/storage/brochures/{{$program[0]->brochure_url}}" class="{{$program[0]->brochure_url == null ? ' hide' : ''}}">View</a></td>
                             <th class="col-md-2"></th>
                             <td class="col-md-4"></td>
                         </div>

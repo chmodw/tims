@@ -8,23 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class ForeignProgram extends Model
 {
     protected $fillable =[
-        'program_id',
-        'title',
-        'organised_by_id',
-        'notified_by',
-        'target_group',
-        'nature_of_the_appointment',
-        'employee_category',
-        'venue',
-        'currency',
-        'course_fee',
-        'start_date',
-        'end_date',
-        'application_closing_date_time',
-        'duration',
-        'brochure_url',
-        'created_by',
-        'updated_by',
+//        'program_id',
+//        'title',
+//        'organised_by_id',
+//        'notified_by',
+//        'target_group',
+//        'nature_of_the_appointment',
+//        'employee_category',
+//        'venue',
+//        'currency',
+//        'course_fee',
+//        'start_date',
+//        'end_date',
+//        'application_closing_date_time',
+//        'duration',
+//        'brochure_url',
+//        'created_by',
+//        'updated_by',
     ];
 
     public function program_id()
@@ -60,7 +60,7 @@ class ForeignProgram extends Model
     public function getEmployeeCategoryAttribute()
     {
         $arr = unserialize($this->attributes['employee_category']);
-        return implode(", ",unserialize($arr));
+        return implode(", ",$arr);
     }
 
     public function getApplicationClosingDateTimeAttribute()

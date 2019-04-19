@@ -56,12 +56,13 @@ class LocalProgramController extends Controller
         /**
          * Check the organisation in the database
          */
-        if(is_null(Organisation::where('organisation_id', $validated['organised_by_id'])->first())){
+        if(is_null(Organisation::where('name', strtolower($validated['organised_by_id']))->first())){
             $orgId = Helpers::u_id([$validated['organised_by_id'], auth()->user()->email, request()->program_type]);
-            Organisation::create(['organisation_id' => $orgId, 'name' => $validated['organised_by_id'], 'created_by' => auth()->user()->email]);
+            Organisation::create(['organisation_id' => $orgId, 'name' => strtolower($validated['organised_by_id']), 'created_by' => auth()->user()->email]);
             $localProgram->organised_by_id = $orgId;
         }else{
-            $localProgram->organised_by_id = $validated['organised_by_id'];
+            $orgId = Organisation::where('name', strtolower($validated['organised_by_id']))->get('organisation_id')->first();
+            $localProgram->organised_by_id = $orgId['organisation_id'];
         }
 
         $localProgram->target_group = $validated['target_group'];
@@ -83,9 +84,9 @@ class LocalProgramController extends Controller
             //get the file ext
             $ext = $request->file('program_brochure')->getClientOriginalExtension();
             //save the file in the storage
-            $fileName = $validated['program_id'] . "." . $ext;
+            $fileName = $randomProgramId . "." . $ext;
             $savedFile = $request->file('program_brochure')->storeAs('public/brochures', $fileName);
-            $localProgram->program_brochure = $fileName;
+            $localProgram->brochure_url = $fileName;
         }
 
         $localProgram->created_by = auth()->user()->email;
@@ -162,7 +163,8 @@ class LocalProgramController extends Controller
             Organisation::create(['organisation_id' => $orgId, 'name' => $validated['organised_by_id'], 'created_by' => auth()->user()->email]);
             $localProgram->organised_by_id = $orgId;
         }else{
-            $localProgram->organised_by_id = $validated['organised_by_id'];
+            $orgId = Organisation::where('name', strtolower($validated['organised_by_id']))->get('organisation_id');
+            $localProgram->organised_by_id = $orgId;
         }
         $localProgram->target_group = $validated['target_group'];
         $localProgram->start_date = Helpers::joint_date_time($validated['start_date'],$validated['start_time']);

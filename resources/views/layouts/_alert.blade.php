@@ -13,3 +13,5 @@
         <strong>Failed!</strong>{{ session('failed') }}
     </div>
 @endif
+
+<br>

@@ -25,7 +25,7 @@ class CreatePostGradProgramsTable extends Migration
             $table->float('registration_fees');
             $table->float('firstYear_fees');
             $table->float('secondYear_fees');
-            $table->string('brochure_url');
+            $table->string('brochure_url')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();
