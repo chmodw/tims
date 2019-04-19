@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Trainee extends Model
+class Employee extends Model
 {
     //Db name
     protected $connection = 'sql_get';

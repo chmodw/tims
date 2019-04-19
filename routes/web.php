@@ -26,9 +26,15 @@ Route::resource('local','LocalProgramController')->middleware('auth');
 Route::get('foreign/get', 'ForeignProgramController@getForeignPrograms');
 Route::resource('foreign','ForeignProgramController')->middleware('auth');
 
-Route::resource('inhouse','LocalProgramController')->middleware('auth');
+Route::get('inhouse/get', 'InHouseProgramController@getInhousePrograms');
+Route::resource('inhouse','InHouseProgramController')->middleware('auth');
 
-Route::resource('postgrad','LocalProgramController')->middleware('auth');
+Route::get('postgrad/get', 'PostGradProgramController@getInhousePrograms');
+Route::resource('postgrad','PostGradProgramController')->middleware('auth');
+
+Route::POST('trainee/find','TraineeController@find')->name('trainee.find')->middleware('auth');
+Route::resource('trainee','TraineeController', ['except' => 'index'])->except('destroy', 'create', 'edit')->middleware('auth');
+Route::get('trainee/index/{tbl}/{id}','TraineeController@index')->middleware('auth');
 
 
 // Routes for Budget

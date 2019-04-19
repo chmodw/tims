@@ -16,7 +16,7 @@ class CreatePostGradProgramsTable extends Migration
         Schema::create('post_grad_programs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('program_id')->unique();
-            $table->string('title');
+            $table->string('program_title');
             $table->string('organised_by_id');
             $table->string('department');
             $table->text('programs'); //serialized array

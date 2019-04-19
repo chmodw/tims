@@ -124,16 +124,16 @@ return [
             'url'  => 'foreign/',
             'icon' => 'globe',
         ],
-        [
-            'text' => 'Post-Grad',
-            'url'  => 'postgrad/',
-            'icon' => 'graduation-cap',
-        ],
-        [
-            'text' => 'In-House',
-            'url'  => 'inhouse/',
-            'icon' => 'thumb-tack',
-        ],
+//        [
+//            'text' => 'Post-Grad',
+//            'url'  => 'postgrad/',
+//            'icon' => 'graduation-cap',
+//        ],
+//        [
+//            'text' => 'In-House',
+//            'url'  => 'inhouse/',
+//            'icon' => 'thumb-tack',
+//        ],
         'EMPLOYEES',
         [
             'text' => 'List',

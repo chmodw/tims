@@ -7,7 +7,7 @@ namespace App\Http\Controllers;
 
 use App\Organisation;
 use App\Program;
-use App\Trainee;
+use App\Employee;
 use Illuminate\Http\Request;
 
 class ProgramController extends Controller

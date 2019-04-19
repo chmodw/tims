@@ -8,7 +8,7 @@
             Add Trainee
         </div>
         <div class="panel-body">
-            <form class="form-inline"  action="{{ route('trainees.show', 'id') }}" method="GET">
+            <form class="form-inline"  action="{{ route('trainee.find') }}" method="POST">
                 {{ csrf_field() }}
                 <div class="form-group mx-sm-3 mb-3">
                     <label for="epfNo" class="mr-5">EPF No:</label>
@@ -40,7 +40,7 @@
                             <td>{{session('trainee')[0]['designationName']}}</td>
                             <td>{{session('trainee')[0]['experience']}}</td>
                             <td>
-                                <form action="{{route('programs.trainees')}}" method="POST">
+                                <form action="{{route('trainee')}}" method="POST">
                                     {{ csrf_field() }}
                                     <input type="hidden" name="programId" value="{{$program_id}}">
                                     <input type="hidden" name="userId" value="{{session('trainee')[0]['EmployeeId']}}">
@@ -81,14 +81,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($trainees as $trainee)
-                    <tr>
-                        <th scope="row">{{$trainee[0]['NameWithInitial']}}</th>
-                        <td>{{$trainee[0]['DesignationId']}}</td>
-                        <td>{{date('Y-m-d',strtotime($trainee[0]['DateOfAppointment']))}}</td>
-                        <td></td>
-                    </tr>
-                @endforeach
+{{--                @foreach($trainees as $trainee)--}}
+{{--                    <tr>--}}
+{{--                        <th scope="row">{{$trainee[0]['NameWithInitial']}}</th>--}}
+{{--                        <td>{{$trainee[0]['DesignationId']}}</td>--}}
+{{--                        <td>{{date('Y-m-d',strtotime($trainee[0]['DateOfAppointment']))}}</td>--}}
+{{--                        <td></td>--}}
+{{--                    </tr>--}}
+{{--                @endforeach--}}
                 </tbody>
             </table>
         </div>

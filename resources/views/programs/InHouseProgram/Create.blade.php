@@ -23,6 +23,22 @@
             <form method="POST" action="{{ route('programs.create') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="LocalProgram" name="program_type">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                 <div class="col-md-12">
                     <div class="form-group has-feedback {{$errors->has('program_title') ? 'has-error' : ''}}">
                         <label for="program_title" class="required">Program Title</label>

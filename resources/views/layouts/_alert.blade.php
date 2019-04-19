@@ -4,6 +4,7 @@
             <span aria-hidden="true">&times;</span></button>
         <strong>Success!</strong>{{ session('success') }}
     </div>
+    <br>
 @endif
 
 @if (session('failed'))
@@ -12,6 +13,5 @@
             <span aria-hidden="true">&times;</span></button>
         <strong>Failed!</strong>{{ session('failed') }}
     </div>
+    <br>
 @endif
-
-<br>

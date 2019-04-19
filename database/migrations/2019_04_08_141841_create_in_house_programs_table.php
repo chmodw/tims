@@ -16,21 +16,20 @@ class CreateInHouseProgramsTable extends Migration
         Schema::create('in_house_programs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('program_id')->unique();
-            $table->string('title');
+            $table->string('program_title');
             $table->string('content'); //serialized array
             $table->string('target_group');
             $table->string('organised_by_id');
             $table->string('venue');
             $table->timestamp('start_date_time')->useCurrent = true;
-            $table->timestamp('endDate_time')->useCurrent = true;
+            $table->timestamp('end_Date_time')->useCurrent = true;
             $table->timestamp('application_closing_date_time')->useCurrent = true;
-            $table->string('key_person');
-            $table->string('key_person_designation');
-            $table->float('registration_cost');
-            $table->float('non_registration_cost');
-            $table->float('head_cost');
-            $table->float('lecturer_cost');
-            $table->integer('hours');
+            $table->string('resource_person'); //person name and designation
+            $table->float('no_show_cost')->nullable();
+            $table->float('per_person_cost')->nullable();
+            $table->float('resource_person_cost')->nullable();
+            $table->string('other_costs')->nullable();
+            $table->integer('hours')->nullable();;
             $table->string('brochure_url')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();
