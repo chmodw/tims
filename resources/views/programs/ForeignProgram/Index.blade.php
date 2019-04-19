@@ -7,7 +7,7 @@
 @section('main-content')
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
-            <a class="btn btn-default pull-right" href="{{url('programs/create/ForeignProgram')}}">
+            <a class="btn btn-default pull-right" href="{{route('foreign.create')}}">
                 <i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
         </div>
         <div class="panel-body">
@@ -34,7 +34,7 @@
             $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "/api/programs/get/ForeignProgram",
+                ajax: "foreign/get",
                 order: [7, 'desc'],
 
                 columns: [

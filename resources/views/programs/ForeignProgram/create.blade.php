@@ -2,7 +2,7 @@
 
 @section('content_header')
     <h1 class="inline">New Foreign Program</h1>
-    <a href="{{url('programs/ForeignPrograms')}}" class="btn btn-default pull-right">Back</a>
+    <a href="{{route('foreign.index')}}" class="btn btn-default pull-right">Back</a>
 @stop
 
 @section('title', 'TIMS | Create Foreign Program')
@@ -11,7 +11,7 @@
 
     <div class="panel panel-default">
         <div class="panel-body">
-            <form method="POST" action="{{ route('programs.create') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{route('foreign.store')}}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="ForeignProgram" name="program_type">
 

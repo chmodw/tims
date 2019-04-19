@@ -18,8 +18,8 @@
     <div class="panel panel-default">
         @include('layouts._alert')
         <div class="panel-body">
-            <form method="POST" action="{{ route('programs.update') }}" enctype="multipart/form-data">
-                {{method_field('PATCH')}}
+            <form method="POST" action="{{'/local/'.$program[0]->program_id}}" enctype="multipart/form-data">
+                {{method_field('PUT')}}
                 @csrf
                 <input type="hidden" value="LocalProgram" name="program_type">
                 <input type="hidden" value="{{$program[0]->program_id}}" name="program_id">

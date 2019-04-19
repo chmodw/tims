@@ -2,7 +2,7 @@
 
 @section('content_header')
     <h1 class="inline">New Local Program</h1>
-    <a href="{{url('programs/LocalPrograms')}}" class="btn btn-default pull-right">Back</a>
+    <a href="{{route('local.index')}}" class="btn btn-default pull-right">Back</a>
 @stop
 
 @section('title', 'TIMS | Create Local Program')
@@ -20,7 +20,7 @@
     <div class="panel panel-default">
         @include('layouts._alert')
         <div class="panel-body">
-            <form method="POST" action="{{ route('programs.create') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('local.store') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="LocalProgram" name="program_type">
                 <div class="col-md-12">
@@ -120,11 +120,11 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="form-group has-feedback {{$errors->has('course_fee') ? 'has-error' : ''}}">
-                        <label for="course_fee">Course Fee</label>
-                        <input type="number" value="{{old('course_fee')}}" class="form-control" id="course_fee" name="course_fee">
-                        @if ($errors->has('course_fee'))
-                            <span class="help-block">{{ $errors->first('course_fee') }}</span>
+                    <div class="form-group has-feedback {{$errors->has('program_fee') ? 'has-error' : ''}}">
+                        <label for="program_fee">Course Fee</label>
+                        <input type="number" value="{{old('program_fee')}}" class="form-control" id="program_fee" name="program_fee">
+                        @if ($errors->has('program_fee'))
+                            <span class="help-block">{{ $errors->first('program_fee') }}</span>
                         @endif
                     </div>
                 </div>
@@ -210,7 +210,6 @@
                 </div>
                 <div class="col-md-12">
                     <button type="submit" name="_submit" class="btn btn-primary mb-2 mr-2 pull-right" value="reload_page">Save</button>
-{{--                    <button type="submit" name="_submit" class="btn btn-primary mb-2 pull-right" style="margin-right: 15px;" value="redirect">Save &amp; Go Back</button>--}}
                     <button type="reset" name="reset" class="btn btn-default mb-2 mr-2 pull-right" value="" style="margin-right: 15px;">Clear</button>
                 </div>
             </form>

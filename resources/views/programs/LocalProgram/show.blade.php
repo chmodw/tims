@@ -6,15 +6,16 @@
 
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
-            <form method="POST" action="{{ route('programs.delete') }}">
-                {{method_field('DELETE')}}
-                <input type="hidden" value="LocalProgram" name="program_type">
-                <input type="hidden" value="{{$program[0]->program_id}}" name="program_id">
-                <button  class="btn btn-danger pull-right" style="margin-right:8px;"><i class="glyphicon glyphicon-trash margin-right-md"></i>&nbsp;Delete</button>
-            </form>
-            <a class="btn btn-default pull-right" style="margin-right:8px;" href="/programs/trainee/LocalProgram/{{$program[0]->program_id}}"><i class="glyphicon glyphicon-user margin-right-md"></i>Employees</a>
-            <a class="btn btn-warning pull-right" style="margin-right:8px;" href="/programs/edit/LocalProgram/{{$program[0]->program_id}}"><i class="glyphicon glyphicon-pencil margin-right-md"></i>&nbsp;Edit</a>
-            <a class="btn btn-primary pull-right" style="margin-right:8px;" href="/programs/create/LocalProgram"><i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
+            <div class="btn-container">
+                <form method="POST" action="{{ route('local.destroy', $program[0]->program_id) }}">
+                    {{ csrf_field() }}
+                    {{method_field('DELETE')}}
+                    <button  class="btn btn-danger pull-right" style="margin-right:8px;" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash margin-right-sm"></i>&nbsp;Delete</button>
+                </form>
+                <a class="btn btn-default pull-right" style="margin-right:8px;" href="/local/trainee/{{$program[0]->program_id}}"><i class="glyphicon glyphicon-user margin-right-sm"></i>Employees</a>
+                <a class="btn btn-warning pull-right" style="margin-right:8px;" href="/local/{{$program[0]->program_id}}/edit"><i class="glyphicon glyphicon-pencil margin-right-sm"></i>&nbsp;Edit</a>
+                <a class="btn btn-primary pull-right" style="margin-right:8px;" href="/local/create"><i class="glyphicon glyphicon-plus margin-right-sm"></i>&nbsp;New</a>
+            </div>
         </div>
         <div class="panel-body">
 

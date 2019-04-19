@@ -8,24 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class LocalProgram extends Model
 {
     protected $fillable = [
-        'program_id',
-        'program_title',
-        'organised_by_id',
-        'target_group',
-        'start_date',
-        'duration',
-        'application_closing_date_time',
-        'nature_of_the_employment',
-        'employee_category',
-        'venue',
-        'program_fee',
-        'non_member_fee',
-        'member_fee',
-        'student_fee',
-        'brochure_url',
-        'created_by',
-        'updated_by',
-//        'created_at'
+
     ];
 
     protected $dates = ['created_at'];
@@ -53,12 +36,12 @@ class LocalProgram extends Model
 
     public function getCreatedAtAttribute()
     {
-        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d');
     }
 
     public function getStartDateAttribute()
     {
-        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d H:i');
+        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d');
     }
 
     public function getNatureOfTheEmploymentAttribute()
@@ -69,12 +52,13 @@ class LocalProgram extends Model
     public function getEmployeeCategoryAttribute()
     {
         $arr = unserialize($this->attributes['employee_category']);
-        return implode(", ",unserialize($arr));
+        return implode(", ",$arr);
     }
 
     public function getApplicationClosingDateTimeAttribute()
     {
-        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
+        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d');
     }
+
 
 }
