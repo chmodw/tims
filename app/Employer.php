@@ -4,15 +4,19 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class WorkSpaceType extends Model
+class Employer extends Model
 {
     //Db name
     protected $connection = 'sql_get';
     //Table name
-    protected $table = 'dbo.cmn_WorkSpaceType';
+    protected $table = 'dbo.cmn_EmployeeVersion';
 
-    public function workSpaceId (){
+
+
+    public function workspace(){
 
         return $this->belongsTo(WorkSpace::class);
+
     }
+
 }

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Employer;
+use App\Payment;
+use App\Program;
 use Illuminate\Http\Request;
+use vendor\project\StatusTest;
 
 class paymentController extends Controller
 {
@@ -13,7 +17,11 @@ class paymentController extends Controller
      */
     public function index()
     {
-        //
+        $payments = Payment::paginate(15);
+
+//        dd($payments);
+
+        return view('payment.Index',compact('payments'));
     }
 
     /**
@@ -23,7 +31,11 @@ class paymentController extends Controller
      */
     public function create()
     {
-        //
+
+        $programs = Program::with('trainees')->get();
+
+        return view('payment.Create',compact('programs'));
+
     }
 
     /**
@@ -34,7 +46,25 @@ class paymentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        foreach ($request->row as $item)
+        {
+
+            if (!is_null($item['amount']))
+            {
+                $trainee_id = $request->trainee_name;
+                $trainee_name = $request->trainee_name_hidden;
+                $payment_amount =  $item['amount'];
+                $program_id = $item['program_id'];
+                $program_title = $item['program_title'];
+                Payment::create(compact('trainee_id', 'trainee_name', 'payment_amount', 'program_id', 'program_title'));
+            }
+
+        }
+
+        // $payment = Payment::create($request->all());
+
+        return redirect('payment');
     }
 
     /**
@@ -43,9 +73,11 @@ class paymentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+
+    public function show(Request $req)
     {
-        //
+
+
     }
 
     /**

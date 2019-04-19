@@ -12,15 +12,7 @@ class Budget extends Model
     public function getWorkSpaceTypeId(){
 
         return $this->belongsTo('App\WorkSpaceType','section_Id','WorkSpaceTypeId');
-
-
     }
-
-
-
-
-
-
 
 
 }

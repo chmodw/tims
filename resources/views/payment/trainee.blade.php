@@ -8,7 +8,7 @@
             Add Trainee
         </div>
         <div class="panel-body">
-            <form class="form-inline"  action="{{ route('trainees.show', 'id') }}" method="GET">
+            <form class="form-inline"  action="{{ route('payment.show', 'id') }}" method="GET">
                 {{ csrf_field() }}
                 <div class="form-group mx-sm-3 mb-3">
                     <label for="epfNo" class="mr-5">EPF No:</label>
@@ -36,9 +36,9 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <th scope="row">{{session('trainee')[0]['NameWithInitial']}}</th>
-                            <td>{{session('trainee')[0]['designationName']}}</td>
-                            <td>{{session('trainee')[0]['experience']}}</td>
+                            <th scope="row">{{session('trainee')[0]['Full Name']}}</th>
+                            <td>{{session('trainee')[0][' Trainee ID']}}</td>
+                            <td>{{session('trainee')[0]['Program ID']}}</td>
                             <td>
                                 <form action="{{route('programs.trainees')}}" method="POST">
                                     {{ csrf_field() }}

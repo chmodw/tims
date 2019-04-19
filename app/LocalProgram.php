@@ -46,13 +46,7 @@ class LocalProgram extends Model
 
     public function getNatureOfTheEmploymentAttribute()
     {
-        return implode(", ",unserialize($this->attributes['nature_of_the_employment']));
-    }
-
-    public function getEmployeeCategoryAttribute()
-    {
-        $arr = unserialize($this->attributes['employee_category']);
-        return implode(", ",$arr);
+        return implode(", ", unserialize($this->attributes['nature_of_the_employment']));
     }
 
     public function getApplicationClosingDateTimeAttribute()
