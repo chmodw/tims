@@ -104,7 +104,7 @@ class EmployeeController extends Controller
             ->where('cmn_EmployeeVersion.IsActive', 1)
             ->select(
                 'cmn_EmployeeVersion.FullName',
-                'cmn_EmployeeVersion.EPFNo',
+                'cmn_EmployeeVersion.EPFNo', 
                 'cmn_EmployeeVersion.DateOfAppointment',
                 'cmn_EmployeeVersion.EmployeeRecruitmentType',
                 'cmn_EmployeeVersion.Title',
