@@ -29,6 +29,9 @@ Route::resource('foreign','ForeignProgramController')->middleware('auth');
 Route::get('inhouse/get', 'InHouseProgramController@getInhousePrograms');
 Route::resource('inhouse','InHouseProgramController')->middleware('auth');
 
+Route::get('employee/get', 'EmployeeController@getEmployee');
+Route::resource('employee','EmployeeController')->middleware('auth');
+
 Route::get('postgrad/get', 'PostGradProgramController@getInhousePrograms');
 Route::resource('postgrad','PostGradProgramController')->middleware('auth');
 

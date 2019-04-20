@@ -73,6 +73,10 @@ input {
   padding-right: 12px !important;
 }
 
+.employee-table tr td {
+  white-space: nowrap;
+}
+
 .padding-xs {
   padding: 0.25em;
 }

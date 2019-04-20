@@ -86,32 +86,42 @@
 </div>
 
 <div class="row">
-    <div class="col-md-10 col-md-offset-1" style="">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Selected Trainees
-            </div>
-            <div class="panel-body">
-                <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Designation</th>
-                        <th scope="col">Experience</th>
-                        <th scope="col"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {{--                @foreach($trainees as $trainee)--}}
-                    {{--                    <tr>--}}
-                    {{--                        <th scope="row">{{$trainee[0]['NameWithInitial']}}</th>--}}
-                    {{--                        <td>{{$trainee[0]['DesignationId']}}</td>--}}
-                    {{--                        <td>{{date('Y-m-d',strtotime($trainee[0]['DateOfAppointment']))}}</td>--}}
-                    {{--                        <td></td>--}}
-                    {{--                    </tr>--}}
-                    {{--                @endforeach--}}
-                    </tbody>
-                </table>
+    <div class="container">
+        <div class="col-md-12" style="">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Selected Trainees
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Designation</th>
+                            <th scope="col">Experience</th>
+                            <th scope="col">Recommendation</th>
+                            <th scope="col">Recruitment Type</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($programs as $program)
+                            <tr>
+                                <td scope="row">{{$program['Initial'].' '.\ucwords(strtolower($program['Name']))}}</td>
+                                <td>{{$program['DesignationName']}}</td>
+                                <td>{{
+                                    date_diff(
+                                    date_create(date('Y-m-d', strtotime('today'))),
+                                    date_create(date('Y-m-d', strtotime($program['DateOfAppointment']))))
+                                    ->format('%Y years and %m months')
+                                    }}
+                                </td>
+                                <td>{{$program['WorkSpaceTypeName']}}</td>
+                                <td>{{$program['EmployeeRecruitmentType']}}</td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

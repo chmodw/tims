@@ -29,8 +29,8 @@ class TraineeController extends Controller
             $program = $model::where('program_id', $id)->select($tbl.'.program_id', $tbl.'.program_title')->get();
 
             $programs = app('App\Http\Controllers\ProgramController')->index($class, $id);
-//return $programs;
-            return view('programs/'.$class.'/trainee')->with(compact('program'))->with(['program_type' => $class]);
+
+            return view('programs/'.$class.'/trainee')->with(compact('program'))->with(['program_type' => $class])->with(compact('programs'));
 
         } else {
             return abort(404);
