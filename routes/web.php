@@ -34,8 +34,9 @@ Route::resource('postgrad','PostGradProgramController')->middleware('auth');
 
 Route::POST('trainee/find','TraineeController@find')->name('trainee.find')->middleware('auth');
 Route::resource('trainee','TraineeController', ['except' => 'index'])->except('destroy', 'create', 'edit')->middleware('auth');
-Route::get('trainee/index/{tbl}/{id}','TraineeController@index')->middleware('auth');
+Route::get('trainee/index/{class}/{id}','TraineeController@index')->middleware('auth');
 
+Route::resource('program','ProgramController', ['except' => 'index'])->middleware('auth');
 
 // Routes for Budget
 Route::resource('budget','budgetController')->middleware('auth');
