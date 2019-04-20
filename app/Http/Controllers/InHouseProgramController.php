@@ -10,7 +10,7 @@ class InHouseProgramController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['getInhousePrograms']]);
+        $this->middleware('auth');
     }
 
     /**
@@ -30,7 +30,9 @@ class InHouseProgramController extends Controller
      */
     public function create()
     {
-        //
+        $orgs = app('App\Http\Controllers\OrganisationController')->index();
+
+        return view('programs/InHouseProgram/create')->with('orgs', $orgs);
     }
 
     /**
@@ -41,7 +43,7 @@ class InHouseProgramController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return $request;
     }
 
     /**

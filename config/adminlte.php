@@ -124,46 +124,46 @@ return [
             'url'  => 'foreign/',
             'icon' => 'globe',
         ],
-//        [
-//            'text' => 'Post-Grad',
-//            'url'  => 'postgrad/',
-//            'icon' => 'graduation-cap',
-//        ],
-//        [
-//            'text' => 'In-House',
-//            'url'  => 'inhouse/',
-//            'icon' => 'thumb-tack',
-//        ],
+        [
+            'text' => 'Post-Grad',
+            'url'  => 'postgrad/',
+            'icon' => 'graduation-cap',
+        ],
+        [
+            'text' => 'In-House',
+            'url'  => 'inhouse/',
+            'icon' => 'thumb-tack',
+        ],
         'EMPLOYEES',
         [
             'text' => 'List',
             'url'  => 'employee/',
             'icon' => 'user',
         ],
-//        'SYSTEM SETTINGS',
-//        [
-//            'text' => 'Blog',
-//            'url'  => 'admin/blog',
-//            'can'  => 'manage-blog',
-//        ],
-//        [
-//            'text'        => 'Pages',
-//            'url'         => 'admin/pages',
-//            'icon'        => 'file',
-//            'label'       => 4,
-//            'label_color' => 'success',
-//        ],
-//        'ACCOUNT SETTINGS',
-//        [
-//            'text' => 'Profile',
-//            'url'  => 'admin/settings',
-//            'icon' => 'user',
-//        ],
-//        [
-//            'text' => 'Change Password',
-//            'url'  => 'admin/settings',
-//            'icon' => 'lock',
-//        ],
+        'SYSTEM SETTINGS',
+        [
+            'text' => 'Blog',
+            'url'  => 'admin/blog',
+            'can'  => 'manage-blog',
+        ],
+        [
+            'text'        => 'Pages',
+            'url'         => 'admin/pages',
+            'icon'        => 'file',
+            'label'       => 4,
+            'label_color' => 'success',
+        ],
+        'ACCOUNT SETTINGS',
+        [
+            'text' => 'Profile',
+            'url'  => 'admin/settings',
+            'icon' => 'user',
+        ],
+        [
+            'text' => 'Change Password',
+            'url'  => 'admin/settings',
+            'icon' => 'lock',
+        ],
     ],
 
     /*

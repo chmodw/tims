@@ -41,6 +41,7 @@
     </div>
     <script>
         window.onload = function () {
+
             $('#table').DataTable({
                 processing: true,
                 serverSide: true,

@@ -14,19 +14,19 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/trainees', 'EmployerController')->except('destroy', 'create', 'edit');
+Route::resource('/trainees', 'EmployerController')->except('destroy', 'create', 'edit')->middleware('auth');;
 
 Route::get('/pdf/{programType}/{programId}', 'PdfController@create')->middleware('auth');
 
-Route::get  ('/home', 'HomeController@index')->name('home');
+Route::get  ('/home', 'HomeController@index')->name('home')->middleware('auth');;
 
-Route::get('local/get', 'LocalProgramController@getLocalPrograms');
+Route::get('local/get', 'LocalProgramController@getLocalPrograms')->middleware('auth');;
 Route::resource('local','LocalProgramController')->middleware('auth');
 
-Route::get('foreign/get', 'ForeignProgramController@getForeignPrograms');
+Route::get('foreign/get', 'ForeignProgramController@getForeignPrograms')->middleware('auth');;
 Route::resource('foreign','ForeignProgramController')->middleware('auth');
 
-Route::get('inhouse/get', 'InHouseProgramController@getInhousePrograms');
+Route::get('inhouse/get', 'InHouseProgramController@getInhousePrograms')->middleware('auth');;
 Route::resource('inhouse','InHouseProgramController')->middleware('auth');
 
 Route::get('employee/get', 'EmployeeController@getEmployee');

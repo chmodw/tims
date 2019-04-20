@@ -17,14 +17,13 @@ class CreateInHouseProgramsTable extends Migration
             $table->bigIncrements('id');
             $table->string('program_id')->unique();
             $table->string('program_title');
-            $table->string('content'); //serialized array
             $table->string('target_group');
             $table->string('organised_by_id');
             $table->string('venue');
-            $table->timestamp('start_date_time')->useCurrent = true;
-            $table->timestamp('end_Date_time')->useCurrent = true;
+            $table->timestamp('start_date')->useCurrent = true;
+            $table->timestamp('end_Date')->useCurrent = true;
             $table->timestamp('application_closing_date_time')->useCurrent = true;
-            $table->string('resource_person'); //person name and designation
+            $table->text('resource_person'); //person name and designation
             $table->float('no_show_cost')->nullable();
             $table->float('per_person_cost')->nullable();
             $table->float('resource_person_cost')->nullable();
