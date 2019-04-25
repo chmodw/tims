@@ -24,7 +24,11 @@ class CreateForeignProgramsTable extends Migration
             $table->string('employee_category');
             $table->string('venue');
             $table->enum('currency',['usd', 'euro', 'gbp', 'lkr']);
-            $table->float('program_fee')->nullable();
+
+
+//            $table->float('program_fee')->nullable();
+
+
             $table->date('start_date');
             $table->date('end_date');
             $table->string('application_closing_date_time');
@@ -35,7 +39,8 @@ class CreateForeignProgramsTable extends Migration
             $table->timestamps();
 
             $table->foreign('organised_by_id')->references('organisation_id')->on('organisations');
-            //Possible default value
+            $table->foreign('created_by')->references('email')->on('users');
+            $table->foreign('updated_by')->references('email')->on('users');
 
 
         });

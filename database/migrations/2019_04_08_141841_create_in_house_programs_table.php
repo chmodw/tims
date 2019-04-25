@@ -24,10 +24,13 @@ class CreateInHouseProgramsTable extends Migration
             $table->timestamp('end_Date')->useCurrent = true;
             $table->timestamp('application_closing_date_time')->useCurrent = true;
             $table->text('resource_person'); //person name and designation
-            $table->float('no_show_cost')->nullable();
-            $table->float('per_person_cost')->nullable();
-            $table->float('resource_person_cost')->nullable();
-            $table->string('other_costs')->nullable();
+
+//
+//            $table->float('no_show_cost')->nullable();
+//            $table->float('per_person_cost')->nullable();
+//            $table->float('resource_person_cost')->nullable();
+//            $table->string('other_costs')->nullable();
+
             $table->integer('hours')->nullable();;
             $table->string('brochure_url')->nullable();
             $table->string('created_by');
@@ -35,6 +38,8 @@ class CreateInHouseProgramsTable extends Migration
             $table->timestamps();
 
             $table->foreign('organised_by_id')->references('organisation_id')->on('organisations');
+            $table->foreign('created_by')->references('email')->on('users');
+            $table->foreign('updated_by')->references('email')->on('users');
         });
     }
 

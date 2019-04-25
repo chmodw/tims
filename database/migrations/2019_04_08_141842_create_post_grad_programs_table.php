@@ -22,15 +22,19 @@ class CreatePostGradProgramsTable extends Migration
             $table->text('programs'); //serialized array
             $table->text('requirements'); // serialized array
             $table->timestamp('application_closing_date_time')->useCurrent = true;
-            $table->float('registration_fees');
-            $table->float('firstYear_fees');
-            $table->float('secondYear_fees');
+
+//            $table->float('registration_fees');
+//            $table->float('first_installment');
+//            $table->float('second_installment');
+
             $table->string('brochure_url')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();
 
             $table->foreign('organised_by_id')->references('organisation_id')->on('organisations');
+            $table->foreign('created_by')->references('email')->on('users');
+            $table->foreign('updated_by')->references('email')->on('users');
         });
     }
 

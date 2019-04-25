@@ -267,6 +267,7 @@
             });
 
             $('#more_other_cost').click(function(){
+                i2++;
                 $('#other_costs_name').append('<input type="text" name="other_costs_'+i2+'[]" placeholder="Other Cost Name"  class="form-control margin-top-sm" required value=""/>');
                 $('#other_costs_value').append('<input type="text" name="other_costs_'+i2+'[]" placeholder="Other Cost Value"  class="form-control margin-top-sm" required value=""/>');
             });

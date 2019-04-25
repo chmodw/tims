@@ -43,6 +43,10 @@ class InHouseProgramController extends Controller
      */
     public function store(Request $request)
     {
+
+//        {"_token":"oTCiMC0PqYCFHprNXrrHwSdRJ04SG2NmJUbYWDpC","program_type":"LocalProgram","program_title":"new title","target_group":"new target group","employment_nature":["permanent","job contract"],"employee_category":["technical"],"organised_by_id":"new org","venue":"audi","resource_person_1":["Tom","manager","58000"],"resource_person_2":["Jerry","CEO","88997"],"start_date":"2019-04-27","start_time":"12:00","end_time":"15:00","application_closing_date":"2019-04-19","application_closing_time":"00:00","per_person_cost":"5684","registration_cost":"2000","other_costs_1":["drinks","Foods","50000","4000"],"_submit":"reload_page","program_brochure":{}}
+
+
         return $request;
     }
 

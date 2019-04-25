@@ -19,6 +19,8 @@ class CreateProgramsTable extends Migration
             $table->string('program_id');
             $table->string('recommendation');
             $table->string('type');
+            $table->string('created_by');
+            $table->string('updated_by');
             $table->timestamps();
 
 //            $table->foreign('trainee_id')->references('id')->on('trainees');
@@ -27,6 +29,8 @@ class CreateProgramsTable extends Migration
 //            $table->foreign('inhouse_program_id')->references('programId')->on('in_house_programs');
 //            $table->foreign('post_grad_program_id')->references('programId')->on('post_grad_programs');
 
+            $table->foreign('created_by')->references('email')->on('users');
+            $table->foreign('updated_by')->references('email')->on('users');
         });
     }
 
