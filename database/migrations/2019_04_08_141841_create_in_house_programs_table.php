@@ -19,13 +19,16 @@ class CreateInHouseProgramsTable extends Migration
             $table->string('program_title');
             $table->string('target_group');
             $table->string('organised_by_id');
+            $table->string('nature_of_the_employment');
+            $table->string('employee_category');
             $table->string('venue');
             $table->timestamp('start_date')->useCurrent = true;
-            $table->timestamp('end_Date')->useCurrent = true;
+            $table->time('end_time')->useCurrent = true;
             $table->timestamp('application_closing_date_time')->useCurrent = true;
-            $table->text('resource_person'); //person name and designation
 
-//
+            /// save resource on costs
+//            $table->text('resource_person'); //person name and designation
+
 //            $table->float('no_show_cost')->nullable();
 //            $table->float('per_person_cost')->nullable();
 //            $table->float('resource_person_cost')->nullable();
