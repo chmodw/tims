@@ -16,9 +16,9 @@ class CreateCostsTable extends Migration
         Schema::create('costs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('program_id');
-            $table->string('name');
-            $table->string('content')->nullable();
-            $table->float('value');
+            $table->string('cost_name');
+            $table->string('cost_content')->nullable();
+            $table->float('cost_value');
             $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();

@@ -51,7 +51,6 @@ class InHouseProgramController extends Controller
         $validated = $request->validated();
 
         $inhouse = new InHouseProgram();
-        $costs = new Cost();
         /**
          * Generate a program ID
          */
@@ -81,8 +80,9 @@ class InHouseProgramController extends Controller
         $startTime = new \DateTime($validated['start_time']);
         $endTime = new \DateTime($validated['end_time']);
         $inhouse->hours = $startTime->diff($endTime)->format('%h.%i');
-
-        //  check if a program brochure is present
+        /**
+         * check if a program brochure is present
+         */
         if ($request->file('program_brochure') != null) {
             //get the file ext
             $ext = $request->file('program_brochure')->getClientOriginalExtension();
@@ -92,47 +92,53 @@ class InHouseProgramController extends Controller
             $inhouse->brochure_url = $fileName;
         }
 
-        if (array_key_exists('resource_person_2', $validated)) {
-            return $validated;
-        }else{
-            return 'no';
-        }
+        $inhouse->created_by = auth()->user()->email;
+        /**
+         * save resource persons in the cost table
+         */
+        $resource_persons = Helpers::strings_to_arrays($validated['resource_person'], ',');
 
-        $program_id->created_by = auth()->user()->email;
+        $other_costs = Helpers::strings_to_arrays($validated['other_costs'], '=');
 
-        $saved = $inhouse->save($validated);
+        $saved = $inhouse->save();
 
         if($saved){
             /**
              * if the program successfully saved on the database, Save the costs
              */
-            $i=1;
-            while (false){
+            foreach ($resource_persons as $resource_person){
 
-                $resource_person_1 = new Cost([
-                    'program_id' => $program_id,
-                    'name' => 'resource person',
-                    'content' => 'Foo bar.',
-                    'value' => 'Foo bar.',
-                    'created_by' => auth()->user()->email
-                ]);
+                $costs = new Cost();
+
+                $costs->program_id = $program_id;
+                $costs->cost_name = 'resource person';
+                $costs->cost_content = serialize([$resource_person[0],$resource_person[1]]);
+                $costs->cost_value = $resource_person[2];
+                $costs->created_by = auth()->user()->email;
+                $costs->save();
             }
 
+            foreach ($other_costs as $other_cost){
 
-            //Find the video to insert into a tag
-            InHouseProgram::where('program_id', $program_id)->costs()->save($cost);
+                $other_cost = explode(',',$other_cost[0]);
 
+                $costs = new Cost();
+
+                $costs->program_id = $program_id;
+                $costs->cost_name = 'other cost';
+                $costs->cost_content = $other_cost[0];
+                $costs->cost_value = $other_cost[1];
+                $costs->created_by = auth()->user()->email;
+                $costs->save();
+
+            }
+
+            return redirect('/inhouse')->with('success', ' The New In-House Program has been saved successfully');
 
         }else{
             return Redirect::back()->withInput(Input::all())->with('failed ', ' System Could not save the In-House program. please contact the administrator');
         }
 
-
-
-
-        //        {"_token":"Gl9jB121bZ4HZ5IzHFJd260kfvTiX7mb7GFm86VQ","program_type":"LocalProgram","program_title":null,"target_group":"skjdnfsfjk","employment_nature":["permanent","job contract"],"employee_category":["technical","non-technical"],"organised_by_id":"dfkjnsdfjnk","venue":"kjnfgdkjnfg","resource_person_1":["kjnfgkjdng","kjnf","88"],"resource_person_2":["dfkjndsf","dkjfgdjgkn","99"],"start_date":"2019-04-25","start_time":"00:00","end_time":"00:00","application_closing_date":"0001-01-20","application_closing_time":"00:00","per_person_cost":"00","registration_cost":"848","other_costs_1":["8485","558"],"other_costs_2":["88","002"],"_submit":"reload_page"}
-
-        return $program_id;
     }
 
     /**
@@ -143,7 +149,32 @@ class InHouseProgramController extends Controller
      */
     public function show($id)
     {
-        //
+        $costs = Cost::where('program_id', $id)->select('cost_name','cost_content','cost_value')->get();
+
+        $program = InHouseProgram::join('organisations', 'organisations.organisation_id', 'in_house_programs.organised_by_id')
+        ->where('in_house_programs.program_id', $id)
+        ->select(
+            'in_house_programs.program_title',
+            'in_house_programs.target_group',
+            'in_house_programs.nature_of_the_employment',
+            'in_house_programs.employee_category',
+            'in_house_programs.venue',
+            'in_house_programs.start_date',
+            'in_house_programs.end_time',
+            'in_house_programs.application_closing_date_time',
+            'in_house_programs.hours',
+            'in_house_programs.brochure_url',
+            'in_house_programs.created_at',
+            'in_house_programs.created_by',
+            'organisations.name'
+        )
+        ->first();
+
+        if(!empty($program)){
+            return view('programs.InHouseProgram.show')->with(compact('program'))->with(compact('costs'));
+        }
+
+        return redirect('/inhouse')->with('failed', ' Requested program not found in the database');
     }
 
     /**
@@ -189,7 +220,16 @@ class InHouseProgramController extends Controller
     public function getInhousePrograms(){
 
         $programs = InHouseProgram::join('organisations', 'organisations.organisation_id', 'in_house_programs.organised_by_id')
-            ->select('in_house_programs.program_id', 'in_house_programs.program_title', 'in_house_programs.target_group', 'in_house_programs.application_closing_date_time','in_house_programs.start_date', 'in_house_programs.venue', 'in_house_programs.created_at','organisations.name')
+            ->select(
+                'in_house_programs.program_id',
+                'in_house_programs.program_title',
+                'in_house_programs.target_group',
+                'in_house_programs.application_closing_date_time',
+                'in_house_programs.start_date',
+                'in_house_programs.venue',
+                'in_house_programs.created_at',
+                'organisations.name'
+            )
             ->get();
 
         return Datatables()->of($programs)

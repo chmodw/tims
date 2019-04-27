@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class InHouseProgram extends Model
@@ -43,4 +44,40 @@ class InHouseProgram extends Model
     {
         return $this->morphMany('App\Cost', 'Payable');
     }
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d');
+    }
+
+    public function getStartDateAttribute()
+    {
+        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d H:i');
+    }
+
+    public function getStartTimeAttribute()
+    {
+        return Carbon::parse($this->attributes['start_date'])->format('H:i');
+    }
+
+    public function getNatureOfTheEmploymentAttribute()
+    {
+        return implode(", ", unserialize($this->attributes['nature_of_the_employment']));
+    }
+
+    public function getEmployeeCategoryAttribute()
+    {
+        return implode(", ", unserialize($this->attributes['employee_category']));
+    }
+
+    public function getApplicationClosingDateTimeAttribute()
+    {
+        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d');
+    }
+
+    public function getEndTimeAttribute()
+    {
+        return Carbon::parse($this->attributes['end_time'])->format('H:i');
+    }
+
 }

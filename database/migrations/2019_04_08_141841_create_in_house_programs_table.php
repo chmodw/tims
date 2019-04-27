@@ -34,7 +34,7 @@ class CreateInHouseProgramsTable extends Migration
 //            $table->float('resource_person_cost')->nullable();
 //            $table->string('other_costs')->nullable();
 
-            $table->integer('hours')->nullable();;
+            $table->float('hours')->nullable();;
             $table->string('brochure_url')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();

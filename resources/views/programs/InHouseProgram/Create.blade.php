@@ -23,11 +23,6 @@
             <form method="POST" action="{{ route('inhouse.store') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="LocalProgram" name="program_type">
-
-
-
-
-
                 <div class="col-md-12">
                     <div class="form-group has-feedback {{$errors->has('program_title') ? 'has-error' : ''}}">
                         <label for="program_title" class="required">Program Title</label>
@@ -87,16 +82,16 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group has-feedback {{$errors->has('organised_by') ? 'has-error' : ''}}">
-                        <label for="organised_by" class="required">Organised By</label>
-                        <input type="text" value="{{old('organised_by')}}" class="form-control" name="organised_by_id" id="organised_by" placeholder="Program organiser" list="orgs">
+                    <div class="form-group has-feedback {{$errors->has('organised_by_id') ? 'has-error' : ''}}">
+                        <label for="organised_by_id" class="required">Organised By</label>
+                        <input type="text" value="{{old('organised_by_id')}}" class="form-control" name="organised_by_id" id="organised_by_id" placeholder="Program organiser" list="orgs">
                         <datalist id="orgs">
                             @foreach($orgs as $org)
                                 <option value="{{$org->organisation_id}}">{{$org->name}}</option>
                             @endforeach
                         </datalist>
-                        @if ($errors->has('organised_by'))
-                            <span class="help-block">{{ $errors->first('organised_by') }}</span>
+                        @if ($errors->has('organised_by_id'))
+                            <span class="help-block">{{ $errors->first('organised_by_id') }}</span>
                         @endif
                     </div>
                 </div>
@@ -109,38 +104,18 @@
                         @endif
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div  id="resource-person-name" class="form-group has-feedback {{$errors->has('resource_person') ? 'has-error' : ''}}">
-                        <label for="resource_person" class="required">Resource Person</label>
-                        <input type="text" name="resource_person_1[]" value="{{old('resource_person_1')[0]}}" placeholder="Resource Person Name" class="form-control" required/>
+                <div class="col-md-12">
+                    <div  id="resource-person" class="form-group has-feedback {{$errors->has('resource_person') ? 'has-error' : ''}}">
+                        <label for="resource_person" class="required">Resource Person(s)</label>
+                        <textarea name="resource_person" placeholder="Name, Designation, Cost" id="" style="max-width: 100%;min-width: 100%;min-height: 100px">{{old('resource_person')}}</textarea>
+                        <small id="program_brochureHelpBlock" class="form-text text-muted">
+                            Resource Person Name, Designation, Cost Per Hour in LKR separated by Commas
+                        </small>
+                        @if ($errors->has('resource_person'))
+                            <span class="help-block">{{ $errors->first('resource_person') }}</span>
+                        @endif
                     </div>
                 </div>
-
-                <div class="col-md-5">
-                    <div id="resource-person-designation" class="form-group has-feedback {{$errors->has('resource_person') ? 'has-error' : ''}}">
-                        <label for="resource_person" class="required">Resource Person</label>
-                        <input type="text" name="resource_person_1[]" value="{{old('resource_person_1')[1]}}" placeholder="Resource Person Designation" class="form-control" required/>
-                    </div>
-                </div>
-
-                <div class="col-md-2" id="resource-person-cost">
-                    <div class="form-group has-feedback {{$errors->has('resource_person') ? 'has-error' : ''}}">
-                        <label for="resource_person" class="">Fee (Rs)</label>
-                        <input type="number" name="resource_person_1[]" value="{{old('resource_person_1')[1]}}" placeholder="Cost" class="form-control"/>
-                    </div>
-                </div>
-                <div class="col-md-1">
-                    <div class="form-group has-feedback {{$errors->has('resource_person') ? 'has-error' : ''}}">
-                        <div class="margin-top-lg padding-top-sm">
-                            <button type="button" name="add" id="add" class="btn btn-success">
-                                <i class="fa fa-plus" aria-hidden="true"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-
                 <div class="col-md-3">
                     <div class="form-group has-feedback {{$errors->has('start_date') ? 'has-error' : ''}}">
                         <label for="start_date" class="required">Start Date</label>
@@ -204,33 +179,17 @@
                         @endif
                     </div>
                 </div>
+
                 <div class="col-md-6">
-                    <div class="col-md-7">
-                        <div class="form-group has-feedback {{$errors->has('other_costs') ? 'has-error' : ''}}" id="other_costs_name">
-                            <label for="other_costs">Other Costs</label>
-                            <input type="text" value="{{old('other_costs')}}" class="form-control" id="other_costs" name="other_costs_1[]">
-                            @if ($errors->has('other_costs'))
-                                <span class="help-block">{{ $errors->first('other_costs') }}</span>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="form-group has-feedback {{$errors->has('other_costs') ? 'has-error' : ''}}" id="other_costs_value">
-                            <label for="other_costs">Cost (Rs)</label>
-                            <input type="number" value="{{old('other_costs')}}" class="form-control" id="other_costs" name="other_costs_1[]">
-                            @if ($errors->has('other_costs'))
-                                <span class="help-block">{{ $errors->first('other_costs') }}</span>
-                            @endif
-                        </div>
-                    </div>
-                    <div class="col-md-1">
-                        <div class="form-group has-feedback {{$errors->has('other_costs') ? 'has-error' : ''}}">
-                            <div class="margin-top-lg padding-top-sm">
-                                <button type="button" name="" id="more_other_cost" class="btn btn-success btn-xs">
-                                    <i class="fa fa-plus" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
+                    <div  id="other_costs" class="form-group has-feedback {{$errors->has('other_costs') ? 'has-error' : ''}}">
+                        <label for="other_costs" class="required">Cost(s)</label>
+                        <textarea name="other_costs" placeholder="Name = Value" id="" style="max-width: 100%;min-width: 100%;min-height: 100px">{{old('other_costs')}}</textarea>
+                        <small id="other_costsHelpBlock" class="form-text text-muted">
+                            Name = Cost
+                        </small>
+                        @if ($errors->has('other_costs'))
+                            <span class="help-block">{{ $errors->first('other_costs') }}</span>
+                        @endif
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -255,23 +214,6 @@
 
     <script>
         window.onload = function() {
-
-            var i=1;
-            var i2=1;
-
-            $('#add').click(function(){
-                i++;
-                $('#resource-person-name').append('<input type="text" name="resource_person_'+i+'[]" placeholder="Resource Person Name"  class="form-control margin-top-sm" required value=""/>');
-                $('#resource-person-designation').append('<input type="text" name="resource_person_'+i+'[]" placeholder="Resource Person Designation"  class="form-control margin-top-sm" required value=""/>');
-                $('#resource-person-cost').append('<input type="number" name="resource_person_'+i+'[]" placeholder="Cost"  class="form-control margin-top-sm" required value=""/>');
-            });
-
-            $('#more_other_cost').click(function(){
-                i2++;
-                $('#other_costs_name').append('<input type="text" name="other_costs_'+i2+'[]" placeholder="Other Cost Name"  class="form-control margin-top-sm" required value=""/>');
-                $('#other_costs_value').append('<input type="text" name="other_costs_'+i2+'[]" placeholder="Other Cost Value"  class="form-control margin-top-sm" required value=""/>');
-            });
-
             $(document).on('click', '.btn_remove', function(){
                 var button_id = $(this).attr("id");
                 $('#row'+button_id+'').remove();

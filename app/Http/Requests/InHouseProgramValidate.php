@@ -30,7 +30,7 @@ class InHouseProgramValidate extends FormRequest
             'employee_category' => 'required',
             'organised_by_id' => 'required',
             'venue' => 'required',
-            'resource_person_1' => 'required',
+            'resource_person' => 'required',
             'start_date' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
@@ -38,6 +38,9 @@ class InHouseProgramValidate extends FormRequest
             'application_closing_time' => 'required',
             'per_person_cost' => 'required',
             'registration_cost' => 'required',
+            'organised_by_id' => '',
+            'no_show_cost' => '',
+            'other_costs' => '',
         ];
     }
 }
