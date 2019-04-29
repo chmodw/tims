@@ -32,7 +32,7 @@ Route::resource('inhouse','InHouseProgramController')->middleware('auth');
 Route::get('employee/get', 'EmployeeController@getEmployee');
 Route::resource('employee','EmployeeController')->middleware('auth');
 
-Route::get('postgrad/get', 'PostGradProgramController@getInhousePrograms');
+Route::get('postgrad/get', 'PostGradProgramController@getPostGradPrograms');
 Route::resource('postgrad','PostGradProgramController')->middleware('auth');
 
 Route::POST('trainee/find','TraineeController@find')->name('trainee.find')->middleware('auth');

@@ -1,13 +1,13 @@
 @extends('home')
 
 @section('content_header')
-    <h1>Post Graduation Programs</h1>
+    <h1>Post Graduate Programs</h1>
 @stop
 
 @section('main-content')
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
-            <a class="btn btn-default pull-right" href="{{url('programs/create/PostGradProgram')}}">
+            <a class="btn btn-default pull-right" href="{{url('postgrad/create')}}">
                 <i class="glyphicon glyphicon-plus margin-right-xs"></i>New</a>
         </div>
         <div class="panel-body">
@@ -34,7 +34,7 @@
             $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "/api/programs/get/PostGradProgram",
+                ajax: "/postgrad/get",
                 order: [7, 'desc'],
 
                 columns: [

@@ -39,6 +39,7 @@ class InHouseProgramValidate extends FormRequest
             'per_person_cost' => '',
             'no_show_cost' => '',
             'other_costs' => '',
+            'program_brochure' => 'mimes:doc,pdf,docx,jpg,jpeg,png|max:4999',
         ];
     }
 }
