@@ -69,9 +69,9 @@
                 <div class="col-md-6">
                     <div class="form-group has-feedback {{$errors->has('requirements') ? 'has-error' : ''}}">
                         <label for="requirements" class="required">Eligibility</label>
-                        <textarea class="form-control" style="height: 100px; min-height: 100px; max-height: 100px; max-width: 498.5px" name="requirements" id="requirements" placeholder="Eligibility">{{old('requirements')}}</textarea>
+                        <textarea class="form-control" style="height: 100px; min-height: 100px; max-height: 100px; max-width: 498.5px" name="requirements" id="requirements" placeholder="Eligibility,&#13;&#10;Eligibility">{{old('requirements')}}</textarea>
                         <small id="" class="form-text text-muted">
-                            Separate by a Enter
+                            Separate by a Comma
                         </small>
                         @if ($errors->has('requirements'))
                             <span class="help-block">{{ $errors->first('requirements') }}</span>
@@ -129,7 +129,7 @@
                 <div class="col-md-6">
                     <div class="form-group has-feedback {{$errors->has('installments') ? 'has-error' : ''}}">
                         <label for="installments" class="required">Installments</label>
-                        <textarea class="form-control" style="height: 75px; min-height: 75px; max-height: 75px; max-width: 498.5px" name="installments" id="installments" placeholder="1 = Cost&#13;&#10;2 = Cost">{{old('installments')}}</textarea>
+                        <textarea class="form-control" style="height: 75px; min-height: 75px; max-height: 75px; max-width: 498.5px" name="installments" id="installments" placeholder="1 = Cost,&#13;&#10;2 = Cost,">{{old('installments')}}</textarea>
                         <small id="" class="form-text text-muted">
                             Separate by a Enter
                         </small>

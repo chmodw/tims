@@ -30,7 +30,7 @@ class PostGradValidate extends FormRequest
             "target_group" => 'required|max:255',
             'requirements' => 'required|max:255',
             "application_closing_date" => 'required|date',
-            "application_closing_time" => 'required|time',
+            "application_closing_time" => 'required',
             "start_date" => 'required|date',
             "duration" => 'required|max:10',
             "registration_fees" => 'required|max:100',
