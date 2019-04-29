@@ -36,9 +36,7 @@ class InHouseProgramValidate extends FormRequest
             'end_time' => 'required',
             'application_closing_date' => 'required',
             'application_closing_time' => 'required',
-            'per_person_cost' => 'required',
-            'registration_cost' => 'required',
-            'organised_by_id' => '',
+            'per_person_cost' => '',
             'no_show_cost' => '',
             'other_costs' => '',
         ];

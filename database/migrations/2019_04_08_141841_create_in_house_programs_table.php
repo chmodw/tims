@@ -25,12 +25,13 @@ class CreateInHouseProgramsTable extends Migration
             $table->timestamp('start_date')->useCurrent = true;
             $table->time('end_time')->useCurrent = true;
             $table->timestamp('application_closing_date_time')->useCurrent = true;
+            $table->float('no_show_fee')->nullable();
+            $table->float('per_person_fee')->nullable();
 
             /// save resource on costs
 //            $table->text('resource_person'); //person name and designation
 
-//            $table->float('no_show_cost')->nullable();
-//            $table->float('per_person_cost')->nullable();
+
 //            $table->float('resource_person_cost')->nullable();
 //            $table->string('other_costs')->nullable();
 

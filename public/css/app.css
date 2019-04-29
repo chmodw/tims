@@ -77,6 +77,41 @@ input {
   white-space: nowrap;
 }
 
+.table-striped-custom {
+  margin: auto 15px;
+}
+
+.table-striped-custom > .row {
+  margin-bottom: 5px;
+}
+
+.table-striped-custom > div:nth-child(odd) {
+  background-color: #F9F9F9;
+}
+
+.table-title {
+  border-right: 1px solid #f39c12;
+  padding: 8px;
+}
+
+.table-title p {
+  color: #f39c12;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: end;
+}
+
+.table-content {
+  padding: 8px;
+}
+
+.cost-title {
+  color: #f39c12;
+  display: inline-block;
+  margin-left: 8px;
+  margin-right: 3px;
+}
+
 .padding-xs {
   padding: 0.25em;
 }

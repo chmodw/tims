@@ -22,7 +22,7 @@
         <div class="panel-body">
             <form method="POST" action="{{ route('inhouse.store') }}" enctype="multipart/form-data">
                 @csrf
-                <input type="hidden" value="LocalProgram" name="program_type">
+                <input type="hidden" value="InHouseProgram" name="program_type">
                 <div class="col-md-12">
                     <div class="form-group has-feedback {{$errors->has('program_title') ? 'has-error' : ''}}">
                         <label for="program_title" class="required">Program Title</label>
@@ -173,7 +173,7 @@
                 <div class="col-md-3">
                     <div class="form-group has-feedback {{$errors->has('no_show_cost') ? 'has-error' : ''}}">
                         <label for="no_show_cost">No-Show Fee (Rs)</label>
-                        <input type="number" value="{{old('no_show_cost')}}" class="form-control" id="no_show_cost" name="registration_cost">
+                        <input type="number" value="{{old('no_show_cost')}}" class="form-control" id="no_show_cost" name="no_show_cost">
                         @if ($errors->has('no_show_cost'))
                             <span class="help-block">{{ $errors->first('no_show_cost') }}</span>
                         @endif

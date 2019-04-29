@@ -47,7 +47,7 @@ class InHouseProgram extends Model
 
     public function getCreatedAtAttribute()
     {
-        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d');
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');
     }
 
     public function getStartDateAttribute()
@@ -72,7 +72,7 @@ class InHouseProgram extends Model
 
     public function getApplicationClosingDateTimeAttribute()
     {
-        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d');
+        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
     }
 
     public function getEndTimeAttribute()

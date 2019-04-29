@@ -7,80 +7,82 @@
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
             <form method="POST" action="{{ route('inhouse.destroy', $program->program_id) }}">
+                {{ csrf_field() }}
                 {{method_field('DELETE')}}
-                <input type="hidden" value="LocalProgram" name="program_type">
-                <input type="hidden" value="{{$program->program_id}}" name="program_id">
-                <button  class="btn btn-danger pull-right" style="margin-right:8px;"><i class="glyphicon glyphicon-trash margin-right-md"></i>&nbsp;Delete</button>
+                <button  class="btn btn-danger pull-right" style="margin-right:8px;" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash margin-right-sm"></i>&nbsp;Delete</button>
             </form>
-            <a class="btn btn-default pull-right" style="margin-right:8px;" href="/programs/trainee/LocalProgram/{{$program->program_id}}"><i class="glyphicon glyphicon-user margin-right-md"></i>Employees</a>
-            <a class="btn btn-warning pull-right" style="margin-right:8px;" href="/programs/edit/LocalProgram/{{$program->program_id}}"><i class="glyphicon glyphicon-pencil margin-right-md"></i>&nbsp;Edit</a>
-            <a class="btn btn-primary pull-right" style="margin-right:8px;" href="/programs/create/LocalProgram"><i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
+            <a class="btn btn-default pull-right" style="margin-right:8px;" href="{{url('trainee/index/InHouseProgram/'.$program->program_id)}}"><i class="glyphicon glyphicon-user margin-right-sm"></i>Employees</a>
+            <a class="btn btn-warning pull-right" style="margin-right:8px;" href="{{url('/inhouse/'.$program->program_id.'/edit')}}"><i class="glyphicon glyphicon-pencil margin-right-sm"></i>&nbsp;Edit</a>
+            <a class="btn btn-primary pull-right" style="margin-right:8px;" href="/inhouse/create"><i class="glyphicon glyphicon-plus margin-right-sm"></i>&nbsp;New</a>
         </div>
         <div class="panel-body">
-{{$program}}
-            <br>
-            {{$costs}}
-            <table class="table table-striped table-bordered">
-                <tbody>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Organised By</th>
-                            <td class="col-md-4">{{$program->name}}</td>
-                            <th class="col-md-2">Target Group</th>
-                            <td class="col-md-4">{{$program->target_group}}</td>
-                        </div>
-                    </tr>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Start Date</th>
-                            <td class="col-md-4">{{$program->start_date}}</td>
-                            <th class="col-md-2">Duration</th>
-                            <td class="col-md-4">{{$program->duration}}{{$program->is_long_term == 1 ? ' months' : ' days'}}</td>
-                        </div>
-                    </tr>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Application Closing On</th>
-                            <td class="col-md-4">{{$program->application_closing_date_time}}</td>
-                            <th class="col-md-2">Nature of the Employment</th>
-                            <td class="col-md-4">{{$program->nature_of_the_employment}}</td>
-                        </div>
-                    </tr>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Employee Category</th>
-                            <td class="col-md-4">{{$program->employee_category}}</td>
-                            <th class="col-md-2">Venue</th>
-                            <td class="col-md-4">{{$program->venue}}</td>
-                        </div>
-                    </tr>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Registration Fee</th>
-                            <td class="col-md-4">{{$program->program_fee}}</td>
-                            <th class="col-md-2">Non Member Fee</th>
-                            <td class="col-md-4">{{$program->non_member_fee}}</td>
-                        </div>
-                    </tr>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Member Fee</th>
-                            <td class="col-md-4">{{$program->member_fee}}</td>
-                            <th class="col-md-2">Student Fee</th>
-                            <td class="col-md-4">{{$program->student_fee}}</td>
-                        </div>
-                    </tr>
 
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Program Brochure</th>
-                            <td class="col-md-4"><a href="{{$program->brochure_url}}" class="{{$program->brochure_url == null ? ' hide' : ''}}">View</a></td>
-                            <th class="col-md-2"></th>
-                            <td class="col-md-4"></td>
-                        </div>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="table-striped-custom">
+                <div class="row">
+                    <div class="table-title col-md-2"><p>Title</p></div>
+                    <div class="table-content col-md-10"><h>{{$program->program_title}}</h></div>
+                </div>
+                <div class="row">
+                    <div class="table-title col-md-2"><p>Organised By</p></div>
+                    <div class="table-content col-md-4">{{$program->program_title}}</div>
+                    <div class="table-title col-md-2"><p>Target Group</p></div>
+                    <div class="table-content col-md-4">{{$program->program_title}}</div>
+                </div>
+                <div class="row">
+                    <div class="table-title col-md-2"><p>Start Date and Time</p></div>
+                    <div class="table-content col-md-2">{{\date('Y-m-d', \strtotime($program->start_date))}}<br>{{\date('H:i', \strtotime($program->start_date))}}</div>
+                    <div class="table-title col-md-3"><p>Application Closing Date And Time</p></div>
+                    <div class="table-content col-md-2">{{\date('Y-m-d', \strtotime($program->application_closing_date_time))}}<br>{{\date('H:i', \strtotime($program->application_closing_date_time))}}</div>
+                    <div class="table-title col-md-1"><p>Duration</p></div>
+                    <div class="table-content col-md-2">{{$program->hours}} Hours</div>
+                </div>
+                <div class="row">
+                    <div class="table-title col-md-2"><p>Nature Of The Employment</p></div>
+                    <div class="table-content col-md-4">{{$program->nature_of_the_employment}}</div>
+                    <div class="table-title col-md-2"><p>Employee Category</p></div>
+                    <div class="table-content col-md-4">{{$program->employee_category}}</div>
+                </div>
+
+                <div class="row">
+                    <div class="table-title col-md-2"><p>Resource Person(s)</p></div>
+                    <div class="table-content col-md-6">
+                        @foreach($costs as $cost)
+                            @if($cost['cost_name'] == 'resource person')
+                                <span><p class="cost-title">Name:</p> {{$cost['cost_content'][0]}}</span>
+                                <span><p class="cost-title">Designation:</p> {{$cost['cost_content'][1]}}</span>
+                                <span><p class="cost-title">Cost(Rs):</p> {{$cost['cost_value']}}/=</span>
+                                <br>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="table-title col-md-2"><p>Other Costs</p></div>
+                    <div class="table-content col-md-4">
+                        @foreach($costs as $cost)
+                            @if($cost['cost_name'] == 'other cost')
+                                <span><p class="cost-title">{{ucfirst($cost['cost_content'])}} = </p> {{$cost['cost_value']}}/=</span>
+                                <br>
+                            @endif
+                        @endforeach
+                    </div>
+                    <div class="table-title col-md-2"><p>Program Brochure</p></div>
+                    <div class="table-content col-md-4">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="table-title col-md-2"><p>No-Show Fee</p></div>
+                    <div class="table-content col-md-2">{{$program->no_show_fee}}</div>
+                    <div class="table-title col-md-2"><p>Per person fee</p></div>
+                    <div class="table-content col-md-2">{{$program->per_person_fee}}</div>
+                </div>
+                <div class="row">
+                    <div class="table-title col-md-2"><p>Created By</p></div>
+                    <div class="table-content col-md-2">{{$program->created_by}}</div>
+                    <div class="table-title col-md-2"><p>Created On</p></div>
+                    <div class="table-content col-md-2">{{$program->created_at}}</div>
+                </div>
+            </div>
         </div>
     </div>
 
