@@ -37,7 +37,7 @@
                 <div class="col-md-6">
                     <div class="form-group has-feedback {{$errors->has('organised_by_id') ? 'has-error' : ''}}">
                         <label for="organised_by_id" class="required">Institute</label>
-                        <input type="text" value="{{old('organised_by_id')}}" class="form-control" name="organised_by_id" id="organised_by_id" placeholder="Institute">
+                        <input type="text" value="{{old('organised_by_id')}}" class="form-control" name="organised_by_id" id="organised_by_id" placeholder="Institute" list="orgs">
                         <datalist id="orgs">
                             @foreach($orgs as $org)
                                 <option value="{{$org->name}}"></option>

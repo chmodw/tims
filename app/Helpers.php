@@ -45,8 +45,10 @@ class Helpers
 
     public static function strings_to_arrays($string, $by){
 
+        $arr = rtrim($string,',');
+        $arr = rtrim($arr,'=');
         //remove before and after comma white spaces
-        $arr = preg_replace('/\s*'.$by.'\s*/', ',', $string);
+        $arr = preg_replace('/\s*'.$by.'\s*/', ',', $arr);
         //split the string into arrays by ENTER
         $arr = explode(PHP_EOL, $arr);
         //split array of string into array values

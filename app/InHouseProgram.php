@@ -52,7 +52,7 @@ class InHouseProgram extends Model
 
     public function getStartDateAttribute()
     {
-        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d H:i');
+        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d');
     }
 
     public function getStartTimeAttribute()
@@ -78,6 +78,15 @@ class InHouseProgram extends Model
     public function getEndTimeAttribute()
     {
         return Carbon::parse($this->attributes['end_time'])->format('H:i');
+    }
+
+    public function getUpdatedByAttribute()
+    {
+        if($this->attributes['updated_by'] != null){
+            return $this->attributes['updated_by'];
+        }else{
+            return 'Not Updated';
+        }
     }
 
 }

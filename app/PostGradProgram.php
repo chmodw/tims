@@ -2,25 +2,13 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class PostGradProgram extends Model
 {
     protected $fillable =[
-        'id',
-        'program_id',
-        'title',
-        'institute',
-        'department',
-        'programs',
-        'requirements',
-        'application_closing_date_time',
-        'registration_fees',
-        'firstYear_fees',
-        'secondYear_fees',
-        'brochure_url',
-        'created_by',
-        'updated_by',
+
     ];
 
     public function program_id()
@@ -31,5 +19,39 @@ class PostGradProgram extends Model
     public function organised_by_id()
     {
         return $this->hasOne('App\Organisation', 'organisation_id', 'organised_by_id');
+    }
+
+    public function getRequirementsAttribute()
+    {
+        return unserialize($this->attributes['requirements']);
+    }
+
+    public function getApplicationClosingDateTimeAttribute()
+    {
+        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
+    }
+
+    public function getStartDateAttribute()
+    {
+        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');
+    }
+
+    public function getCreatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');
+    }
+
+    public function getUpdatedByAttribute()
+    {
+        if($this->attributes['updated_by'] != null){
+            return $this->attributes['updated_by'];
+        }else{
+            return 'Not Updated';
+        }
     }
 }

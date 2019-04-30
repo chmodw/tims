@@ -290,7 +290,7 @@ class InHouseProgramController extends Controller
 
                 $costs = new Cost();
 
-                $costs->program_id = $program_id;
+                $costs->program_id = $id;
                 $costs->cost_name = 'resource person';
                 $costs->cost_content = serialize([$resource_person[0],$resource_person[1]]);
                 $costs->cost_value = $resource_person[2];
@@ -304,7 +304,7 @@ class InHouseProgramController extends Controller
 
                 $costs = new Cost();
 
-                $costs->program_id = $program_id;
+                $costs->program_id = $id;
                 $costs->cost_name = 'other cost';
                 $costs->cost_content = $other_cost[0];
                 $costs->cost_value = $other_cost[1];
