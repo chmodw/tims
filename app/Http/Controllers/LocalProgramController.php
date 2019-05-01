@@ -111,10 +111,10 @@ class LocalProgramController extends Controller
     {
         $program = LocalProgram::join('organisations', 'organisations.organisation_id', 'local_programs.organised_by_id')
             ->where('program_id', $id)
-            ->select('local_programs.program_id', 'local_programs.program_title', 'local_programs.target_group', 'local_programs.start_date', 'local_programs.duration', 'local_programs.application_closing_date_time', 'local_programs.nature_of_the_employment', 'local_programs.employee_category', 'local_programs.venue','local_programs.is_long_term', 'local_programs.program_fee', 'local_programs.non_member_fee', 'local_programs.member_fee','local_programs.student_fee', 'local_programs.brochure_url', 'organisations.name')
-            ->get();
+            ->select('local_programs.*', 'organisations.name')
+            ->first();
 
-        if(sizeof($program) > 0){
+        if($program != null){
             return view('programs.LocalProgram.show')->with(compact('program'));
         }
 

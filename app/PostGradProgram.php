@@ -21,6 +21,11 @@ class PostGradProgram extends Model
         return $this->hasOne('App\Organisation', 'organisation_id', 'organised_by_id');
     }
 
+    public static function getTableName()
+    {
+        return with(new static)->getTable();
+    }
+
     public function getRequirementsAttribute()
     {
         return unserialize($this->attributes['requirements']);

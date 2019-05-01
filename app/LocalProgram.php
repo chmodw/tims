@@ -36,12 +36,17 @@ class LocalProgram extends Model
 
     public function getCreatedAtAttribute()
     {
-        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d');
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');
+    }
+
+    public function getUpdatedAtAttribute()
+    {
+        return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');
     }
 
     public function getStartDateAttribute()
     {
-        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d');
+        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d H:i');
     }
 
     public function getNatureOfTheEmploymentAttribute()
@@ -56,7 +61,16 @@ class LocalProgram extends Model
 
     public function getApplicationClosingDateTimeAttribute()
     {
-        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d');
+        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
+    }
+
+    public function getUpdatedByAttribute()
+    {
+        if($this->attributes['updated_by'] != null){
+            return $this->attributes['updated_by'];
+        }else{
+            return 'Not Updated';
+        }
     }
 
 

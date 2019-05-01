@@ -6,65 +6,85 @@
 
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
-            <form method="POST" action="{{ route('foreign.destroy', $program[0]->program_id) }}">
+            <form method="POST" action="{{ route('foreign.destroy', $program->program_id) }}">
                 {{ csrf_field() }}
                 {{method_field('DELETE')}}
                 <button  class="btn btn-danger pull-right" onclick="return confirm('Are you sure?')" style="margin-right:8px;"><i class="glyphicon glyphicon-trash margin-right-sm"></i>&nbsp;Delete</button>
             </form>
-            <a class="btn btn-default pull-right" style="margin-right:8px;" href="{{url('trainee/index/ForeignProgram/'.$program[0]->program_id)}}"><i class="glyphicon glyphicon-user margin-right-sm"></i>Employees</a>
-            <a class="btn btn-warning pull-right" style="margin-right:8px;" href="{{route('foreign.edit', $program[0]->program_id)}}"><i class="glyphicon glyphicon-pencil margin-right-sm"></i>&nbsp;Edit</a>
+            <a class="btn btn-default pull-right" style="margin-right:8px;" href="{{url('trainee/index/ForeignProgram/'.$program->program_id)}}"><i class="glyphicon glyphicon-user margin-right-sm"></i>Employees</a>
+            <a class="btn btn-warning pull-right" style="margin-right:8px;" href="{{route('foreign.edit', $program->program_id)}}"><i class="glyphicon glyphicon-pencil margin-right-sm"></i>&nbsp;Edit</a>
             <a class="btn btn-primary pull-right" style="margin-right:8px;" href="{{route('foreign.create')}}"><i class="glyphicon glyphicon-plus margin-right-sm"></i>&nbsp;New</a>
         </div>
         <div class="panel-body">
-            <table class="table table-striped table-bordered">
+            <div class="page-header">
+                <h1>{{$program->program_title}}</h1>
+            </div>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                <th style="width: 5%"></th>
+                </thead>
                 <tbody>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Organised By</th>
-                            <td class="col-md-4">{{$program[0]->name}}</td>
-                            <th class="col-md-2">Target Group</th>
-                            <td class="col-md-4">{{$program[0]->target_group}}</td>
-                        </div>
-                    </tr>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Start Date</th>
-                            <td class="col-md-4">{{$program[0]->start_date}}</td>
-                            <th class="col-md-2">Duration</th>
-                            <td class="col-md-4">{{$program[0]->duration}}{{$program[0]->is_long_term == 1 ? ' months' : ' days'}}</td>
-                        </div>
-                    </tr>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Application Closing On</th>
-                            <td class="col-md-4">{{$program[0]->application_closing_date_time}}</td>
-                            <th class="col-md-2">Nature of the Employment</th>
-                            <td class="col-md-4">{{$program[0]->nature_of_the_employment}}</td>
-                        </div>
-                    </tr>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Employee Category</th>
-                            <td class="col-md-4">{{$program[0]->employee_category}}</td>
-                            <th class="col-md-2">Venue</th>
-                            <td class="col-md-4">{{$program[0]->venue}}</td>
-                        </div>
-                    </tr>
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Program Fee</th>
-                            <td class="col-md-4">{{$program[0]->program_fee}}</td>
-                        </div>
-                    </tr>
-
-                    <tr class="row">
-                        <div class="col-md-12">
-                            <th class="col-md-2">Program Brochure</th>
-                            <td class="col-md-4"><a href="/storage/brochures/{{$program[0]->brochure_url}}" class="{{$program[0]->brochure_url == null ? ' hide' : ''}}">View</a></td>
-                            <th class="col-md-2"></th>
-                            <td class="col-md-4"></td>
-                        </div>
-                    </tr>
+                <tr>
+                    <th colspan="3">Target Group</th>
+                    <td colspan="17">{{$program->target_group}}</td>
+                </tr>
+                <tr>
+                    <th colspan="3">Organised By</th>
+                    <td colspan="7">{{$program->name}}</td>
+                    <th colspan="3">Venue</th>
+                    <td colspan="7">{{$program->venue}}</td>
+                </tr>
+                <tr>
+                    <th colspan="2">Start Date</th>
+                    <td colspan="2">{{\date('Y-m-d',strtotime($program->start_date))}}</td>
+                    <th colspan="2">Duration</th>
+                    <td colspan="3">{{$program->duration}}{{$program->is_long_term == 1 ? ' months' : ' days'}}</td>
+                    <th colspan="4">Application Closing Date</th>
+                    <td colspan="2">{{\date('Y-m-d',strtotime($program->application_closing_date_time))}}</td>
+                    <th colspan="2">Time</th>
+                    <td colspan="3">{{\date('H:i',strtotime($program->application_closing_date_time))}}</td>
+                </tr>
+                <tr>
+                    <th colspan="3">Nature of the Employment</th>
+                    <td colspan="7">{{$program->nature_of_the_employment}}</td>
+                    <th colspan="3">Employee Category</th>
+                    <td colspan="7">{{$program->employee_category}}</td>
+                </tr>
+                <tr>
+                    <th colspan="3">Program Fee (Rs)</th>
+                    <td colspan="5">{{$program->program_fee}}</td>
+                    <th colspan="3">Program Brochure</th>
+                    <td colspan="9">{{$program->brochure_url}}</td>
+                </tr>
+                <tr>
+                    <th colspan="2">Created By</th>
+                    <td colspan="3">{{$program->created_by}}</td>
+                    <th colspan="2">Created On</th>
+                    <td colspan="3">{{$program->created_at}}</td>
+                    <th colspan="2">Updated By</th>
+                    <td colspan="3">{{$program->updated_by}}</td>
+                    <th colspan="2">Updated On</th>
+                    <td colspan="3">{{$program->updated_at}}</td>
+                </tr>
                 </tbody>
             </table>
         </div>
@@ -75,7 +95,7 @@
             Documents
         </div>
         <div class="panel-body">
-            <a class="btn btn-primary" style="margin-right:8px;" href="/pdf/LocalProgram/{{$program[0]->program_id}}">Approval Letter</a>
+            <a class="btn btn-primary" style="margin-right:8px;" href="/pdf/LocalProgram/{{$program->program_id}}">Approval Letter</a>
         </div>
     </div>
 

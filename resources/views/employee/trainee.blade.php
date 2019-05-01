@@ -107,7 +107,7 @@
                 Selected Trainees
             </div>
             <div class="panel-body">
-                <table class="table table-bordered">
+                <table class="table table-bordered table-striped">
                     <thead>
                     <tr>
                         <th scope="col">Name</th>

@@ -30,6 +30,11 @@ class InHouseProgram extends Model
 //        'updated_by',
     ];
 
+    public static function getTableName()
+    {
+        return with(new static)->getTable();
+    }
+
     public function program_id()
     {
         return $this->morphMany('App\Program', 'program_id');

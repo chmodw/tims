@@ -111,9 +111,9 @@ class ForeignProgramController extends Controller
         $program = ForeignProgram::join('organisations', 'organisations.organisation_id', 'foreign_programs.organised_by_id')
             ->where('program_id', $id)
             ->select('foreign_programs.*', 'organisations.name')
-            ->get();
+            ->first();
 
-        if(sizeof($program) > 0){
+        if($program != null){
             return view('programs.ForeignProgram.show')->with(compact('program'));
         }
 
