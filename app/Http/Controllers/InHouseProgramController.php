@@ -172,6 +172,8 @@ class InHouseProgramController extends Controller
             'in_house_programs.brochure_url',
             'in_house_programs.created_at',
             'in_house_programs.created_by',
+            'in_house_programs.updated_by',
+            'in_house_programs.updated_at',
             'organisations.name'
         )
         ->first();

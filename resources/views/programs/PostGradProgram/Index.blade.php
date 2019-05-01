@@ -5,6 +5,7 @@
 @stop
 
 @section('main-content')
+    @include('layouts._alert')
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
             <a class="btn btn-default pull-right" href="{{url('postgrad/create')}}">
