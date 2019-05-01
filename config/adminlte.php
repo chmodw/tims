@@ -141,7 +141,25 @@ return [
             'icon' => 'user',
         ],
 
-        
+        'BUDGET',
+
+        [
+            'text' => 'Budget',
+            'url'  => 'budget/',
+            'icon' => 'dollar',
+
+
+        ],
+
+        'PAYMENTS',
+
+        [
+            'text' => 'Payments',
+            'url'  => 'payment/',
+            'icon' => 'dollar',
+
+
+        ],
 
 //        'SYSTEM SETTINGS',
 //        [

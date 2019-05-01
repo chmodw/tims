@@ -127,25 +127,16 @@ class budgetController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+
+        $budget = Budget::findOrFail($id);
+
+        $budget->delete();
+
+        return redirect('budget');
+
+
     }
 
-    //budget form validations
-//    private function BudgetFormValidation(){
-//        return [
-//            'selection_Id' => 'required',
-//            'section_name' => 'required',
-//            'budget_year' => 'required|after_or_equal:today',
-//            'budget_amount' => 'required|max:255',
-//
-//        ];
-//    }
-
-public function calculateActualAmount(){
-
-
-
-
-}
 
 }

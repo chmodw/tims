@@ -41,9 +41,22 @@
                                 </div>
                             </div>
                         </form>
+
+                        <form action="{!! url('budget',$editBudget[0]->id ) !!}" method="DELETE" enctype="multipart/form-data">
+
+                            <div class="col col-md-12">
+                                <div class="form-group">
+                                    <input type="submit" class="btn btn-danger" value="Delete" >
+
+                                </div>
+                            </div>
+
+                        </form>
+
                     @else
                             <script>window.location = "/programs/foreign";</script>
                     @endif
+
                 </div>
             </div>
 @endsection

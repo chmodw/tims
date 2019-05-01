@@ -20,6 +20,7 @@
                                     <th>Allocated Amount</th>
 
                                     <th>Edit</th>
+
                                 </tr>
                                 </thead>
 
@@ -40,6 +41,7 @@
                                                 <i  class="fa fa-eye" style="color: blue" aria-hidden="true"></i>
                                             </a>
                                         </td>
+
                                     </tr>
                                 @endforeach
 

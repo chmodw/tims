@@ -3,6 +3,9 @@
 
 @section('main-content')
 
+@include('layouts._alert')
+
+
 <div class="panel panel-default">
     <div class="panel-heading">
        Budget Allocation
