@@ -31,12 +31,16 @@ class CreateLocalProgramsTable extends Migration
             $table->float('non_member_fee')->nullable();
             $table->float('member_fee')->nullable();
             $table->float('student_fee')->nullable();
+
+
             $table->string('brochure_url')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();
 
             $table->foreign('organised_by_id')->references('organisation_id')->on('organisations');
+            $table->foreign('created_by')->references('email')->on('users');
+            $table->foreign('updated_by')->references('email')->on('users');
 
 
         });

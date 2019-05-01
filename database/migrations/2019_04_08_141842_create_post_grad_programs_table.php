@@ -16,21 +16,25 @@ class CreatePostGradProgramsTable extends Migration
         Schema::create('post_grad_programs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('program_id')->unique();
-            $table->string('title');
+            $table->string('program_title');
             $table->string('organised_by_id');
             $table->string('department');
-            $table->text('programs'); //serialized array
-            $table->text('requirements'); // serialized array
+            $table->text('requirements');
+            $table->text('target_group');
+            $table->timestamp('start_date');
+            $table->string('duration'); //months
             $table->timestamp('application_closing_date_time')->useCurrent = true;
-            $table->float('registration_fees');
-            $table->float('firstYear_fees');
-            $table->float('secondYear_fees');
-            $table->string('brochure_url');
+            $table->float('registration_fees')->nullable();;
+            $table->string('installments')->nullable();;
+            $table->string('brochure_url')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();
 
+
             $table->foreign('organised_by_id')->references('organisation_id')->on('organisations');
+            $table->foreign('created_by')->references('email')->on('users');
+            $table->foreign('updated_by')->references('email')->on('users');
         });
     }
 

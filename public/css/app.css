@@ -13,6 +13,104 @@ input[type=image] {
   margin-right: 1rem;
 }
 
+.styled-checkbox {
+  position: absolute;
+  opacity: 0;
+}
+
+.styled-checkbox + label {
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+}
+
+.styled-checkbox + label:before {
+  content: "";
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 20px;
+  height: 20px;
+  background: #eeeeee;
+}
+
+.styled-checkbox:hover + label:before {
+  background: #F39C12;
+}
+
+.styled-checkbox:focus + label:before {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+}
+
+.styled-checkbox:checked + label:before {
+  background: #F39C12;
+}
+
+.styled-checkbox:disabled + label {
+  color: #b8b8b8;
+  cursor: auto;
+}
+
+.styled-checkbox:disabled + label:before {
+  box-shadow: none;
+  background: #ddd;
+}
+
+.styled-checkbox:checked + label:after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 9px;
+  background: white;
+  width: 2px;
+  height: 2px;
+  box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+input {
+  padding-right: 12px !important;
+}
+
+.employee-table tr td {
+  white-space: nowrap;
+}
+
+.table-striped-custom {
+  margin: auto 15px;
+}
+
+.table-striped-custom > .row {
+  margin-bottom: 5px;
+}
+
+.table-striped-custom > div:nth-child(odd) {
+  background-color: #F9F9F9;
+}
+
+.table-title {
+  border-right: 1px solid #f39c12;
+  padding: 8px;
+}
+
+.table-title p {
+  color: #f39c12;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.table-content {
+  padding: 8px;
+}
+
+.cost-title {
+  color: #f39c12;
+  display: inline-block;
+  margin-left: 8px;
+  margin-right: 3px;
+}
+
 .padding-xs {
   padding: 0.25em;
 }

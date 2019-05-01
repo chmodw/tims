@@ -1,13 +1,14 @@
 @extends('home')
 
 @section('content_header')
-    <h1>Post Graduation Programs</h1>
+    <h1>Post Graduate Programs</h1>
 @stop
 
 @section('main-content')
+    @include('layouts._alert')
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
-            <a class="btn btn-default pull-right" href="{{url('programs/create/PostGradProgram')}}">
+            <a class="btn btn-default pull-right" href="{{url('postgrad/create')}}">
                 <i class="glyphicon glyphicon-plus margin-right-xs"></i>New</a>
         </div>
         <div class="panel-body">
@@ -19,8 +20,7 @@
                     <th style="width:20%;">Target Group</th>
                     <th style="width:10%;">Cosing Date</th>
                     <th style="width:10%;">Start Date</th>
-                    <th style="width:15%;">Organised By</th>
-                    <th style="width:10%;">Venue</th>
+                    <th style="width:15%;">Institute</th>
                     <th style="width:10%;">Created on</th>
                     {{--                    <th style="width: 10%;">Actions</th>--}}
                 </tr>
@@ -34,8 +34,8 @@
             $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "/api/programs/get/PostGradProgram",
-                order: [7, 'desc'],
+                ajax: "/postgrad/get",
+                order: [6, 'desc'],
 
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
@@ -44,7 +44,6 @@
                     {data: 'application_closing_date_time', name: 'application_closing_date_time'},
                     {data: 'start_date', name: 'start_date'},
                     {data: 'name', name: 'name'},
-                    {data: 'venue', name: 'venue'},
                     {data: 'created_at', name: 'created_at'},
                 ]
             });

@@ -20,22 +20,23 @@ class CreateForeignProgramsTable extends Migration
             $table->string('organised_by_id');
             $table->string('notified_by');
             $table->string('target_group');
-            $table->enum('nature_of_the_appointment',['permanent', 'fixed', 'contract']);
-            $table->enum('employee_category',['technical', 'non-technical', 'both']);
+            $table->string('nature_of_the_employment');
+            $table->string('employee_category');
             $table->string('venue');
-            $table->enum('currency',['usd', 'non-euro', 'gbp', 'lkr']);
+            $table->enum('currency',['usd', 'euro', 'gbp', 'lkr']);
             $table->float('program_fee')->nullable();
             $table->date('start_date');
             $table->date('end_date');
             $table->string('application_closing_date_time');
             $table->integer('duration');
-            $table->string('brochure_url');
+            $table->string('brochure_url')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();
 
             $table->foreign('organised_by_id')->references('organisation_id')->on('organisations');
-            //Possible default value
+            $table->foreign('created_by')->references('email')->on('users');
+            $table->foreign('updated_by')->references('email')->on('users');
 
 
         });

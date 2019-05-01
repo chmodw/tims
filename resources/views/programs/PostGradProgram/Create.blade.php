@@ -2,7 +2,7 @@
 
 @section('content_header')
     <h1 class="inline">New Post Graduation Program</h1>
-    <a href="{{url('programs/LocalPrograms')}}" class="btn btn-default pull-right">Back</a>
+    <a href="{{url('postgrad')}}" class="btn btn-default pull-right">Back</a>
 @stop
 
 @section('title', 'TIMS | Create Post Graduation Program')
@@ -20,9 +20,11 @@
     <div class="panel panel-default">
         @include('layouts._alert')
         <div class="panel-body">
-            <form method="POST" action="{{ route('programs.create') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('postgrad.store') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="PostGradProgram" name="program_type">
+
+
                 <div class="col-md-12">
                     <div class="form-group has-feedback {{$errors->has('program_title') ? 'has-error' : ''}}">
                         <label for="program_title" class="required">Program Title</label>
@@ -33,11 +35,16 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="form-group has-feedback {{$errors->has('organised_by') ? 'has-error' : ''}}">
-                        <label for="organised_by" class="required">Institute</label>
-                        <input type="text" value="{{old('organised_by')}}" class="form-control" name="organised_by_id" id="organised_by" placeholder="Institute">
-                        @if ($errors->has('organised_by'))
-                            <span class="help-block">{{ $errors->first('organised_by') }}</span>
+                    <div class="form-group has-feedback {{$errors->has('organised_by_id') ? 'has-error' : ''}}">
+                        <label for="organised_by_id" class="required">Institute</label>
+                        <input type="text" value="{{old('organised_by_id')}}" class="form-control" name="organised_by_id" id="organised_by_id" placeholder="Institute" list="orgs">
+                        <datalist id="orgs">
+                            @foreach($orgs as $org)
+                                <option value="{{$org->name}}"></option>
+                            @endforeach
+                        </datalist>
+                        @if ($errors->has('organised_by_id'))
+                            <span class="help-block">{{ $errors->first('organised_by_id') }}</span>
                         @endif
                     </div>
                 </div>
@@ -50,25 +57,28 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="form-group has-feedback {{$errors->has('programs') ? 'has-error' : ''}}">
-                        <label for="content" class="required">Programs</label>
-                        <textarea class="form-control" style="height: 175px; min-height: 175px; max-height: 175px; max-width: 498.5px" name="content" id="programs" placeholder="Available Programs">{{old('programs')}}</textarea>
-                        @if ($errors->has('programs'))
-                            <span class="help-block">{{ $errors->first('programs') }}</span>
+                <div class="col-md-6" style="">
+                    <div class="form-group has-feedback {{$errors->has('target_group') ? 'has-error' : ''}}">
+                        <label for="target_group" class="required">Target Group</label>
+                        <input type="text" value="{{old('target_group')}}" name="target_group" class="form-control" id="target_group" placeholder="Target Group">
+                        @if ($errors->has('target_group'))
+                            <span class="help-block">{{ $errors->first('target_group') }}</span>
                         @endif
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="form-group has-feedback {{$errors->has('requirements') ? 'has-error' : ''}}">
-                        <label for="content" class="required">Requirements</label>
-                        <textarea class="form-control" style="height: 175px; min-height: 175px; max-height: 175px; max-width: 498.5px" name="content" id="requirements" placeholder="Requirements">{{old('requirements')}}</textarea>
+                        <label for="requirements" class="required">Eligibility</label>
+                        <textarea class="form-control" style="height: 100px; min-height: 100px; max-height: 100px; max-width: 498.5px" name="requirements" id="requirements" placeholder="Eligibility,&#13;&#10;Eligibility">{{old('requirements')}}</textarea>
+                        <small id="" class="form-text text-muted">
+                            Separate by a Comma
+                        </small>
                         @if ($errors->has('requirements'))
                             <span class="help-block">{{ $errors->first('requirements') }}</span>
                         @endif
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="form-group has-feedback {{$errors->has('application_closing_date') ? 'has-error' : ''}}">
                         <label for="application_closing_date" class="required">Application Closing Date</label>
                         <input type="date" value="{{old('application_closing_date')}}" class="form-control" id="application_closing_date" name="application_closing_date" placeholder="">
@@ -86,7 +96,28 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-3">
+                    <div class="form-group has-feedback {{$errors->has('start_date') ? 'has-error' : ''}}">
+                        <label for="start_date" class="required">Start Date</label>
+                        <input type="date" value="{{old('start_date')}}" class="form-control" id="start_date" name="start_date">
+                        @if ($errors->has('start_date'))
+                            <span class="help-block">{{ $errors->first('start_date') }}</span>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group has-feedback {{$errors->has('duration') ? 'has-error' : ''}}">
+                        <label for="duration" class="required inline">Duration</label>
+                        <input type="number" value="{{old('duration')}}" class="form-control inline" id="duration" placeholder="Number of Months" id="duration" name="duration">
+                        <small id="durationHelpBlock" class="form-text text-muted">
+                            Months
+                        </small>
+                        @if ($errors->has('duration'))
+                            <span class="help-block">{{ $errors->first('duration') }}</span>
+                        @endif
+                    </div>
+                </div>
+                <div class="col-md-4">
                     <div class="form-group has-feedback {{$errors->has('registration_fees') ? 'has-error' : ''}}">
                         <label for="registration_fees" class="required">Registration Fees (Rs)</label>
                         <input type="number" value="{{old('registration_fees')}}" class="form-control" id="registration_fees" name="registration_fees" placeholder="Registration Fees">
@@ -95,42 +126,19 @@
                         @endif
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group has-feedback {{$errors->has('year_one') ? 'has-error' : ''}}">
-                        <label for="year_one" class="required">1st Year</label>
-                        <input type="number" value="{{old('year_one')}}" class="form-control" id="year_one" name="year_one" placeholder="First Year">
-                        @if ($errors->has('year_one'))
-                            <span class="help-block">{{ $errors->first('year_one') }}</span>
+                <div class="col-md-6">
+                    <div class="form-group has-feedback {{$errors->has('installments') ? 'has-error' : ''}}">
+                        <label for="installments" class="required">Installments</label>
+                        <textarea class="form-control" style="height: 75px; min-height: 75px; max-height: 75px; max-width: 498.5px" name="installments" id="installments" placeholder="1 = Cost,&#13;&#10;2 = Cost,">{{old('installments')}}</textarea>
+                        <small id="" class="form-text text-muted">
+                            Separate by a Enter
+                        </small>
+                        @if ($errors->has('installments'))
+                            <span class="help-block">{{ $errors->first('installments') }}</span>
                         @endif
                     </div>
                 </div>
-                <div class="col-md-3">
-                    <div class="form-group has-feedback {{$errors->has('year_two') ? 'has-error' : ''}}">
-                        <label for="year_two" class="required">2nd Year</label>
-                        <input type="number" value="{{old('year_two')}}" class="form-control" id="year_two" name="year_two" placeholder="Second Year">
-                        @if ($errors->has('year_two'))
-                            <span class="help-block">{{ $errors->first('year_two') }}</span>
-                        @endif
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group has-feedback {{$errors->has('year_three') ? 'has-error' : ''}}">
-                        <label for="year_three">3rd Year</label>
-                        <input type="number" value="{{old('year_three')}}" class="form-control" id="year_three" name="year_three" placeholder="Third Year">
-                        @if ($errors->has('year_three'))
-                            <span class="help-block">{{ $errors->first('year_three') }}</span>
-                        @endif
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group has-feedback {{$errors->has('year_four') ? 'has-error' : ''}}">
-                        <label for="year_four">4th Year</label>
-                        <input type="number" value="{{old('year_four')}}" class="form-control" id="year_four" name="year_four" placeholder="Fourth Year">
-                        @if ($errors->has('year_four'))
-                            <span class="help-block">{{ $errors->first('year_four') }}</span>
-                        @endif
-                    </div>
-                </div>
+
                 <div class="col-md-6">
                     <div class="form-group has-feedback {{$errors->has('program_brochure') ? 'has-error' : ''}}">
                         <label for="program_brochure">Program Brochure</label>

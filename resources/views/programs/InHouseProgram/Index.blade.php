@@ -1,13 +1,14 @@
 @extends('home')
 
 @section('content_header')
-    <h1>In House Programs</h1>
+    <h1>In-House Programs</h1>
 @stop
 
 @section('main-content')
+    @include('layouts._alert')
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
-            <a class="btn btn-default pull-right" href="{{url('programs/create/InHouseProgram')}}">
+            <a class="btn btn-default pull-right" href="{{route('inhouse.create')}}">
                 <i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
         </div>
         <div class="panel-body">
@@ -34,7 +35,7 @@
             $('#table').DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "/api/programs/get/InHouseProgram",
+                ajax: "/inhouse/get",
                 order: [7, 'desc'],
 
                 columns: [

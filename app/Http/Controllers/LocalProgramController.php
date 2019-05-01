@@ -11,7 +11,7 @@ class LocalProgramController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['get']]);
+        $this->middleware('auth');
     }
 
     /**
@@ -56,12 +56,13 @@ class LocalProgramController extends Controller
         /**
          * Check the organisation in the database
          */
-        if(is_null(Organisation::where('organisation_id', $validated['organised_by_id'])->first())){
+        if(is_null(Organisation::where('name', strtolower($validated['organised_by_id']))->first())){
             $orgId = Helpers::u_id([$validated['organised_by_id'], auth()->user()->email, request()->program_type]);
-            Organisation::create(['organisation_id' => $orgId, 'name' => $validated['organised_by_id'], 'created_by' => auth()->user()->email]);
+            Organisation::create(['organisation_id' => $orgId, 'name' => strtolower($validated['organised_by_id']), 'created_by' => auth()->user()->email]);
             $localProgram->organised_by_id = $orgId;
         }else{
-            $localProgram->organised_by_id = $validated['organised_by_id'];
+            $orgId = Organisation::where('name', strtolower($validated['organised_by_id']))->get('organisation_id')->first();
+            $localProgram->organised_by_id = $orgId['organisation_id'];
         }
 
         $localProgram->target_group = $validated['target_group'];
@@ -78,14 +79,15 @@ class LocalProgramController extends Controller
         $localProgram->non_member_fee = $validated['non_member_fee'];
         $localProgram->member_fee = $validated['member_fee'];
         $localProgram->student_fee = $validated['student_fee'];
+
         //  check if a program brochure is present
         if ($request->file('program_brochure') != null) {
             //get the file ext
             $ext = $request->file('program_brochure')->getClientOriginalExtension();
             //save the file in the storage
-            $fileName = $validated['program_id'] . "." . $ext;
+            $fileName = $randomProgramId . "." . $ext;
             $savedFile = $request->file('program_brochure')->storeAs('public/brochures', $fileName);
-            $localProgram->program_brochure = $fileName;
+            $localProgram->brochure_url = $fileName;
         }
 
         $localProgram->created_by = auth()->user()->email;
@@ -109,10 +111,10 @@ class LocalProgramController extends Controller
     {
         $program = LocalProgram::join('organisations', 'organisations.organisation_id', 'local_programs.organised_by_id')
             ->where('program_id', $id)
-            ->select('local_programs.program_id', 'local_programs.program_title', 'local_programs.target_group', 'local_programs.start_date', 'local_programs.duration', 'local_programs.application_closing_date_time', 'local_programs.nature_of_the_employment', 'local_programs.employee_category', 'local_programs.venue','local_programs.is_long_term', 'local_programs.program_fee', 'local_programs.non_member_fee', 'local_programs.member_fee','local_programs.student_fee', 'local_programs.brochure_url', 'organisations.name')
-            ->get();
+            ->select('local_programs.*', 'organisations.name')
+            ->first();
 
-        if(sizeof($program) > 0){
+        if($program != null){
             return view('programs.LocalProgram.show')->with(compact('program'));
         }
 
@@ -162,7 +164,8 @@ class LocalProgramController extends Controller
             Organisation::create(['organisation_id' => $orgId, 'name' => $validated['organised_by_id'], 'created_by' => auth()->user()->email]);
             $localProgram->organised_by_id = $orgId;
         }else{
-            $localProgram->organised_by_id = $validated['organised_by_id'];
+            $orgId = Organisation::where('name', strtolower($validated['organised_by_id']))->get('organisation_id');
+            $localProgram->organised_by_id = $orgId;
         }
         $localProgram->target_group = $validated['target_group'];
         $localProgram->start_date = Helpers::joint_date_time($validated['start_date'],$validated['start_time']);

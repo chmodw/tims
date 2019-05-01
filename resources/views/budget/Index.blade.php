@@ -1,8 +1,6 @@
 @extends('home')
 
 @section('main-content')
-    <div class="container">
-        <div class="row">
             <div class="col-md-7">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
@@ -55,8 +53,6 @@
             <div class="col-md-5">
                 <div id="donutchart" style="width: 100%; height: 500px;"></div>
             </div>
-        </div>
-    </div>
 @endsection
 
 @section('js')
