@@ -42,9 +42,13 @@
                 <div class="panel-body">
                         <table class="table table-bordered">
                             <tbody>
-                            <form action="{{route('program.store')}}" method="POST">
+                            <tr>
+                                <th style="width: 20%">Full Name</th>
+                                <td>{{session('trainee')['FullName']}}</td>
+                            </tr>
+                            <form action="{{route('trainee.store')}}" method="POST">
                                 <tr>
-                                    <th style="width: 35%">Name</th>
+                                    <th style="width: 20%">Name With Initials</th>
                                     <td>{{session('trainee')['Initial'].' '.\ucwords(strtolower(session('trainee')['Name']))}}</td>
                                 </tr>
                                 <tr>
@@ -80,13 +84,13 @@
                                     <td>{{session('trainee')['EmployeeRecruitmentType']}}</td>
                                 </tr>
                                 <tr>
+                                    <th></th>
                                     <td>
-                                {{ csrf_field() }}
-                                <input type="hidden" required name="program_id" value="{{$program['program_id']}}">
-                                <input type="hidden" required name="epf_no" value="{{session('trainee')['EPFNo']}}">
-    {{--                            <input type="hidden" required name="recommendation" value="{{session('trainee')['WorkSpaceTypeName']}}">--}}
-                                <input type="hidden" required name="type" value="{{$program_type}}">
-                                <input type="submit" class="btn btn-primary padding-left-md" value="Add">
+                                        {{ csrf_field() }}
+                                        <input type="hidden" required name="program_id" value="{{$program['program_id']}}">
+                                        <input type="hidden" required name="epf_no" value="{{session('trainee')['EPFNo']}}">
+                                        <input type="hidden" required name="type" value="{{$program_type}}">
+                                        <input type="submit" class="btn btn-primary padding-left-md" value="Add">
                                     </td>
                                 </tr>
                             </form>
@@ -125,7 +129,7 @@
                                     ->format('%Y years and %m months')
                                     }}
                             </td>
-                            <td>{{$program['WorkSpaceTypeName']}}</td>
+                            <td>{{$program['recommendation']}}</td>
                             <td>{{$program['EmployeeRecruitmentType']}}</td>
                         </tr>
                     @endforeach

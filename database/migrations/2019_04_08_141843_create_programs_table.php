@@ -20,7 +20,7 @@ class CreateProgramsTable extends Migration
             $table->string('recommendation');
             $table->string('type');
             $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
 
 //            $table->foreign('trainee_id')->references('id')->on('trainees');
