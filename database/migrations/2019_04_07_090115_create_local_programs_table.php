@@ -27,12 +27,10 @@ class CreateLocalProgramsTable extends Migration
             $table->string('employee_category');//,['technical', 'non-technical', 'both']
             $table->string('venue');
             $table->boolean('is_long_term')->default(false);
-
-
-//            $table->float('program_fee')->nullable();
-//            $table->float('non_member_fee')->nullable();
-//            $table->float('member_fee')->nullable();
-//            $table->float('student_fee')->nullable();
+            $table->float('program_fee')->nullable();
+            $table->float('non_member_fee')->nullable();
+            $table->float('member_fee')->nullable();
+            $table->float('student_fee')->nullable();
 
 
             $table->string('brochure_url')->nullable();

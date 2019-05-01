@@ -79,6 +79,7 @@ class LocalProgramController extends Controller
         $localProgram->non_member_fee = $validated['non_member_fee'];
         $localProgram->member_fee = $validated['member_fee'];
         $localProgram->student_fee = $validated['student_fee'];
+
         //  check if a program brochure is present
         if ($request->file('program_brochure') != null) {
             //get the file ext

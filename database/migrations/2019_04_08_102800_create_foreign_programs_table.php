@@ -24,11 +24,7 @@ class CreateForeignProgramsTable extends Migration
             $table->string('employee_category');
             $table->string('venue');
             $table->enum('currency',['usd', 'euro', 'gbp', 'lkr']);
-
-
-//            $table->float('program_fee')->nullable();
-
-
+            $table->float('program_fee')->nullable();
             $table->date('start_date');
             $table->date('end_date');
             $table->string('application_closing_date_time');

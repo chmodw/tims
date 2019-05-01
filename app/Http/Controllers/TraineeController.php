@@ -26,11 +26,11 @@ class TraineeController extends Controller
 
             $tbl = $model::getTableName();
 
-            $program = $model::where('program_id', $id)->select($tbl.'.program_id', $tbl.'.program_title')->get();
+            $program = $model::where('program_id', $id)->select($tbl.'.program_id', $tbl.'.program_title')->first();
 
             $programs = app('App\Http\Controllers\ProgramController')->index($class, $id);
 
-            return view('programs/'.$class.'/trainee')->with(compact('program'))->with(['program_type' => $class])->with(compact('programs'));
+            return view('employee.trainee')->with(compact('program'))->with(['program_type' => $class])->with(compact('programs'));
 
         } else {
             return abort(404);
@@ -107,13 +107,20 @@ class TraineeController extends Controller
     public function find(Request $request)
     {
 
-        $trainee = Employee::join('hrm_Designation', 'hrm_Designation.DesignationId', 'cmn_EmployeeVersion.DesignationId')
-                    ->join('cmn_workspace','cmn_workspace.WorkSpaceId','cmn_EmployeeVersion.WorkSpaceId')
-                    ->join('cmn_WorkSpaceType', 'cmn_WorkSpaceType.WorkSpaceTypeId', 'cmn_workspace.WorkSpaceTypeId')
-                    ->where('cmn_EmployeeVersion.EPFNo', $request->epfNo)->where('cmn_EmployeeVersion.IsActive', 1)
-                    ->select('cmn_EmployeeVersion.Initial','cmn_EmployeeVersion.EPFNo','cmn_EmployeeVersion.DateOfAppointment', 'cmn_EmployeeVersion.EmployeeRecruitmentType','cmn_EmployeeVersion.Name', 'hrm_Designation.DesignationName', 'cmn_WorkSpaceType.WorkSpaceTypeName')
-                    ->get();
 
-        return redirect()->back()->with(compact('trainee'));
+        $trainee = Employee::join('hrm_Designation', 'hrm_Designation.DesignationId', 'cmn_EmployeeVersion.DesignationId')
+//                    ->join('cmn_workspace','cmn_workspace.WorkSpaceId','cmn_EmployeeVersion.WorkSpaceId')
+                    ->join('cmn_workspace','cmn_workspace.WorkSpaceId','cmn_EmployeeVersion.AGMWorkSpaceId')
+//                    ->join('cmn_workspace','cmn_workspace.WorkSpaceId','cmn_EmployeeVersion.DGMWorkSpaceId')
+                    ->join('cmn_WorkSpaceType', 'cmn_WorkSpaceType.WorkSpaceTypeId', 'cmn_workspace.WorkSpaceTypeId')
+                    ->where('cmn_EmployeeVersion.'.$request->select_option,$request->search_content)->where('cmn_EmployeeVersion.IsActive', 1)
+                    ->select('cmn_EmployeeVersion.Initial','cmn_EmployeeVersion.EPFNo','cmn_EmployeeVersion.DateOfAppointment', 'cmn_EmployeeVersion.EmployeeRecruitmentType','cmn_EmployeeVersion.Name', 'hrm_Designation.DesignationName', 'cmn_WorkSpaceType.WorkSpaceTypeName','cmn_WorkSpace.WorkSpaceName','cmn_WorkSpace.WorkSpaceCode')
+                    ->first();
+
+        if(isset($trainee)){
+            return redirect()->back()->with(compact('trainee'));
+        }
+
+        return redirect()->back()->with(compact(['failed'=>'No Results!']));
     }
 }

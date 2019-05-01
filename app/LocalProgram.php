@@ -49,6 +49,11 @@ class LocalProgram extends Model
         return implode(", ", unserialize($this->attributes['nature_of_the_employment']));
     }
 
+    public function getEmployeeCategoryAttribute()
+    {
+        return implode(", ", unserialize($this->attributes['employee_category']));
+    }
+
     public function getApplicationClosingDateTimeAttribute()
     {
         return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d');
