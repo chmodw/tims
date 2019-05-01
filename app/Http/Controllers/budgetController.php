@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Budget;
+use App\Http\Requests\BudgetValidate;
 use App\WorkSpaceType;
 use Carbon\Carbon;
 use DemeterChain\B;
@@ -45,16 +46,16 @@ class budgetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BudgetValidate $request)
     {
 
 
-        $request->validate([
-            'section_Id'=> 'required',
-            'section_name' => 'required',
-            'budget_year' => 'required',
-            'budget_amount' => 'required'
-        ]);
+//        $request->validate([
+//            'section_Id'=> 'required',
+//            'section_name' => 'required',
+//            'budget_year' => 'required',
+//            'budget_amount' => 'required'
+//        ]);
 
         $submitedDate = Carbon::parse($request->budget_year);
 
