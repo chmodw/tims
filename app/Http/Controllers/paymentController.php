@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Employer;
+
+use App\Http\Requests\PaymentValidate;
 use App\Payment;
 use App\Program;
 use Illuminate\Http\Request;
-use vendor\project\StatusTest;
+
 
 class paymentController extends Controller
 {
@@ -44,7 +45,7 @@ class paymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PaymentValidate $request)
     {
 
         foreach ($request->row as $item)
@@ -77,7 +78,7 @@ class paymentController extends Controller
     public function show(Request $req)
     {
 
-
+      //
     }
 
     /**

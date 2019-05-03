@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Budget;
+use App\Http\Requests\BudgetValidate;
 use App\WorkSpaceType;
 use Carbon\Carbon;
-use DemeterChain\B;
+
 use Illuminate\Http\Request;
 
 class budgetController extends Controller
@@ -45,16 +46,16 @@ class budgetController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BudgetValidate $request)
     {
 
 
-        $request->validate([
-            'section_Id'=> 'required',
-            'section_name' => 'required',
-            'budget_year' => 'required',
-            'budget_amount' => 'required'
-        ]);
+//        $request->validate([
+//            'section_Id'=> 'required',
+//            'section_name' => 'required',
+//            'budget_year' => 'required',
+//            'budget_amount' => 'required'
+//        ]);
 
         $submitedDate = Carbon::parse($request->budget_year);
 
@@ -126,25 +127,16 @@ class budgetController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+
+        $budget = Budget::findOrFail($id);
+
+        $budget->delete();
+
+        return redirect('budget');
+
+
     }
 
-    //budget form validations
-//    private function BudgetFormValidation(){
-//        return [
-//            'selection_Id' => 'required',
-//            'section_name' => 'required',
-//            'budget_year' => 'required|after_or_equal:today',
-//            'budget_amount' => 'required|max:255',
-//
-//        ];
-//    }
-
-public function calculateActualAmount(){
-
-
-
-
-}
 
 }
