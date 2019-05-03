@@ -145,7 +145,7 @@ recommendation of respective AGM.');
         $section->addText('Training Manager');
 
 
-        
+
 
         $objWriter = \PhpOffice\PhpWord\IOFactory::createWriter($phpWord, 'Word2007');
         $objWriter->save('helloWorld.docx');
