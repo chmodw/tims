@@ -111,6 +111,14 @@ input {
   margin-right: 3px;
 }
 
+.v-middle {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  height: 50%;
+}
+
 .padding-xs {
   padding: 0.25em;
 }

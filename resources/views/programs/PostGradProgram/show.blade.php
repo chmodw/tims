@@ -109,11 +109,35 @@
             Documents
         </div>
         <div class="panel-body">
-            <a class="btn btn-primary" style="margin-right:8px;" href="/pdf/LocalProgram/{{$program->program_id}}">Approval Letter</a>
+            <form class="form-inline" method="POST" action="{{route('doc.generate')}}">
+                {{ csrf_field() }}
+                <input type="hidden" name="program_id"  value="{{$program->program_id}}">
+                <input type="hidden" name="program_type"  value="PostGradProgram">
+                <div class="col-md-2">
+                    <label for="doc_option" class="v-middle" style="margin-top: 4px;">Select Document Type :</label>
+                </div>
+                <div class="col-md-6">
+                    <select name="doc_type" id="doc_option" class="form-control" style="width: 100%;">
+                        <option value="committee_approval">Committee Approval</option>
+                    </select>
+                </div>
+                <div class="col-md-8">
+                    <textarea name="summernote" id="summernote"></textarea>
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" name="customize" value="Customize and Generate" class="btn btn-default margin-right-sm">
+                    <input type="submit" name="generate" value="Generate" class="btn btn-primary">
+                </div>
+            </form>
         </div>
     </div>
 
     <script>
-
+        window.onload = function() {
+            $(document).ready(function() {
+                $('#summernote').summernote();
+            });
+        }
     </script>
+
 @endsection

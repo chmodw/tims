@@ -41,6 +41,12 @@ Route::get('trainee/index/{class}/{id}','TraineeController@index')->middleware('
 
 Route::resource('program','ProgramController', ['except' => 'index'])->middleware('auth');
 
+/**
+ * Docs Routes
+ */
+Route::resource('doc','DocumentController')->middleware('auth');
+Route::POST('doc/generate','DocumentController@generate')->name('doc.generate')->middleware('auth');
+
 // Routes for Budget
 Route::resource('budget','budgetController')->middleware('auth');
 //Routes for payment
