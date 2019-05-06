@@ -96,7 +96,7 @@ class TemplateManagerController extends Controller
     {
         $template = TemplateManager::where('file_name', $filename)->first();
 
-        return view('templates/create', ['template_edit' => $template]);
+        return view('templates/edit', ['template_edit' => $template]);
     }
 
     /**
@@ -106,9 +106,39 @@ class TemplateManagerController extends Controller
      * @param  \App\TemplateManager  $templateManager
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, TemplateManager $templateManager)
+    public function update(Request $request, $id)
     {
-        //
+
+        $validated = $request->validate([
+            'program_type' => 'required',
+            'template_name' => 'required|max:50',
+            'template' => ''
+        ]);
+
+        $tmpmngr = TemplateManager::find($id);
+
+        if(isset($validated['template'])){
+            $uid = Helpers::u_id([$validated['template_name'],auth()->user()->email,$validated['program_type']]);
+            //get the file ext
+            $ext = $request->file('template')->getClientOriginalExtension();
+            //save the file in the storage
+            $fileName = $uid . "." . $ext;
+            $savedFile = $request->file('template')->storeAs('templates', $fileName);
+            $tmpmngr->file_name = $fileName;
+        }
+
+        $tmpmngr->name = $validated['template_name'];
+        $tmpmngr->program_type = $validated['program_type'];
+        $tmpmngr->created_by = auth()->user()->email;
+
+        $saved = $tmpmngr->save();
+
+        if($saved){
+            return redirect('/templatemanager')->with('success', ' The Template Updated successfully');
+        }else{
+            return Redirect::back()->withInput(Input::all())->with('failed ', ' System Could not Update the Template. please contact the administrator');
+        }
+
     }
 
     /**
@@ -117,8 +147,14 @@ class TemplateManagerController extends Controller
      * @param  \App\TemplateManager  $templateManager
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TemplateManager $templateManager)
+    public function destroy($id)
     {
-        //
+        $deletedRows = TemplateManager::find($id)->delete();
+
+        if($deletedRows > 0){
+            return redirect('/templatemanager')->with('success', ' The Template has been successfully Deleted');
+        }else{
+            return back()->with('failed', "System Could not Delete the Requested Template");
+        }
     }
 }

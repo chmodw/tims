@@ -33,7 +33,7 @@
                             <td class="action-btn-container">
                                 <a href="{{url('templatemanager/'.$template->file_name)}}" class="margin-right-sm"><i class="glyphicon glyphicon-download-alt"></i></a>
                                 <a href="{{url('templatemanager/'.$template->file_name.'/edit')}}" style="display: inline-block; color: orange;"class="margin-right-sm"><i class="glyphicon glyphicon-edit"></i></a>
-                                <form style="display: inline-block;" method="POST" action="{{ route('templatemanager.destroy', $template->file_name) }}">
+                                <form style="display: inline-block;" method="POST" action="{{ route('templatemanager.destroy', $template->id) }}">
                                     {{ csrf_field() }}
                                     {{method_field('DELETE')}}
                                     <button  class='btn btn-link' style="display: inline-block; color: red; padding: 0; margin-top: -8px;" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash"></i></button>
