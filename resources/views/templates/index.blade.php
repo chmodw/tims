@@ -25,7 +25,7 @@
                 <tbody>
                     @foreach ($templates as $i => $template)
                         <tr>
-                            <td scope="row">{{isset($_GET['page']) ? (20 * $_GET['page']) - (20-$i) + 1 : $i+1}}</td>
+                            <td scope="row">{{isset($_GET['page']) ? (16 * $_GET['page']) - (16-$i) + 1 : $i+1}}</td>
                             <td>{{$template->name}}</td>
                             <td>{{$template->program_type}}</td>
                             <td>{{$template->created_at}}</td>
@@ -43,61 +43,68 @@
                     @endforeach
                 </tbody>
             </table>
-            {{ $templates->links() }}
-        </div>
-    </div>
+            <div class="page-links">
+                {{ $templates->links() }}
+            </div>
 
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Local Program Fields
+            <div class="panel panel-info ref-list">
+                <div class="panel-heading">Document Templates Reference Lists</div>
+                <div class="panel-body">
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Local Program Fields
+                            </div>
+                            <div class="panel-body">
+                                @foreach($local_programs_cols as $cols)
+                                    {{'${'.$cols.'}'}}
+                                    <br>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Foreign Program Fields
+                            </div>
+                            <div class="panel-body">
+                                @foreach($foreign_programs_cols as $cols)
+                                    {{'${'.$cols.'}'}}
+                                    <br>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Post Grad. Program Fields
+                            </div>
+                            <div class="panel-body">
+                                @foreach($postgrad_programs_cols as $cols)
+                                    {{'${'.$cols.'}'}}
+                                    <br>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                In-House Program Fields
+                            </div>
+                            <div class="panel-body">
+                                @foreach($inhouse_programs_cols as $cols)
+                                    {{'${'.$cols.'}'}}
+                                    <br>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="panel-body">
-                @foreach($local_programs_cols as $cols)
-                    {{'${'.$cols.'}'}}
-                    <br>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Foreign Program Fields
-            </div>
-            <div class="panel-body">
-                @foreach($foreign_programs_cols as $cols)
-                    {{'${'.$cols.'}'}}
-                    <br>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Post Grad. Program Fields
-            </div>
-            <div class="panel-body">
-                @foreach($postgrad_programs_cols as $cols)
-                    {{'${'.$cols.'}'}}
-                    <br>
-                @endforeach
-            </div>
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                In-House Program Fields
-            </div>
-            <div class="panel-body">
-                @foreach($inhouse_programs_cols as $cols)
-                    {{'${'.$cols.'}'}}
-                    <br>
-                @endforeach
-            </div>
-        </div>
-    </div>
 
+        </div>
+    </div>
 @endsection

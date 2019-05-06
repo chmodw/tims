@@ -140,6 +140,14 @@ input {
   margin: auto;
 }
 
+.ref-list {
+  margin-top: 40px;
+}
+
+.page-links {
+  text-align: center;
+}
+
 .padding-xs {
   padding: 0.25em;
 }

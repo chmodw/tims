@@ -25,7 +25,7 @@ class TemplateManagerController extends Controller
         $postgrad = new PostGradProgram();
         $inhouse = new InHouseProgram();
 
-        $templates = TemplateManager::paginate(20);
+        $templates = TemplateManager::paginate(16);
 
         return view('templates/index', [
             'templates' => $templates,
