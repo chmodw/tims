@@ -1,14 +1,11 @@
 @extends('home')
 
-@section('content_header')
-    <h1>CECB Employees</h1>
-@stop
-
 @section('main-content')
 
     @include('layouts._alert')
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
+            <p class="" style="">CECB Employees</p>
             <a class="btn btn-default pull-right" href="{{route('local.create')}}">
                 <i class="glyphicon glyphicon-plus margin-right-sm"></i>&nbsp;New</a>
         </div>
