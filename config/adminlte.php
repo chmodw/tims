@@ -140,9 +140,7 @@ return [
             'url'  => 'employee/',
             'icon' => 'user',
         ],
-
         'BUDGET',
-
         [
             'text' => 'Budget',
             'url'  => 'budget/',
@@ -150,41 +148,28 @@ return [
 
 
         ],
-
-        'PAYMENTS',
-
         [
             'text' => 'Payments',
             'url'  => 'payment/',
             'icon' => 'dollar',
-
-
         ],
-
-//        'SYSTEM SETTINGS',
-//        [
-//            'text' => 'Blog',
-//            'url'  => 'admin/blog',
-//            'can'  => 'manage-blog',
-//        ],
-//        [
-//            'text'        => 'Pages',
-//            'url'         => 'admin/pages',
-//            'icon'        => 'file',
-//            'label'       => 4,
-//            'label_color' => 'success',
-//        ],
-//        'ACCOUNT SETTINGS',
-//        [
-//            'text' => 'Profile',
-//            'url'  => 'admin/settings',
-//            'icon' => 'user',
-//        ],
-//        [
-//            'text' => 'Change Password',
-//            'url'  => 'admin/settings',
-//            'icon' => 'lock',
-//        ],
+        'SYSTEM SETTINGS',
+        [
+            'text'        => 'Templates',
+            'url'         => 'templatemanager/',
+            'icon'        => 'file',
+        ],
+        'ACCOUNT SETTINGS',
+        [
+            'text' => 'Profile',
+            'url'  => 'admin/settings',
+            'icon' => 'user',
+        ],
+        [
+            'text' => 'Change Password',
+            'url'  => 'admin/settings',
+            'icon' => 'lock',
+        ],
     ],
 
     /*

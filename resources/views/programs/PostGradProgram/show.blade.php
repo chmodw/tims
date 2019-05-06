@@ -125,8 +125,8 @@
                     <textarea name="summernote" id="summernote"></textarea>
                 </div>
                 <div class="col-md-4">
-                    <input type="submit" name="customize" value="Customize and Generate" class="btn btn-default margin-right-sm">
-                    <input type="submit" name="generate" value="Generate" class="btn btn-primary">
+                    <input type="submit" name="submit" value="Customize and Generate" class="btn btn-default margin-right-sm">
+                    <input type="submit" name="submit" value="Generate" class="btn btn-primary">
                 </div>
             </form>
         </div>

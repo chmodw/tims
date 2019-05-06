@@ -51,3 +51,5 @@ Route::POST('doc/generate','DocumentController@generate')->name('doc.generate')-
 Route::resource('budget','budgetController')->middleware('auth');
 //Routes for payment
 Route::resource('payment','paymentController')->middleware('auth');
+
+Route::resource('templatemanager','TemplateManagerController')->middleware('auth');
