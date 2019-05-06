@@ -42,6 +42,11 @@ class ForeignProgram extends Model
         return with(new static)->getTable();
     }
 
+    public function getTableColumns()
+    {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
+
     public function getCreatedAtAttribute()
     {
         return Carbon::parse($this->attributes['created_at'])->format('Y-m-d H:i');

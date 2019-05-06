@@ -35,6 +35,11 @@ class InHouseProgram extends Model
         return with(new static)->getTable();
     }
 
+    public function getTableColumns()
+    {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
+
     public function program_id()
     {
         return $this->morphMany('App\Program', 'program_id');

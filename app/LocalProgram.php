@@ -23,6 +23,11 @@ class LocalProgram extends Model
         return $this->belongsTo('Organisation\Trainee', 'organisation_id');
     }
 
+    public function getTableColumns()
+    {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
+
     public function program_id()
     {
         return $this->morphMany('App\Program', 'program_id');

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\ForeignProgram;
 use App\Helpers;
+use App\InHouseProgram;
+use App\LocalProgram;
+use App\PostGradProgram;
 use App\TemplateManager;
 use Illuminate\Http\Request;
 
@@ -15,9 +19,21 @@ class TemplateManagerController extends Controller
      */
     public function index()
     {
+
+        $local = new LocalProgram();
+        $foreign = new ForeignProgram();
+        $postgrad = new PostGradProgram();
+        $inhouse = new InHouseProgram();
+
         $templates = TemplateManager::paginate(20);
 
-        return view('templates/index', ['templates' => $templates]);
+        return view('templates/index', [
+            'templates' => $templates,
+            'local_programs_cols' => $local->getTableColumns(),
+            'foreign_programs_cols' => $foreign->getTableColumns(),
+            'postgrad_programs_cols' => $postgrad->getTableColumns(),
+            'inhouse_programs_cols' => $inhouse->getTableColumns(),
+            ]);
     }
 
     /**

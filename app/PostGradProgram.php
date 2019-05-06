@@ -25,6 +25,15 @@ class PostGradProgram extends Model
     {
         return with(new static)->getTable();
     }
+    /**
+     * Get columns
+     *
+     * @return array
+     */
+    public function getTableColumns()
+    {
+        return $this->getConnection()->getSchemaBuilder()->getColumnListing($this->getTable());
+    }
 
     public function getRequirementsAttribute()
     {
