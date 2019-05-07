@@ -105,8 +105,6 @@ input {
 }
 
 .cost-title {
-  color: #f39c12;
-  display: inline-block;
   margin-left: 8px;
   margin-right: 3px;
 }
@@ -145,6 +143,10 @@ input {
 }
 
 .page-links {
+  text-align: center;
+}
+
+.text-align-center {
   text-align: center;
 }
 

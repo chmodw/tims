@@ -18,91 +18,81 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="page-header">
+            <div class="page-header text-align-center">
                 <h1>{{$program->program_title}}</h1>
             </div>
-            <table class="table table-bordered table-striped">
-                <thead>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                    <th style="width: 5%"></th>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th colspan="3">Target Group</th>
-                        <td colspan="17">{{$program->target_group}}</td>
-                    </tr>
-                    <tr>
-                        <th colspan="3">Organised By</th>
-                        <td colspan="7">{{$program->name}}</td>
-                        <th colspan="3">Venue</th>
-                        <td colspan="7">{{$program->venue}}</td>
-                    </tr>
-                    <tr>
-                        <th colspan="4">Application Closing Date</th>
-                        <td colspan="3">{{\date('Y-m-d', \strtotime($program->application_closing_date_time))}}</td>
-                        <th colspan="1">Time</th>
-                        <td colspan="2">{{\date('H:i', \strtotime($program->application_closing_date_time))}}</td>
-                        <th colspan="2">Start Date</th>
-                        <td colspan="3">{{\date('Y-m-d', \strtotime($program->start_date))}}</td>
-                        <th colspan="2">Duration</th>
-                        <td colspan="3">{{$program->duration}}{{$program->is_long_term == 1 ? ' months' : ' days'}}</td>
-                    </tr>
-                    <tr>
-                        <th colspan="3">Nature of the Employment</th>
-                        <td colspan="7">{{$program->nature_of_the_employment}}</td>
-                        <th colspan="3">Employee Category</th>
-                        <td colspan="7">{{$program->employee_category}}</td>
-                    </tr>
-                    <tr>
-                        <th colspan="3">Organised By</th>
-                        <td colspan="7">{{$program->name}}</td>
-                        <th colspan="3">Program Title</th>
-                        <td colspan="7">{{$program->program_title}}</td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">Program Fee (Rs)</th>
-                        <td colspan="3">{{$program->program_fee}}</td>
-                        <th colspan="2">Member Fee (Rs)</th>
-                        <td colspan="3">{{$program->member_fee}}</td>
-                        <th colspan="2">Non Member Fee (Rs)</th>
-                        <td colspan="3">{{$program->non_member_fee}}</td>
-                        <th colspan="2">Student Fee (Rs)</th>
-                        <td colspan="3">{{$program->student_fee}}</td>
-                    </tr>
-                    <tr>
-                        <th colspan="3">Program Brochure</th>
-                        <td colspan="17">{{$program->brochure_url}}</td>
-                    </tr>
-                    <tr>
-                        <th colspan="2">Created By</th>
-                        <td colspan="3">{{$program->created_by}}</td>
-                        <th colspan="2">Created On</th>
-                        <td colspan="3">{{$program->created_at}}</td>
-                        <th colspan="2">Updated By</th>
-                        <td colspan="3">{{$program->updated_by}}</td>
-                        <th colspan="2">Updated On</th>
-                        <td colspan="3">{{$program->updated_at}}</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="col-md-10 col-md-offset-1">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <th style="width: 25%"></th>
+                        <th style="width: 25%"></th>
+                        <th style="width: 25%"></th>
+                        <th style="width: 25%"></th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th colspan="1">Target Group</th>
+                            <td colspan="3">{{$program->target_group}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Organised By</th>
+                            <td colspan="3">{{$program->name}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Venue</th>
+                            <td colspan="3">{{$program->venue}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Nature of the Employment</th>
+                            <td colspan="3">{{$program->nature_of_the_employment}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Employee Category</th>
+                            <td colspan="3">{{$program->employee_category}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Application Closing Date</th>
+                            <td colspan="1">{{\date('Y-m-d', \strtotime($program->application_closing_date_time))}}</td>
+                            <th colspan="1">Time</th>
+                            <td colspan="1">{{\date('H:i', \strtotime($program->application_closing_date_time))}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Start Date</th>
+                            <td colspan="1">{{\date('Y-m-d', \strtotime($program->start_date))}}</td>
+                            <th colspan="1">Duration</th>
+                            <td colspan="1">{{$program->duration}}{{$program->is_long_term == 1 ? ' months' : ' days'}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Program Fee (Rs)</th>
+                            <td colspan="1">{{$program->program_fee}}</td>
+                            <th colspan="1">Member Fee (Rs)</th>
+                            <td colspan="1">{{$program->member_fee}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Non Member Fee (Rs)</th>
+                            <td colspan="1">{{$program->non_member_fee}}</td>
+                            <th colspan="1">Student Fee (Rs)</th>
+                            <td colspan="1">{{$program->student_fee}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Program Brochure</th>
+                            <td colspan="3">{{$program->brochure_url}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Created By</th>
+                            <td colspan="1">{{$program->created_by}}</td>
+                            <th colspan="1">Created On</th>
+                            <td colspan="1">{{$program->created_at}}</td>
+                        </tr>
+                        <tr>
+                            <th colspan="1">Updated By</th>
+                            <td colspan="1">{{$program->updated_by}}</td>
+                            <th colspan="1">Updated On</th>
+                            <td colspan="1">{{$program->updated_at}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
