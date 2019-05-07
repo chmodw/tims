@@ -48,7 +48,7 @@
             </div>
 
             <div class="panel panel-info ref-list">
-                <div class="panel-heading">Document Templates Reference Lists</div>
+                <div class="panel-heading"><p>Document Templates Reference Lists</p></div>
                 <div class="panel-body">
                     <div class="col-md-3">
                         <div class="panel panel-default">
