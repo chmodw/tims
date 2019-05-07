@@ -1,13 +1,10 @@
 @extends('home')
 
-@section('content_header')
-    <h1>In-House Programs</h1>
-@stop
-
 @section('main-content')
     @include('layouts._alert')
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
+            <p>In-House Programs</p>
             <a class="btn btn-default pull-right" href="{{route('inhouse.create')}}">
                 <i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
         </div>

@@ -14,6 +14,7 @@
             <a class="btn btn-default pull-right" style="margin-right:8px;" href="{{url('trainee/index/ForeignProgram/'.$program->program_id)}}"><i class="glyphicon glyphicon-user margin-right-sm"></i>Employees</a>
             <a class="btn btn-warning pull-right" style="margin-right:8px;" href="{{route('foreign.edit', $program->program_id)}}"><i class="glyphicon glyphicon-pencil margin-right-sm"></i>&nbsp;Edit</a>
             <a class="btn btn-primary pull-right" style="margin-right:8px;" href="{{route('foreign.create')}}"><i class="glyphicon glyphicon-plus margin-right-sm"></i>&nbsp;New</a>
+            <a href="{{route('foreign.index')}}" class="btn btn-default pull-right margin-right-sm"><i class="glyphicon glyphicon-arrow-left margin-right-sm"></i>Back</a>
         </div>
         <div class="panel-body">
             <div class="page-header text-align-center">

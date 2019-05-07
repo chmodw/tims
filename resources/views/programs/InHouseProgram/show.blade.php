@@ -9,12 +9,12 @@
             <form meth` od="POST" action="{{ route('inhouse.destroy', $program->program_id) }}">
                 {{ csrf_field() }}
                 {{method_field('DELETE')}}
-                <button  class="btn btn-danger pull-right" style="margin-right:8px;" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash margin-right-sm"></i>&nbsp;Delete</button>
+                <button  class="btn btn-danger pull-right" style="margin-right:8px; margin-top: 14px;" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash margin-right-sm"></i>&nbsp;Delete</button>
             </form>
             <a class="btn btn-default pull-right" style="margin-right:8px;" href="{{url('trainee/index/InHouseProgram/'.$program->program_id)}}"><i class="glyphicon glyphicon-user margin-right-sm"></i>Employees</a>
             <a class="btn btn-warning pull-right" style="margin-right:8px;" href="{{url('/inhouse/'.$program->program_id.'/edit')}}"><i class="glyphicon glyphicon-pencil margin-right-sm"></i>&nbsp;Edit</a>
             <a class="btn btn-primary pull-right" style="margin-right:8px;" href="/inhouse/create"><i class="glyphicon glyphicon-plus margin-right-sm"></i>&nbsp;New</a>
-            <a href="{{route('inhouse.index')}}" class="btn btn-default pull-right"><i class="glyphicon glyphicon-arrow-left margin-right-sm"></i>Back</a>
+            <a href="{{route('inhouse.index')}}" class="btn btn-default pull-right margin-right-sm"><i class="glyphicon glyphicon-arrow-left margin-right-sm"></i>Back</a>
         </div>
         <div class="panel-body">
             <div class="page-header text-align-center">

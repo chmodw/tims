@@ -1,13 +1,10 @@
 @extends('home')
 
-@section('content_header')
-    <h1>Foreign Programs</h1>
-@stop
-
 @section('main-content')
     @include('layouts._alert')
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
+            <p>Foreign Programs</p>
             <a class="btn btn-default pull-right" href="{{route('foreign.create')}}">
                 <i class="glyphicon glyphicon-plus margin-right-md"></i>&nbsp;New</a>
         </div>

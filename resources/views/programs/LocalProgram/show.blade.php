@@ -13,8 +13,9 @@
                     <button  class="btn btn-danger pull-right" style="margin-right:8px;" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash margin-right-sm"></i>&nbsp;Delete</button>
                 </form>
                 <a class="btn btn-default pull-right" style="margin-right:8px;" href="{{url('trainee/index/LocalProgram/'.$program->program_id)}}"><i class="glyphicon glyphicon-user margin-right-sm"></i>Employees</a>
-                <a class="btn btn-warning pull-right" style="margin-right:8px;" href="/local/{{$program->program_id}}/edit"><i class="glyphicon glyphicon-pencil margin-right-sm"></i>&nbsp;Edit</a>
-                <a class="btn btn-primary pull-right" style="margin-right:8px;" href="/local/create"><i class="glyphicon glyphicon-plus margin-right-sm"></i>&nbsp;New</a>
+                <a class="btn btn-warning pull-right" style="margin-right:8px;" href="{{route('local.edit', $program->program_id)}}"><i class="glyphicon glyphicon-pencil margin-right-sm"></i>&nbsp;Edit</a>
+                <a class="btn btn-primary pull-right" style="margin-right:8px;" href="{{route('local.create')}}"><i class="glyphicon glyphicon-plus margin-right-sm"></i>&nbsp;New</a>
+                <a href="{{route('local.index')}}" class="btn btn-default pull-right margin-right-sm"><i class="glyphicon glyphicon-arrow-left margin-right-sm"></i>Back</a>
             </div>
         </div>
         <div class="panel-body">

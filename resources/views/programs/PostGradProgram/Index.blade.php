@@ -1,13 +1,10 @@
 @extends('home')
 
-@section('content_header')
-    <h1>Post Graduate Programs</h1>
-@stop
-
 @section('main-content')
     @include('layouts._alert')
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
+            <p>Post Graduate Programs</p>
             <a class="btn btn-default pull-right" href="{{url('postgrad/create')}}">
                 <i class="glyphicon glyphicon-plus margin-right-xs"></i>New</a>
         </div>

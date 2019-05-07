@@ -73,10 +73,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <div class="form-group has-feedback {{$errors->has('requirements') ? 'has-error' : ''}}">
                                 <label for="requirements" class="required">Eligibility</label>
-                                <textarea class="form-control" style="height: 100px; min-height: 100px; max-height: 100px; max-width: 498.5px" name="requirements" id="requirements" placeholder="Eligibility,&#13;&#10;Eligibility">{{old('requirements')}}</textarea>
+                                <textarea class="form-control" style="height: 100px; min-height: 100px; max-height: 200px; max-width: 100%;min-width: 100%" name="requirements" id="requirements" placeholder="Eligibility,&#13;&#10;Eligibility">{{old('requirements')}}</textarea>
                                 <small id="" class="form-text text-muted">
                                     Separate by a Comma
                                 </small>
