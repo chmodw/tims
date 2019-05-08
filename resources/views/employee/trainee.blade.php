@@ -76,6 +76,10 @@
                                     }}"></td>
                                 </tr>
                                 <tr>
+                                    <th>Grade</th>
+                                    <td>{{session('trainee')['GradeName']}}</td>
+                                </tr>
+                                <tr>
                                     <th>EPF</th>
                                     <td>{{session('trainee')['EPFNo']}}</td>
                                 </tr>
@@ -115,12 +119,13 @@
                         <th scope="col">Experience</th>
                         <th scope="col">Recommendation</th>
                         <th scope="col">Recruitment Type</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($programs as $program)
                         <tr>
-                            <td scope="row">{{$program['Initial'].' '.\ucwords(strtolower($program['Name']))}}</td>
+                            <td scope="row"><a href="{{route('employee.show', $program['EPFNo'])}}">{{$program['Initial'].' '.\ucwords(strtolower($program['Name']))}}</a></td>
                             <td>{{$program['DesignationName']}}</td>
                             <td>{{
                                     date_diff(
@@ -131,6 +136,15 @@
                             </td>
                             <td>{{$program['recommendation']}}</td>
                             <td>{{$program['EmployeeRecruitmentType']}}</td>
+                            <td>
+                                <form method="POST" action="{{ route('trainee.destroy', $program['program_id'])}}">
+                                    {{ csrf_field() }}
+                                    {{method_field('DELETE')}}
+                                    <input name="EPFNo" type="hidden" value="{{$program['EPFNo']}}">
+                                    <input name="program_id" type="hidden" value="{{$program['program_id']}}">
+                                    <button  class="btn btn-link" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-minus-sign" style="color: red;"></i></button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>

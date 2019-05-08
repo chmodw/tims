@@ -14,6 +14,7 @@
                 <table class="table table-bordered table-striped employee-table" style="" id="table">
                     <thead>
                     <tr>
+                        <th></th>
                         <th>#</th>
                         <th>Title</th>
                         <th>Full Name</th>
@@ -46,6 +47,7 @@
                 order: [3, 'asc'],
 
                 columns: [
+                    {data: 'actions', name: 'actions', orderable: false, searchable: false},
                     {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
                     {data: 'Title', name: 'Title'},
                     {data: 'FullName', name: 'FullName'},

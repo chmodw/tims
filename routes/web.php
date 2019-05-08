@@ -30,16 +30,23 @@ Route::get('inhouse/get', 'InHouseProgramController@getInhousePrograms')->middle
 Route::resource('inhouse','InHouseProgramController')->middleware('auth');
 
 Route::get('employee/get', 'EmployeeController@getEmployee');
-Route::resource('employee','EmployeeController')->middleware('auth');
+Route::resource('employee','EmployeeController')->middleware('auth')->except('destroy', 'create', 'edit')->middleware('auth');
 
 Route::get('postgrad/get', 'PostGradProgramController@getPostGradPrograms');
 Route::resource('postgrad','PostGradProgramController')->middleware('auth');
 
 Route::POST('trainee/find','TraineeController@find')->name('trainee.find')->middleware('auth');
-Route::resource('trainee','TraineeController', ['except' => 'index'])->except('destroy', 'create', 'edit')->middleware('auth');
+/**
+ * Without Index
+ */
+Route::resource('trainee','TraineeController', ['except' => 'index'])->middleware('auth');
+/**
+ * Custom Trainee INDEX route
+ */
 Route::get('trainee/index/{class}/{id}','TraineeController@index')->middleware('auth');
 
 Route::resource('program','ProgramController', ['except' => 'index'])->middleware('auth');
+Route::get('program/{class}/{id}','ProgramController@index')->middleware('auth');
 
 /**
  * Docs Routes

@@ -11,7 +11,6 @@ class EmployeeController extends Controller
 
     public function __construct()
     {
-//        $this->middleware('auth', ['except' => ['getLocalPrograms']]);
         $this->middleware('auth');
     }
 
@@ -25,26 +24,6 @@ class EmployeeController extends Controller
         return view('employee/index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -54,42 +33,66 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $employee = Employee
+            ::join('hrm_Designation', 'hrm_Designation.DesignationId', 'cmn_EmployeeVersion.DesignationId')
+            ->join('hrm_Grade','hrm_Grade.GradeId','cmn_EmployeeVersion.GradeId')
+            ->join('cmn_workspace','cmn_workspace.WorkSpaceId','cmn_EmployeeVersion.AGMWorkSpaceId')
+            ->join('cmn_WorkSpaceType', 'cmn_WorkSpaceType.WorkSpaceTypeId', 'cmn_workspace.WorkSpaceTypeId')
+            ->where('cmn_EmployeeVersion.EPFNo', $id)->where('cmn_EmployeeVersion.IsActive', true)
+            ->select(
+                'cmn_EmployeeVersion.EmployeeCode',
+                'cmn_EmployeeVersion.EPFNo',
+                'cmn_EmployeeVersion.Title',
+                'cmn_EmployeeVersion.NameWithInitial',
+                'cmn_EmployeeVersion.FullName',
+                'cmn_EmployeeVersion.NIC',
+                'cmn_EmployeeVersion.Gender',
+                'cmn_EmployeeVersion.Religion',
+                'cmn_EmployeeVersion.BloodGroup',
+                'cmn_EmployeeVersion.DateOfBirth',
+                'cmn_EmployeeVersion.BasicSalary',
+                'cmn_EmployeeVersion.CivilStatus',
+                'cmn_EmployeeVersion.HomeAddress',
+                'cmn_EmployeeVersion.ContactAddress',
+                'cmn_EmployeeVersion.LandphoneNumber',
+                'cmn_EmployeeVersion.MobileNumber',
+                'cmn_EmployeeVersion.PrivateEmail',
+                'cmn_EmployeeVersion.NextOfKin',
+                'cmn_EmployeeVersion.NextOfKinRelationShip',
+                'cmn_EmployeeVersion.EmployeeRecruitmentType',
+                'cmn_EmployeeVersion.DateOfAppointment',
+                'cmn_EmployeeVersion.TypeOfContract',
+                'cmn_EmployeeVersion.DataStatus',
+                'cmn_EmployeeVersion.OfficeEmail',
+                'cmn_EmployeeVersion.PersonalFileNo',
+                'cmn_EmployeeVersion.InitialBasicSalary',
+                'cmn_EmployeeVersion.OfficeEmail2',
+                'cmn_EmployeeVersion.EmergencyContactNumber',
+                'cmn_EmployeeVersion.EmergencyContactNumber2',
+                'cmn_EmployeeVersion.EmergencyContactAddress',
+                'cmn_EmployeeVersion.Race',
+                'cmn_EmployeeVersion.EmpStatus',
+                'cmn_EmployeeVersion.Initial',
+                'cmn_EmployeeVersion.Name',
+                'cmn_EmployeeVersion.ImageUrl',
+                'cmn_EmployeeVersion.DateOfExpiry',
+                'cmn_EmployeeVersion.IncrementDate',
+                'cmn_EmployeeVersion.CreatedDateTime',
+                'cmn_EmployeeVersion.UpdatedDateTime',
+                'hrm_Grade.*',
+                'hrm_Designation.DesignationName',
+                'cmn_workspace.WorkSpaceName',
+                'cmn_workspace.WorkSpaceCode',
+                'cmn_workspace.LocationName',
+                'cmn_WorkSpaceType.WorkSpaceTypeName'
+
+            )
+            ->first();
+
+        return view('employee.show',['employee' => $employee]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 
     /**
      * get All the Local programs
@@ -147,9 +150,26 @@ class EmployeeController extends Controller
                     date_create(date('Y-m-d', strtotime($row->DateOfAppointment))))
                     ->format('%Y Y & %m M');
             })
+            ->addColumn('actions', function ($row){
+                return '<a href="' . route('employee.show', $row->EPFNo) . '"><i class="glyphicon glyphicon-eye-open"></i></a>';
+            })
             ->editColumn('DateOfBirth', function ($row) {
                 return date('Y-m-d', strtotime($row->DateOfBirth));
             })
             ->toJson();
+    }
+    public function find($request)
+    {
+        $trainee = Employee::join('hrm_Designation', 'hrm_Designation.DesignationId', 'cmn_EmployeeVersion.DesignationId')
+//                    ->join('cmn_workspace','cmn_workspace.WorkSpaceId','cmn_EmployeeVersion.WorkSpaceId')
+            ->join('cmn_workspace','cmn_workspace.WorkSpaceId','cmn_EmployeeVersion.AGMWorkSpaceId')
+            ->join('hrm_Grade','hrm_Grade.GradeId','cmn_EmployeeVersion.GradeId')
+//                    ->join('cmn_workspace','cmn_workspace.WorkSpaceId','cmn_EmployeeVersion.DGMWorkSpaceId')
+            ->join('cmn_WorkSpaceType', 'cmn_WorkSpaceType.WorkSpaceTypeId', 'cmn_workspace.WorkSpaceTypeId')
+            ->where('cmn_EmployeeVersion.'.$request->select_option,$request->search_content)->where('cmn_EmployeeVersion.IsActive', 1)
+            ->select('cmn_EmployeeVersion.Initial','cmn_EmployeeVersion.FullName','cmn_EmployeeVersion.EPFNo','cmn_EmployeeVersion.DateOfAppointment', 'cmn_EmployeeVersion.EmployeeRecruitmentType','cmn_EmployeeVersion.Name', 'hrm_Designation.DesignationName', 'cmn_WorkSpaceType.WorkSpaceTypeName','cmn_WorkSpace.WorkSpaceName','cmn_WorkSpace.WorkSpaceCode', 'hrm_grade.GradeName')
+            ->first();
+
+        return $trainee;
     }
 }
