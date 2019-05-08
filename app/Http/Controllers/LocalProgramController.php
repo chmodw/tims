@@ -109,13 +109,17 @@ class LocalProgramController extends Controller
      */
     public function show($id)
     {
+        $program_status = app('App\Http\Controllers\TraineeController')->getTraineeCount($id);
+
+        $available_documents =  app('App\Http\Controllers\TemplateManagerController')->getTemplates('local_program');
+
         $program = LocalProgram::join('organisations', 'organisations.organisation_id', 'local_programs.organised_by_id')
             ->where('program_id', $id)
             ->select('local_programs.*', 'organisations.name')
             ->first();
 
         if($program != null){
-            return view('programs.LocalProgram.show')->with(compact('program'));
+            return view('programs.LocalProgram.show')->with(compact('program'))->with(compact('program_status'))->with(compact('available_documents'));
         }
 
         return redirect('/local')->with('failed', ' Requested program not found in the database');

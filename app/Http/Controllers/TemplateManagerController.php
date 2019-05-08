@@ -173,4 +173,12 @@ class TemplateManagerController extends Controller
             return back()->with('failed', "System Could not Delete the Requested Template");
         }
     }
+
+    /**
+     * @param $type
+     */
+    public function getTemplates($type)
+    {
+        return TemplateManager::where('program_type', $type)->select('id','name' ,'file_name','program_type')->get();
+    }
 }

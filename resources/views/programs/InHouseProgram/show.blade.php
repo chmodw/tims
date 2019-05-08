@@ -17,10 +17,10 @@
             <a href="{{route('inhouse.index')}}" class="btn btn-default pull-right margin-right-sm"><i class="glyphicon glyphicon-arrow-left margin-right-sm"></i>Back</a>
         </div>
         <div class="panel-body">
-            <div class="page-header text-align-center">
-                <h1>{{$program->program_title}}</h1>
-            </div>
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-lg-9">
+                <div class="page-header">
+                    <h2>{{$program->program_title}}</h2>
+                </div>
                 <table class="table table-bordered table-striped">
                     <thead>
                     <th style="width: 25%"></th>
@@ -113,25 +113,45 @@
                     </tbody>
                 </table>
             </div>
+
+            {{--Status Bar--}}
+            @include('programs.partials.programStatusBar')
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        Documents
+                    </div>
+                    <div class="panel-body">
+                        <form class="" method="POST" action="{{route('doc.generate')}}">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="program_id"  value="{{$program->program_id}}">
+                            <input type="hidden" name="program_type"  value="PostGradProgram">
+                            <div class="form-group">
+                                <label for="doc_option">Select Document Type :</label>
+                                <select name="doc_type" id="doc_option" class="form-control">
+                                    <option value="committee_approval">Committee Approval</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" name="submit" value="Customize and Generate" class="btn btn-default pull-right">
+                                <input type="submit" name="submit" value="Generate" class="btn btn-primary margin-right-sm pull-right">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        Documents
+                    </div>
+                    <div class="panel-body">
+                        @include('programs.partials.docselect', ['program_type' => 'InHouseProgram'])
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-            Documents
-        </div>
-        <div class="panel-body">
-            <form>
-
-                <select name="document_name">
-                    <option value=""></option>
-                </select>
-                
-            </form>
-            <a class="btn btn-primary" style="margin-right:8px;" href="/pdf/LocalProgram/{{$program->program_id}}">Approval Letter</a>
-
-        </div>
-    </div>
-
 
 @endsection

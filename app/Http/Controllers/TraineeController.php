@@ -136,4 +136,25 @@ class TraineeController extends Controller
 
         return redirect()->back()->with(['failed'=>' No Record Found']);
     }
+
+    public function getTraineeCount($program_id)
+    {
+        $trainees = Program::where('program_id', $program_id)->get();
+        $trainee_status['total_count'] = $trainees->count();
+
+        $trainee_status['count_by_unit'] = [];
+
+        foreach ($trainees as $trainee){
+
+            if(array_key_exists($trainee->recommendation, $trainee_status['count_by_unit'])){
+                $trainee_status['count_by_unit'][$trainee->recommendation] = $trainee_status['count_by_unit'][$trainee->recommendation] += 1;
+            }else{
+                $trainee_status['count_by_unit'][$trainee->recommendation] = 1;
+            }
+
+        }
+
+        return $trainee_status;
+
+    }
 }

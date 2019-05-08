@@ -6,8 +6,22 @@
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default">
-            <div class="panel-heading">
-                Add Trainee
+            <div class="panel-heading clearfix">
+                <p>Add Employee</p>
+                <a href="
+                @if($program_type == 'LocalProgram')
+                    {{'/local/'.$program['program_id']}}
+                @endif
+                @if($program_type == 'ForeignProgram')
+                    {{'/foreign/'.$program['program_id']}}
+                @endif
+                @if($program_type == 'InHouseProgram')
+                    {{'/inhouse/'.$program['program_id']}}
+                @endif
+                @if($program_type == 'PostGradProgram')
+                    {{'/postgrad/'.$program['program_id']}}
+                @endif
+                 " class="btn btn-default pull-right margin-right-sm"><i class="glyphicon glyphicon-arrow-left margin-right-sm"></i>Back</a>
             </div>
             <div class="panel-body">
                 <form class=""  action="{{ route('trainee.find') }}" method="POST">
@@ -37,7 +51,7 @@
         <div class="col-md-12">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    Results
+                    <p>Results</p>
                 </div>
                 <div class="panel-body">
                         <table class="table table-bordered">
@@ -108,7 +122,7 @@
     <div class="col-md-12" style="">
         <div class="panel panel-default">
             <div class="panel-heading">
-                Selected Trainees
+                <p>Selected Trainees</p>
             </div>
             <div class="panel-body">
                 <table class="table table-bordered table-striped">

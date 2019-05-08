@@ -108,13 +108,18 @@ class ForeignProgramController extends Controller
      */
     public function show($id)
     {
+
+        $program_status = app('App\Http\Controllers\TraineeController')->getTraineeCount($id);
+
+        $available_documents =  app('App\Http\Controllers\TemplateManagerController')->getTemplates('foreign_program');
+
         $program = ForeignProgram::join('organisations', 'organisations.organisation_id', 'foreign_programs.organised_by_id')
             ->where('program_id', $id)
             ->select('foreign_programs.*', 'organisations.name')
             ->first();
 
         if($program != null){
-            return view('programs.ForeignProgram.show')->with(compact('program'));
+            return view('programs.ForeignProgram.show')->with(compact('program'))->with(compact('program_status'))->with(compact('available_documents'));
         }
 
         return redirect('/foreign')->with('failed', ' Requested program not found in the database');

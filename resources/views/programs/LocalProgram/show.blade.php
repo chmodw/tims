@@ -19,10 +19,10 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="page-header text-align-center">
-                <h1>{{$program->program_title}}</h1>
-            </div>
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-lg-9">
+                <div class="page-header">
+                    <h2>{{$program->program_title}}</h2>
+                </div>
                 <table class="table table-bordered table-striped">
                     <thead>
                         <th style="width: 25%"></th>
@@ -94,17 +94,33 @@
                     </tbody>
                 </table>
             </div>
+            {{--Status Bar--}}
+            @include('programs.partials.programStatusBar')
+
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <p>Program Costs</p>
+                    </div>
+                    <div class="panel-body">
+                        <a class="btn btn-primary" style="margin-right:8px;" href="/pdf/LocalProgram/{{$program->program_id}}">Approval Letter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading clearfix">
+                        <p>Documents</p>
+                    </div>
+                    <div class="panel-body">
+                        @include('programs.partials.docselect', ['program_type' => 'LocalProgram'])
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="panel panel-default">
-        <div class="panel-heading clearfix">
-            Documents
-        </div>
-        <div class="panel-body">
-            <a class="btn btn-primary" style="margin-right:8px;" href="/pdf/LocalProgram/{{$program->program_id}}">Approval Letter</a>
-        </div>
-    </div>
+
 
     <script>
 

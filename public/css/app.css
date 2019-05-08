@@ -150,6 +150,12 @@ input {
   text-align: center;
 }
 
+@media only screen and (min-width: 1200px) {
+  .program-status {
+    margin-top: 71px;
+  }
+}
+
 .padding-xs {
   padding: 0.25em;
 }

@@ -114,8 +114,11 @@ class PostGradProgramController extends Controller
      */
     public function show($id)
     {
+        $program_status = app('App\Http\Controllers\TraineeController')->getTraineeCount($id);
 
         $costs = Cost::where('program_id', $id)->select('cost_name','cost_content','cost_value')->get();
+
+        $available_documents =  app('App\Http\Controllers\TemplateManagerController')->getTemplates('postgrad_program');
 
         $program = PostGradProgram::join('organisations', 'organisations.organisation_id', 'post_grad_programs.organised_by_id')
             ->where('post_grad_programs.program_id', $id)
@@ -139,7 +142,7 @@ class PostGradProgramController extends Controller
             ->first();
 
         if(!empty($program)){
-            return view('programs.PostGradProgram.show')->with(compact('program'))->with(compact('costs'));
+            return view('programs.PostGradProgram.show')->with(compact('program'))->with(compact('costs'))->with(compact('program_status'))->with(compact('available_documents'));
         }
 
         return redirect('/postgrad')->with('failed', ' Requested program not found in the database');

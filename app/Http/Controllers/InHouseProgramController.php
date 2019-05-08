@@ -152,7 +152,11 @@ class InHouseProgramController extends Controller
      */
     public function show($id)
     {
+        $program_status = app('App\Http\Controllers\TraineeController')->getTraineeCount($id);
+
         $costs = Cost::where('program_id', $id)->select('cost_name','cost_content','cost_value')->get();
+
+        $available_documents =  app('App\Http\Controllers\TemplateManagerController')->getTemplates('inhouse_program');
 
         $program = InHouseProgram::join('organisations', 'organisations.organisation_id', 'in_house_programs.organised_by_id')
         ->where('in_house_programs.program_id', $id)
@@ -179,7 +183,7 @@ class InHouseProgramController extends Controller
         ->first();
 
         if(!empty($program)){
-            return view('programs.InHouseProgram.show')->with(compact('program'))->with(compact('costs'));
+            return view('programs.InHouseProgram.show')->with(compact('program'))->with(compact('costs'))->with(compact('program_status'))->with(compact('available_documents'));
         }
 
         return redirect('/inhouse')->with('failed', ' Requested program not found in the database');
