@@ -46,7 +46,7 @@ Route::resource('trainee','TraineeController', ['except' => 'index'])->middlewar
 Route::get('trainee/index/{class}/{id}','TraineeController@index')->middleware('auth');
 
 Route::resource('program','ProgramController', ['except' => 'index'])->middleware('auth');
-Route::get('program/{class}/{id}','ProgramController@index')->middleware('auth');
+Route::get('program/{class}/{id}','ProgramController@index')->name('program.index')->middleware('auth');
 
 /**
  * Docs Routes

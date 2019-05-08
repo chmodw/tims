@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\ForeignProgram;
+use App\InHouseProgram;
+use App\LocalProgram;
+use App\PostGradProgram;
 use App\Program;
 use Illuminate\Http\Request;
 
@@ -74,7 +78,48 @@ class  ProgramController extends Controller
      */
     public function show($id)
     {
-        //
+
+        /**
+         * Get the program IDs
+         */
+        $program_ids = Program::where('trainee_id', $id)->get('program_id');
+
+        $Localprograms = LocalProgram::whereIn('program_id', $program_ids)->select('program_id','program_title','start_date')->get();
+        foreach ($Localprograms as $Localprogram) {
+            $Localprogram->program_type = 'Local Program';
+            $Localprogram->program_url = 'local/'.$Localprogram->program_id;
+        }
+
+        $ForeignPrograms = ForeignProgram::whereIn('program_id', $program_ids)->select('program_id','program_title','start_date')->get();
+        foreach ($ForeignPrograms as $ForeignProgram) {
+            $ForeignProgram->program_type = 'Foreign Program';
+            $ForeignProgram->program_url = 'foreign/'.$ForeignProgram->program_id;
+        }
+
+        $InHousePrograms = InHouseProgram::whereIn('program_id', $program_ids)->select('program_id','program_title','start_date')->get();
+        foreach ($InHousePrograms as $InHouseProgram) {
+            $InHouseProgram->program_type = 'InHouse Program';
+            $InHouseProgram->program_url = 'inhouse/'.$InHouseProgram->program_id;
+        }
+
+        $PostGradPrograms = PostGradProgram::whereIn('program_id', $program_ids)->select('program_id','program_title','start_date')->get();
+        foreach ($PostGradPrograms as $PostGradProgram) {
+            $PostGradProgram->program_type = 'Post Graduation Program';
+            $PostGradProgram->program_url = 'postgrad/'.$PostGradProgram->program_id;
+        }
+
+        $programs = array_merge($Localprograms->toArray(), $PostGradPrograms->toArray(), $ForeignPrograms->toArray(), $InHousePrograms->toArray());
+
+
+        return Datatables()->of($programs)
+            ->addIndexColumn()
+            ->editColumn('program_title', function ($row) {
+                return '<a href="' . url($row['program_url']).'">' . $row['program_title'] . '</a>';
+            })
+            ->editColumn('start_date', function ($row) {
+                return date('Y-m-d', strtotime($row['start_date']));
+            })
+            ->toJson();
     }
 
     /**

@@ -70,7 +70,7 @@
                         <td colspan="3">{{$employee->OfficeEmail}}</td>
                         <th colspan="1">Office Email 2</th>
                         <td colspan="3">{{$employee->OfficeEmail2}}</td>
-                    </tr
+                    </tr>
                     <tr>
                         <th colspan="1">EPF No</th>
                         <td colspan="2">{{$employee->EPFNo}}</td>
@@ -89,7 +89,7 @@
                         <th colspan="2">Initial Basic Salary</th>
                         <td colspan="1">{{$employee->InitialBasicSalary}}</td>
                         <th colspan="2">BasicSalary</th>
-                        <td colspan="2">{{$employee->BasicSalary}}</td>
+                        <td colspan="3">{{$employee->BasicSalary}}</td>
                     </tr>
                     <tr>
                         <th colspan="1">Grade</th>
@@ -115,20 +115,51 @@
                     </tr>
                     </tbody>
                 </table>
+
+                <div class="panel panel-info">
+                    <div class="panel-heading clearfix">
+                        Program History
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered table-striped" style="width: 100%;" id="programs_table">
+                            <thead>
+                            <tr>
+                                <th style="min-width:5%;">#</th>
+                                <th style="width:55%;">Program Title</th>
+                                <th style="width:25%;">Program Type</th>
+                                <th style="width:15%;">Start Date</th>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+
+
     </div>
 
-{{--    <div class="panel panel-default">--}}
-{{--        <div class="panel-heading clearfix">--}}
-{{--            Documents--}}
-{{--        </div>--}}
-{{--        <div class="panel-body">--}}
-{{--            <a class="btn btn-primary" style="margin-right:8px;" href="/pdf/LocalProgram/{{$program->program_id}}">Approval Letter</a>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-
     <script>
+        window.onload = function () {
+            $('#programs_table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "/program/{{$employee->EPFNo}}",
 
+                columns: [
+                    {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                    {data: 'program_title', name: 'program_title', orderable: true, searchable: true},
+                    {data: 'program_type', name: 'program_type', orderable: true, searchable: true},
+                    {data: 'start_date', name: 'start_date', orderable: true, searchable: true},
+                    // {data: 'program_title', name: 'program_title', orderable: true, searchable: true},
+                    // {data: 'target_group', name: 'target_group'},
+                    // {data: 'application_closing_date_time', name: 'application_closing_date_time'},
+                    // {data: 'start_date', name: 'start_date'},
+                    // {data: 'name', name: 'name'},
+                    // {data: 'venue', name: 'venue'},
+                    // {data: 'created_at', name: 'created_at'},
+                ]
+            });
+        }
     </script>
 @endsection

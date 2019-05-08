@@ -47,7 +47,7 @@ class PostGradProgram extends Model
 
     public function getStartDateAttribute()
     {
-        return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
+        return Carbon::parse($this->attributes['start_date'])->format('Y-m-d H:i');
     }
 
     public function getUpdatedAtAttribute()
