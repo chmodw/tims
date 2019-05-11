@@ -158,16 +158,40 @@ class EmployeeController extends Controller
             })
             ->toJson();
     }
+
     public function find($request)
     {
-        $trainee = Employee::join('hrm_Designation', 'hrm_Designation.DesignationId', 'cmn_EmployeeVersion.DesignationId')
-//                    ->join('cmn_workspace','cmn_workspace.WorkSpaceId','cmn_EmployeeVersion.WorkSpaceId')
-            ->join('cmn_workspace','cmn_workspace.WorkSpaceId','cmn_EmployeeVersion.AGMWorkSpaceId')
-            ->join('hrm_Grade','hrm_Grade.GradeId','cmn_EmployeeVersion.GradeId')
-//                    ->join('cmn_workspace','cmn_workspace.WorkSpaceId','cmn_EmployeeVersion.DGMWorkSpaceId')
-            ->join('cmn_WorkSpaceType', 'cmn_WorkSpaceType.WorkSpaceTypeId', 'cmn_workspace.WorkSpaceTypeId')
+        $trainee = Employee
+            ::leftjoin('hrm_Designation', 'hrm_Designation.DesignationId', 'cmn_EmployeeVersion.DesignationId')
+            ->leftjoin('cmn_workspace as workspace','workspace.WorkSpaceId','cmn_EmployeeVersion.WorkSpaceId')
+            ->leftjoin('cmn_WorkSpaceType as workSpaceType', 'workSpaceType.WorkSpaceTypeId', 'workspace.WorkSpaceTypeId')
+            ->leftjoin('cmn_workspace as AGMWorkspace','AGMWorkspace.WorkSpaceId','cmn_EmployeeVersion.AGMWorkSpaceId')
+            ->leftjoin('cmn_WorkSpaceType as AGMWorkSpaceType', 'AGMWorkSpaceType.WorkSpaceTypeId', 'AGMWorkspace.WorkSpaceTypeId')
+            ->leftjoin('cmn_workspace as DGMWorkspace','DGMWorkspace.WorkSpaceId','cmn_EmployeeVersion.DGMWorkSpaceId')
+            ->leftjoin('cmn_WorkSpaceType as DGMWorkSpaceType', 'DGMWorkSpaceType.WorkSpaceTypeId', 'DGMWorkspace.WorkSpaceTypeId')
+            ->leftjoin('hrm_Grade','hrm_Grade.GradeId','cmn_EmployeeVersion.GradeId')
             ->where('cmn_EmployeeVersion.'.$request->select_option,$request->search_content)->where('cmn_EmployeeVersion.IsActive', 1)
-            ->select('cmn_EmployeeVersion.Initial','cmn_EmployeeVersion.FullName','cmn_EmployeeVersion.EPFNo','cmn_EmployeeVersion.DateOfAppointment', 'cmn_EmployeeVersion.EmployeeRecruitmentType','cmn_EmployeeVersion.Name', 'hrm_Designation.DesignationName', 'cmn_WorkSpaceType.WorkSpaceTypeName','cmn_WorkSpace.WorkSpaceName','cmn_WorkSpace.WorkSpaceCode', 'hrm_grade.GradeName')
+            ->select(
+                'cmn_EmployeeVersion.Initial',
+                'cmn_EmployeeVersion.FullName',
+                'cmn_EmployeeVersion.EPFNo',
+                'cmn_EmployeeVersion.DateOfAppointment',
+                'cmn_EmployeeVersion.EmployeeRecruitmentType',
+                'cmn_EmployeeVersion.Name',
+                'hrm_Designation.DesignationName',
+                'workSpaceType.WorkSpaceTypeName',
+                'workspace.WorkSpaceName',
+                'workspace.WorkSpaceCode',
+                'workSpaceType.WorkSpaceTypeName',
+                'AGMWorkSpaceType.WorkSpaceTypeName as AGMWorkSpaceTypeName',
+                'AGMWorkspace.WorkSpaceName as AGMWorkspaceName',
+                'AGMWorkspace.WorkSpaceCode as AGMWorkspaceCode',
+                'DGMWorkSpaceType.WorkSpaceTypeName as DGMWorkSpaceTypeName',
+                'DGMWorkspace.WorkSpaceName as DGMWorkspaceName',
+                'DGMWorkspace.WorkSpaceCode as DGMWorkSpaceCode',
+                'hrm_grade.GradeName'
+            )
+
             ->first();
 
         return $trainee;

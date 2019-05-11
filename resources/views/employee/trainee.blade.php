@@ -83,11 +83,43 @@
                                     }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Unit</th>
-                                    <td><input type="text" name="recommendation" required class="form-control" value="{{
-                                    str_replace('Unit','',session('trainee')['WorkSpaceTypeName']).'('.
-                                    session('trainee')['WorkSpaceName'].')'
-                                    }}"></td>
+                                    <th>Recommendation</th>
+                                    <td>
+
+                                        <div class="row margin-bottom-md">
+                                            <div class="col-lg-6">
+                                                <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <input type="radio" name="recommendation_radio" aria-label="dgm" checked="checked">
+                                                </span>
+                                                    <input type="text" name="DGMRecommendation" class="form-control margin-bottom-sm" value="{{str_replace('Unit','',session('trainee')['DGMWorkSpaceTypeName']).'('.session('trainee')['DGMWorkspaceName'].')'}}" aria-label="dgm">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <strong>Work Space Code</strong>
+                                            </div>
+                                            <div class="col-md-3">
+                                                {{session('trainee')['DGMWorkSpaceCode']}}
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="input-group">
+                                                <span class="input-group-addon">
+                                                    <input type="radio" name="recommendation_radio" aria-label="agm">
+                                                </span>
+                                                    <input type="text" name="AGMRecommendation" class="form-control margin-bottom-sm" value="{{str_replace('Unit','',session('trainee')['AGMWorkSpaceTypeName']).'('.session('trainee')['AGMWorkspaceName'].')'}}" aria-label="agm">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <strong>Work Space Code</strong>
+                                            </div>
+                                            <div class="col-md-3">
+                                                {{session('trainee')['AGMWorkspaceCode']}}
+                                            </div>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>Grade</th>

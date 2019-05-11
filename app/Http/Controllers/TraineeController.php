@@ -130,6 +130,8 @@ class TraineeController extends Controller
     {
         $trainee = app('App\Http\Controllers\EmployeeController')->find($request);
 
+        $trainee = $trainee->toArray();
+
         if(isset($trainee)){
             return redirect()->back()->with(compact('trainee'));
         }

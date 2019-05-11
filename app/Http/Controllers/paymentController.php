@@ -35,7 +35,9 @@ class paymentController extends Controller
 
         $programs = Program::with('trainees')->get();
 
-        return view('payment.Create',compact('programs'));
+        dd($programs);
+
+//        return view('payment.Create',compact('programs'));
 
     }
 
@@ -47,7 +49,6 @@ class paymentController extends Controller
      */
     public function store(PaymentValidate $request)
     {
-
         foreach ($request->row as $item)
         {
 
