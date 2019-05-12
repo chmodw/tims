@@ -90,9 +90,10 @@
                                             <div class="col-lg-6">
                                                 <div class="input-group">
                                                 <span class="input-group-addon">
-                                                    <input type="radio" name="recommendation_radio" aria-label="dgm" checked="checked">
+                                                    <input type="radio" name="recommendation_radio" aria-label="dgm" {{(session('trainee')['DGMWorkspaceName'] != null) ? 'checked' : ''}} value="DGMRecommendation">
                                                 </span>
-                                                    <input type="text" name="DGMRecommendation" class="form-control margin-bottom-sm" value="{{str_replace('Unit','',session('trainee')['DGMWorkSpaceTypeName']).'('.session('trainee')['DGMWorkspaceName'].')'}}" aria-label="dgm">
+                                                    <input type="text" name="DGMRecommendation" class="form-control margin-bottom-sm" value="{{(session('trainee')['DGMWorkspaceName'] != null) ? str_replace('Unit','',session('trainee')['DGMWorkSpaceTypeName']).'('.session('trainee')['DGMWorkspaceName'].')' : ''}}" aria-label="dgm">
+
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -107,9 +108,9 @@
                                             <div class="col-md-6">
                                                 <div class="input-group">
                                                 <span class="input-group-addon">
-                                                    <input type="radio" name="recommendation_radio" aria-label="agm">
+                                                    <input type="radio" name="recommendation_radio" value="AGMRecommendation" aria-label="agm" {{session('trainee')['DGMWorkspaceName'] == null ? 'checked' : ''}}>
                                                 </span>
-                                                    <input type="text" name="AGMRecommendation" class="form-control margin-bottom-sm" value="{{str_replace('Unit','',session('trainee')['AGMWorkSpaceTypeName']).'('.session('trainee')['AGMWorkspaceName'].')'}}" aria-label="agm">
+                                                    <input type="text" name="AGMRecommendation" class="form-control margin-bottom-sm" value="{{(session('trainee')['AGMWorkspaceName'] != null) ? str_replace('Unit','',session('trainee')['AGMWorkSpaceTypeName']).'('.session('trainee')['AGMWorkspaceName'].')' : ''}}" aria-label="agm">
                                                 </div>
                                             </div>
                                             <div class="col-md-3">
@@ -157,9 +158,11 @@
                 <p>Selected Trainees</p>
             </div>
             <div class="panel-body">
-                <table class="table table-bordered table-striped">
+
+                <table class="table table-bordered table-striped employee-table" style="" id="table">
                     <thead>
                     <tr>
+                        <th>#</th>
                         <th scope="col">Name</th>
                         <th scope="col">Designation</th>
                         <th scope="col">Experience</th>
@@ -168,33 +171,8 @@
                         <th scope="col"></th>
                     </tr>
                     </thead>
-                    <tbody>
-                    @foreach($programs as $program)
-                        <tr>
-                            <td scope="row"><a href="{{route('employee.show', $program['EPFNo'])}}">{{$program['Initial'].' '.\ucwords(strtolower($program['Name']))}}</a></td>
-                            <td>{{$program['DesignationName']}}</td>
-                            <td>{{
-                                    date_diff(
-                                    date_create(date('Y-m-d', strtotime('today'))),
-                                    date_create(date('Y-m-d', strtotime($program['DateOfAppointment']))))
-                                    ->format('%Y years and %m months')
-                                    }}
-                            </td>
-                            <td>{{$program['recommendation']}}</td>
-                            <td>{{$program['EmployeeRecruitmentType']}}</td>
-                            <td>
-                                <form method="POST" action="{{ route('trainee.destroy', $program['program_id'])}}">
-                                    {{ csrf_field() }}
-                                    {{method_field('DELETE')}}
-                                    <input name="EPFNo" type="hidden" value="{{$program['EPFNo']}}">
-                                    <input name="program_id" type="hidden" value="{{$program['program_id']}}">
-                                    <button  class="btn btn-link" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-minus-sign" style="color: red;"></i></button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
                 </table>
+
             </div>
         </div>
     </div>
@@ -202,6 +180,24 @@
 
 
 <script>
+    window.onload = function () {
 
+        $('#table').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: "/trainee/getTrainee/{{$program_type}}/{{$program['program_id']}}",
+            order: [3, 'asc'],
+
+            columns: [
+                {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
+                {data: 'FullName', name: 'FullName'},
+                {data: 'DesignationName', name: 'DesignationName'},
+                {data: 'Experience', name: 'Experience'},
+                {data: 'recommendation', name: 'recommendation'},
+                {data: 'EmployeeRecruitmentType', name: 'EmployeeRecruitmentType'},
+                {data: 'RemoveForm', name: 'RemoveForm', orderable: false, searchable: false},
+            ]
+        });
+    }
 </script>
 @endsection
