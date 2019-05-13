@@ -204,7 +204,7 @@ return [
     */
 
     'plugins' => [
-        'datatables' => false,
+        'datatables' => true,
         'select2'    => false,
         'chartjs'    => false,
     ],
