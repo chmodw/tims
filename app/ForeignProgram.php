@@ -73,4 +73,7 @@ class ForeignProgram extends Model
         return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
     }
 
+    public function getEmployeeCountAttribute(){
+        return 'hello';
+    }
 }
