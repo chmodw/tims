@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 
+use App\ForeignProgram;
+use App\TemplateManager;
 use Illuminate\Http\Request;
 use Exception;
 
@@ -36,7 +38,7 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->summernoteDemo;
+
     }
 
     /**
@@ -92,33 +94,52 @@ class DocumentController extends Controller
      */
     public function generate(Request $request)
     {
+
+        $programs =  ForeignProgram::first();
+
+        foreach ($programs as $program){
+            var_dump($program);
+        }
+
+        return;
+
         if($request->submit == 'Customize and Generate'){
             return 123;
         }
 
+
+        $template_name = TemplateManager::find($request->doc_type)->get('file_name')->first()->file_name;
+
         try {
-            $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('docs/Committee_approval.docx'));
+            $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('app/templates/'.$template_name));
         }
         catch (exception $e) {
             return $e->getMessage();
         }
 
-        $templateProcessor->setValue('date', date('d.m.Y', strtotime('today')));
-        $templateProcessor->setValue('year', date('Y', strtotime('today ')));
-//        $templateProcessor->setValue('recipient_list', '        Chairman</w:t><w:br/><w:t>General</w:t><w:br/><w:t>Manager</w:t><w:br/><w:t>Corp. AGM (Consultancy)</w:t><w:br/><w:t>Corp. AGM (EPC)
-//        ');
-        $rl = ['Chairman','General','Manager','Corp. AGM (Consultancy)','Corp. AGM (EPC)'];
-        $templateProcessor->cloneRow('recipient_list', 10);
+        var_dump($templateProcessor->getVariables());
+
+        return;
+
+        echo '<pre>';
 
         /**
          * New rows
          */
         $numberOfRows = 100;
-        $templateProcessor->cloneRow('name', $numberOfRows);
+        $templateProcessor->cloneRow('no', $numberOfRows);
 
 
 
-        $templateProcessor->setValue('program_title', 'Master of Science Degree / Post Graduate Diploma in Construction Law and Dispute Resolution - University of Moratuwa');
+
+
+        $templateProcessor->setValue('date', date('d.m.Y', strtotime('today')));
+        $templateProcessor->setValue('year', date('Y', strtotime('today ')));
+
+
+
+
+
 
         $templateProcessor->saveAs(storage_path('helloWorld.docx'));
 
