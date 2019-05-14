@@ -258,7 +258,7 @@ class ForeignProgramController extends Controller
 
     public function getNotifiedBy(ForeignProgram $program)
     {
-        return $program->name;
+        return $program->notified_by;
     }
 
     public function getStartDate(ForeignProgram $program)

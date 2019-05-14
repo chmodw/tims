@@ -229,7 +229,9 @@ class TraineeController extends Controller
     }
 
     public function getEmployeeCode(Employee $employee){}
-    public function getEPFNo(Employee $employee){}
+    public function getEPFNo(Employee $employee){
+        return $employee->EPFNo;
+    }
     public function getTitle(Employee $employee){
 
     }
@@ -256,13 +258,26 @@ class TraineeController extends Controller
     public function getHomeAddress(Employee $employee){}
     public function getContactAddress(Employee $employee){}
     public function getLandphoneNumber(Employee $employee){}
-    public function getMobileNumber(Employee $employee){}
+    public function getMobile(Employee $employee){
+        return $employee->MobileNumber;
+    }
     public function getPrivateEmail(Employee $employee){}
     public function getEmployeeRecruitmentType(Employee $employee){}
     public function getJoinedDate(Employee $employee){}
-    public function getExperience(Employee $employee){}
+    public function getAppointmentDate(Employee $employee)
+    {
+        return date('d.m.Y', strtotime($employee->DateOfAppointment));
+    }
+    public function getExperience(Employee $employee){
+        return  date_diff(
+                date_create(date('Y-m-d', strtotime('today'))),
+                date_create(date('Y-m-d', strtotime($employee->DateOfAppointment))))
+                ->format('%YY %mM');
+    }
     public function getTypeOfContract(Employee $employee){}
-    public function getOfficeEmail(Employee $employee){}
+    public function getOfficeEmail(Employee $employee){
+        return $employee->OfficeEmail;
+    }
     public function getInitialBasicSalary(Employee $employee){}
     public function getOfficeEmail2(Employee $employee){}
     public function getEmergencyContactNumber(Employee $employee){}
@@ -291,6 +306,44 @@ class TraineeController extends Controller
     public function getAGMWorkspaceCode(Employee $employee){}
     public function getDGMWorkSpaceTypeName(Employee $employee){}
     public function getGMWorkspaceName(Employee $employee){}
-    public function getDGMWorkSpaceCode(Employee $employee){}
-    public function getGrade(Employee $employee){}
+    public function getDGMWorkSpaceCode(Employee $employee)
+    {
+
+    }
+    public function getGrade(Employee $employee)
+    {
+        return $employee->GradeName;
+    }
+
+    public function getForeignTrainingDetails(Employee $employee, $program_id)
+    {
+        $programs = Program::join('foreign_programs', 'foreign_programs.program_id', 'programs.program_id')
+                        ->where('type', 'ForeignProgram')->where('trainee_id', $employee->EPFNo)
+            ->select('foreign_programs.start_date', 'foreign_programs.program_title','foreign_programs.end_date')
+            ->get();
+
+        $text = '';
+
+        if($programs != null){
+            foreach ($programs as $program)
+            {
+                if($program->program_id != $program_id)
+                {
+                    $text = $text.date('Y', strtotime($program->start_date)).' - '.$program->program_title.' From '.date('d.m.Y', strtotime($program->start_date)). ' - '. date('d.m.Y', strtotime($program->end_date));
+                }
+            }
+        }else{
+            $text = 'No';
+        }
+
+        if($text == ''){
+            $text = 'No';
+        }
+
+        return $text;
+    }
+    public function getForeignTrainingVisitDetails(Employee $employee)
+    {
+        return 'No';
+    }
 }

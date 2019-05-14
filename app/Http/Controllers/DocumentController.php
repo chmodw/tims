@@ -110,10 +110,12 @@ class DocumentController extends Controller
          * Get program
          */
         $program =  app('App\Http\Controllers\ProgramController')->getProgram($request->program_type, $request->program_id);
+
+//        return $request;
         /**
          * Get the template
          */
-        $template = TemplateManager::find($request->doc_type)->first();
+        $template = TemplateManager::where('id',$request->doc_type)->first();
 
         $template_name = $template->file_name;
 
@@ -122,6 +124,16 @@ class DocumentController extends Controller
         }
         catch (exception $e) {
             return $e->getMessage();
+        }
+
+        /**
+          * New rows
+         */
+        $numberOfRows = sizeof($trainees);
+        try {
+            $templateProcessor->cloneRow('no', $numberOfRows);
+        }catch (exception $e){
+
         }
 
         /**
