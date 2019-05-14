@@ -10,12 +10,11 @@ class Payment extends Model
     protected $fillable =[
 
         'program_id',
+        'program_title',
         'trainee_id',
         'trainee_name',
-        'payment_date',
+        'payment_Date',
         'payment_amount'
 
-
     ];
-
 }

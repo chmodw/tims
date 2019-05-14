@@ -15,7 +15,6 @@
                     <th>Payment ID</th>
                     <th>Program ID</th>
                     <th>Program Name</th>
-                    <th>Trainee ID</th>
                     <th>Trainee Name</th>
                     <th>Payment date</th>
                     <th>Payment amount</th>

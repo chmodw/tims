@@ -11,7 +11,6 @@ class Employee extends Model
     //Table name
     protected $table = 'dbo.cmn_EmployeeVersion';
 
-
     public function DesignationId()
     {
         return $this->belongsTo('App\Designation');

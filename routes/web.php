@@ -14,9 +14,9 @@ Auth::routes();
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('/trainees', 'EmployerController')->except('destroy', 'create', 'edit')->middleware('auth');;
+//Route::resource('/trainees', 'EmployerController')->except('destroy', 'create', 'edit')->middleware('auth');;
 
-Route::get('/pdf/{programType}/{programId}', 'PdfController@create')->middleware('auth');
+//Route::get('/pdf/{programType}/{programId}', 'PdfController@create')->middleware('auth');
 
 Route::get  ('/home', 'HomeController@index')->name('home')->middleware('auth');;
 

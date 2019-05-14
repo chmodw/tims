@@ -17,7 +17,7 @@
                     <select class="form-control" id="trainee_name" name="trainee_name">
                         <option selected>Choose...</option>
                         @foreach($programs as $program)
-                            <option value="{{$program->trainees->EmployeeId}}">{{$program->trainees->NameWithInitial}}</option>
+                            <option value="{{$program->trainees->EPFNo}}">{{$program->trainees->NameWithInitial}}</option>
                         @endforeach
                     </select>
                 </div>
