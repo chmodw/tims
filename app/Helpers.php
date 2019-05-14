@@ -116,4 +116,36 @@ class Helpers
         }
         return false;
     }
+
+    /**
+     * Converts array of variables to camel case
+     * and add Get keywork at the first
+     *
+     * @param array $list
+     */
+    public static function var_array(Array $list)
+    {
+        $rList = array();
+
+        foreach ($list as $item){
+
+            if (preg_match('/_/', $item)) {
+
+                $str_arr = preg_split ("/\_/", $item);
+
+                $str_arr = array_map('ucfirst', $str_arr);
+
+                $rList[$item] = 'get'.implode($str_arr);
+
+            }else{
+
+                $rList[$item] = 'get'.ucfirst($item);
+
+            }
+
+        }
+
+        return $rList;
+
+    }
 }

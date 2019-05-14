@@ -13,7 +13,7 @@
         </div>
         <div class="panel-body">
 
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-11 " style="float: none; margin: 0 auto;">
 
                 <table class="table table-bordered table-striped">
                     <thead>
@@ -151,13 +151,6 @@
                     {data: 'program_title', name: 'program_title', orderable: true, searchable: true},
                     {data: 'program_type', name: 'program_type', orderable: true, searchable: true},
                     {data: 'start_date', name: 'start_date', orderable: true, searchable: true},
-                    // {data: 'program_title', name: 'program_title', orderable: true, searchable: true},
-                    // {data: 'target_group', name: 'target_group'},
-                    // {data: 'application_closing_date_time', name: 'application_closing_date_time'},
-                    // {data: 'start_date', name: 'start_date'},
-                    // {data: 'name', name: 'name'},
-                    // {data: 'venue', name: 'venue'},
-                    // {data: 'created_at', name: 'created_at'},
                 ]
             });
         }

@@ -147,4 +147,17 @@ class  ProgramController extends Controller
     {
         //
     }
+
+    public function getProgram($class, $id){
+
+        if (file_exists(base_path() . '/App/' . $class . '.php')) {
+
+            $model = 'App\\' . $class;
+
+            return $model::join('organisations', 'organisations.organisation_id', 'foreign_programs.organised_by_id')
+                        ->where('program_id', $id)
+                        ->first();
+
+        }
+    }
 }

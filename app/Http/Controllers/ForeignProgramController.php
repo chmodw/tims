@@ -221,7 +221,8 @@ class ForeignProgramController extends Controller
      * @return Json
      * @throws \Exception
      */
-    public function getForeignPrograms(){
+    public function getForeignPrograms()
+    {
 
         $programs = ForeignProgram::join('organisations', 'organisations.organisation_id', 'foreign_programs.organised_by_id')
             ->select('foreign_programs.program_id', 'foreign_programs.program_title', 'foreign_programs.target_group', 'foreign_programs.application_closing_date_time','foreign_programs.start_date', 'foreign_programs.venue', 'foreign_programs.created_at','organisations.name')
@@ -234,4 +235,121 @@ class ForeignProgramController extends Controller
             })
             ->toJson();
     }
+
+    public function getYear(ForeignProgram $program)
+    {
+        return date('Y', strtotime('today'));
+    }
+
+    public function getMonth(ForeignProgram $program)
+    {
+        return date('m', strtotime('today'));
+    }
+
+    public function getToday(ForeignProgram $program)
+    {
+        return date('d.m.Y', strtotime('today'));
+    }
+
+    public function getProgramTitle(ForeignProgram $program)
+    {
+        return $program->program_title;
+    }
+
+    public function getNotifiedBy(ForeignProgram $program)
+    {
+        return $program->name;
+    }
+
+    public function getStartDate(ForeignProgram $program)
+    {
+        return date('d.m.Y', strtotime($program->start_date));
+    }
+
+    public function getStartDateYear(ForeignProgram $program)
+    {
+        return date('Y', strtotime('today'));
+    }
+
+    public function getDuration(ForeignProgram $program)
+    {
+        $datetime1 = date_create($program->start_date);
+        $datetime2 = date_create($program->end_date);
+
+        $interval = date_diff($datetime1, $datetime2);
+        //date diff in months because this is a foreign program
+        $duration = $interval->format('%m Months');
+
+        if($duration < 1){
+            $duration = $interval->format('%d Days');
+        }
+
+        return $duration;
+    }
+
+    public function getOrganisedById(ForeignProgram $program)
+    {
+        return $program->name;
+    }
+
+    public function getTargetGroup(ForeignProgram $program)
+    {
+        return $program->target_group;
+    }
+
+    public function getEmployeeCount(ForeignProgram $program)
+    {
+        return app('App\Http\Controllers\\TraineeController')->getTraineeCount($program->program_id)['total_count'];
+    }
+
+
+
+//
+//    public function getName(ForeignProgram $program)
+//    {
+//
+//    }
+//
+//    public function getDesignation(ForeignProgram $program)
+//    {
+//
+//    }
+//
+//    public function getGrade(ForeignProgram $program)
+//    {
+//
+//    }
+//
+//    public function getJoinedDate(ForeignProgram $program)
+//    {
+//
+//    }
+//
+//    public function getAppointmentDate(ForeignProgram $program)
+//    {
+//
+//    }
+//
+//    public function getExperience(ForeignProgram $program)
+//    {
+//
+//    }
+//    public function getRecommendation(ForeignProgram $program)
+//    {
+//
+//    }
+//
+//    public function getForeignTrainingDetails(ForeignProgram $program)
+//    {
+//
+//    }
+//
+//    public function getForeignTrainingVisitDetails(ForeignProgram $program)
+//    {
+//
+//    }
+//
+//    public function getFromDate(ForeignProgram $program){
+//        //14th – 28th April 2018
+//    }
 }
