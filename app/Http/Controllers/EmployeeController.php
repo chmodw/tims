@@ -159,7 +159,7 @@ class EmployeeController extends Controller
             ->toJson();
     }
 
-    public function find($request)
+    public function find($select_option, $search_content)
     {
         $trainee = Employee
             ::leftjoin('hrm_Designation', 'hrm_Designation.DesignationId', 'cmn_EmployeeVersion.DesignationId')
@@ -170,13 +170,36 @@ class EmployeeController extends Controller
             ->leftjoin('cmn_workspace as DGMWorkspace','DGMWorkspace.WorkSpaceId','cmn_EmployeeVersion.DGMWorkSpaceId')
             ->leftjoin('cmn_WorkSpaceType as DGMWorkSpaceType', 'DGMWorkSpaceType.WorkSpaceTypeId', 'DGMWorkspace.WorkSpaceTypeId')
             ->leftjoin('hrm_Grade','hrm_Grade.GradeId','cmn_EmployeeVersion.GradeId')
-            ->where('cmn_EmployeeVersion.'.$request->select_option,$request->search_content)->where('cmn_EmployeeVersion.IsActive', 1)
+            ->where('cmn_EmployeeVersion.'.$select_option,$search_content)->where('cmn_EmployeeVersion.IsActive', 1)
             ->select(
-                'cmn_EmployeeVersion.Initial',
-                'cmn_EmployeeVersion.FullName',
+                'cmn_EmployeeVersion.EmployeeCode',
                 'cmn_EmployeeVersion.EPFNo',
-                'cmn_EmployeeVersion.DateOfAppointment',
+                'cmn_EmployeeVersion.Title',
+                'cmn_EmployeeVersion.NameWithInitial',
+                'cmn_EmployeeVersion.FullName',
+                'cmn_EmployeeVersion.NIC',
+                'cmn_EmployeeVersion.Gender',
+                'cmn_EmployeeVersion.Religion',
+                'cmn_EmployeeVersion.BloodGroup',
+                'cmn_EmployeeVersion.DateOfBirth',
+                'cmn_EmployeeVersion.BasicSalary',
+                'cmn_EmployeeVersion.CivilStatus',
+                'cmn_EmployeeVersion.HomeAddress',
+                'cmn_EmployeeVersion.ContactAddress',
+                'cmn_EmployeeVersion.LandphoneNumber',
+                'cmn_EmployeeVersion.MobileNumber',
+                'cmn_EmployeeVersion.PrivateEmail',
                 'cmn_EmployeeVersion.EmployeeRecruitmentType',
+                'cmn_EmployeeVersion.DateOfAppointment',
+                'cmn_EmployeeVersion.TypeOfContract',
+                'cmn_EmployeeVersion.OfficeEmail',
+                'cmn_EmployeeVersion.InitialBasicSalary',
+                'cmn_EmployeeVersion.OfficeEmail2',
+                'cmn_EmployeeVersion.EmergencyContactNumber',
+                'cmn_EmployeeVersion.EmergencyContactNumber2',
+                'cmn_EmployeeVersion.EmergencyContactAddress',
+                'cmn_EmployeeVersion.DateOfRetainment',
+                'cmn_EmployeeVersion.Initial',
                 'cmn_EmployeeVersion.Name',
                 'hrm_Designation.DesignationName',
                 'workSpaceType.WorkSpaceTypeName',

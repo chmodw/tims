@@ -286,4 +286,61 @@ class PostGradProgramController extends Controller
             })
             ->toJson();
     }
+
+    public function getYear(PostGradProgram $program){
+        return date('Y', strtotime('today'));
+    }
+    public function getMonth(PostGradProgram $program){
+        return date('m', strtotime('today'));
+    }
+    public function getToday(PostGradProgram $program){
+        return date('d.m.Y', strtotime('today'));
+    }
+    public function getProgramTitle(PostGradProgram $program){
+        return $program->program_title;
+    }
+    public function getProgramTitleShort(PostGradProgram $program){
+        return $program->program_title;
+    }
+    public function getNotifiedBy(PostGradProgram $program){
+        return $program->notified_by;
+    }
+    public function getStartDate(PostGradProgram $program){
+        return date('d.m.Y', strtotime($program->start_date));
+    }
+    public function getStartDateYear(PostGradProgram $program){
+        return date('Y', strtotime('today'));
+    }
+    public function getDuration(PostGradProgram $program){
+        $datetime1 = date_create($program->start_date);
+        $datetime2 = date_create($program->end_date);
+
+        $interval = date_diff($datetime1, $datetime2);
+        //date diff in months because this is a foreign program
+        $duration = $interval->format('%m Months');
+
+        if($duration < 1){
+            $duration = $interval->format('%d Days');
+        }
+
+        return $duration;
+    }
+    public function getOrganisedById (PostGradProgram $program){
+        return $program->name;
+    }
+    public function getTargetGroup(PostGradProgram $program){
+        return $program->target_group;
+    }
+    public function getEmployeeCount(PostGradProgram $program){
+        return app('App\Http\Controllers\\TraineeController')->getTraineeCount($program->program_id)['total_count'];
+    }
+
+    public function getEmploymentNature(PostGradProgram $program){}
+    public function getEmployeeCategory(PostGradProgram $program){}
+    public function getVenue(PostGradProgram $program){}
+    public function getCurrency(PostGradProgram $program){}
+    public function getProgramFee(PostGradProgram $program){}
+    public function getApplicationClosingDate(PostGradProgram $program){}
+    public function getApplicationClosingTime(PostGradProgram $program){}
+
 }

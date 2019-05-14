@@ -373,4 +373,42 @@ class InHouseProgramController extends Controller
             })
             ->toJson();
     }
+
+    public function getYear(InHouseProgram $program)
+    {
+        return date('Y', strtotime('today'));
+    }
+
+    public function getMonth(InHouseProgram $program)
+    {
+        return date('m', strtotime('today'));
+    }
+
+    public function getToday(InHouseProgram $program)
+    {
+        return date('d.m.Y', strtotime('today'));
+    }
+
+    public function getProgramTitle(InHouseProgram $program)
+    {
+        return $program->program_title;
+    }
+    public function getTargetGroup(InHouseProgram $program){}
+    public function getOrganisedBy(InHouseProgram $program){}
+    public function getNatureOfTheEmployment(InHouseProgram $program){}
+    public function getEmployeeCategory(InHouseProgram $program){}
+    public function getVenue(InHouseProgram $program){
+        return $program->venue;
+    }
+    public function getStartDate(InHouseProgram $program){
+        return date('d.m.Y', strtotime($program->start_date));
+    }
+    public function getStartTime(InHouseProgram $program){
+        return date('H:i', strtotime($program->start_date));
+    }
+    public function getEndTime(InHouseProgram $program){}
+    public function getApplicationClosingDateTime(InHouseProgram $program){}
+    public function getNoShowFee(InHouseProgram $program){}
+    public function getPerPersonFee(InHouseProgram $program){}
+    public function getHours(InHouseProgram $program){}
 }

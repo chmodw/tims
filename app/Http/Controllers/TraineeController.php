@@ -12,7 +12,7 @@ class TraineeController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-//        , ['except' => ['getInhousePrograms']]
+
     }
 
     /**
@@ -130,6 +130,30 @@ class TraineeController extends Controller
         }
     }
 
+    public function getTrainees($id)
+    {
+        $trainees = [];
+
+        $programs = Program::where('program_id', $id)->get();
+
+        foreach ($programs as $program)
+        {
+            $trainee = app('App\Http\Controllers\EmployeeController')->find('EPFNo', $program->trainee_id);
+
+            array_push($trainees,$trainee);
+        }
+
+        return $trainees;
+    }
+
+    /**
+     * @param $class
+     * @param $id
+     * @return mixed
+     * @throws \Exception
+     *
+     * For datatable
+     */
     public function getTrainee($class, $id)
     {
         if (file_exists(base_path() . '/App/' . $class . '.php')) {
@@ -172,7 +196,7 @@ class TraineeController extends Controller
 
     public function find(Request $request)
     {
-        $trainee = app('App\Http\Controllers\EmployeeController')->find($request);
+        $trainee = app('App\Http\Controllers\EmployeeController')->find($request->select_option, $request->search_content);
 
         $trainee = $trainee->toArray();
 
@@ -202,5 +226,124 @@ class TraineeController extends Controller
 
         return $trainee_status;
 
+    }
+
+    public function getEmployeeCode(Employee $employee){}
+    public function getEPFNo(Employee $employee){
+        return $employee->EPFNo;
+    }
+    public function getTitle(Employee $employee){
+
+    }
+    public function getName(Employee $employee){
+
+        if(strpos(strtolower($employee->DesignationName), 'eng') || strpos(strtolower($employee->DesignationName), 'engineer')){
+            return 'Eng. '.$employee->Initial.' '. ucwords(strtolower($employee->Name));
+        }elseif ($employee->gender == 1){
+            return 'Mr. '.$employee->Initial.' '. ucwords(strtolower($employee->Name));
+        }else{
+            return 'Ms. '.$employee->Initial.' '. ucwords(strtolower($employee->Name));
+        }
+
+
+    }
+    public function getFullName(Employee $employee){}
+    public function getNIC(Employee $employee){}
+    public function getGender(Employee $employee){}
+    public function getReligion(Employee $employee){}
+    public function getBloodGroup(Employee $employee){}
+    public function getDateOfBirth(Employee $employee){}
+    public function getBasicSalary(Employee $employee){}
+    public function getCivilStatus(Employee $employee){}
+    public function getHomeAddress(Employee $employee){}
+    public function getContactAddress(Employee $employee){}
+    public function getLandphoneNumber(Employee $employee){}
+    public function getMobile(Employee $employee){
+        return $employee->MobileNumber;
+    }
+    public function getPrivateEmail(Employee $employee){}
+    public function getEmployeeRecruitmentType(Employee $employee){}
+    public function getJoinedDate(Employee $employee){}
+    public function getAppointmentDate(Employee $employee)
+    {
+        return date('d.m.Y', strtotime($employee->DateOfAppointment));
+    }
+    public function getExperience(Employee $employee){
+        return  date_diff(
+                date_create(date('Y-m-d', strtotime('today'))),
+                date_create(date('Y-m-d', strtotime($employee->DateOfAppointment))))
+                ->format('%YY %mM');
+    }
+    public function getTypeOfContract(Employee $employee){}
+    public function getOfficeEmail(Employee $employee){
+        return $employee->OfficeEmail;
+    }
+    public function getInitialBasicSalary(Employee $employee){}
+    public function getOfficeEmail2(Employee $employee){}
+    public function getEmergencyContactNumber(Employee $employee){}
+    public function getEmergencyContactNumber2(Employee $employee){}
+    public function getEmergencyContactAddress(Employee $employee){}
+    public function getDateOfRetainment(Employee $employee){}
+    public function getInitial(Employee $employee){
+
+    }
+    public function getRecommendation(Employee $employee, $program_id)
+    {
+        /**
+         * Needs better mechanism
+         */
+        return Program::where('program_id', $program_id)->where('trainee_id',$employee->EPFNo)->get('recommendation')->first()['recommendation'];
+
+    }
+    public function getDesignation(Employee $employee){
+        return $employee->DesignationName;
+    }
+    public function getWorkSpaceTypeName(Employee $employee){}
+    public function getWorkSpaceName(Employee $employee){}
+    public function getWorkSpaceCode(Employee $employee){}
+    public function getAGMWorkSpaceTypeName(Employee $employee){}
+    public function getAGMWorkspaceName(Employee $employee){}
+    public function getAGMWorkspaceCode(Employee $employee){}
+    public function getDGMWorkSpaceTypeName(Employee $employee){}
+    public function getGMWorkspaceName(Employee $employee){}
+    public function getDGMWorkSpaceCode(Employee $employee)
+    {
+
+    }
+    public function getGrade(Employee $employee)
+    {
+        return $employee->GradeName;
+    }
+
+    public function getForeignTrainingDetails(Employee $employee, $program_id)
+    {
+        $programs = Program::join('foreign_programs', 'foreign_programs.program_id', 'programs.program_id')
+                        ->where('type', 'ForeignProgram')->where('trainee_id', $employee->EPFNo)
+            ->select('foreign_programs.start_date', 'foreign_programs.program_title','foreign_programs.end_date')
+            ->get();
+
+        $text = '';
+
+        if($programs != null){
+            foreach ($programs as $program)
+            {
+                if($program->program_id != $program_id)
+                {
+                    $text = $text.date('Y', strtotime($program->start_date)).' - '.$program->program_title.' From '.date('d.m.Y', strtotime($program->start_date)). ' - '. date('d.m.Y', strtotime($program->end_date));
+                }
+            }
+        }else{
+            $text = 'No';
+        }
+
+        if($text == ''){
+            $text = 'No';
+        }
+
+        return $text;
+    }
+    public function getForeignTrainingVisitDetails(Employee $employee)
+    {
+        return 'No';
     }
 }

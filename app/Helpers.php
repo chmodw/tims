@@ -129,9 +129,12 @@ class Helpers
 
         foreach ($list as $item){
 
-            if (preg_match('/_/', $item)) {
+            $itemRemoveHash =  preg_replace('/#/','', $item);
+            $itemRemoveNum =  preg_replace('/[0-9]/','', $itemRemoveHash);
 
-                $str_arr = preg_split ("/\_/", $item);
+            if (preg_match('/_/', $itemRemoveNum)) {
+
+                $str_arr = preg_split ("/\_/", $itemRemoveNum);
 
                 $str_arr = array_map('ucfirst', $str_arr);
 
@@ -139,7 +142,7 @@ class Helpers
 
             }else{
 
-                $rList[$item] = 'get'.ucfirst($item);
+                $rList[$item] = 'get'.ucfirst($itemRemoveNum);
 
             }
 
