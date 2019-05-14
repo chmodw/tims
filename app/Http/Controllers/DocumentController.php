@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use App\ForeignProgram;
 use App\Helpers;
+use App\Program;
 use App\TemplateManager;
 use Illuminate\Http\Request;
 use Exception;
@@ -99,7 +100,12 @@ class DocumentController extends Controller
         /**
          * get the controller class
          */
-        $controller = app('App\Http\Controllers\\'.$request->program_type.'Controller');
+        $programController = app('App\Http\Controllers\\'.$request->program_type.'Controller');
+
+        $traineeController = new TraineeController();
+
+        $trainees = $traineeController->getTrainees($request->program_id);
+
         /*
          * Get program
          */
@@ -119,30 +125,66 @@ class DocumentController extends Controller
         }
 
         /**
-         * New rows
+         * Fill the template program Variables
          */
-        $numberOfRows = 10;
-        $templateProcessor->cloneRow('no', $numberOfRows);
-
-        /**
-         * Fill the template Variables
-         */
-        foreach (Helpers::var_array($templateProcessor->getVariables()) as $key => $value){
-
-            if(method_exists($controller, $value)){
-
-                $templateProcessor->setValue($key, call_user_func_array([$controller, $value], [$program]));
+        foreach (Helpers::var_array($templateProcessor->getVariables()) as $key => $value)
+        {
+            if(method_exists($programController, $value))
+            {
+                $templateProcessor->setValue($key, call_user_func_array([$programController, $value], [$program]));
 
             }
         }
+
         /**
-         * Store the document
+         * New rows
          */
-        $templateProcessor->saveAs(storage_path($template->name.' TIMS'.strtotime('now').'.docx'));
+        $numberOfRows = sizeof($trainees);
+        try {
+            $templateProcessor->cloneRow('no', $numberOfRows);
+        }catch (exception $e){
+
+        }
+
         /**
-         * Download the document
+         * Fill the template Trainee Variables
          */
-        return response()->download(storage_path($template->name.' TIMS'.strtotime('now').'.docx'));
+
+        foreach (Helpers::var_array($templateProcessor->getVariables()) as $key => $value)
+        {
+            $i = (int) filter_var($key, FILTER_SANITIZE_NUMBER_INT);
+            $templateProcessor->setValue('no#'.$i, $i);
+
+            if(method_exists($traineeController, $value))
+            {
+                $templateProcessor->setValue($key, call_user_func_array([$traineeController, $value], [$trainees[($i-1)], $program->program_id]));
+
+            }
+        }
+
+        $file_name =$template->name.' TIMS'.strtotime('now').'.docx';
+
+
+        try {
+            /**
+             * Store the document
+             */
+             $templateProcessor->saveAs(storage_path('app/generated_documents/'.$file_name));
+
+        } catch (exception $e) {
+
+            return redirect()->back()->with('failed', ' Could not save the Document...'.$e->getMessage());
+
+        }
+
+        if($request->submit == 'Generate and Download'){
+            /**
+             * Download the document
+             */
+            return response()->download(storage_path('app/generated_documents/'.$file_name));
+        }
+
+        return redirect()->back()->with('success', ' Document Generated and save in the Storage');
 
     }
 

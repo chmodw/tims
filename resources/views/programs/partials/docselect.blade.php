@@ -11,7 +11,7 @@
         </select>
     </div>
     <div class="form-group">
-        <input type="submit" name="submit" value="Customize and Generate" class="btn btn-default pull-right">
+        <input type="submit" name="submit" value="Generate and Download" class="btn btn-default pull-right">
         <input type="submit" name="submit" value="Generate" class="btn btn-primary margin-right-sm pull-right">
     </div>
 </form>
