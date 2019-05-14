@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\ForeignProgram;
+use App\Helpers;
 use App\TemplateManager;
 use Illuminate\Http\Request;
 use Exception;
@@ -95,20 +96,20 @@ class DocumentController extends Controller
     public function generate(Request $request)
     {
 
-        $programs =  ForeignProgram::first();
+        /**
+         * get the controller class
+         */
+        $controller = app('App\Http\Controllers\\'.$request->program_type.'Controller');
+        /*
+         * Get program
+         */
+        $program =  app('App\Http\Controllers\ProgramController')->getProgram($request->program_type, $request->program_id);
+        /**
+         * Get the template
+         */
+        $template = TemplateManager::find($request->doc_type)->first();
 
-        foreach ($programs as $program){
-            var_dump($program);
-        }
-
-        return;
-
-        if($request->submit == 'Customize and Generate'){
-            return 123;
-        }
-
-
-        $template_name = TemplateManager::find($request->doc_type)->get('file_name')->first()->file_name;
+        $template_name = $template->file_name;
 
         try {
             $templateProcessor = new \PhpOffice\PhpWord\TemplateProcessor(storage_path('app/templates/'.$template_name));
@@ -117,34 +118,32 @@ class DocumentController extends Controller
             return $e->getMessage();
         }
 
-        var_dump($templateProcessor->getVariables());
-
-        return;
-
-        echo '<pre>';
-
         /**
          * New rows
          */
-        $numberOfRows = 100;
+        $numberOfRows = 10;
         $templateProcessor->cloneRow('no', $numberOfRows);
 
+        /**
+         * Fill the template Variables
+         */
+        foreach (Helpers::var_array($templateProcessor->getVariables()) as $key => $value){
 
+            if(method_exists($controller, $value)){
 
+                $templateProcessor->setValue($key, call_user_func_array([$controller, $value], [$program]));
 
-
-        $templateProcessor->setValue('date', date('d.m.Y', strtotime('today')));
-        $templateProcessor->setValue('year', date('Y', strtotime('today ')));
-
-
-
-
-
-
-        $templateProcessor->saveAs(storage_path('helloWorld.docx'));
-
-
-        return response()->download(storage_path('helloWorld.docx'));
+            }
+        }
+        /**
+         * Store the document
+         */
+        $templateProcessor->saveAs(storage_path($template->name.' TIMS'.strtotime('now').'.docx'));
+        /**
+         * Download the document
+         */
+        return response()->download(storage_path($template->name.' TIMS'.strtotime('now').'.docx'));
 
     }
+
 }

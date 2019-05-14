@@ -38,39 +38,6 @@
                         </div>
                     </div>
 
-{{--                    <div class="col-md-8 col-md-offset-2">--}}
-{{--                        <div class="form-group has-feedback {{$errors->has('has_table') ? 'has-error' : ''}}">--}}
-{{--                            <label for="has_table">Template Has a Table</label><br>--}}
-
-{{--                            <input type="radio" name="has_table" value="true" {{(old('has_table') == true) ? 'checked' : ''}}> Yes--}}
-{{--                            <input type="radio" name="has_table" class="margin-left-md" value="false" {{(old('has_table') == true) ? 'false' : ''}}> No--}}
-{{--                            @if ($errors->has('has_table'))--}}
-{{--                                <span class="help-block" style="display: block;width: 100%;margin-top: 0.25rem;font-size: 80%;color: #dc3545;">{{ $errors->first('has_table') }}</span>--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-{{--                    <div class="col-md-8 col-md-offset-2">--}}
-{{--                        <div class="form-group has-feedback {{$errors->has('column_count') ? 'has-error' : ''}}">--}}
-{{--                            <label for="column_count">Number of Columns</label>--}}
-{{--                            <input type="number" id="column_count" class="form-control" value="{{old('column_count')}}" name="column_count" placeholder="Number of Columns" disabled>--}}
-{{--                            @if ($errors->has('column_count'))--}}
-{{--                                <span class="help-block" style="display: block;width: 100%;margin-top: 0.25rem;font-size: 80%;color: #dc3545;">{{ $errors->first('column_count') }}</span>--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
-{{--                    <div class="col-md-8 col-md-offset-2">--}}
-{{--                        <div class="form-group has-feedback {{$errors->has('column_names') ? 'has-error' : ''}}">--}}
-{{--                            <label for="column_names">Default Column Names</label>--}}
-{{--                            <textarea class="form-control" name="column_names" id="column_names" disabled placeholder="Column Names" style="max-width: 100%;width: 100%;min-width: 100%"></textarea>--}}
-{{--                            <small>Seperate each column name with a Comma</small>--}}
-{{--                            @if ($errors->has('column_names'))--}}
-{{--                                <span class="help-block" style="display: block;width: 100%;margin-top: 0.25rem;font-size: 80%;color: #dc3545;">{{ $errors->first('column_names') }}</span>--}}
-{{--                            @endif--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
                     <div class="col-md-8 col-md-offset-2">
                         <div class="form-group has-feedback {{$errors->has('template') ? 'has-error' : ''}}">
                             <label for="template">Template</label>

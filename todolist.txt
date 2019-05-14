@@ -1,0 +1,3 @@
+Create 1 user write permissions to TIMS table, read permissions to CECB_ERP
+Migrade BD
+Seed Data
