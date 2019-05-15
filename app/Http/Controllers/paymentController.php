@@ -7,6 +7,8 @@ use App\Http\Requests\PaymentValidate;
 use App\Payment;
 use App\Program;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use vendor\project\StatusTest;
 
 
 class paymentController extends Controller
@@ -35,9 +37,7 @@ class paymentController extends Controller
 
         $programs = Program::with('trainees')->get();
 
-        dd($programs);
-
-//        return view('payment.Create',compact('programs'));
+        return view('payment.Create',compact('programs'));
 
     }
 
@@ -47,8 +47,9 @@ class paymentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(PaymentValidate $request)
+    public function store(Request $request)
     {
+
         foreach ($request->row as $item)
         {
 
@@ -59,12 +60,14 @@ class paymentController extends Controller
                 $payment_amount =  $item['amount'];
                 $program_id = $item['program_id'];
                 $program_title = $item['program_title'];
-                Payment::create(compact('trainee_id', 'trainee_name', 'payment_amount', 'program_id', 'program_title'));
+                $payment_Date = now()->toDateString();
+
+               Payment::create(compact('trainee_id', 'trainee_name', 'payment_amount', 'program_id', 'program_title', 'payment_Date'));
             }
 
         }
 
-        // $payment = Payment::create($request->all());
+//         $payment = Payment::create($request->all());
 
         return redirect('payment');
     }
@@ -90,7 +93,9 @@ class paymentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $editPayment = Payment::where('id',$id)->get();
+
+        return view('payment.edit',compact('editPayment'));
     }
 
     /**
@@ -102,7 +107,12 @@ class paymentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $payment = Payment::findOrFail($id);
+
+        $payment->update($request->all());
+
+        return redirect('payment');
+
     }
 
     /**
@@ -113,6 +123,6 @@ class paymentController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 }

@@ -49,7 +49,7 @@ class LocalProgramController extends Controller
         $validated = $request->validated();
         $localProgram = new LocalProgram();
 
-        $randomProgramId = Helpers::u_id([$validated['program_title'],auth()->user()->email,$request->program_type,$validated['start_date']]);
+        $randomProgramId = mt_rand(10,1000);
 
         $localProgram->program_id = $randomProgramId;
         $localProgram->program_title = $validated['program_title'];

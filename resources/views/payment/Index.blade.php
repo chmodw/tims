@@ -14,8 +14,7 @@
                     <th>#</th>
                     <th>Payment ID</th>
                     <th>Program ID</th>
-                    <th>Program Name</th>
-                    <th>Trainee ID</th>
+                    {{--<th>Program Name</th>--}}
                     <th>Trainee Name</th>
                     <th>Payment date</th>
                     <th>Payment amount</th>
@@ -31,8 +30,8 @@
                             <td scope="row">{{isset($_GET['page']) ? (16 * $_GET['page']) - (16-$i) + 1 : $i+1}}</td>
                             <td>{{$payment->id}}</td>
                             <td>{{$payment->program_id}}</td>
-                            <td>{{$payment->trainee_id}}</td>
-                            <td>{{$payment->program_name}}</td>
+
+                            {{--<td>{{$payment->program_name}}</td>--}}
                             <td>{{$payment->trainee_name}}</td>
                             <td>{{$payment->payment_Date}}</td>
                             <td>{{$payment->payment_amount}}</td>
