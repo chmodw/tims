@@ -158,10 +158,12 @@ class DocumentController extends Controller
 
         }
 
+//        return $templateProcessor->getVariables();
+
+
         /**
          * Fill the template Trainee Variables
          */
-
         foreach (Helpers::var_array($templateProcessor->getVariables()) as $key => $value)
         {
             $i = (int) filter_var($key, FILTER_SANITIZE_NUMBER_INT);
@@ -173,6 +175,7 @@ class DocumentController extends Controller
 
             }
         }
+
 
         $file_name =$template->name.' TIMS'.strtotime('now').'.docx';
 

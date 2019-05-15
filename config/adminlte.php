@@ -93,7 +93,7 @@ return [
 
     'login_url' => 'login',
 
-    'register_url' => 'register',
+    'register_url' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -159,17 +159,17 @@ return [
             'url'         => 'templatemanager/',
             'icon'        => 'file',
         ],
-        'ACCOUNT SETTINGS',
+        'ACCOUNT',
         [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
+            'text' => 'USERS',
+            'url'  => 'users/',
             'icon' => 'user',
         ],
-        [
-            'text' => 'Change Password',
-            'url'  => 'admin/settings',
-            'icon' => 'lock',
-        ],
+//        [
+//            'text' => 'Change Password',
+//            'url'  => 'admin/settings',
+//            'icon' => 'lock',
+//        ],
     ],
 
     /*
@@ -204,7 +204,7 @@ return [
     */
 
     'plugins' => [
-        'datatables' => false,
+        'datatables' => true,
         'select2'    => false,
         'chartjs'    => false,
     ],

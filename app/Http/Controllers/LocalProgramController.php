@@ -238,4 +238,73 @@ class LocalProgramController extends Controller
             })
             ->toJson();
     }
+
+    public function getYear(LocalProgram $program){
+        return date('Y', strtotime('today'));
+    }
+    public function getMonth(LocalProgram $program){
+        return date('m', strtotime('today'));
+    }
+    public function getToday(LocalProgram $program){
+        return date('d.m.Y', strtotime('today'));
+    }
+    public function getProgramTitle(LocalProgram $program){
+        return $program->program_title;
+    }
+    public function getNotifiedBy(LocalProgram $program){
+        return $program->notified_by;
+    }
+    public function getStartDate(LocalProgram $program){
+        return date('d.m.Y', strtotime($program->start_date));
+    }
+    public function getStartDateYear(LocalProgram $program){
+        return date('Y', strtotime('today'));
+    }
+    public function getDuration(LocalProgram $program){
+        $datetime1 = date_create($program->start_date);
+        $datetime2 = date_create($program->end_date);
+
+        $interval = date_diff($datetime1, $datetime2);
+        //date diff in months because this is a foreign program
+        $duration = $interval->format('%m Months');
+
+        if($duration < 1){
+            $duration = $interval->format('%d Days');
+        }
+
+        return $duration;
+    }
+    public function getOrganisedBy (LocalProgram $program){
+        return $program->name;
+    }
+    public function getTargetGroup(LocalProgram $program){
+        return $program->target_group;
+    }
+    public function getEmployeeCount(LocalProgram $program){
+        return app('App\Http\Controllers\\TraineeController')->getTraineeCount($program->program_id)['total_count'];
+    }
+    public function getVenue(LocalProgram $program){
+        return $program->venue;
+    }
+    public function getMemberFee(LocalProgram $program){
+        return 'Rs. '.$program->member_fee.'/-';
+    }
+    public function getNonMemberFee(LocalProgram $program){
+        return 'Rs. '.$program->non_member_fee.'/-';
+    }
+    public function getStudentFee(LocalProgram $program){
+        return 'Rs. '.$program->student_fee.'/-';
+    }
+
+    public function getProgramId(LocalProgram $program){}
+    public function getApplicationClosingDate(LocalProgram $program){}
+    public function getApplicationClosingTime(LocalProgram $program){}
+    public function getRmployeeCategory(LocalProgram $program){}
+    public function getIsLongTerm(LocalProgram $program){}
+    public function getProgramFee(LocalProgram $program){}
+    public function getBrochureUrl(LocalProgram $program){}
+    public function getCreatedBy(LocalProgram $program){}
+    public function getUpdatedBy(LocalProgram $program){}
+    public function getCreatedAt(LocalProgram $program){}
+    public function getUpdatedAt(LocalProgram $program){}
 }

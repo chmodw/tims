@@ -97,17 +97,17 @@
             {{--Status Bar--}}
             @include('programs.partials.programStatusBar')
 
-            <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
-                        <p>Program Costs</p>
-                    </div>
-                    <div class="panel-body">
-                        <a class="btn btn-primary" style="margin-right:8px;" href="/pdf/LocalProgram/{{$program->program_id}}">Approval Letter</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
+{{--            <div class="col-md-12">--}}
+{{--                <div class="panel panel-default">--}}
+{{--                    <div class="panel-heading clearfix">--}}
+{{--                        <p>Program Costs</p>--}}
+{{--                    </div>--}}
+{{--                    <div class="panel-body">--}}
+{{--                        <a class="btn btn-primary" style="margin-right:8px;" href="/pdf/LocalProgram/{{$program->program_id}}">Approval Letter</a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+            <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
                         <p>Documents</p>

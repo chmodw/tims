@@ -160,4 +160,48 @@ class  ProgramController extends Controller
                         ->first();
         }
     }
+
+    public function findMyProgram($id)
+    {
+        $program = LocalProgram::where('program_id', $id)->first();
+        if ($program !== null) {
+            return redirect('/local/'.$id);
+        }
+
+        $program = PostGradProgram::where('program_id', $id)->first();
+        if ($program !== null) {
+            return redirect('/postgrad/'.$id);
+        }
+
+        $program = ForeignProgram::where('program_id', $id)->first();
+        if ($program !== null) {
+            return redirect('/foreign/'.$id);
+        }
+
+        $program = InHouseProgram::where('program_id', $id)->first();
+        if ($program !== null) {
+            return redirect('/inhouse/'.$id);
+        }
+    }
+
+    /**
+     * Get recent programs as json
+     */
+    public function getPrograms(){
+
+        $local = LocalProgram::orderBy('created_at', 'desc')->take(2)->select('program_title', 'program_id')->get()->toArray();
+        $post = PostGradProgram::orderBy('created_at', 'desc')->take(2)->select('program_title', 'program_id')->get()->toArray();
+        $inhouse = InHouseProgram::orderBy('created_at', 'desc')->take(2)->select('program_title', 'program_id')->get()->toArray();
+        $foreign = ForeignProgram::orderBy('created_at', 'desc')->take(2)->select('program_title', 'program_id')->get()->toArray();
+
+        $arr = array_merge($local, $post, $inhouse, $foreign);
+
+        return Datatables()->of($arr)
+            ->addIndexColumn()
+            ->editColumn('program_title', function ($row) {
+                return '<a href="' . url('program/findMyProgram/' . $row['program_id']) . '">' . $row['program_title'] . '</a>';
+            })
+            ->toJson();
+
+    }
 }
