@@ -17,36 +17,37 @@
                 <thead>
                 <tr>
                     <th style="width: 5%;">#</th>
-                    <th style="width: 37%;">Name</th>
-                    <th style="width: 18%;">Email</th>
-                    <th style="width: 15%;">Created On</th>
-{{--                    <th style="width: 15%;">Created By</th>--}}
+                    <th style="width: 35%;">Name</th>
+                    <th style="width: 20%;">Email</th>
+                    <th style="width: 10%;">Created On</th>
+                    <th style="width: 15%;">Role</th>
+                    <th style="width: 15%;"></th>
                 </tr>
                 </thead>
+                <tbody>
+                @foreach ($users as $user)
+                    <tr>
+                        <td></td>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>{{ $user->created_at }}</td>
+                        <td>{{ $user->roles()->pluck('name')->implode(' ') }}</td>
+                        {{-- Retrieve array of roles associated to a user and convert to string --}}
+                        <td>
+                            <a href="{{ route('users.edit', $user->id) }}" class="btn btn-info pull-left" style="margin-right: 3px;">Edit</a>
+
+                            {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id] ]) !!}
+                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
             </table>
 
                 </div>
             </div>
         </div>
     </div>
-
-
-    <script>
-        window.onload = function () {
-
-            $('#table').DataTable({
-                processing: true,
-                serverSide: true,
-                ajax: "/users/getUsers",
-                order: [1, 'asc'],
-
-                columns: [
-                    {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
-                    {data: 'name', name: 'name'},
-                    {data: 'email', name: 'email'},
-                    {data: 'created_at', name: 'created_at'},
-                ]
-            });
-        }
-    </script>
 @endsection

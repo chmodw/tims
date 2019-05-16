@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'skin' => 'yellow',
+    'skin' => 'blue',
 
     /*
     |--------------------------------------------------------------------------
     | Layout
-    |--------------------------------------------------------------------------
+    |-----------------------blue---------------------------------------------------
     |
     | Choose a layout for your admin panel. The available layout options:
     | null, 'boxed', 'fixed', 'top-nav'. null is the default, top-nav
@@ -58,7 +58,7 @@ return [
     |
     */
 
-    'layout' => 'fixed',
+    'layout' => 'top-nav',
 
     /*
     |--------------------------------------------------------------------------
@@ -114,40 +114,78 @@ return [
             'icon' => 'tachometer',
         ],
         'PROGRAMS',
+//        [
+//            'text' => 'Local',
+//            'url'  => 'local/',
+//            'icon' => 'location-arrow',
+//        ],
+//        [
+//            'text' => 'Foreign',
+//            'url'  => 'foreign/',
+//            'icon' => 'globe',
+//        ],
+//        [
+//            'text' => 'Post-Grad',
+//            'url'  => 'postgrad/',
+//            'icon' => 'graduation-cap',
+//        ],
+//        [
+//            'text' => 'In-House',
+//            'url'  => 'inhouse/',
+//            'icon' => 'thumb-tack',
+//        ],
+//        'ACCOUNT SETTINGS',
+//        [
+//            'text' => 'Profile',
+//            'url'  => 'admin/settings',
+//            'icon' => 'user',
+//        ],
+//        [
+//            'text' => 'Change Password',
+//            'url'  => 'admin/settings',
+//            'icon' => 'lock',
+//        ],
         [
-            'text' => 'Local',
-            'url'  => 'local/',
-            'icon' => 'location-arrow',
-        ],
-        [
-            'text' => 'Foreign',
-            'url'  => 'foreign/',
-            'icon' => 'globe',
-        ],
-        [
-            'text' => 'Post-Grad',
-            'url'  => 'postgrad/',
-            'icon' => 'graduation-cap',
-        ],
-        [
-            'text' => 'In-House',
-            'url'  => 'inhouse/',
-            'icon' => 'thumb-tack',
+            'text'    => 'Programs',
+            'icon'    => 'th-list',
+            'submenu' => [
+                [
+                    'text' => 'Local',
+                    'url'  => 'local/',
+                    'icon' => 'location-arrow',
+                ],
+                [
+                    'text' => 'Foreign',
+                    'url'  => 'foreign/',
+                    'icon' => 'globe',
+                ],
+                [
+                    'text' => 'Post-Grad',
+                    'url'  => 'postgrad/',
+                    'icon' => 'graduation-cap',
+                ],
+                [
+                    'text' => 'In-House',
+                    'url'  => 'inhouse/',
+                    'icon' => 'thumb-tack',
+                ],
+
+            ],
         ],
         'EMPLOYEES',
         [
-            'text' => 'List',
+            'text' => 'Employees',
             'url'  => 'employee/',
             'icon' => 'user',
         ],
-        'BUDGET',
-        [
-            'text' => 'Budget',
-            'url'  => 'budget/',
-            'icon' => 'dollar',
-
-
-        ],
+//        'BUDGET',
+//        [
+//            'text' => 'Budget',
+//            'url'  => 'budget/',
+//            'icon' => 'dollar',
+//
+//
+//        ],
         [
             'text' => 'Payments',
             'url'  => 'payment/',
@@ -161,9 +199,25 @@ return [
         ],
         'ACCOUNT',
         [
-            'text' => 'USERS',
-            'url'  => 'users/',
-            'icon' => 'user',
+            'text'    => 'Account',
+            'icon'    => 'user',
+            'submenu' => [
+                [
+                    'text' => 'Users',
+                    'url'  => 'users/',
+                    'icon' => 'user',
+                ],
+                [
+                    'text' => 'Permissions',
+                    'url'  => 'permissions/',
+                    'icon' => 'lock',
+                ],
+                [
+                    'text' => 'Roles',
+                    'url'  => 'roles/',
+                    'icon' => 'flag',
+                ],
+            ],
         ],
 //        [
 //            'text' => 'Change Password',

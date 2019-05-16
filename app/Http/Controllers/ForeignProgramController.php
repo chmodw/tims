@@ -94,7 +94,7 @@ class ForeignProgramController extends Controller
         $saved = $ForeignProgram->save($validated);
 
         if($saved){
-            return redirect('/foreign')->with('success', ' The New Local Program has been saved successfully');
+            return redirect()->route('foreign.index')->with('success', ' The New Local Program has been saved successfully');
         }else{
             return Redirect::back()->withInput(Input::all())->with('failed ', ' System Could not save the program. please contact the administrator');
         }
@@ -122,7 +122,7 @@ class ForeignProgramController extends Controller
             return view('programs.ForeignProgram.show')->with(compact('program'))->with(compact('program_status'))->with(compact('available_documents'));
         }
 
-        return redirect('/foreign')->with('failed', ' Requested program not found in the database');
+        return redirect()->route('foreign.index')->with('failed', ' Requested program not found in the database');
 
     }
 
