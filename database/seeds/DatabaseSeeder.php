@@ -2,16 +2,45 @@
 
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Spatie\Permission\Models\Permission;
 
 class DatabaseSeeder extends Seeder {
 
     public function run()
     {
         $this->call('AdminSeeder');
+        $this->call('PermissionTableSeeder');
 
 
     }
 
+}
+
+class PermissionTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $permissions = [
+            'role-list',
+            'role-create',
+            'role-edit',
+            'role-delete',
+            'product-list',
+            'product-create',
+            'product-edit',
+            'product-delete'
+        ];
+
+
+        foreach ($permissions as $permission) {
+            Permission::create(['name' => $permission]);
+        }
+    }
 }
 
 class AdminSeeder extends Seeder {

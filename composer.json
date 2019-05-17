@@ -1,7 +1,7 @@
 {
     "name": "laravel/laravel",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "CECB - Training Information Management System",
     "keywords": [
         "framework",
         "laravel"
@@ -14,7 +14,9 @@
         "jeroennoten/laravel-adminlte": "^1.25",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
+        "laravelcollective/html": "^5.8",
         "phpoffice/phpword": "^0.16.0",
+        "spatie/laravel-permission": "^2.37",
         "yajra/laravel-datatables-oracle": "^9.0"
     },
     "require-dev": {
