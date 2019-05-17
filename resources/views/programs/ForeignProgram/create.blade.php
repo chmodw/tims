@@ -12,8 +12,7 @@
         </div>
         <div class="panel-body">
             @include('layouts._alert')
-            <div class="col-md-10 col-md-offset-1">
-
+            <div class="col-md-8 col-md-offset-2">
 
                 <form method="POST" action="{{route('foreign.store')}}" enctype="multipart/form-data">
                     @csrf
@@ -30,6 +29,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-feedback {{$errors->has('organised_by_id') ? 'has-error' : ''}}">
@@ -118,43 +118,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group has-feedback {{$errors->has('application_closing_date') ? 'has-error' : ''}}">
-                                <label for="application_closing_date" class="required">Application Closing Date</label>
-                                <input type="date" value="{{old('application_closing_date')}}" class="form-control {{ $errors->has('application_closing_date') ? 'has-error' : '' }}" id="application_closing_date" name="application_closing_date" placeholder="">
-                                @if ($errors->has('application_closing_date'))
-                                    <span class="help-block">{{ $errors->first('application_closing_date') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group has-feedback {{$errors->has('application_closing_time') ? 'has-error' : ''}}">
-                                <label for="application_closing_time" class="required">Closing Time</label>
-                                <input type="time" value="{{old('application_closing_time')}}" class="form-control {{ $errors->has('application_closing_time') ? 'has-error' : '' }}" id="application_closing_time" name="application_closing_time" placeholder="">
-                                @if ($errors->has('application_closing_time'))
-                                    <span class="help-block">{{ $errors->first('application_closing_time') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group has-feedback {{$errors->has('start_date') ? 'has-error' : ''}}">
-                                <label for="start_date" class="required">Start Date</label>
-                                <input type="date" value="{{old('start_date')}}" class="form-control {{ $errors->has('start_date') ? 'has-error' : '' }}" id="start_date" name="start_date">
-                                @if ($errors->has('start_date'))
-                                    <span class="help-block">{{ $errors->first('start_date') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="form-group has-feedback {{$errors->has('end_date') ? 'has-error' : ''}}">
-                                <label for="end_date" class="required">End Date</label>
-                                <input type="date" value="{{old('end_date')}}" class="form-control {{ $errors->has('end_date') ? 'has-error' : '' }}" id="end_date" name="end_date">
-                                @if ($errors->has('end_date'))
-                                    <span class="help-block">{{ $errors->first('end_date') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback">
                                 <label for="is_long_term" class="">Long Term Program</label>
                                 <br>
@@ -162,7 +126,7 @@
                                 <label for="is_long_term" class="">Long Term</label>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('duration') ? 'has-error' : ''}}">
                                 <label for="duration" class="required inline">Duration</label>
                                 <input type="number" value="{{old('duration')}}" class="form-control inline" id="duration" placeholder="Number of Days" id="duration" name="duration">
@@ -174,9 +138,45 @@
                                 @endif
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback {{$errors->has('application_closing_date') ? 'has-error' : ''}}">
+                                <label for="application_closing_date" class="required">Application Closing Date</label>
+                                <input type="date" value="{{old('application_closing_date')}}" class="form-control {{ $errors->has('application_closing_date') ? 'has-error' : '' }}" id="application_closing_date" name="application_closing_date" placeholder="">
+                                @if ($errors->has('application_closing_date'))
+                                    <span class="help-block">{{ $errors->first('application_closing_date') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback {{$errors->has('application_closing_time') ? 'has-error' : ''}}">
+                                <label for="application_closing_time" class="required">Closing Time (24hr)</label>
+                                <input type="time" value="{{old('application_closing_time')}}" class="form-control {{ $errors->has('application_closing_time') ? 'has-error' : '' }}" id="application_closing_time" name="application_closing_time" placeholder="">
+                                @if ($errors->has('application_closing_time'))
+                                    <span class="help-block">{{ $errors->first('application_closing_time') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback {{$errors->has('start_date') ? 'has-error' : ''}}">
+                                <label for="start_date" class="required">Start Date</label>
+                                <input type="date" value="{{old('start_date')}}" class="form-control {{ $errors->has('start_date') ? 'has-error' : '' }}" id="start_date" name="start_date">
+                                @if ($errors->has('start_date'))
+                                    <span class="help-block">{{ $errors->first('start_date') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback {{$errors->has('end_date') ? 'has-error' : ''}}">
+                                <label for="end_date" class="required">End Date</label>
+                                <input type="date" value="{{old('end_date')}}" class="form-control {{ $errors->has('end_date') ? 'has-error' : '' }}" id="end_date" name="end_date">
+                                @if ($errors->has('end_date'))
+                                    <span class="help-block">{{ $errors->first('end_date') }}</span>
+                                @endif
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('currency') ? 'has-error' : ''}}">
                                 <label for="currency" class="">Currency</label>
                                 <select type="text" value="{{old('currency')}}" class="form-control {{ $errors->has('currency') ? 'has-error' : '' }}" id="currency" name="currency">
@@ -190,7 +190,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('program_fee') ? 'has-error' : ''}}">
                                 <label for="program_fee" class="">Program Fee</label>
                                 <input type="number" value="{{old('program_fee')}}" class="form-control {{ $errors->has('program_fee') ? 'has-error' : '' }}" id="program_fee" name="program_fee" placeholder="Program Fee">
@@ -199,11 +199,10 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('other_costs') ? 'has-error' : ''}}">
                                 <label for="other_costs" class="">Other Costs</label>
-{{--                                <input type="number" value="{{old('other_costs')}}" class="form-control {{ $errors->has('other_costs') ? 'has-error' : '' }}" id="other_costs" name="other_costs" placeholder="Program Fee">--}}
-                                <textarea name="other_costs" class="form-control" id="other_costs" style="min-width: 100%;max-width: 100%;min-height: 34px;max-height: 150px; height: 34px" placeholder="Cost Name = Value,"></textarea>
+                                <textarea name="other_costs" class="form-control" id="other_costs" style="min-width: 100%;max-width: 100%;min-height: 34px;max-height: 150px; height: 100px" placeholder="Cost Name = Value,"></textarea>
                                 <small id="otherCostsHelpBlock" class="form-text text-muted">
                                     Seperate Costs by a Comma
                                 </small>
@@ -212,9 +211,7 @@
                                 @endif
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('program_brochure') ? 'has-error' : ''}}">
                                 <label for="program_brochure">Program Brochure</label>
                                 <input type="file" class="form-control-file" name="program_brochure" id="program_brochure" name="program_brochure">

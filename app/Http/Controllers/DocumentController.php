@@ -12,6 +12,13 @@ use Exception;
 
 class DocumentController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:Document-list');
+        $this->middleware('permission:Document-create', ['only' => ['create','store', 'generate']]);
+        $this->middleware('permission:Document-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:Document-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -158,9 +165,6 @@ class DocumentController extends Controller
 
         }
 
-//        return $templateProcessor->getVariables();
-
-
         /**
          * Fill the template Trainee Variables
          */
@@ -198,6 +202,11 @@ class DocumentController extends Controller
              */
             return response()->download(storage_path('app/generated_documents/'.$file_name));
         }
+        /**
+         * Save document
+         */
+
+        return $file_name;
 
         return redirect()->back()->with('success', ' Document Generated and save in the Storage');
 

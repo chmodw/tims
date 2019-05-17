@@ -20,10 +20,10 @@ class RoleController extends Controller
      */
     function __construct()
     {
-/*        $this->middleware('permission:role-list');
-        $this->middleware('permission:role-create', ['only' => ['create','store']]);
-        $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
-        $this->middleware('permission:role-delete', ['only' => ['destroy']]);*/
+        $this->middleware('permission:Role-list');
+        $this->middleware('permission:Role-create', ['only' => ['create','store']]);
+        $this->middleware('permission:Role-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:Role-delete', ['only' => ['destroy']]);
     }
 
 
@@ -60,6 +60,7 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'name' => 'required|unique:roles,name',
             'permission' => 'required',

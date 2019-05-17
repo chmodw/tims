@@ -10,9 +10,12 @@ use App\Helpers;
 class ForeignProgramController extends Controller
 {
 
-    public function __construct()
+    function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:program-list');
+        $this->middleware('permission:program-create', ['only' => ['create','store']]);
+        $this->middleware('permission:program-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:program-delete', ['only' => ['destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -109,12 +112,32 @@ class ForeignProgramController extends Controller
     public function show($id)
     {
 
-        $program_status = app('App\Http\Controllers\TraineeController')->getTraineeCount($id);
+        var_dump(ForeignProgram::find($id)->getOrganisationName);
 
+        return;
+        /**
+         * get details about trainee counts
+         */
+        $program_status = app('App\Http\Controllers\TraineeController')->getTraineeCount($id);
+        /**
+         * Get the available documents for current program type
+         */
         $available_documents =  app('App\Http\Controllers\TemplateManagerController')->getTemplates('foreign_program');
+        /**
+         * get the program
+         */
+
+
+//        $program = ForeignProgram::where('program_id', "=" , $id)->with('getOrganisationId');
+
+//        $budgetData = $program->pluck( "budget_amount", "getOrganisationId.WorkSpaceTypeName")->get();
+
+//        return $program;
+
+
 
         $program = ForeignProgram::join('organisations', 'organisations.organisation_id', 'foreign_programs.organised_by_id')
-            ->where('program_id', $id)
+            ->where('program_id', (int)$id)
             ->select('foreign_programs.*', 'organisations.name')
             ->first();
 

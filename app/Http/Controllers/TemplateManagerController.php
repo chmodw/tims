@@ -12,6 +12,14 @@ use Illuminate\Http\Request;
 
 class TemplateManagerController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('permission:Template-list');
+        $this->middleware('permission:Template-create', ['only' => ['create','store']]);
+        $this->middleware('permission:Template-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:Template-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *

@@ -5,15 +5,27 @@ namespace App\Http\Controllers;
 
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use App\Http\Controllers\Controller;
 use App\User;
 use Spatie\Permission\Models\Role;
-use DB;
-use Hash;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+//use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Input;
 
 
 class UserController extends Controller
 {
+
+    function __construct()
+    {
+        $this->middleware('permission:User-list');
+        $this->middleware('permission:User-create', ['only' => ['create','store']]);
+        $this->middleware('permission:User-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:User-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -47,6 +59,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
@@ -63,8 +76,7 @@ class UserController extends Controller
         $user->assignRole($request->input('roles'));
 
 
-        return redirect()->route('users.index')
-            ->with('success','User created successfully');
+        return redirect()->route('users.index')->with('success','User created successfully');
     }
 
 
@@ -111,28 +123,34 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
+            'current-password' => 'required|different:password',
             'roles' => 'required'
         ]);
-
 
         $input = $request->all();
         if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
         }else{
-            $input = array_except($input,array('password'));
+            $input = Arr::except($input,array('password'));
+        }
+
+        if(!Hash::check($input['password'], Auth::User()->password))
+        {
+            $user = User::find($id) ;
+            $user->update($input);
+            DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+
+            $user->assignRole($request->input('roles'));
+
+
+            return redirect()->route('users.index')->with('success','User updated successfully');
+        }else{
+            return Redirect::back()->withInput(Input::all())->with('failed ', ' Can\' use the old pass as the new password');
         }
 
 
-        $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
 
-
-        $user->assignRole($request->input('roles'));
-
-
-        return redirect()->route('users.index')
-            ->with('success','User updated successfully');
     }
 
 

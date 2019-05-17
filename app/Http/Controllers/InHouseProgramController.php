@@ -12,9 +12,12 @@ use App\Http\Requests\InHouseProgramValidate;
 class InHouseProgramController extends Controller
 {
 
-    public function __construct()
+    function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:program-list');
+        $this->middleware('permission:program-create', ['only' => ['create','store']]);
+        $this->middleware('permission:program-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:program-delete', ['only' => ['destroy']]);
     }
 
     /**

@@ -2,8 +2,6 @@
 
 @section('main-content')
 
-    @include('layouts._alert')
-
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
             <p class="" style="">Create User</p>
@@ -12,6 +10,9 @@
         <div class="panel-body">
 
             <div class="col-md-8 col-md-offset-2">
+
+                @include('layouts._alert')
+
                 {!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -23,7 +24,13 @@
                     <div class="col-xs-12 col-sm-12 col-md-12">
                         <div class="form-group">
                             <strong>Email:</strong>
-                            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
+                            {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control', 'readonly')) !!}
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12">
+                        <div class="form-group">
+                            <strong>Current Password:</strong>
+                            {!! Form::password('current-password', array('placeholder' => 'Current Password','class' => 'form-control')) !!}
                         </div>
                     </div>
                     <div class="col-xs-12 col-sm-12 col-md-12">

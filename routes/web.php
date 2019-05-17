@@ -70,6 +70,3 @@ Route::resource('budget','budgetController')->middleware('auth');
 Route::resource('payment','paymentController')->middleware('auth');
 
 Route::resource('templatemanager','TemplateManagerController')->middleware('auth');
-
-Route::get('users/getUsers','UserController@getUsers')->name('users.getUsers')->middleware('auth');
-Route::resource('users','UserController')->middleware('auth');

@@ -9,9 +9,11 @@ use Illuminate\Http\Request;
 class EmployeeController extends Controller
 {
 
-    public function __construct()
+    function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('permission:Employee-list');
+        $this->middleware('permission:Employee-list', ['only' => ['getEmployee','find']]);
+        $this->middleware('permission:Employee-show', ['only' => ['show']]);
     }
 
     /**

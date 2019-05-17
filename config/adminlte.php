@@ -1,7 +1,5 @@
 <?php
-
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Title
@@ -12,13 +10,9 @@ return [
     | You can optionally also specify a title prefix and/or postfix.
     |
     */
-
     'title' => 'TIMS',
-
     'title_prefix' => '',
-
     'title_postfix' => '',
-
     /*
     |--------------------------------------------------------------------------
     | Logo
@@ -29,11 +23,8 @@ return [
     | variant, used for the mini side bar. Make it 3 letters or so
     |
     */
-
     'logo' => '<b>CECB-</b>TIMS',
-
     'logo_mini' => '<b>C</b>T',
-
     /*
     |--------------------------------------------------------------------------
     | Skin Color
@@ -44,22 +35,18 @@ return [
     | ligth variant: blue-light, purple-light, purple-light, etc.
     |
     */
-
-    'skin' => 'yellow',
-
+    'skin' => 'blue',
     /*
     |--------------------------------------------------------------------------
     | Layout
-    |--------------------------------------------------------------------------
+    |-----------------------blue---------------------------------------------------
     |
     | Choose a layout for your admin panel. The available layout options:
     | null, 'boxed', 'fixed', 'top-nav'. null is the default, top-nav
     | removes the sidebar and places your menu in the top navbar
     |
     */
-
-    'layout' => 'fixed',
-
+    'layout' => 'top-nav',
     /*
     |--------------------------------------------------------------------------
     | Collapse Sidebar
@@ -70,9 +57,7 @@ return [
     | this is compatible with layouts except top-nav layout option
     |
     */
-
     'collapse_sidebar' => false,
-
     /*
     |--------------------------------------------------------------------------
     | URLs
@@ -84,17 +69,11 @@ return [
     | Set register_url to null if you don't want a register link.
     |
     */
-
     'dashboard_url' => '/',
-
     'logout_url' => 'logout',
-
     'logout_method' => null,
-
     'login_url' => 'login',
-
     'register_url' => null,
-
     /*
     |--------------------------------------------------------------------------
     | Menu Items
@@ -106,7 +85,6 @@ return [
     | layout. The 'can' is a filter on Laravel's built in Gate functionality.
     |
     */
-
     'menu' => [
         [
             'text' => 'Dashboard',
@@ -114,29 +92,66 @@ return [
             'icon' => 'tachometer',
         ],
         'PROGRAMS',
+//        [
+//            'text' => 'Local',
+//            'url'  => 'local/',
+//            'icon' => 'location-arrow',
+//        ],
+//        [
+//            'text' => 'Foreign',
+//            'url'  => 'foreign/',
+//            'icon' => 'globe',
+//        ],
+//        [
+//            'text' => 'Post-Grad',
+//            'url'  => 'postgrad/',
+//            'icon' => 'graduation-cap',
+//        ],
+//        [
+//            'text' => 'In-House',
+//            'url'  => 'inhouse/',
+//            'icon' => 'thumb-tack',
+//        ],
+//        'ACCOUNT SETTINGS',
+//        [
+//            'text' => 'Profile',
+//            'url'  => 'admin/settings',
+//            'icon' => 'user',
+//        ],
+//        [
+//            'text' => 'Change Password',
+//            'url'  => 'admin/settings',
+//            'icon' => 'lock',
+//        ],
         [
-            'text' => 'Local',
-            'url'  => 'local/',
-            'icon' => 'location-arrow',
-        ],
-        [
-            'text' => 'Foreign',
-            'url'  => 'foreign/',
-            'icon' => 'globe',
-        ],
-        [
-            'text' => 'Post-Grad',
-            'url'  => 'postgrad/',
-            'icon' => 'graduation-cap',
-        ],
-        [
-            'text' => 'In-House',
-            'url'  => 'inhouse/',
-            'icon' => 'thumb-tack',
+            'text'    => 'Programs',
+            'icon'    => 'th-list',
+            'submenu' => [
+                [
+                    'text' => 'Local',
+                    'url'  => 'local/',
+                    'icon' => 'location-arrow',
+                ],
+                [
+                    'text' => 'Foreign',
+                    'url'  => 'foreign/',
+                    'icon' => 'globe',
+                ],
+                [
+                    'text' => 'Post-Grad',
+                    'url'  => 'postgrad/',
+                    'icon' => 'graduation-cap',
+                ],
+                [
+                    'text' => 'In-House',
+                    'url'  => 'inhouse/',
+                    'icon' => 'thumb-tack',
+                ],
+            ],
         ],
         'EMPLOYEES',
         [
-            'text' => 'List',
+            'text' => 'Employees',
             'url'  => 'employee/',
             'icon' => 'user',
         ],
@@ -161,9 +176,20 @@ return [
         ],
         'ACCOUNT',
         [
-            'text' => 'USERS',
-            'url'  => 'users/',
-            'icon' => 'user',
+            'text'    => 'Account',
+            'icon'    => 'user',
+            'submenu' => [
+                [
+                    'text' => 'Users',
+                    'url'  => 'users/',
+                    'icon' => 'user',
+                ],
+                [
+                    'text' => 'Roles',
+                    'url'  => 'roles/',
+                    'icon' => 'flag',
+                ],
+            ],
         ],
 //        [
 //            'text' => 'Change Password',
@@ -171,7 +197,6 @@ return [
 //            'icon' => 'lock',
 //        ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Menu Filters
@@ -183,7 +208,6 @@ return [
     | built in Gate functionality
     |
     */
-
     'filters' => [
         JeroenNoten\LaravelAdminLte\Menu\Filters\HrefFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\ActiveFilter::class,
@@ -191,7 +215,6 @@ return [
         JeroenNoten\LaravelAdminLte\Menu\Filters\ClassesFilter::class,
         JeroenNoten\LaravelAdminLte\Menu\Filters\GateFilter::class,
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Plugins Initialization
@@ -202,7 +225,6 @@ return [
     | to include the JavaScript file from a CDN via a script tag.
     |
     */
-
     'plugins' => [
         'datatables' => true,
         'select2'    => false,
