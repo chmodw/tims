@@ -12,7 +12,6 @@ use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-//use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 
 
@@ -89,6 +88,7 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+
         return view('users.show',compact('user'));
     }
 
@@ -134,22 +134,26 @@ class UserController extends Controller
             $input = Arr::except($input,array('password'));
         }
 
-        if(!Hash::check($input['password'], Auth::User()->password))
+        $current_password = Auth::User()->password;
+
+        if(Hash::check($input['current-password'], $current_password))
         {
-            $user = User::find($id) ;
-            $user->update($input);
-            DB::table('model_has_roles')->where('model_id',$id)->delete();
+            if(!Hash::check($input['password'], $current_password))
+            {
+                $user = User::find($id) ;
+                $user->update($input);
+                DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+                $user->assignRole($request->input('roles'));
 
 
-            $user->assignRole($request->input('roles'));
-
-
-            return redirect()->route('users.index')->with('success','User updated successfully');
+                return redirect()->route('users.index')->with('success','User updated successfully');
+            }else{
+                return redirect()->back()->withInput(Input::except('password'))->with('failed', ' Can\' use the old pass as the new password');
+            }
         }else{
-            return Redirect::back()->withInput(Input::all())->with('failed ', ' Can\' use the old pass as the new password');
+            return redirect()->back()->withInput(Input::except('password'))->with('failed', ' Current password doesn\'t Match with the old one');
         }
-
-
 
     }
 
@@ -162,8 +166,15 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect()->route('users.index')
-            ->with('success','User deleted successfully');
+
+        if(User::count() > 1)
+        {
+            $user = User::find($id)->delete();
+
+            return redirect()->route('users.index')->with('success','User deleted successfully');
+        }
+
+        return redirect()->back()->withInput(Input::except('password'))->with('failed', ' Can\'t delete the only user account' );
+
     }
 }

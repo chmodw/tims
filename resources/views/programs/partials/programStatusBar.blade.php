@@ -1,4 +1,4 @@
-<div class="col-lg-3">
+{{--<div class="col-lg-3">--}}
     <ul class="list-group program-status">
         <li class="list-group-item active">
             <span class="badge">{{$program_status['total_count']}}</span>Trainee Count
@@ -9,4 +9,4 @@
             </li>
         @endforeach
     </ul>
-</div>
+{{--</div>--}}

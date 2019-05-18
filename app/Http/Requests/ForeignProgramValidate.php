@@ -25,8 +25,10 @@ class ForeignProgramValidate extends FormRequest
     {
         return [
             'program_title' => 'required|max:255',
+            'program_type' => 'required',
             'organised_by_id' => 'required|max:255',
             'notified_by' => 'required|max:255',
+            'notified_on' => 'required|date|before_or_equal:today|before_or_equal:application_closing_date|before_or_equal:start_date',
             'target_group' => 'required|max:255',
             'employment_nature' => 'required|max:255',
             'employee_category' => 'required|max:255',
@@ -37,7 +39,8 @@ class ForeignProgramValidate extends FormRequest
             'end_date' => 'max:255|date|after_or_equal:start_date',
             'application_closing_date' => 'required|max:255|date|after_or_equal:today|before_or_equal:start_date',
             'application_closing_time' => 'required|max:255',
-            'duration' => 'required|max:255',
+//            'duration' => 'required|max:255',
+            'other_costs' => '',
             'program_brochure' => 'mimes:doc,pdf,docx,jpg,jpeg,png|max:4999',
         ];
     }

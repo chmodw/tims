@@ -18,6 +18,7 @@ class CreateTemplatesManagerTable extends Migration
             $table->string('name');
             $table->string('file_name');
             $table->string('program_type');
+            $table->string('document_type');
             $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();

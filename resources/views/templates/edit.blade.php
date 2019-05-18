@@ -30,6 +30,18 @@
                         </div>
                     </div>
                     <div class="col-md-8 col-md-offset-2">
+                        <div class="form-group has-feedback {{$errors->has('document_type') ? 'has-error' : ''}}">
+                            <label for="document_type">Document Type</label>
+                            <select id="document_type" name="document_type" class="form-control">
+                                <option value="program" {{ (old("document_type", $template_edit->document_type) == 'program' ? "selected":"") }}>Program</option>
+                                <option value="trainee" {{ (old("document_type", $template_edit->document_type) == 'trainee' ? "selected":"") }}>Trainee</option>
+                            </select>
+                            @if ($errors->has('document_type'))
+                                <span class="help-block" style="display: block;width: 100%;margin-top: 0.25rem;font-size: 80%;color: #dc3545;">{{ $errors->first('document_type') }}</span>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-md-offset-2">
                         <div class="form-group has-feedback {{$errors->has('template_name') ? 'has-error' : ''}}">
                             <label for="template_name" class="required">Template Name</label>
                             <input type="text" id="template_name" class="form-control" value="{{old('template_name', $template_edit->name)}}" name="template_name" placeholder="Name" required>

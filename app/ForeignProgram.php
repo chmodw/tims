@@ -32,9 +32,14 @@ class ForeignProgram extends Model
         return $this->morphMany('App\Program', 'program_id');
     }
 
-    public function getOrganisationName()
+    public function organisation()
     {
         return $this->hasOne('App\Organisation', 'organisation_id', 'organised_by_id');
+    }
+
+    public function costs()
+    {
+        return $this->hasMany('App\Cost', 'program_id', 'program_id');
     }
 
     public static function getTableName()

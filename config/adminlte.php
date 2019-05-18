@@ -226,7 +226,7 @@ return [
     |
     */
     'plugins' => [
-        'datatables' => true,
+        'datatables' => false,
         'select2'    => false,
         'chartjs'    => false,
     ],

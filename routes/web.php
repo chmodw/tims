@@ -70,3 +70,23 @@ Route::resource('budget','budgetController')->middleware('auth');
 Route::resource('payment','paymentController')->middleware('auth');
 
 Route::resource('templatemanager','TemplateManagerController')->middleware('auth');
+
+/**
+ * Show images stored in the storage
+ */
+Route::get('storage/{filename}', function ($filename)
+{
+    $path = storage_path('public/' . $filename);
+
+    if (!File::exists($path)) {
+        abort(404);
+    }
+
+    $file = File::get($path);
+    $type = File::mimeType($path);
+
+    $response = Response::make($file, 200);
+    $response->header("Content-Type", $type);
+
+    return $response;
+});

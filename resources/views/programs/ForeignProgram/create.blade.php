@@ -29,7 +29,21 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback">
+                                <label for="program_type" class="required">Program Type</label>
+                                <select name="program_type" id="program_type" class="form-control">
+                                    <option value="ForeignProgram" {{ (old("program_type") == 'ForeignProgram' ? "selected":"") }}>Foreign Program</option>
+                                    <option value="FieldVisit" {{ (old("program_type") == 'FieldVisit' ? "selected":"") }}>Field Visit</option>
+                                    <option value="MastersDegreeProgram" {{ (old("program_type") == 'MastersDegreeProgram' ? "selected":"") }}>Masters Degree Program</option>
+                                </select>
+                                @if ($errors->has('program_type'))
+                                    <span class="help-block">{{ $errors->first('program_type') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-feedback {{$errors->has('organised_by_id') ? 'has-error' : ''}}">
@@ -47,12 +61,21 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-8">
                             <div class="form-group has-feedback {{$errors->has('notified_by') ? 'has-error' : ''}}">
                                 <label for="notified_by" class="required">Notified By</label>
                                 <input type="text" value="{{old('notified_by')}}" name="notified_by" class="form-control {{ $errors->has('notified_by') ? 'has-error' : '' }}" id="notified_by" placeholder="Notified By">
                                 @if ($errors->has('notified_by'))
                                     <span class="help-block">{{ $errors->first('notified_by') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback {{$errors->has('notified_on') ? 'has-error' : ''}}">
+                                <label for="notified_on" class="required">Notified On</label>
+                                <input type="date" value="{{old('notified_on')}}" class="form-control {{ $errors->has('notified_on') ? 'has-error' : '' }}" id="notified_on" name="notified_on" placeholder="">
+                                @if ($errors->has('notified_on'))
+                                    <span class="help-block">{{ $errors->first('notified_on') }}</span>
                                 @endif
                             </div>
                         </div>
@@ -104,11 +127,11 @@
                                     <label class="required margin-bottom-sm">Employee Category</label>
                                 </div>
                                 <div class="inline margin-right-md">
-                                    <input type="checkbox" id="employee_category_tech" class="styled-checkbox" value="Technical" name="employee_category[]" {{ (is_array(old('employee_category')) and in_array('Technical', old('employee_category'))) ? ' checked' : '' }}>
+                                    <input type="checkbox" id="employee_category_tech" class="styled-checkbox" value="technical" name="employee_category[]" {{ (is_array(old('employee_category')) and in_array('technical', old('employee_category'))) ? ' checked' : '' }}>
                                     <label for="employee_category_tech" >Technical</label>
                                 </div>
                                 <div class="inline">
-                                    <input type="checkbox" id="employee_category_nontech" class="styled-checkbox" value="Non-Technical" name="employee_category[]" {{ (is_array(old('employee_category')) and in_array('Non-Technical', old('employee_category'))) ? ' checked' : '' }}>
+                                    <input type="checkbox" id="employee_category_nontech" class="styled-checkbox" value="non-technical" name="employee_category[]" {{ (is_array(old('employee_category')) and in_array('non-technical', old('employee_category'))) ? ' checked' : '' }}>
                                     <label for="employee_category_nontech" class="">Non-Technical</label>
                                 </div>
                                 @if ($errors->has('employee_category'))
@@ -117,45 +140,18 @@
                             </div>
                         </div>
                     </div>
+{{--                    <div class="row">--}}
+{{--                        <div class="col-md-12">--}}
+{{--                            <div class="form-group has-feedback">--}}
+{{--                                <label for="is_long_term" class="">Long Term Program</label>--}}
+{{--                                <br>--}}
+{{--                                <input type="checkbox" class="styled-checkbox" aria-label="" id="is_long_term" name="is_long_term" value="true">--}}
+{{--                                <label for="is_long_term" class="">Long Term</label>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+
                     <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback">
-                                <label for="is_long_term" class="">Long Term Program</label>
-                                <br>
-                                <input type="checkbox" class="styled-checkbox" aria-label="" id="is_long_term" name="is_long_term" value="true">
-                                <label for="is_long_term" class="">Long Term</label>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback {{$errors->has('duration') ? 'has-error' : ''}}">
-                                <label for="duration" class="required inline">Duration</label>
-                                <input type="number" value="{{old('duration')}}" class="form-control inline" id="duration" placeholder="Number of Days" id="duration" name="duration">
-                                <small id="durationHelpBlock" class="form-text text-muted">
-                                    Days
-                                </small>
-                                @if ($errors->has('duration'))
-                                    <span class="help-block">{{ $errors->first('duration') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback {{$errors->has('application_closing_date') ? 'has-error' : ''}}">
-                                <label for="application_closing_date" class="required">Application Closing Date</label>
-                                <input type="date" value="{{old('application_closing_date')}}" class="form-control {{ $errors->has('application_closing_date') ? 'has-error' : '' }}" id="application_closing_date" name="application_closing_date" placeholder="">
-                                @if ($errors->has('application_closing_date'))
-                                    <span class="help-block">{{ $errors->first('application_closing_date') }}</span>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group has-feedback {{$errors->has('application_closing_time') ? 'has-error' : ''}}">
-                                <label for="application_closing_time" class="required">Closing Time (24hr)</label>
-                                <input type="time" value="{{old('application_closing_time')}}" class="form-control {{ $errors->has('application_closing_time') ? 'has-error' : '' }}" id="application_closing_time" name="application_closing_time" placeholder="">
-                                @if ($errors->has('application_closing_time'))
-                                    <span class="help-block">{{ $errors->first('application_closing_time') }}</span>
-                                @endif
-                            </div>
-                        </div>
                         <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('start_date') ? 'has-error' : ''}}">
                                 <label for="start_date" class="required">Start Date</label>
@@ -175,15 +171,47 @@
                             </div>
                         </div>
                     </div>
+{{--                        <div class="col-md-6">--}}
+{{--                            <div class="form-group has-feedback {{$errors->has('duration') ? 'has-error' : ''}}">--}}
+{{--                                <label for="duration" class="required inline">Duration</label>--}}
+{{--                                <input type="number" value="{{old('duration')}}" class="form-control inline" id="duration" placeholder="Number of Days" id="duration" name="duration">--}}
+{{--                                <small id="durationHelpBlock" class="form-text text-muted">--}}
+{{--                                    Days--}}
+{{--                                </small>--}}
+{{--                                @if ($errors->has('duration'))--}}
+{{--                                    <span class="help-block">{{ $errors->first('duration') }}</span>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback {{$errors->has('application_closing_date') ? 'has-error' : ''}}">
+                                <label for="application_closing_date" class="required">Application Closing Date</label>
+                                <input type="date" value="{{old('application_closing_date')}}" class="form-control {{ $errors->has('application_closing_date') ? 'has-error' : '' }}" id="application_closing_date" name="application_closing_date" placeholder="">
+                                @if ($errors->has('application_closing_date'))
+                                    <span class="help-block">{{ $errors->first('application_closing_date') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback {{$errors->has('application_closing_time') ? 'has-error' : ''}}">
+                                <label for="application_closing_time" class="required">Closing Time (24hr)</label>
+                                <input type="time" value="{{old('application_closing_time')}}" class="form-control {{ $errors->has('application_closing_time') ? 'has-error' : '' }}" id="application_closing_time" name="application_closing_time" placeholder="">
+                                @if ($errors->has('application_closing_time'))
+                                    <span class="help-block">{{ $errors->first('application_closing_time') }}</span>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('currency') ? 'has-error' : ''}}">
                                 <label for="currency" class="">Currency</label>
-                                <select type="text" value="{{old('currency')}}" class="form-control {{ $errors->has('currency') ? 'has-error' : '' }}" id="currency" name="currency">
-                                    <option value="lkr">LKR</option>
-                                    <option value="gbp">GBP</option>
-                                    <option value="usd">USD</option>
-                                    <option value="euro">EURO</option>
+                                <select type="text" value="" class="form-control {{ $errors->has('currency') ? 'has-error' : '' }}" id="currency" name="currency">
+                                    <option value="lkr" {{ (old("currency") == 'lkr' ? "selected":"") }}>LKR</option>
+                                    <option value="gbp" {{ (old("currency") == 'gbp' ? "selected":"") }}>GBP</option>
+                                    <option value="usd" {{ (old("currency") == 'usd' ? "selected":"") }}>USD</option>
+                                    <option value="euro" {{ (old("currency") == 'euro' ? "selected":"") }}>EURO</option>
                                 </select>
                                 @if ($errors->has('currency'))
                                     <span class="help-block">{{ $errors->first('currency') }}</span>
@@ -199,6 +227,8 @@
                                 @endif
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('other_costs') ? 'has-error' : ''}}">
                                 <label for="other_costs" class="">Other Costs</label>

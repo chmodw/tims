@@ -17,8 +17,10 @@ class CreateForeignProgramsTable extends Migration
             $table->bigIncrements('id');
             $table->string('program_id')->unique()->index();
             $table->string('program_title');
+            $table->string('program_type');
             $table->string('organised_by_id');
             $table->string('notified_by');
+            $table->date('notified_on');
             $table->string('target_group');
             $table->string('nature_of_the_employment');
             $table->string('employee_category');
@@ -28,7 +30,7 @@ class CreateForeignProgramsTable extends Migration
             $table->date('start_date');
             $table->date('end_date');
             $table->string('application_closing_date_time');
-            $table->integer('duration');
+            $table->string('duration');
             $table->string('brochure_url')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();

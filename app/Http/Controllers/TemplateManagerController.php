@@ -66,6 +66,7 @@ class TemplateManagerController extends Controller
         $validated = $request->validate([
             'program_type' => 'required',
             'template_name' => 'required|max:50',
+            'document_type' => 'required',
             'template' => 'required|file|max:5000|mimes:docx'
         ]);
 
@@ -84,6 +85,7 @@ class TemplateManagerController extends Controller
             $tmpmngr->name = $validated['template_name'];
             $tmpmngr->file_name = $fileName;
             $tmpmngr->program_type = $validated['program_type'];
+            $tmpmngr->document_type = $validated['document_type'];
             $tmpmngr->created_by = auth()->user()->email;
 
             $saved = $tmpmngr->save();
@@ -135,6 +137,7 @@ class TemplateManagerController extends Controller
 
         $validated = $request->validate([
             'program_type' => 'required',
+            'document_type' => 'required',
             'template_name' => 'required|max:50',
             'template' => ''
         ]);
@@ -153,7 +156,8 @@ class TemplateManagerController extends Controller
 
         $tmpmngr->name = $validated['template_name'];
         $tmpmngr->program_type = $validated['program_type'];
-        $tmpmngr->created_by = auth()->user()->email;
+        $tmpmngr->document_type = $validated['document_type'];
+        $tmpmngr->updated_by = auth()->user()->email;
 
         $saved = $tmpmngr->save();
 

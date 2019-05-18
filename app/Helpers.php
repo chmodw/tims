@@ -43,6 +43,22 @@ class Helpers
         return $array;
     }
 
+    public static function calc_duration($date1, $date2)
+    {
+        $datetime1 = date_create($date1);
+        $datetime2 = date_create($date2);
+
+        $interval = date_diff($datetime1, $datetime2);
+        //date diff in months because this is a foreign program
+        $duration = $interval->format('%m Months');
+
+        if($duration < 1){
+            $duration = $interval->format('%d Days');
+        }
+
+        return $duration;
+    }
+
     public static function strings_to_arrays($string, $by){
 
         $arr = rtrim($string,',');

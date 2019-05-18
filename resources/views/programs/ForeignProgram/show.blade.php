@@ -35,7 +35,7 @@
                         </tr>
                         <tr>
                             <th colspan="1">Organised By</th>
-                            <td colspan="3">{{$program->name}}</td>
+                            <td colspan="3">{{$program->organisation->name}}</td>
                         </tr>
                         <tr>
                             <th colspan="1">Venue</th>
@@ -55,15 +55,23 @@
                         </tr>
                         <tr>
                             <th colspan="1">Nature of the Employment</th>
-                            <td colspan="3">{{$program->nature_of_the_employment}}</td>
+                            <td colspan="1">{{$program->nature_of_the_employment}}</td>
+                            <th colspan="1">Employee Category</th>
+                            <td colspan="1">{{$program->employee_category}}</td>
                         </tr>
                         <tr>
-                            <th colspan="1">Employee Category</th>
-                            <td colspan="3">{{$program->employee_category}}</td>
+
                         </tr>
                         <tr>
                             <th colspan="1">Program Fee</th>
-                            <td colspan="3">{{$program->program_fee}}</td>
+                            <td colspan="1">{{$program->program_fee}}</td>
+                            <th colspan="1">Other Fees</th>
+                            <td colspan="1">
+                                @foreach($program->costs as $cost)
+                                    {{$cost->cost_content.' = '.$cost->cost_value}}
+                                    <br>
+                                @endforeach
+                            </td>
                         </tr>
                         <tr>
                             <th colspan="1">Program Brochure</th>
@@ -85,8 +93,16 @@
                 </table>
             </div>
 
+            <div class="col-lg-3">
+
+                <div class="program-brochure">
+                    <a href="/storage/brochures/{{$program->brochure_url}}" target="_blank"><img src="/storage/brochures/{{$program->brochure_url}}" class="img-thumbnail" alt="program brochure"></a>
+                </div>
+
+                @include('programs.partials.programStatusBar')
+            </div>
             {{--Status Bar--}}
-            @include('programs.partials.programStatusBar')
+
 
             <div class="col-md-12">
                 <div class="panel panel-default">

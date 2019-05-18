@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Cost;
 use App\ForeignProgram;
 use App\Http\Requests\ForeignProgramValidate;
 use App\Organisation;
@@ -55,6 +56,7 @@ class ForeignProgramController extends Controller
 
         $ForeignProgram->program_id = $randomProgramId;
         $ForeignProgram->program_title = $validated['program_title'];
+        $ForeignProgram->program_type = $validated['program_type'];
         /**
          * Check the organisation in the database
          */
@@ -68,11 +70,12 @@ class ForeignProgramController extends Controller
         }
 
         $ForeignProgram->notified_by = $validated['notified_by'];
+        $ForeignProgram->notified_on = $validated['notified_on'];
 
         $ForeignProgram->target_group = $validated['target_group'];
         $ForeignProgram->start_date = $validated['start_date'];
         $ForeignProgram->end_date = $validated['end_date'];
-        $ForeignProgram->duration = $validated['duration'];
+        $ForeignProgram->duration = Helpers::calc_duration($validated['start_date'], $validated['end_date']);
 
         $ForeignProgram->venue = $validated['venue'];
         $ForeignProgram->currency = $validated['currency'];
@@ -81,7 +84,7 @@ class ForeignProgramController extends Controller
         $ForeignProgram->application_closing_date_time = Helpers::joint_date_time($validated['application_closing_date'], $validated['application_closing_time']);
         $ForeignProgram->nature_of_the_employment = serialize($validated['employment_nature']);
         $ForeignProgram->employee_category = serialize($validated['employee_category']);
-//        $ForeignProgram->end_date =
+
         //  check if a program brochure is present
         if ($request->file('program_brochure') != null) {
             //get the file ext
@@ -97,8 +100,32 @@ class ForeignProgramController extends Controller
         $saved = $ForeignProgram->save($validated);
 
         if($saved){
+
+            $installments = Helpers::strings_to_arrays($validated['other_costs'], '=');
+            /**
+             * delete previous records before saving updated items
+             */
+            foreach ($installments as $installment)
+            {
+                $installment = explode(',',$installment[0]);
+
+                $costs = new Cost();
+
+                $costs->program_id = $randomProgramId;
+                $costs->cost_name = 'other costs';
+                $costs->cost_content = $installment[0];
+                $costs->cost_value = $installment[1];
+                $costs->created_by = auth()->user()->email;
+                $costs->save();
+            }
+
             return redirect('/foreign')->with('success', ' The New Local Program has been saved successfully');
         }else{
+            /**
+             * if not costs saved successfully. delete the saved  program
+             */
+            ForeignProgram::where('program_id', $randomProgramId)->delete();
+
             return Redirect::back()->withInput(Input::all())->with('failed ', ' System Could not save the program. please contact the administrator');
         }
     }
@@ -111,35 +138,20 @@ class ForeignProgramController extends Controller
      */
     public function show($id)
     {
-
-        var_dump(ForeignProgram::find($id)->getOrganisationName);
-
-        return;
-        /**
-         * get details about trainee counts
-         */
-        $program_status = app('App\Http\Controllers\TraineeController')->getTraineeCount($id);
-        /**
-         * Get the available documents for current program type
-         */
-        $available_documents =  app('App\Http\Controllers\TemplateManagerController')->getTemplates('foreign_program');
         /**
          * get the program
          */
 
+        $program = ForeignProgram::where('program_id', $id)->with('costs')->with('organisation')->first();
+        /**
+         * get details about trainee counts
+         */
+        $program_status = app('App\Http\Controllers\TraineeController')->getTraineeCount($id);
 
-//        $program = ForeignProgram::where('program_id', "=" , $id)->with('getOrganisationId');
-
-//        $budgetData = $program->pluck( "budget_amount", "getOrganisationId.WorkSpaceTypeName")->get();
-
-//        return $program;
-
-
-
-        $program = ForeignProgram::join('organisations', 'organisations.organisation_id', 'foreign_programs.organised_by_id')
-            ->where('program_id', (int)$id)
-            ->select('foreign_programs.*', 'organisations.name')
-            ->first();
+        /**
+         * Get the available documents for current program type
+         */
+        $available_documents =  app('App\Http\Controllers\TemplateManagerController')->getTemplates('foreign_program');
 
         if($program != null){
             return view('programs.ForeignProgram.show')->with(compact('program'))->with(compact('program_status'))->with(compact('available_documents'));
@@ -159,10 +171,7 @@ class ForeignProgramController extends Controller
     {
         $orgs = app('App\Http\Controllers\OrganisationController')->index();
 
-        $program = ForeignProgram::join('organisations', 'organisations.organisation_id', 'foreign_programs.organised_by_id')
-            ->where('program_id', $id)
-            ->select('foreign_programs.*', 'organisations.name')
-            ->get();
+        $program = ForeignProgram::where('program_id', $id)->with('costs')->with('organisation')->first();
 
         return view('programs.ForeignProgram.edit')->with(compact('program'))->with(compact('orgs'));
     }
@@ -183,6 +192,7 @@ class ForeignProgramController extends Controller
         $randomProgramId = Helpers::u_id([$validated['program_title'],auth()->user()->email,$request->program_type,$validated['start_date']]);
 
         $ForeignProgram->program_title = $validated['program_title'];
+        $ForeignProgram->program_type = $validated['program_type'];
         /**
          * Check the organisation in the database
          */
@@ -195,6 +205,7 @@ class ForeignProgramController extends Controller
             $ForeignProgram->organised_by_id = $orgId['organisation_id'];
         }
         $ForeignProgram->notified_by = $validated['notified_by'];
+        $ForeignProgram->notified_on = $validated['notified_on'];
         $ForeignProgram->target_group = $validated['target_group'];
         $ForeignProgram->venue = $validated['venue'];
         $ForeignProgram->currency = $validated['currency'];
@@ -204,7 +215,7 @@ class ForeignProgramController extends Controller
         $ForeignProgram->application_closing_date_time = Helpers::joint_date_time($validated['application_closing_date'], $validated['application_closing_time']);
         $ForeignProgram->start_date = $validated['start_date'];
         $ForeignProgram->end_date = $validated['end_date'];
-        $ForeignProgram->duration = $validated['duration'];
+        $ForeignProgram->duration = Helpers::calc_duration($validated['start_date'], $validated['end_date']);
         //  check if a program brochure is present
         if ($request->file('program_brochure') != null) {
             //get the file ext
@@ -216,9 +227,39 @@ class ForeignProgramController extends Controller
         }
 
         $ForeignProgram->updated_by = auth()->user()->email;
-        $st = $ForeignProgram->save();
+        $saved = $ForeignProgram->save();
 
-        return redirect('/foreign')->with('success', ' Requested program successfully updated');
+        if($saved){
+
+            $installments = Helpers::strings_to_arrays($validated['other_costs'], '=');
+            /**
+             * delete previous records before saving updated items
+             */
+            Cost::where('program_id', $id)->delete();
+
+            foreach ($installments as $installment){
+
+                $installment = explode(',',$installment[0]);
+
+                $costs = new Cost();
+
+                $costs->program_id = $id;
+                $costs->cost_name = 'other_costs';
+                $costs->cost_content = $installment[0];
+                $costs->cost_value = $installment[1];
+                $costs->created_by = auth()->user()->email;
+
+                $costs->save();
+            }
+
+            return redirect('/foreign')->with('success', ' Requested program successfully updated');
+        }else{
+
+            return Redirect::back()->withInput(Input::all())->with('failed ', ' System Could not save the program. please contact the administrator');
+
+        }
+
+
     }
 
     /**
@@ -296,18 +337,7 @@ class ForeignProgramController extends Controller
 
     public function getDuration(ForeignProgram $program)
     {
-        $datetime1 = date_create($program->start_date);
-        $datetime2 = date_create($program->end_date);
-
-        $interval = date_diff($datetime1, $datetime2);
-        //date diff in months because this is a foreign program
-        $duration = $interval->format('%m Months');
-
-        if($duration < 1){
-            $duration = $interval->format('%d Days');
-        }
-
-        return $duration;
+        return  Helpers::calc_duration($program->start_date, $program->end_date);
     }
 
     public function getOrganisedById(ForeignProgram $program)
