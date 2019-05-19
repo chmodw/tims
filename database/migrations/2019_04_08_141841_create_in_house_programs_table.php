@@ -16,7 +16,7 @@ class CreateInHouseProgramsTable extends Migration
         Schema::create('in_house_programs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('program_id')->unique();
-            $table->string('program_title');
+            $table->text('program_title');
             $table->string('target_group');
             $table->string('organised_by_id');
             $table->string('nature_of_the_employment');
@@ -27,13 +27,8 @@ class CreateInHouseProgramsTable extends Migration
             $table->timestamp('application_closing_date_time')->useCurrent = true;
             $table->float('no_show_fee')->nullable();
             $table->float('per_person_fee')->nullable();
-
-            /// save resource on costs
-//            $table->text('resource_person'); //person name and designation
-
-
-//            $table->float('resource_person_cost')->nullable();
-//            $table->string('other_costs')->nullable();
+            $table->text('resource_person'); //person name, designation, and cost
+            $table->text('other_costs')->nullable();
 
             $table->float('hours')->nullable();;
             $table->string('brochure_url')->nullable();

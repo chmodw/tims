@@ -59,6 +59,47 @@ class Helpers
         return $duration;
     }
 
+    public static function check_org($orgname, $program_type)
+    {
+        if(is_null(Organisation::where('name', strtolower($orgname))->first()))
+        {
+            $orgId = Helpers::u_id([$orgname, auth()->user()->email, $program_type]);
+            Organisation::create(['organisation_id' => $orgId, 'name' => strtolower($orgname), 'created_by' => auth()->user()->email]);
+            return $orgId;
+        }else
+            {
+            $orgId = Organisation::where('name', strtolower($orgname))->get('organisation_id')->first();
+            return $orgId['organisation_id'];
+        }
+    }
+
+    public static function save_costs($program_id, $costs)
+    {
+        $other_costs = Helpers::strings_to_arrays($costs, '=');
+
+        foreach ($other_costs as $other_cost){
+
+            $other_cost = explode(',',$other_cost[0]);
+
+            $costs = new Cost();
+
+            $costs->program_id = $program_id;
+            $costs->cost_name = 'other cost';
+            $costs->cost_content = $other_cost[0];
+            $costs->cost_value = $other_cost[1];
+            $costs->created_by = auth()->user()->email;
+            $saved = $costs->save();
+
+            if($saved){
+                return true;
+            }else{
+                return false;
+            }
+
+        }
+
+    }
+
     public static function strings_to_arrays($string, $by){
 
         $arr = rtrim($string,',');

@@ -42,6 +42,56 @@ class InHouseProgramController extends Controller
         return view('programs/InHouseProgram/create')->with('orgs', $orgs);
     }
 
+
+    private function agendasToArray($array)
+    {
+        $agendas = array();
+
+        for($i=1;$i<16;$i++)
+        {
+            if($array->exists('agenda'.$i) && $array->exists('agenda_from'.$i) && $array->exists('agenda_to'.$i))
+            {
+                array_push($agendas, ['topic' => $array->input('agenda'.$i), 'from' => $array->input('agenda_from'.$i), 'to' => $array->input('agenda_to'.$i)]);
+            }else{
+                break;
+            }
+        }
+
+        return serialize($agendas);
+    }
+
+    private function RPsToArray($array)
+    {
+        $rps = array();
+
+        for($i=1;$i<16;$i++)
+        {
+            if($array->exists('resource_person_name'.$i) && $array->exists('resource_person_designation'.$i) && $array->exists('resource_person_cost'.$i))
+            {
+                array_push($rps, ['name' => $array->input('resource_person_name'.$i), 'designation' => $array->input('resource_person_designation'.$i), 'cost' => $array->input('resource_person_cost'.$i)]);
+            }else{
+                break;
+            }
+        }
+        return serialize($rps);
+    }
+
+    private function costsToArray($str)
+    {
+        $other_costs = Helpers::strings_to_arrays($str, '=');
+        $costs = [];
+
+        foreach ($other_costs as $other_cost)
+        {
+            $other_cost = explode(',', $other_cost[0]);
+
+            return $other_cost;
+            array_push($costs, [$other_cost[0] => $other_cost[1]]);
+        }
+        return $other_costs;
+        return explode(',',$other_costs);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -57,35 +107,23 @@ class InHouseProgramController extends Controller
         /**
          * Generate a program ID
          */
-        $program_id = Helpers::u_id([$validated['program_title'],auth()->user()->email,$request->program_type,$validated['start_date']]);
+        $program_id = Helpers::u_id([$validated['agenda1'],auth()->user()->email,$request->program_type,$validated['start_date']]);
 
         $inhouse->program_id = $program_id;
-        $inhouse->program_title = $validated['program_title'];
+        $inhouse->program_title =  $this->agendasToArray($request);
         $inhouse->target_group = $validated['target_group'];
         $inhouse->nature_of_the_employment = serialize($validated['employment_nature']);
         $inhouse->employee_category = serialize($validated['employee_category']);
-        /**
-         * Check the organisation in the database
-         */
-        if(is_null(Organisation::where('name', strtolower($validated['organised_by_id']))->first())){
-            $orgId = Helpers::u_id([$validated['organised_by_id'], auth()->user()->email, request()->program_type]);
-            Organisation::create(['organisation_id' => $orgId, 'name' => strtolower($validated['organised_by_id']), 'created_by' => auth()->user()->email]);
-            $inhouse->organised_by_id = $orgId;
-        }else{
-            $orgId = Organisation::where('name', strtolower($validated['organised_by_id']))->get('organisation_id')->first();
-            $inhouse->organised_by_id = $orgId['organisation_id'];
-        }
+        $inhouse->organised_by_id = Helpers::check_org($validated['organised_by_id'], request()->program_type);
         $inhouse->venue = $validated['venue'];
         $inhouse->start_date = Helpers::joint_date_time($validated['start_date'],$validated['start_time']);
         $inhouse->end_time = $validated['end_time'];
         $inhouse->application_closing_date_time = Helpers::joint_date_time($validated['application_closing_date'], $validated['application_closing_time']);
-
         $startTime = new \DateTime($validated['start_time']);
         $endTime = new \DateTime($validated['end_time']);
         $inhouse->hours = $startTime->diff($endTime)->format('%h.%i');
         $inhouse->per_person_fee = $validated['per_person_cost'];
         $inhouse->no_show_fee = $validated['no_show_cost'];
-
         /**
          * check if a program brochure is present
          */
@@ -97,49 +135,29 @@ class InHouseProgramController extends Controller
             $savedFile = $request->file('program_brochure')->storeAs('public/brochures', $fileName);
             $inhouse->brochure_url = $fileName;
         }
-
         $inhouse->created_by = auth()->user()->email;
-        /**
-         * save resource persons in the cost table
-         */
-        $resource_persons = Helpers::strings_to_arrays($validated['resource_person'], ',');
+        $inhouse->resource_person = $this->RPsToArray($request);
+        $inhouse->other_costs = $this->costsToArray($request);
 
-        $other_costs = Helpers::strings_to_arrays($validated['other_costs'], '=');
+        return $this->costsToArray($validated['other_costs']);
 
         $saved = $inhouse->save();
 
         if($saved){
             /**
-             * if the program successfully saved on the database, Save the costs
+             * Save Other Costs
              */
-            foreach ($resource_persons as $resource_person){
-
-                $costs = new Cost();
-
-                $costs->program_id = $program_id;
-                $costs->cost_name = 'resource person';
-                $costs->cost_content = serialize([$resource_person[0],$resource_person[1]]);
-                $costs->cost_value = $resource_person[2];
-                $costs->created_by = auth()->user()->email;
-                $costs->save();
+            $costs_saved = Helpers::save_costs($program_id, $validated['other_costs']);
+            /**
+             * delete the program if not other costs saved successfully
+             */
+            if($costs_saved){
+                return redirect('/inhouse')->with('success', ' The New In-House Program has been saved successfully');
+            }else{
+                InHouseProgram::where('program_id', $program_id)->delete();
+                return Redirect::back()->withInput(Input::all())->with('failed ', ' System Could not save the In-House program. please contact the administrator');
             }
 
-            foreach ($other_costs as $other_cost){
-
-                $other_cost = explode(',',$other_cost[0]);
-
-                $costs = new Cost();
-
-                $costs->program_id = $program_id;
-                $costs->cost_name = 'other cost';
-                $costs->cost_content = $other_cost[0];
-                $costs->cost_value = $other_cost[1];
-                $costs->created_by = auth()->user()->email;
-                $costs->save();
-
-            }
-
-            return redirect('/inhouse')->with('success', ' The New In-House Program has been saved successfully');
 
         }else{
             return Redirect::back()->withInput(Input::all())->with('failed ', ' System Could not save the In-House program. please contact the administrator');

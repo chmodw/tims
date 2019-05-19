@@ -24,13 +24,17 @@ class InHouseProgramValidate extends FormRequest
     public function rules()
     {
         return [
-            'program_title' => 'required',
+            'agenda1' => 'required',
+            'agenda_from1' => 'required',
+            'agenda_to1' => 'required',
             'target_group' => 'required',
             'employment_nature' => 'required',
             'employee_category' => 'required',
             'organised_by_id' => 'required',
             'venue' => 'required',
-            'resource_person' => 'required',
+            'resource_person_name1' => 'required',
+            'resource_person_designation1' => 'required',
+            'resource_person_cost1' => 'required',
             'start_date' => 'required',
             'start_time' => 'required',
             'end_time' => 'required',
