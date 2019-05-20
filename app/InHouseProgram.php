@@ -45,14 +45,29 @@ class InHouseProgram extends Model
         return $this->morphMany('App\Program', 'program_id');
     }
 
-    public function organised_by_id()
+    public function organisation()
     {
         return $this->hasOne('App\Organisation', 'organisation_id', 'organised_by_id');
     }
 
-    public function costs()
+    public function getProgramTitleAttribute()
     {
-        return $this->morphMany('App\Cost', 'Payable');
+        $topicstr = '';
+        foreach (unserialize($this->attributes['program_title']) as $topic)
+        {
+            $topicstr = $topicstr.', '.$topic['topic'];
+        }
+        return trim($topicstr, ', ');
+    }
+
+    public function getOtherCostsAttribute()
+    {
+        return unserialize($this->attributes['other_costs']);
+    }
+
+    public function getResourcePersonAttribute()
+    {
+        return unserialize($this->attributes['resource_person']);
     }
 
     public function getCreatedAtAttribute()
@@ -97,6 +112,11 @@ class InHouseProgram extends Model
         }else{
             return 'Not Updated';
         }
+    }
+
+    public function getAgendaAttribute()
+    {
+        return unserialize($this->attributes['program_title']);
     }
 
 }

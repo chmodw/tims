@@ -18,9 +18,9 @@ class LocalProgram extends Model
         return with(new static)->getTable();
     }
 
-    public function organisedById()
+    public function organisation()
     {
-        return $this->belongsTo('Organisation\Trainee', 'organisation_id');
+        return $this->hasOne('App\Organisation', 'organisation_id', 'organised_by_id');
     }
 
     public function getTableColumns()

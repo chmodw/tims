@@ -7,6 +7,8 @@ use App\ForeignProgram;
 use App\Http\Requests\ForeignProgramValidate;
 use App\Organisation;
 use App\Helpers;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class ForeignProgramController extends Controller
 {
@@ -217,7 +219,15 @@ class ForeignProgramController extends Controller
         $ForeignProgram->end_date = $validated['end_date'];
         $ForeignProgram->duration = Helpers::calc_duration($validated['start_date'], $validated['end_date']);
         //  check if a program brochure is present
-        if ($request->file('program_brochure') != null) {
+        if ($request->file('program_brochure') != null)
+        {
+            if($ForeignProgram->brochure_url != null)
+            {
+                if (Storage::exists('public/brochures/'.$ForeignProgram->brochure_url))
+                {
+                    File::delete('public/brochures/'.$ForeignProgram->brochure_url);
+                }
+            }
             //get the file ext
             $ext = $request->file('program_brochure')->getClientOriginalExtension();
             //save the file in the storage

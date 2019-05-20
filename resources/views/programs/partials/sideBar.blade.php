@@ -1,4 +1,9 @@
-{{--<div class="col-lg-3">--}}
+<div class="col-lg-3">
+
+    <div class="program-brochure">
+        <a href="/storage/brochures/{{$program->brochure_url}}" target="_blank"><img src="/storage/brochures/{{$program->brochure_url}}" class="img-thumbnail" alt="program brochure"></a>
+    </div>
+
     <ul class="list-group program-status">
         <li class="list-group-item active">
             <span class="badge">{{$program_status['total_count']}}</span>Trainee Count
@@ -9,4 +14,4 @@
             </li>
         @endforeach
     </ul>
-{{--</div>--}}
+</div>

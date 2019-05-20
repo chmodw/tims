@@ -28,13 +28,13 @@ class PostGradValidate extends FormRequest
             "organised_by_id" => 'required|max:100',
             "department" => 'required|max:255',
             "target_group" => 'required|max:255',
-            'requirements' => 'required|max:255',
-            "application_closing_date" => 'required|date',
-            "application_closing_time" => 'required',
-            "start_date" => 'required|date',
+            'requirement1' => 'required|max:255',
+            'start_date' => 'required|max:255|date|after_or_equal:today|after_or_equal:application_closing_date',
+            'application_closing_date' => 'required|max:255|date|after_or_equal:today|before_or_equal:start_date',
+            'application_closing_time' => 'required|max:255',
             "duration" => 'required|max:10',
             "registration_fees" => 'required|max:100',
-            "installments" => 'required',
+            "cost1" => '',
             'program_brochure' => 'mimes:doc,pdf,docx,jpg,jpeg,png|max:4999',
         ];
     }

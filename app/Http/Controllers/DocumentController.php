@@ -134,7 +134,7 @@ class DocumentController extends Controller
         }
 
         /**
-          * New rows
+         * New rows
          */
         $numberOfRows = sizeof($trainees);
         try {
@@ -188,7 +188,7 @@ class DocumentController extends Controller
             /**
              * Store the document
              */
-             $templateProcessor->saveAs(storage_path('app/generated_documents/'.$file_name));
+            $templateProcessor->saveAs(storage_path('app/generated_documents/'.$file_name));
 
         } catch (exception $e) {
 

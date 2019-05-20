@@ -31,7 +31,7 @@
                     <tbody>
                         <tr>
                             <th colspan="1"><p>Organised By</p></th>
-                            <td colspan="3">{{$program->name}}</td>
+                            <td colspan="3">{{$program->organisation->name}}</td>
                         </tr>
                         <tr>
                             <th colspan="1">Target Group</th>
@@ -48,13 +48,11 @@
                         <tr>
                             <th colspan="1"><p>Resource Person(s)</p></th>
                             <td colspan="3">
-                                @foreach($costs as $cost)
-                                    @if($cost['cost_name'] == 'resource person')
-                                        <p class="cost-title"><b>Name: </b> {{$cost['cost_content'][0]}}</p>
-                                        <p class="cost-title"><b>Designation: </b> {{$cost['cost_content'][1]}}</p>
-                                        <p class="cost-title"><b>Cost(Rs): </b> {{$cost['cost_value']}}/=</p>
-                                        <hr>
-                                    @endif
+                                @foreach($program->resource_person as $person)
+                                    <p class="cost-title"><b>Name: </b> {{$person['name']}}</p>
+                                    <p class="cost-title"><b>Designation: </b> {{$person['designation']}}</p>
+                                    <p class="cost-title"><b>Cost(Rs): </b> {{$person['cost']}}/=</p>
+                                    <hr>
                                 @endforeach
                             </td>
                         </tr>
@@ -74,7 +72,7 @@
                             <th colspan="1">End Time</th>
                             <td colspan="1">{{\date('H:i', \strtotime($program->end_time))}}</td>
                             <th colspan="1"><p>Duration</p></th>
-                            <td colspan="1">{{$program->hours}} Hours</td>
+                            <td colspan="1">{{\number_format((float)$program->hours, 2, '.', '')}} Hours</td>
                         </tr>
                     <tr>
                         <th colspan="1"><p>No-Show Fee (Rs)</p></th>
@@ -85,17 +83,10 @@
                     <tr>
                         <th colspan="1"><p>Other Costs (Rs)</p></th>
                         <td colspan="3">
-                            @foreach($costs as $cost)
-                                @if($cost['cost_name'] == 'other cost')
-                                    <p class="cost-title"><b>{{ucfirst($cost['cost_content'])}}</b> = {{$cost['cost_value']}}/=</p>
-                                    <hr>
-                                @endif
+                            @foreach($program->other_costs as $cost)
+                                <p class="cost-title"><b>{{ucfirst($cost['name'])}}</b> - {{$cost['value']}}/=</p>
                             @endforeach
                         </td>
-                    </tr>
-                    <tr>
-                        <th colspan="1">Program Brochure</th>
-                        <td colspan="3">{{$program->brochure_url}}</td>
                     </tr>
                     <tr>
                         <th colspan="1">Created By</th>
@@ -114,9 +105,8 @@
                 </table>
             </div>
 
-            {{--Status Bar--}}
-            @include('programs.partials.programStatusBar')
-
+                @include('programs.partials.sideBar')
+            </div>
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">

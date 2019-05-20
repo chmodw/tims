@@ -89,4 +89,9 @@ Route::get('storage/{filename}', function ($filename)
     $response->header("Content-Type", $type);
 
     return $response;
-});
+})->middleware('auth');
+
+Route::get('/clear-cache', function() {
+    Artisan::call('cache:clear');
+    return "Cache is cleared";
+})->middleware('auth');

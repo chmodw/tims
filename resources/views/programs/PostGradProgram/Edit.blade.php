@@ -18,7 +18,7 @@
         </div>
         <div class="panel-body">
             @include('layouts._alert')
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-8 col-md-offset-2">
                 <form method="POST" action="{{ route('postgrad.update', $program->program_id) }}" enctype="multipart/form-data">
                     @csrf
                     {{method_field('PUT')}}
@@ -38,7 +38,7 @@
                         <div class="col-md-12">
                             <div class="form-group has-feedback {{$errors->has('organised_by_id') ? 'has-error' : ''}}">
                                 <label for="organised_by_id" class="required">Institute</label>
-                                <input type="text" value="{{old('organised_by_id', $program->name)}}" class="form-control" name="organised_by_id" id="organised_by_id" placeholder="Institute">
+                                <input type="text" value="{{old('organised_by_id', $program->organisation->name)}}" class="form-control" name="organised_by_id" id="organised_by_id" placeholder="Institute" list="orgs">
                                 <datalist id="orgs">
                                     @foreach($orgs as $org)
                                         <option value="{{$org->name}}"></option>
@@ -74,20 +74,41 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="form-group has-feedback {{$errors->has('requirements') ? 'has-error' : ''}}">
-                                <label for="requirements" class="required">Eligibility</label>
-                                <textarea class="form-control" style="height: 100px; min-height: 100px; max-height: 200px; max-width: 100%;min-width: 100%" name="requirements" id="requirements" placeholder="Eligibility,&#13;&#10;Eligibility">@if(old('requirements')==null)@foreach($program->requirements as $req){{$req.","}}&#13;&#10;@endforeach @else {{old('requirements')}}@endif</textarea>
-                                <small id="" class="form-text text-muted">
-                                    Separate by a Comma
-                                </small>
-                                @if ($errors->has('requirements'))
-                                    <span class="help-block">{{ $errors->first('requirements') }}</span>
-                                @endif
+                            <div class="form-group has-feedback {{$errors->has('requirement1') ? 'has-error' : ''}}">
+                                <label for="requirement1" class="required">Eligibility</label>
                             </div>
+                            <div class="requirement-container">
+                            @if(isset($program) && old('requirement1') == null)
+                                @foreach($program->requirements as $key => $requirement)
+                                    <div class="form-group has-feedback {{$errors->has('requirement'.($key+1)) ? 'has-error' : ''}}">
+                                        <input type="text" class="form-control req-input" name="requirement{{($key+1)}}" id="requirement{{($key+1)}}" placeholder="Eligibility" value="{{old('requirement'.($key+1), $requirement)}}">
+                                        @if ($errors->has('requirement'.($key+1)))
+                                            <span class="help-block">{{ $errors->first('requirement'.($key+1)) }}</span>
+                                        @endif
+                                    </div>
+                                @endforeach
+
+                                @else
+                                    @for($i = 1; $i <= 16; $i++)
+                                        @if(old('requirement'.$i) != null)
+                                            <div class="form-group has-feedback {{$errors->has('requirement'.$i) ? 'has-error' : ''}}">
+                                                <input type="text" class="form-control req-input" name="requirement{{$i}}" id="requirement{{$i}}" placeholder="Eligibility" value="{{old('requirement'.$i)}}">
+                                                @if ($errors->has('requirement'.$i))
+                                                    <span class="help-block">{{ $errors->first('requirement'.$i) }}</span>
+                                                @endif
+                                            </div>
+                                        @endif
+                                    @endfor
+                            @endif
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <button class="btn btn-default pull-right margin-left-sm" id="remove-req"><i class="glyphicon glyphicon-remove-circle"></i></button>
+                            <button class="btn btn-primary pull-right" id="add-req"><i class="glyphicon glyphicon-plus"></i></button>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('application_closing_date') ? 'has-error' : ''}}">
                                 <label for="application_closing_date" class="required">Application Closing Date</label>
                                 <input type="date" value="{{old('application_closing_date', \date('Y-m-d', strtotime($program->application_closing_date_time)))}}" class="form-control" id="application_closing_date" name="application_closing_date" placeholder="">
@@ -96,7 +117,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('application_closing_time') ? 'has-error' : ''}}">
                                 <label for="application_closing_time" class="required">Closing Time</label>
                                 <input type="time" value="{{old('application_closing_time', \date('H:i', strtotime($program->application_closing_date_time)))}}" class="form-control" id="application_closing_time" name="application_closing_time" placeholder="">
@@ -105,7 +126,9 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-md-3">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('start_date') ? 'has-error' : ''}}">
                                 <label for="start_date" class="required">Start Date</label>
                                 <input type="date" value="{{old('start_date', \date('Y-m-d', strtotime($program->start_date)))}}" class="form-control" id="start_date" name="start_date">
@@ -114,7 +137,7 @@
                                 @endif
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('duration') ? 'has-error' : ''}}">
                                 <label for="duration" class="required inline">Duration</label>
                                 <input type="number" value="{{old('duration', $program->duration)}}" class="form-control inline" id="duration" placeholder="Number of Months" id="duration" name="duration">
@@ -128,7 +151,10 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('registration_fees') ? 'has-error' : ''}}">
                                 <label for="registration_fees" class="required">Registration Fees (Rs)</label>
                                 <input type="number" value="{{old('registration_fees', $program->registration_fees)}}" class="form-control" id="registration_fees" name="registration_fees" placeholder="Registration Fees">
@@ -137,24 +163,62 @@
                                 @endif
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-6">
-                            <div class="form-group has-feedback {{$errors->has('installments') ? 'has-error' : ''}}">
-                                <label for="installments" class="required">Installments</label>
-                                <textarea class="form-control" style="height: 75px; min-height: 75px; max-height: 75px; max-width: 498.5px" name="installments" id="installments" placeholder="1 = Cost,&#13;&#10;2 = Cost,">@if(old('installments') == null)@foreach($costs as $cost)@if($cost['cost_name'] == 'installment'){{$cost['cost_content']}} = {{$cost['cost_value']}},&#13;&#10;@endif @endforeach @else{{old('installments')}}@endif</textarea>
-                                <small id="" class="form-text text-muted">
-                                    Separate by a Enter
-                                </small>
-                                @if ($errors->has('installments'))
-                                    <span class="help-block">{{ $errors->first('installments') }}</span>
-                                @endif
+                            <div class="form-group has-feedback {{$errors->has('cost1') ? 'has-error' : ''}}">
+                                <label for="cost1">Cost Name</label>
                             </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group has-feedback {{$errors->has('cost_value1') ? 'has-error' : ''}}">
+                                <label for="cost_value1">Value (Rs)</label>
+                            </div>
+                        </div>
+                        <div id="other-cost-container-parent">
+
+                            @if(isset($program) && old('cost1') == null)
+                                @foreach($program->other_costs as $i => $cost)
+
+                                    <div class="col-md-6">
+                                        <div class="form-group has-feedback {{$errors->has('cost'.($i+1)) ? 'has-error' : ''}}">
+                                            <input type="text" class="form-control cost-select" name="{{'cost'.($i+1)}}" value="{{$cost['name']}}" placeholder="Cost Name {{($i+1)}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group has-feedback {{$errors->has('cost_value'.($i+1)) ? 'has-error' : ''}}">
+                                            <input type="number" class="form-control" name="cost_value{{($i+1)}}" value="{{$cost['value']}}" placeholder="Value">
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                            @else
+                                @for($i = 1; $i <= 16; $i++)
+                                    @if(old('cost'.$i) != null)
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback {{$errors->has('cost'.($i)) ? 'has-error' : ''}}">
+                                                <input type="text" class="form-control cost-select" name="{{'cost'.($i)}}" value="{{old('cost'.$i)}}" placeholder="Cost Name {{($i)}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group has-feedback {{$errors->has('cost_value'.($i)) ? 'has-error' : ''}}"><input type="number" class="form-control" name="cost_value{{($i)}}" placeholder="Value" value="{{old('cost_value'.$i)}}">
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endfor
+                            @endif
+                        </div>
+
+                        <div class="col-md-12">
+                            <button class="btn btn-default pull-right margin-left-sm" id="remove-cost"><i class="glyphicon glyphicon-remove-circle"></i></button>
+                            <button class="btn btn-primary pull-right" id="add-cost"><i class="glyphicon glyphicon-plus"></i></button>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group has-feedback {{$errors->has('program_brochure') ? 'has-error' : ''}}">
                                 <label for="program_brochure">Program Brochure</label>
-                                <input type="file" class="form-control-file"  id="program_brochure" name="program_brochure" class="form-control" name="program_brochure">
+                                <input type="file" class="form-control-file"  id="program_brochure" name="program_brochure" class="form-control" name="program_brochure" saccept=".DOC,.PDF,.DOCX,.JPG,.JPEG, .PNG " >
                                 @if ($errors->has('program_brochure'))
                                     <span class="help-block" style="display: block;width: 100%;margin-top: 0.25rem;font-size: 80%;color: #dc3545;">{{ $errors->first('program_brochure') }}</span>
                                 @endif
@@ -177,16 +241,62 @@
     <script>
         window.onload = function() {
 
-            $(function() {
-                $('#is_long_term').click(function() {
-                    if ($("#is_long_term").prop('checked') == true) {
-                        $('#durationHelpBlock').text('Months');
-                        $('#duration').attr("placeholder", "Number of Months");
-                    } else if ($("#is_long_term").prop('checked') == false) {
-                        $('#durationHelpBlock').text('Days');
-                        $('#duration').attr("placeholder", "Number of Days");
-                    }
-                });
+            var counter = $('.req-input').length+1;
+
+            $("#add-req").click(function(event){
+                event.preventDefault();
+
+                if(counter>16){
+                    return false;
+                }
+                var newTextBoxDiv = $(document.createElement('div')).attr("id", 'req-child-container' + counter);
+
+                newTextBoxDiv.after().html('<div class="form-group has-feedback"><input type="text" class="form-control" name="requirement'+counter+'" id="requirement'+counter+'" placeholder="Eligibility">');
+
+                newTextBoxDiv.appendTo(".requirement-container");
+
+                counter++;
+            });
+
+            $("#remove-req").click(function (event) {
+                event.preventDefault();
+                if(counter==2){
+                    return false;
+                }
+
+                counter--;
+
+                $("#req-child-container" + counter).remove();
+
+            });
+
+            cCounter = $('.cost-select').length+1;
+            $("#add-cost").click(function (event) {
+                event.preventDefault();
+
+                if(cCounter>16){
+                    return false;
+                }
+                var newTextBoxDiv = $(document.createElement('div')).attr("id", 'other-cost-container' + cCounter);
+
+                newTextBoxDiv.after().html('<div class="col-md-6"><div class="form-group"><input type="text" class="form-control" name="cost'+cCounter+'" placeholder="Cost Name"></div></div><div class="col-md-6"><div class="form-group has-feedback"><input type="number" class="form-control" name="cost_value'+cCounter+'" placeholder="Value "></div></div>');
+
+                newTextBoxDiv.appendTo("#other-cost-container-parent");
+
+                cCounter++;
+
+            });
+
+            $("#remove-cost").click(function (event) {
+                event.preventDefault();
+                if(cCounter==2){
+                    return false;
+                }
+
+                cCounter--;
+
+                $("#other-cost-container" + cCounter).remove();
+
             });
 
             $(function(){

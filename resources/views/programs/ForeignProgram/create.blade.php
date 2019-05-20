@@ -140,16 +140,6 @@
                             </div>
                         </div>
                     </div>
-{{--                    <div class="row">--}}
-{{--                        <div class="col-md-12">--}}
-{{--                            <div class="form-group has-feedback">--}}
-{{--                                <label for="is_long_term" class="">Long Term Program</label>--}}
-{{--                                <br>--}}
-{{--                                <input type="checkbox" class="styled-checkbox" aria-label="" id="is_long_term" name="is_long_term" value="true">--}}
-{{--                                <label for="is_long_term" class="">Long Term</label>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
 
                     <div class="row">
                         <div class="col-md-6">
@@ -171,18 +161,6 @@
                             </div>
                         </div>
                     </div>
-{{--                        <div class="col-md-6">--}}
-{{--                            <div class="form-group has-feedback {{$errors->has('duration') ? 'has-error' : ''}}">--}}
-{{--                                <label for="duration" class="required inline">Duration</label>--}}
-{{--                                <input type="number" value="{{old('duration')}}" class="form-control inline" id="duration" placeholder="Number of Days" id="duration" name="duration">--}}
-{{--                                <small id="durationHelpBlock" class="form-text text-muted">--}}
-{{--                                    Days--}}
-{{--                                </small>--}}
-{{--                                @if ($errors->has('duration'))--}}
-{{--                                    <span class="help-block">{{ $errors->first('duration') }}</span>--}}
-{{--                                @endif--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group has-feedback {{$errors->has('application_closing_date') ? 'has-error' : ''}}">

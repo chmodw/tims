@@ -25,7 +25,7 @@ class CreatePostGradProgramsTable extends Migration
             $table->string('duration'); //months
             $table->timestamp('application_closing_date_time')->useCurrent = true;
             $table->float('registration_fees')->nullable();;
-            $table->string('installments')->nullable();;
+            $table->text('other_costs')->nullable();;
             $table->string('brochure_url')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();

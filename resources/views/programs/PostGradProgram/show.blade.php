@@ -31,7 +31,7 @@
                     <tbody>
                     <tr>
                         <th colspan="1"><p>Institute</p></th>
-                        <td colspan="3">{{$program->name}}</td>
+                        <td colspan="3">{{$program->organisation->name}}</td>
                     </tr>
                     <tr>
                         <th colspan="1"><p>Department</p></th>
@@ -64,18 +64,13 @@
                     <tr>
                         <th colspan="1"><p>Registration Fee</p></th>
                         <td colspan="1">{{$program->registration_fees}}</td>
-                        <th colspan="1"><p>Installments</p></th>
+                        <th colspan="1"><p>Other Costs</p></th>
                         <td colspan="1">
-                            @foreach($costs as $cost)
-                                @if($cost['cost_name'] == 'installment')
-                                    <p class="">Installment {{$cost['cost_content']}} = {{$cost['cost_value']}}/= </p>
-                                @endif
+                            @foreach($program->other_costs as $cost)
+                                <p class="">Installment {{$cost['name']}} = {{$cost['value']}}/- </p>
+                                <hr>
                             @endforeach
                         </td>
-                    </tr>
-                    <tr>
-                        <th colspan="1">Program Brochure</th>
-                        <td colspan="3">{{$program->brochure_url}}</td>
                     </tr>
                     <tr>
                         <th colspan="1">Created By</th>
@@ -94,7 +89,7 @@
             </div>
 
             {{--Status Bar--}}
-            @include('programs.partials.programStatusBar')
+            @include('programs.partials.sideBar')
 
             <div class="col-md-12">
                 <div class="panel panel-default">

@@ -16,7 +16,7 @@ class PostGradProgram extends Model
         return $this->morphMany('App\Program', 'program_id');
     }
 
-    public function organised_by_id()
+    public function organisation()
     {
         return $this->hasOne('App\Organisation', 'organisation_id', 'organised_by_id');
     }
@@ -43,6 +43,11 @@ class PostGradProgram extends Model
     public function getApplicationClosingDateTimeAttribute()
     {
         return Carbon::parse($this->attributes['application_closing_date_time'])->format('Y-m-d H:i');
+    }
+
+    public function getOtherCostsAttribute()
+    {
+        return unserialize($this->attributes['other_costs']);
     }
 
     public function getStartDateAttribute()

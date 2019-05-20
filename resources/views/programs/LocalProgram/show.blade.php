@@ -37,7 +37,7 @@
                         </tr>
                         <tr>
                             <th colspan="1">Organised By</th>
-                            <td colspan="3">{{$program->name}}</td>
+                            <td colspan="3">{{$program->organisation->name}}</td>
                         </tr>
                         <tr>
                             <th colspan="1">Venue</th>
@@ -61,7 +61,7 @@
                             <th colspan="1">Start Date</th>
                             <td colspan="1">{{\date('Y-m-d', \strtotime($program->start_date))}}</td>
                             <th colspan="1">Duration</th>
-                            <td colspan="1">{{$program->duration}}{{$program->is_long_term == 1 ? ' months' : ' days'}}</td>
+                            <td colspan="1">{{$program->duration}} {{$program->duration_by}}</td>
                         </tr>
                         <tr>
                             <th colspan="1">Program Fee (Rs)</th>
@@ -74,10 +74,6 @@
                             <td colspan="1">{{$program->non_member_fee}}</td>
                             <th colspan="1">Student Fee (Rs)</th>
                             <td colspan="1">{{$program->student_fee}}</td>
-                        </tr>
-                        <tr>
-                            <th colspan="1">Program Brochure</th>
-                            <td colspan="3">{{$program->brochure_url}}</td>
                         </tr>
                         <tr>
                             <th colspan="1">Created By</th>
@@ -95,18 +91,7 @@
                 </table>
             </div>
             {{--Status Bar--}}
-            @include('programs.partials.programStatusBar')
-
-{{--            <div class="col-md-12">--}}
-{{--                <div class="panel panel-default">--}}
-{{--                    <div class="panel-heading clearfix">--}}
-{{--                        <p>Program Costs</p>--}}
-{{--                    </div>--}}
-{{--                    <div class="panel-body">--}}
-{{--                        <a class="btn btn-primary" style="margin-right:8px;" href="/pdf/LocalProgram/{{$program->program_id}}">Approval Letter</a>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+            @include('programs.partials.sidebar')
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">

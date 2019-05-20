@@ -93,15 +93,8 @@
                 </table>
             </div>
 
-            <div class="col-lg-3">
+            @include('programs.partials.sideBar')
 
-                <div class="program-brochure">
-                    <a href="/storage/brochures/{{$program->brochure_url}}" target="_blank"><img src="/storage/brochures/{{$program->brochure_url}}" class="img-thumbnail" alt="program brochure"></a>
-                </div>
-
-                @include('programs.partials.programStatusBar')
-            </div>
-            {{--Status Bar--}}
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">

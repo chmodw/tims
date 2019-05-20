@@ -7,6 +7,8 @@ use App\Helpers;
 use App\PostGradProgram;
 use App\Http\Requests\PostGradValidate;
 use App\Organisation;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use phpDocumentor\Reflection\DocBlock\Serializer;
 
 class PostGradProgramController extends Controller
@@ -41,35 +43,22 @@ class PostGradProgramController extends Controller
      */
     public function store(PostGradValidate $request)
     {
-
         $validated = $request->validated();
         $postGradProgram = new PostGradProgram();
         $program_id = Helpers::u_id([$validated['program_title'],auth()->user()->email,$request->program_type,$validated['start_date']]);
-
         $postGradProgram->program_id = $program_id;
         $postGradProgram->program_title = $validated['program_title'];
-        /**
-         * Check the organisation in the database
-         */
-        if(is_null(Organisation::where('name', strtolower($validated['organised_by_id']))->first())){
-            $orgId = Helpers::u_id([$validated['organised_by_id'], auth()->user()->email, request()->program_type]);
-            Organisation::create(['organisation_id' => $orgId, 'name' => strtolower($validated['organised_by_id']), 'created_by' => auth()->user()->email]);
-            $postGradProgram->organised_by_id = $orgId;
-        }else{
-            $orgId = Organisation::where('name', strtolower($validated['organised_by_id']))->get('organisation_id')->first();
-            $postGradProgram->organised_by_id = $orgId['organisation_id'];
-        }
+        $postGradProgram->organised_by_id = Helpers::check_org($validated['organised_by_id'], request()->program_type);
         $postGradProgram->department = $validated['department'];
         $postGradProgram->target_group = $validated['target_group'];
         $postGradProgram->start_date = $validated['start_date'];
         $postGradProgram->duration = $validated['duration'];
         $postGradProgram->application_closing_date_time = Helpers::joint_date_time($validated['application_closing_date'], $validated['application_closing_time']);
-        if (array_key_exists('is_long_term', $validated)) {
-            $postGradProgram->is_long_term = $validated['is_long_term'];
-        }
         $postGradProgram->registration_fees = $validated['registration_fees'];
-        $postGradProgram->requirements = serialize(Helpers::strings_to_arrays($validated['requirements'], ',')[0]);
-        //  check if a program brochure is present
+        $postGradProgram->requirements = $this->reqToArray($request);
+        /**
+         * check if a program brochure is present
+         */
         if ($request->file('program_brochure') != null) {
             //get the file ext
             $ext = $request->file('program_brochure')->getClientOriginalExtension();
@@ -78,29 +67,13 @@ class PostGradProgramController extends Controller
             $savedFile = $request->file('program_brochure')->storeAs('public/brochures', $fileName);
             $postGradProgram->brochure_url = $fileName;
         }
-
+        $postGradProgram->other_costs = $this->costsToArray($request);
         $postGradProgram->created_by = auth()->user()->email;
+
         $saved = $postGradProgram->save();
 
-        $installments = Helpers::strings_to_arrays($validated['installments'], '=');
-
         if($saved){
-
-            foreach ($installments as $installment){
-
-                $installment = explode(',',$installment[0]);
-
-                $costs = new Cost();
-
-                $costs->program_id = $program_id;
-                $costs->cost_name = 'installment';
-                $costs->cost_content = $installment[0];
-                $costs->cost_value = $installment[1];
-                $costs->created_by = auth()->user()->email;
-                $costs->save();
-            }
-
-            return redirect('/postgrad')->with('success', ' The New Post Graduate has been saved successfully');
+            return redirect('/postgrad')->with('success', ' The New Post Graduate program has been saved successfully');
         }else{
             return Redirect::back()->withInput(Input::all())->with('failed ', ' System Could not save the program. please contact the administrator');
         }
@@ -114,38 +87,31 @@ class PostGradProgramController extends Controller
      */
     public function show($id)
     {
-        $program_status = app('App\Http\Controllers\TraineeController')->getTraineeCount($id);
+        /**
+         * Get the program
+         */
+        $program = PostGradProgram::where('program_id', $id)->with('organisation')->first();
+        /**
+         * If the program found do other things
+         */
+        if(!empty($program))
+        {
+            /*
+             * get program trainee information
+             */
+            $program_status = app('App\Http\Controllers\TraineeController')->getTraineeCount($id);
+            /**
+             * Get the available documents for the current program
+             */
+            $available_documents =  app('App\Http\Controllers\TemplateManagerController')->getTemplates('postgrad_program');
 
-        $costs = Cost::where('program_id', $id)->select('cost_name','cost_content','cost_value')->get();
-
-        $available_documents =  app('App\Http\Controllers\TemplateManagerController')->getTemplates('postgrad_program');
-
-        $program = PostGradProgram::join('organisations', 'organisations.organisation_id', 'post_grad_programs.organised_by_id')
-            ->where('post_grad_programs.program_id', $id)
-            ->select(
-                'post_grad_programs.program_id',
-                'post_grad_programs.program_title',
-                'post_grad_programs.target_group',
-                'post_grad_programs.start_date',
-                'post_grad_programs.application_closing_date_time',
-                'post_grad_programs.duration',
-                'post_grad_programs.requirements',
-                'post_grad_programs.registration_fees',
-                'post_grad_programs.department',
-                'post_grad_programs.brochure_url',
-                'post_grad_programs.brochure_url',
-                'post_grad_programs.created_at',
-                'post_grad_programs.created_by',
-                'post_grad_programs.updated_by',
-                'organisations.name'
-            )
-            ->first();
-
-        if(!empty($program)){
-            return view('programs.PostGradProgram.show')->with(compact('program'))->with(compact('costs'))->with(compact('program_status'))->with(compact('available_documents'));
+            return view('programs.PostGradProgram.show')->with(compact('program'))->with(compact('program_status'))->with(compact('available_documents'));
         }
-
+        /**
+         * if the program not found redirect back with error
+         */
         return redirect('/postgrad')->with('failed', ' Requested program not found in the database');
+
     }
 
     /**
@@ -157,22 +123,24 @@ class PostGradProgramController extends Controller
     public function edit($id)
     {
         /**
-         * Get all the organisations
+         * Get the program
          */
-        $orgs = app('App\Http\Controllers\OrganisationController')->index();
-        /**
-         * get costs
-         */
-        $costs = Cost::where('program_id', $id)->select('cost_name','cost_content','cost_value')->get();
-        /**
-         * Get program
-         */
-        $program =  $program = PostGradProgram::join('organisations', 'organisations.organisation_id', 'post_grad_programs.organised_by_id')
-            ->where('program_id', $id)
-            ->select('post_grad_programs.*', 'organisations.name')
-            ->first();
+        $program = PostGradProgram::where('program_id', $id)->with('organisation')->first();
 
-        return view('programs.PostGradProgram.edit')->with(compact('program'))->with(compact('orgs'))->with(compact('costs'));
+        /**
+         * If the program found do other things
+         */
+        if(!empty($program))
+        {
+            $orgs = app('App\Http\Controllers\OrganisationController')->index();
+
+            return view('programs.PostGradProgram.edit')->with(compact('program'))->with(compact('orgs'));
+        }
+        /**
+         * if the program not found redirect back with error
+         */
+        return redirect('/postgrad')->with('failed', ' Requested program not found in the database');
+
     }
 
     /**
@@ -187,62 +155,41 @@ class PostGradProgramController extends Controller
         $validated = $request->validated();
         $postGradProgram = PostGradProgram::where('program_id', $id)->first();
 
-        $program_id = Helpers::u_id([$validated['program_title'],auth()->user()->email,$request->program_type,$validated['start_date']]);
-
         $postGradProgram->program_title = $validated['program_title'];
-        /**
-         * Check the organisation in the database
-         */
-        if(is_null(Organisation::where('name', strtolower($validated['organised_by_id']))->first())){
-            $orgId = Helpers::u_id([$validated['organised_by_id'], auth()->user()->email, request()->program_type]);
-            Organisation::create(['organisation_id' => $orgId, 'name' => strtolower($validated['organised_by_id']), 'created_by' => auth()->user()->email]);
-            $postGradProgram->organised_by_id = $orgId;
-        }else{
-            $orgId = Organisation::where('name', strtolower($validated['organised_by_id']))->get('organisation_id')->first();
-            $postGradProgram->organised_by_id = $orgId['organisation_id'];
-        }
+        $postGradProgram->organised_by_id = Helpers::check_org($validated['organised_by_id'], request()->program_type);
         $postGradProgram->department = $validated['department'];
         $postGradProgram->target_group = $validated['target_group'];
         $postGradProgram->start_date = $validated['start_date'];
         $postGradProgram->duration = $validated['duration'];
         $postGradProgram->application_closing_date_time = Helpers::joint_date_time($validated['application_closing_date'], $validated['application_closing_time']);
         $postGradProgram->registration_fees = $validated['registration_fees'];
-        $postGradProgram->requirements = serialize(Helpers::strings_to_arrays($validated['requirements'], ',')[0]);
-        //  check if a program brochure is present
-        if ($request->file('program_brochure') != null) {
+        $postGradProgram->requirements = $this->reqToArray($request);
+
+        /**
+         * check if a program brochure is present
+         */
+        if ($request->file('program_brochure') != null)
+        {
+            if($postGradProgram->brochure_url != null)
+            {
+                if (Storage::exists('public/brochures/'.$postGradProgram->brochure_url))
+                {
+                    File::delete('public/brochures/'.$postGradProgram->brochure_url);
+                }
+            }
             //get the file ext
             $ext = $request->file('program_brochure')->getClientOriginalExtension();
             //save the file in the storage
-            $fileName = $program_id . "." . $ext;
+            $fileName = $id . "." . $ext;
             $savedFile = $request->file('program_brochure')->storeAs('public/brochures', $fileName);
             $postGradProgram->brochure_url = $fileName;
         }
-
+        $postGradProgram->other_costs = $this->costsToArray($request);
         $postGradProgram->updated_by = auth()->user()->email;
+
         $saved = $postGradProgram->save();
 
         if($saved){
-
-            $installments = Helpers::strings_to_arrays($validated['installments'], '=');
-            /**
-             * delete previous records before saving updated items
-             */
-            Cost::where('program_id', $id)->delete();
-
-            foreach ($installments as $installment){
-
-                $installment = explode(',',$installment[0]);
-
-                $costs = new Cost();
-
-                $costs->program_id = $id;
-                $costs->cost_name = 'installment';
-                $costs->cost_content = $installment[0];
-                $costs->cost_value = $installment[1];
-                $costs->created_by = auth()->user()->email;
-
-                $costs->save();
-            }
 
             return redirect('/postgrad')->with('success', ' The New Post Graduate has been Updated successfully');
         }else{
@@ -265,6 +212,39 @@ class PostGradProgramController extends Controller
         }else{
             return back()->with('failed', "System Could not Delete the Requested Program");
         }
+    }
+
+    private function reqToArray($array)
+    {
+        $agendas = array();
+
+        for($i=1;$i<16;$i++)
+        {
+            if($array->has('requirement'.$i))
+            {
+                array_push($agendas, $array->input('requirement'.$i));
+            }else{
+                break;
+            }
+        }
+
+        return serialize($agendas);
+    }
+
+    private function costsToArray($array)
+    {
+        $costs = array();
+
+        for($i=1;$i<16;$i++)
+        {
+            if($array->has('cost'.$i) && $array->has('cost_value'.$i))
+            {
+                array_push($costs, ['name' => $array->input('cost'.$i), 'value' => $array->input('cost_value'.$i)]);
+            }else{
+                break;
+            }
+        }
+        return serialize($costs);
     }
 
     /**

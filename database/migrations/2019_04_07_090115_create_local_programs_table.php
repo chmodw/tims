@@ -26,7 +26,7 @@ class CreateLocalProgramsTable extends Migration
             $table->string('nature_of_the_employment');//['permanent', 'fixed', 'contract']
             $table->string('employee_category');//,['technical', 'non-technical', 'both']
             $table->string('venue');
-            $table->boolean('is_long_term')->default(false);
+            $table->string('duration_by');
             $table->float('program_fee')->nullable();
             $table->float('non_member_fee')->nullable();
             $table->float('member_fee')->nullable();

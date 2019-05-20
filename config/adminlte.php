@@ -35,7 +35,7 @@ return [
     | ligth variant: blue-light, purple-light, purple-light, etc.
     |
     */
-    'skin' => 'blue',
+    'skin' => 'yellow',
     /*
     |--------------------------------------------------------------------------
     | Layout
@@ -158,17 +158,26 @@ return [
         'BUDGET',
         [
             'text' => 'Budget',
-            'url'  => 'budget/',
             'icon' => 'dollar',
+            'submenu' => [
+                [
+                'text' => 'Budget',
+                'url'  => 'budget/',
+                'icon' => 'dollar',
+                ],
+                [
+                    'text' => 'Payments',
+                    'url'  => 'payment/',
+                    'icon' => 'dollar',
+                ],
 
-
+            ],
         ],
         [
-            'text' => 'Payments',
-            'url'  => 'payment/',
-            'icon' => 'dollar',
+            'text'        => 'Documents',
+            'url'         => 'templatemanager/',
+            'icon'        => 'file',
         ],
-        'SYSTEM SETTINGS',
         [
             'text'        => 'Templates',
             'url'         => 'templatemanager/',
