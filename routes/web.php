@@ -74,27 +74,6 @@ Route::resource('templatemanager','TemplateManagerController')->middleware('auth
 /**
  * Show images stored in the storage
  */
-Route::get('storage/{filename}', function ($filename)
-{
-    $path = storage_path('public/' . $filename);
+Route::get('storage/{filename}', 'ImageController@show')->middleware('auth');
 
-    if (!File::exists($path)) {
-        abort(404);
-    }
-
-    $file = File::get($path);
-    $type = File::mimeType($path);
-
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
-
-    return $response;
-})->middleware('auth');
-
-Route::get('/clear-cache', function() {
-    Artisan::call('cache:clear');
-    Artisan::call('view:clear');
-    Artisan::call('config:cache');
-    Artisan::call('route:cache');
-    return "Cache is cleared";
-})->middleware('auth');
+Route::get('/clear-cache', 'SystemController@clearcache')->middleware('auth');
