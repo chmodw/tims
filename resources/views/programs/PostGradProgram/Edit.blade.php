@@ -177,6 +177,21 @@
                         </div>
                         <div id="other-cost-container-parent">
 
+
+
+
+{{--                            FIX THIS--}}
+                            
+
+
+
+
+
+
+
+
+
+
                             @if(isset($program) && old('cost1') == null)
                                 @foreach($program->other_costs as $i => $cost)
 

@@ -4,7 +4,6 @@
 @section('title', 'TIMS | Edit Foreign Training Program')
 
 @section('main-content')
-    @include('layouts._alert')
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
             <p class="" style="">Edit Foreign Training Program</p>
@@ -12,7 +11,7 @@
         </div>
         <div class="panel-body">
             @include('layouts._alert')
-            <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-8 col-md-offset-2">
 
                 <form method="POST" action="{{ route('foreign.update', $program->program_id) }}" enctype="multipart/form-data">
                     {{method_field('PATCH')}}
@@ -209,18 +208,48 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group has-feedback {{$errors->has('other_costs') ? 'has-error' : ''}}">
-                                <label for="other_costs" class="">Other Costs</label>
-                                <textarea name="other_costs" class="form-control" id="other_costs" style="min-width: 100%;max-width: 100%;min-height: 34px;max-height: 150px; height: 100px" placeholder="Cost Name = Value,">@if(old('other_costs') == null)@foreach($program->costs as $cost){{$cost['cost_content']}} = {{$cost['cost_value']}},&#13;&#10;@endforeach @else{{old('installments')}}@endif
-                                </textarea>
-                                <small id="otherCostsHelpBlock" class="form-text text-muted">
-                                    Seperate Costs by a Comma
-                                </small>
-                                @if ($errors->has('other_costs'))
-                                    <span class="help-block">{{ $errors->first('other_costs') }}</span>
-                                @endif
+                        <div class="col-md-8">
+                            <div class="form-group has-feedback {{$errors->has('cost1') ? 'has-error' : ''}}">
+                                <label for="cost1">Cost Name</label>
                             </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group has-feedback {{$errors->has('cost_value1') ? 'has-error' : ''}}">
+                                <label for="cost_value1">Value (Rs)</label>
+                            </div>
+                        </div>
+                        <div id="other-cost-container-parent">
+
+                            @if(isset($program) && old('cost1') == null)
+                                @foreach($program->other_costs as $i => $cost)
+
+                                    <div class="col-md-8">
+                                        <div class="form-group has-feedback {{$errors->has('cost'.($i+1)) ? 'has-error' : ''}}">
+                                            <input type="text" class="form-control cost-select" name="{{'cost'.($i+1)}}" value="{{$cost['name']}}" placeholder="Cost Name {{($i+1)}}">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group has-feedback {{$errors->has('cost_value'.($i+1)) ? 'has-error' : ''}}">
+                                            <input type="number" class="form-control" name="cost_value{{($i+1)}}" value="{{$cost['value']}}" placeholder="Value">
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                            @else
+                                @for($i = 1; $i <= 16; $i++)
+                                    @if(old('cost'.$i) != null)
+                                        <div class="col-md-8">
+                                            <div class="form-group has-feedback {{$errors->has('cost'.($i)) ? 'has-error' : ''}}">
+                                                <input type="text" class="form-control cost-select" name="{{'cost'.($i)}}" value="{{old('cost'.$i)}}" placeholder="Cost Name {{($i)}}">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group has-feedback {{$errors->has('cost_value'.($i)) ? 'has-error' : ''}}"><input type="number" class="form-control" name="cost_value{{($i)}}" placeholder="Value" value="{{old('cost_value'.$i)}}">
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endfor
+                            @endif
                         </div>
                     </div>
                     <div class="row">
@@ -257,16 +286,33 @@
     <script>
         window.onload = function() {
 
-            $(function() {
-                $('#is_long_term').click(function() {
-                    if ($("#is_long_term").prop('checked') == true) {
-                        $('#durationHelpBlock').text('Months');
-                        $('#duration').attr("placeholder", "Number of Months");
-                    } else if ($("#is_long_term").prop('checked') == false) {
-                        $('#durationHelpBlock').text('Days');
-                        $('#duration').attr("placeholder", "Number of Days");
-                    }
-                });
+            cCounter = $('.cost-select').length+1;
+            $("#add-cost").click(function (event) {
+                event.preventDefault();
+
+                if(cCounter>16){
+                    return false;
+                }
+                var newTextBoxDiv = $(document.createElement('div')).attr("id", 'other-cost-container' + cCounter);
+
+                newTextBoxDiv.after().html('<div class="col-md-8"><div class="form-group"><input type="text" class="form-control" name="cost'+cCounter+'" placeholder="Cost Name"></div></div><div class="col-md-4"><div class="form-group has-feedback"><input type="number" class="form-control" name="cost_value'+cCounter+'" placeholder="Value "></div></div>');
+
+                newTextBoxDiv.appendTo("#other-cost-container-parent");
+
+                cCounter++;
+
+            });
+
+            $("#remove-cost").click(function (event) {
+                event.preventDefault();
+                if(cCounter==2){
+                    return false;
+                }
+
+                cCounter--;
+
+                $("#other-cost-container" + cCounter).remove();
+
             });
 
             $(function(){

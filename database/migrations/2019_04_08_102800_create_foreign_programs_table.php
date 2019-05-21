@@ -31,6 +31,7 @@ class CreateForeignProgramsTable extends Migration
             $table->date('end_date');
             $table->string('application_closing_date_time');
             $table->string('duration');
+            $table->text('other_costs')->nullable();
             $table->string('brochure_url')->nullable();
             $table->string('created_by');
             $table->string('updated_by')->nullable();

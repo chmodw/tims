@@ -42,6 +42,11 @@ class ForeignProgram extends Model
         return $this->hasMany('App\Cost', 'program_id', 'program_id');
     }
 
+    public function getOtherCostsAttribute()
+    {
+        return unserialize($this->attributes['other_costs']);
+    }
+
     public static function getTableName()
     {
         return with(new static)->getTable();

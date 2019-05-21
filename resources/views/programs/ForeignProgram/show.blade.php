@@ -65,17 +65,13 @@
                         <tr>
                             <th colspan="1">Program Fee</th>
                             <td colspan="1">{{$program->program_fee}}</td>
-                            <th colspan="1">Other Fees</th>
+                            <th colspan="1"><p>Other Costs</p></th>
                             <td colspan="1">
-                                @foreach($program->costs as $cost)
-                                    {{$cost->cost_content.' = '.$cost->cost_value}}
-                                    <br>
+                                @foreach($program->other_costs as $cost)
+                                    <p class="">{{$cost['name']}} = {{$cost['value']}}/- </p>
+                                    <hr>
                                 @endforeach
                             </td>
-                        </tr>
-                        <tr>
-                            <th colspan="1">Program Brochure</th>
-                            <td colspan="3">{{$program->brochure_url}}</td>
                         </tr>
                         <tr>
                             <th colspan="1">Created By</th>
