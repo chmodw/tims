@@ -93,5 +93,8 @@ Route::get('storage/{filename}', function ($filename)
 
 Route::get('/clear-cache', function() {
     Artisan::call('cache:clear');
+    Artisan::call('view:clear');
+    Artisan::call('config:cache');
+    Artisan::call('route:cache');
     return "Cache is cleared";
 })->middleware('auth');
