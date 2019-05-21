@@ -35,7 +35,7 @@ return [
     | ligth variant: blue-light, purple-light, purple-light, etc.
     |
     */
-    'skin' => 'yellow',
+    'skin' => 'blue',
     /*
     |--------------------------------------------------------------------------
     | Layout

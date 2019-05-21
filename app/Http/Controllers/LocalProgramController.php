@@ -200,7 +200,7 @@ class LocalProgramController extends Controller
 
         }
 
-        $localProgram->updated = auth()->user()->email;
+        $localProgram->updated_by = auth()->user()->email;
 
         $saved = $localProgram->save();
 
