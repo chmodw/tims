@@ -175,8 +175,8 @@ return [
         ],
         [
             'text'        => 'Documents',
-            'url'         => 'templatemanager/',
-            'icon'        => 'file',
+            'url'         => 'documentmanager/',
+            'icon'        => 'list-alt',
         ],
         [
             'text'        => 'Templates',

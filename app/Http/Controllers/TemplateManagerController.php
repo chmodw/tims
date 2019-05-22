@@ -9,6 +9,8 @@ use App\LocalProgram;
 use App\PostGradProgram;
 use App\TemplateManager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class TemplateManagerController extends Controller
 {
@@ -144,14 +146,33 @@ class TemplateManagerController extends Controller
 
         $tmpmngr = TemplateManager::find($id);
 
-        if(isset($validated['template'])){
+//        if(isset($validated['template'])){
+//            $uid = Helpers::u_id([$validated['template_name'],auth()->user()->email,$validated['program_type']]);
+//            //get the file ext
+//            $ext = $request->file('template')->getClientOriginalExtension();
+//            //save the file in the storage
+//            $fileName = $uid . "." . $ext;
+//            $savedFile = $request->file('template')->storeAs('templates', $fileName);
+//            $tmpmngr->file_name = $fileName;
+//        }
+
+        if ($request->file('template') != null)
+        {
             $uid = Helpers::u_id([$validated['template_name'],auth()->user()->email,$validated['program_type']]);
+            if($tmpmngr->file_name != null)
+            {
+                if (Storage::exists('templates/'.$tmpmngr->file_name))
+                {
+                    Storage::delete('templates/'.$tmpmngr->file_name);
+                }
+            }
             //get the file ext
             $ext = $request->file('template')->getClientOriginalExtension();
             //save the file in the storage
             $fileName = $uid . "." . $ext;
             $savedFile = $request->file('template')->storeAs('templates', $fileName);
             $tmpmngr->file_name = $fileName;
+
         }
 
         $tmpmngr->name = $validated['template_name'];
@@ -177,7 +198,13 @@ class TemplateManagerController extends Controller
      */
     public function destroy($id)
     {
-        $deletedRows = TemplateManager::find($id)->delete();
+        $tmpmngr = TemplateManager::find($id);
+
+        if (Storage::exists('templates/'.$tmpmngr->file_name))
+        {
+            Storage::delete('templates/'.$tmpmngr->file_name);
+        }
+        $deletedRows = $tmpmngr->delete();
 
         if($deletedRows > 0){
             return redirect('/templatemanager')->with('success', ' The Template has been successfully Deleted');

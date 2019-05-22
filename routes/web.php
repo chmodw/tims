@@ -73,6 +73,8 @@ Route::resource('payment','paymentController')->middleware('auth');
 
 Route::resource('templatemanager','TemplateManagerController')->middleware('auth');
 
+Route::resource('documentmanager','DocumentController')->middleware('auth');
+
 /**
  * Show images stored in the storage
  */

@@ -52,6 +52,10 @@ class Helpers
         //date diff in months because this is a foreign program
         $duration = $interval->format('%m Months');
 
+        if($duration == 1){
+            $duration = $interval->format('%m Month');
+        }
+
         if($duration < 1){
             $duration = $interval->format('%d Days');
         }

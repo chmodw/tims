@@ -26,14 +26,18 @@
                         <strong>Permission:</strong>
                         <br/>
                         @foreach($permission as $value)
-                            <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                                {{ $value->name }}</label>
-                            <br/>
+                            <div class="col-md-2">
+                                <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
+                                    {{ $value->name }}</label>
+                                <br/>
+                            </div>
                         @endforeach
                     </div>
                 </div>
                 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                    </div>
                 </div>
             </div>
             {!! Form::close() !!}

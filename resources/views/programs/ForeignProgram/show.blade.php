@@ -68,7 +68,7 @@
                             <th colspan="1"><p>Other Costs</p></th>
                             <td colspan="1">
                                 @foreach($program->other_costs as $cost)
-                                    <p class="">{{$cost['name']}} = {{$cost['value']}}/- </p>
+                                    <p class="">{{$cost['name']}} <br> {{$cost['value']}} {{$program->currency}}</p>
                                     <hr>
                                 @endforeach
                             </td>

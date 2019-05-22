@@ -318,7 +318,9 @@ class TraineeController extends Controller
     public function getForeignTrainingDetails(Employee $employee, $program_id)
     {
         $programs = Program::join('foreign_programs', 'foreign_programs.program_id', 'programs.program_id')
-                        ->where('type', 'ForeignProgram')->where('trainee_id', $employee->EPFNo)
+                        ->where('type', 'ForeignProgram')
+            ->where('trainee_id', $employee->EPFNo)
+            ->where('programs.program_id', '!=', $program_id)
             ->select('foreign_programs.start_date', 'foreign_programs.program_title','foreign_programs.end_date')
             ->get();
 

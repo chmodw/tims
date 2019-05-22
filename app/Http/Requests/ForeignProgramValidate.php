@@ -34,7 +34,7 @@ class ForeignProgramValidate extends FormRequest
             'employee_category' => 'required|max:255',
             'venue' => 'required',
             'currency' => 'required|max:255',
-            'program_fee' => 'required|max:255',
+            'program_fee' => '',
             'start_date' => 'required|max:255|date|after_or_equal:today|after_or_equal:application_closing_date',
             'end_date' => 'max:255|date|after_or_equal:start_date',
             'application_closing_date' => 'required|max:255|date|after_or_equal:today|before_or_equal:start_date',

@@ -26,7 +26,7 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        //
+        return view('document.index');
     }
 
     /**
@@ -118,7 +118,7 @@ class DocumentController extends Controller
          */
         $program =  app('App\Http\Controllers\ProgramController')->getProgram($request->program_type, $request->program_id);
 
-//        return $request;
+//        return $program->notified_by;
         /**
          * Get the template
          */
@@ -131,16 +131,6 @@ class DocumentController extends Controller
         }
         catch (exception $e) {
             return $e->getMessage();
-        }
-
-        /**
-         * New rows
-         */
-        $numberOfRows = sizeof($trainees);
-        try {
-            $templateProcessor->cloneRow('no', $numberOfRows);
-        }catch (exception $e){
-
         }
 
         /**

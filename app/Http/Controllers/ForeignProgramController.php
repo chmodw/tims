@@ -281,17 +281,36 @@ class ForeignProgramController extends Controller
 
     public function getProgramTitle(ForeignProgram $program)
     {
-        return $program->program_title;
+        return str_replace(' & ', ' and ', $program->program_title);
     }
 
     public function getNotifiedBy(ForeignProgram $program)
     {
-        return $program->notified_by;
+        return str_replace(' & ', ' and ', $program->notified_by);
+    }
+    public function getNotifiedOn(ForeignProgram $program)
+    {
+        return date('d.m.Y', strtotime($program->notified_on));
     }
 
     public function getStartDate(ForeignProgram $program)
     {
         return date('d.m.Y', strtotime($program->start_date));
+    }
+
+    public function getProgramYear(ForeignProgram $program)
+    {
+        return date('Y', strtotime($program->start_date));
+    }
+
+    public function getStartDateLong(ForeignProgram $program)
+    {
+        return date('dS F Y', strtotime($program->start_date));
+    }
+
+    public function getEndDateLong(ForeignProgram $program)
+    {
+        return date('dS F Y', strtotime($program->end_date));
     }
 
     public function getStartDateYear(ForeignProgram $program)
@@ -301,12 +320,28 @@ class ForeignProgramController extends Controller
 
     public function getDuration(ForeignProgram $program)
     {
-        return  Helpers::calc_duration($program->start_date, $program->end_date);
+        return   Helpers::calc_duration($program->start_date, $program->end_date);
     }
+
+    public function getClosingDate(ForeignProgram $program)
+    {
+        return date('d.m.Y', strtotime($program->application_closing_date_time));
+    }
+
+    public function getClosingTime(ForeignProgram $program)
+    {
+        return date('H:i', strtotime($program->application_closing_date_time));
+    }
+
+
+
+
+
+
 
     public function getOrganisedById(ForeignProgram $program)
     {
-        return $program->name;
+        return $program->organisation->name;
     }
 
     public function getTargetGroup(ForeignProgram $program)
@@ -317,6 +352,15 @@ class ForeignProgramController extends Controller
     public function getEmployeeCount(ForeignProgram $program)
     {
         return app('App\Http\Controllers\\TraineeController')->getTraineeCount($program->program_id)['total_count'];
+    }
+
+    public function getDocCount(ForeignProgram $program)
+    {
+        //return 'No data';
+    }
+    public function getVenue(ForeignProgram $program)
+    {
+        return $program->venue;
     }
 
 
