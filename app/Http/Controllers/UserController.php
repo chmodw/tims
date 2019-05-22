@@ -127,35 +127,34 @@ class UserController extends Controller
 
         if(auth()->user()->can('User-edit') || auth()->user()->can('Change-password') || auth()->user()->can('Change-username'))
         {
+
+            $user = User::find($id);
+            $roles = Role::pluck('name','name')->all();
+            $userRole = $user->roles->pluck('name','name')->all();
+
+
             if($editwhat == 'password')
             {
-                if(auth()->user()->cannot('User-edit') || auth()->user()->cannot('Change-username'))
+                if(auth()->user()->can('User-edit') || auth()->user()->can('Change-password'))
                 {
-//                    return abort(403);
-                    return 'hello';
+                    return view('users.edit',compact('user','roles','userRole'), compact('editwhat'));
                 }
+                return abort(403);
             }
             elseif ($editwhat == 'username')
             {
-                if(auth()->user()->cannot('User-edit') || auth()->user()->cannot('Change-username'))
+                if(auth()->user()->can('User-edit') || auth()->user()->can('Change-username'))
                 {
-//                    return abort(403);
-                    return 'hello2';
+                    return view('users.edit',compact('user','roles','userRole'), compact('editwhat'));
                 }
+                return abort(403);
             }
             else
                 {
                 return abort(404);
             }
 
-            $user = User::find($id);
-            $roles = Role::pluck('name','name')->all();
-            $userRole = $user->roles->pluck('name','name')->all();
-
-            return view('users.edit',compact('user','roles','userRole'), compact('editwhat'));
-
         }else{
-            return 'hello4';
             return abort(403);
         }
 

@@ -65,6 +65,7 @@
                             </div>
                         @endif
                         @if($editwhat == 'username')
+                            @can('User-edit')
                             <div class="col-xs-12 col-sm-12 col-md-12">
                                 <div class="form-group {{$errors->has('roles') ? 'has-error' : ''}}">
                                     <strong>Role:</strong>
@@ -74,6 +75,7 @@
                                     @endif
                                 </div>
                             </div>
+                            @endcan
                         @endif
                     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                         <button type="submit" class="btn btn-primary">Submit</button>
