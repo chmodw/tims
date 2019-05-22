@@ -33,16 +33,25 @@
                             @endif
                         </td>
                         <td>
-                            <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
-                            <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
-                            {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
-                            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                            {!! Form::close() !!}
+                            @if(Gate::check('User-edit') || Gate::check('Change-username'))
+                                <a class="btn btn-primary" href="{{ url('users/edit/'.$user->id.'/username') }}">Edit</a>
+                            @endif
+                            @if(Gate::check('User-edit') || Gate::check('Change-password'))
+                                <a class="btn btn-info" href="{{url('users/edit/'.$user->id.'/password') }}">Change Password</a>
+                            @endif
+                            @can('User-delete')
+                                {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
+                                {!! Form::close() !!}
+                            @endcan
                         </td>
                     </tr>
                 @endforeach
             </table>
 
+            @cannot('User-list')
+                <span class="label label-info">You Don't haver permission to see other user information.</span>
+            @endcannot
                 </div>
             </div>
         </div>

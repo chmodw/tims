@@ -68,6 +68,9 @@ class PermissionTableSeeder extends Seeder
             'Document-edit',
             'Document-delete',
 
+            'Change-username',
+            'Change-password'
+
         ];
 
 
@@ -100,7 +103,7 @@ class AdminSeeder extends Seeder {
         ]);
         $user->assignRole(['User-Manager']);
 
-                                                
+
         $this->command->info('Admin Account Created. Admin account Password is '. $random_password);
     }
 

@@ -20,9 +20,11 @@ class UserController extends Controller
 
     function __construct()
     {
-        $this->middleware('permission:User-list');
+//        $this->middleware('permission:User-list');
+//        $this->middleware('permission:Change-username', ['only' => 'edit','update']);
+//        $this->middleware('permission:Change-username', ['only' => 'edit','update']);
         $this->middleware('permission:User-create', ['only' => ['create','store']]);
-        $this->middleware('permission:User-edit', ['only' => ['edit','update']]);
+//        $this->middleware('permission:User-edit', ['only' => ['edit','update']]);
         $this->middleware('permission:User-delete', ['only' => ['destroy']]);
     }
     /**
@@ -32,9 +34,21 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
-        return view('users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+
+        if(auth()->user()->can('User-list') )
+        {
+            $data = User::orderBy('id','DESC')->paginate(5);
+        }
+        elseif (auth()->user()->can('Change-username') || auth()->user()->can('Change-password'))
+        {
+            $data = User::where('email', auth()->user()->email)->get();
+        }
+        else
+            {
+            return abort(403);
+        }
+
+        return view('users.index',compact('data'))->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
 
@@ -59,12 +73,20 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|same:confirm-password',
-            'roles' => 'required'
-        ]);
+        if($request->has('current-password')){
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|same:confirm-password',
+                'roles' => 'required'
+            ]);
+        }else{
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email',
+                'roles' => 'required'
+            ]);
+        }
 
 
         $input = $request->all();
@@ -87,6 +109,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
+
         $user = User::find($id);
 
         return view('users.show',compact('user'));
@@ -99,14 +122,45 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, $editwhat)
     {
-        $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
-        $userRole = $user->roles->pluck('name','name')->all();
+
+        if(auth()->user()->can('User-edit') || auth()->user()->can('Change-password') || auth()->user()->can('Change-username'))
+        {
+            if($editwhat == 'password')
+            {
+                if(auth()->user()->cannot('User-edit') || auth()->user()->cannot('Change-username'))
+                {
+//                    return abort(403);
+                    return 'hello';
+                }
+            }
+            elseif ($editwhat == 'username')
+            {
+                if(auth()->user()->cannot('User-edit') || auth()->user()->cannot('Change-username'))
+                {
+//                    return abort(403);
+                    return 'hello2';
+                }
+            }
+            else
+                {
+                return abort(404);
+            }
+
+            $user = User::find($id);
+            $roles = Role::pluck('name','name')->all();
+            $userRole = $user->roles->pluck('name','name')->all();
+
+            return view('users.edit',compact('user','roles','userRole'), compact('editwhat'));
+
+        }else{
+            return 'hello4';
+            return abort(403);
+        }
 
 
-        return view('users.edit',compact('user','roles','userRole'));
+
     }
 
 
@@ -119,41 +173,66 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'same:confirm-password',
-            'current-password' => 'required|different:password',
-            'roles' => 'required'
-        ]);
+
+        if($request->has('password'))
+        {
+            $this->validate($request, [
+                'name' => '',
+                'email' => 'required|email|unique:users,email,'.$id,
+                'current-password' => 'required',
+                'password' => 'same:confirm-password|different:current-password',
+                'roles' => ''
+            ]);
+        }else
+            {
+            $this->validate($request, [
+                'name' => 'required',
+                'email' => 'required|email|unique:users,email,'.$id,
+                'roles' => 'required'
+            ]);
+        }
 
         $input = $request->all();
+
         if(!empty($input['password'])){
-            $input['password'] = Hash::make($input['password']);
+
+            $current_password = Auth::User()->password;
+
+            if(Hash::check($input['current-password'], $current_password))
+            {
+                if(!Hash::check($input['password'], $current_password))
+                {
+                    $input['password'] = Hash::make($input['password']);
+                }else{
+                    return redirect()->back()->with('failed', ' Can\' use the old pass as the new password');
+                }
+            }else{
+                return redirect()->back()->with('failed', ' Current password doesn\'t Match with the old one');
+            }
+
         }else{
             $input = Arr::except($input,array('password'));
         }
 
-        $current_password = Auth::User()->password;
-
-        if(Hash::check($input['current-password'], $current_password))
+        if(empty($input['name']))
         {
-            if(!Hash::check($input['password'], $current_password))
-            {
-                $user = User::find($id) ;
-                $user->update($input);
-                DB::table('model_has_roles')->where('model_id',$id)->delete();
-
-                $user->assignRole($request->input('roles'));
-
-
-                return redirect()->route('users.index')->with('success','User updated successfully');
-            }else{
-                return redirect()->back()->withInput(Input::except('password'))->with('failed', ' Can\' use the old pass as the new password');
-            }
-        }else{
-            return redirect()->back()->withInput(Input::except('password'))->with('failed', ' Current password doesn\'t Match with the old one');
+            $input = Arr::except($input,array('name'));
         }
+
+        $user = User::find($id);
+
+        $user->update($input);
+
+        if(!empty($input['roles']))
+        {
+            DB::table('model_has_roles')->where('model_id',$id)->delete();
+            $user->assignRole($request->input('roles'));
+        }
+
+
+
+        return redirect()->route('users.index')->with('success','User updated successfully');
+
 
     }
 

@@ -12,7 +12,9 @@
 Auth::routes();
 
 Route::resource('roles','RoleController')->middleware('auth');
-Route::resource('users','UserController')->middleware('auth');
+
+Route::get('users/edit/{id}/{editwhat}','UserController@edit')->middleware('auth');
+Route::resource('users','UserController')->except('edit')->middleware('auth');
 
 Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
