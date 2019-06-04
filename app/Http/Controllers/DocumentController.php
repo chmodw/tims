@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 
+use App\Document;
 use App\ForeignProgram;
 use App\Helpers;
 use App\Program;
 use App\TemplateManager;
 use Illuminate\Http\Request;
 use Exception;
+use phpDocumentor\Reflection\Types\Array_;
 
 class DocumentController extends Controller
 {
@@ -30,6 +32,42 @@ class DocumentController extends Controller
     }
 
     /**
+     * get document list as JSON
+     * @return mixed
+     * @throws Exception
+     */
+    public function get_documents()
+    {
+
+        $documentsWithProgramDetails = [];
+
+        $documents = Document::all();
+
+        foreach ($documents as $doc)
+        {
+            $programType = strtolower(str_replace('Program','_programs', $doc->program_type));
+
+            $doc_program = Document::join($programType, $programType.'.program_id', 'documents.program_id')
+                ->select($programType.'.program_type',$programType.'.program_title', 'documents.*')
+                ->first();
+
+            array_push($documentsWithProgramDetails, $doc_program);
+        }
+
+        return Datatables()->of($documentsWithProgramDetails)
+            ->addIndexColumn()
+            ->addColumn('actions', function ($row){
+                return '<a href="/document/' .$row->file_name . '/download"><i class="glyphicon glyphicon-save"></i></a>
+                <form style="display: inline-block;" method="POST" action="'.route('document.destroy', $row->file_name) .'">'.
+                    csrf_field().
+                    method_field('DELETE').
+                    '<button  class="btn btn-link" style="display: inline-block; color: red; padding: 0; margin-top: -8px;" onclick="return confirm("Are you sure?")"><i class="glyphicon glyphicon-trash"></i></button>'.
+                '</form>';
+            })
+            ->toJson();
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -47,6 +85,31 @@ class DocumentController extends Controller
      */
     public function store(Request $request)
     {
+        /**
+         * Generate the document
+         */
+        $file_name = $this->generate($request);
+
+        /**
+         * save document data in the database
+         */
+        $document = new Document();
+
+        $document->program_id = $request->program_id;
+        $document->program_type = $request->program_type;
+        $document->file_name = $file_name;
+        $document->created_by = auth()->user()->email;
+
+        $document->save();
+
+        if($request->submit == 'Generate and Download'){
+            /**
+             * Download the document
+             */
+            return response()->download(storage_path('app/generated_documents/'.$file_name));
+        }
+
+        return redirect()->back()->with('success', ' Document Generated and save in the Storage');
 
     }
 
@@ -92,7 +155,7 @@ class DocumentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        return $id;
     }
 
     /**
@@ -171,7 +234,7 @@ class DocumentController extends Controller
         }
 
 
-        $file_name =$template->name.' TIMS'.strtotime('now').'.docx';
+        $file_name = str_replace(" ", "-", $template->name.' TIMS'.strtotime('now').'.docx');
 
 
         try {
@@ -185,20 +248,10 @@ class DocumentController extends Controller
             return redirect()->back()->with('failed', ' Could not save the Document...'.$e->getMessage());
 
         }
-
-        if($request->submit == 'Generate and Download'){
-            /**
-             * Download the document
-             */
-            return response()->download(storage_path('app/generated_documents/'.$file_name));
-        }
         /**
-         * Save document
+         * return generated document name
          */
-
         return $file_name;
-
-        return redirect()->back()->with('success', ' Document Generated and save in the Storage');
 
     }
 

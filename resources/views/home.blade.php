@@ -7,12 +7,12 @@
 @stop
 
 @section('css')
-{{--    <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/datatable/datatable.css')}}">--}}
+    <link rel="stylesheet" href="{{ asset('vendor/adminlte/vendor/datatable/datatable.css')}}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 @stop
 
 @section('js')
-{{--    <script src="{{ asset('vendor/adminlte/vendor/datatable/datatables.js')}}"></script>--}}
+    <script src="{{ asset('vendor/adminlte/vendor/datatable/datatables.js')}}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
     </script>

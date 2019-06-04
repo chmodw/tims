@@ -20,11 +20,9 @@ Route::get('/', 'HomeController@index')->name('home')->middleware('auth');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/trainees', 'EmployerController')->except('destroy', 'create', 'edit')->middleware('auth');
-
-Route::resource('/trainees', 'EmployerController')->except('destroy', 'create', 'edit')->middleware('auth');;
-
-Route::get('/pdf/{programType}/{programId}', 'PdfController@create')->middleware('auth');
+//Route::resource('/trainees', 'EmployerController')->except('destroy', 'create', 'edit')->middleware('auth');
+//
+//Route::resource('/trainees', 'EmployerController')->except('destroy', 'create', 'edit')->middleware('auth');
 
 Route::get  ('/home', 'HomeController@index')->name('home')->middleware('auth');;
 
@@ -63,8 +61,8 @@ Route::get('program/{class}/{id}','ProgramController@index')->name('program.inde
 /**
  * Docs Routes
  */
-Route::resource('doc','DocumentController')->middleware('auth');
-Route::POST('doc/generate','DocumentController@generate')->name('doc.generate')->middleware('auth');
+Route::get('document/get', 'DocumentController@get_documents')->middleware('auth');
+Route::resource('document','DocumentController')->middleware('auth');
 
 // Routes for Budget
 Route::resource('budget','budgetController')->middleware('auth');
@@ -73,11 +71,10 @@ Route::resource('payment','paymentController')->middleware('auth');
 
 Route::resource('templatemanager','TemplateManagerController')->middleware('auth');
 
-Route::resource('documentmanager','DocumentController')->middleware('auth');
-
 /**
  * Show images stored in the storage
  */
-Route::get('storage/{filename}', 'ImageController@show')->middleware('auth');
+Route::get('storage/{filename}', 'FileController@show')->middleware('auth');
+Route::get('document/{filename}/download', 'FileController@getDocument')->middleware('auth');
 
 Route::get('/clear-cache', 'SystemController@clearcache')->middleware('auth');

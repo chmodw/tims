@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-class ImageController extends Controller
+class FileController extends Controller
 {
     public function show($filename)
     {
@@ -22,5 +22,15 @@ class ImageController extends Controller
         $response->header("Content-Type", $type);
 
         return $response;
+    }
+
+    /**
+     * Download documents
+     * @param $file_name
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function getDocument($file_name)
+    {
+        return response()->download(storage_path('app/generated_documents/'.$file_name));
     }
 }

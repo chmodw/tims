@@ -1,4 +1,4 @@
-<form class="" method="POST" action="{{route('doc.generate')}}">
+<form class="" method="POST" action="{{route('document.store')}}">
     {{ csrf_field() }}
     <input type="hidden" name="program_id"  value="{{$program->program_id}}">
     <input type="hidden" name="program_type"  value="{{$program_type}}">

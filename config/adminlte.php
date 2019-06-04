@@ -155,27 +155,27 @@ return [
             'url'  => 'employee/',
             'icon' => 'user',
         ],
-        'BUDGET',
-        [
-            'text' => 'Budget',
-            'icon' => 'dollar',
-            'submenu' => [
-                [
-                'text' => 'Budget',
-                'url'  => 'budget/',
-                'icon' => 'dollar',
-                ],
-                [
-                    'text' => 'Payments',
-                    'url'  => 'payment/',
-                    'icon' => 'dollar',
-                ],
-
-            ],
-        ],
+//        'BUDGET',
+//        [
+//            'text' => 'Budget',
+//            'icon' => 'dollar',
+//            'submenu' => [
+//                [
+//                'text' => 'Budget',
+//                'url'  => 'budget/',
+//                'icon' => 'dollar',
+//                ],
+//                [
+//                    'text' => 'Payments',
+//                    'url'  => 'payment/',
+//                    'icon' => 'dollar',
+//                ],
+//
+//            ],
+//        ],
         [
             'text'        => 'Documents',
-            'url'         => 'documentmanager/',
+            'url'         => 'document/',
             'icon'        => 'list-alt',
         ],
         [
@@ -235,7 +235,7 @@ return [
     |
     */
     'plugins' => [
-        'datatables' => true,
+        'datatables' => false,
         'select2'    => false,
         'chartjs'    => false,
     ],
