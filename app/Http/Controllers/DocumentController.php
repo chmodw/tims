@@ -11,6 +11,8 @@ use App\TemplateManager;
 use Illuminate\Http\Request;
 use Exception;
 use phpDocumentor\Reflection\Types\Array_;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller
 {
@@ -48,14 +50,23 @@ class DocumentController extends Controller
             $programType = strtolower(str_replace('Program','_programs', $doc->program_type));
 
             $doc_program = Document::join($programType, $programType.'.program_id', 'documents.program_id')
-                ->select($programType.'.program_type',$programType.'.program_title', 'documents.*')
-                ->first();
+                ->select($programType.'.program_id',$programType.'.program_type',$programType.'.program_title', 'documents.*')
+                ->get();
 
             array_push($documentsWithProgramDetails, $doc_program);
         }
 
-        return Datatables()->of($documentsWithProgramDetails)
+        return Datatables()->of($documentsWithProgramDetails[0])
             ->addIndexColumn()
+            ->editColumn('program_title', function($row){
+
+                $programType = strtolower(str_replace('Program', '', $row->program_type));
+
+                return '<a href="/'.$programType.'/' . $row->program_id .'">'. $row->program_title. '</a>';
+            })
+            ->editColumn('program_type', function($row){
+                return str_replace('Program', ' Program', $row->program_type);
+            })
             ->addColumn('actions', function ($row){
                 return '<a href="/document/' .$row->file_name . '/download"><i class="glyphicon glyphicon-save"></i></a>
                 <form style="display: inline-block;" method="POST" action="'.route('document.destroy', $row->file_name) .'">'.
@@ -155,7 +166,19 @@ class DocumentController extends Controller
      */
     public function destroy($id)
     {
-        return $id;
+        return 'TEST';
+        $deletedRows = Document::where('file_name', $id)->delete();
+
+        if($deletedRows > 0){
+            if(storage_path('app/generated_documents/'.$id))
+            {
+                File::delete(storage_path('app/generated_documents/'.$id));
+            }
+            return redirect('/document')->with('success', ' The Document has been successfully Deleted');
+        }else{
+            return back()->with('failed', "System Could not Delete the Requested Document");
+        }
+
     }
 
     /**
