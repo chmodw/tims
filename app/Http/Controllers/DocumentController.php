@@ -101,6 +101,8 @@ class DocumentController extends Controller
          */
         $file_name = $this->generate($request);
 
+//        return $file_name;
+
         /**
          * save document data in the database
          */
@@ -204,7 +206,7 @@ class DocumentController extends Controller
          */
         $program =  app('App\Http\Controllers\ProgramController')->getProgram($request->program_type, $request->program_id);
 
-//        return $program->notified_by;
+//        return $programController->getRecipients($program);
         /**
          * Get the template
          */

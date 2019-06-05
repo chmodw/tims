@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Cost;
+use App\Document;
 use App\ForeignProgram;
 use App\Http\Requests\ForeignProgramValidate;
 use App\Organisation;
 use App\Helpers;
+use App\Program;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 
@@ -318,6 +320,20 @@ class ForeignProgramController extends Controller
         return date('Y', strtotime('today'));
     }
 
+    public function getRecipients(ForeignProgram $program)
+    {
+        $recipients = '';
+        $recommendations = Program::where('program_id', $program->program_id)->get('recommendation');
+
+        foreach($recommendations as $recommendation)
+        {
+//            $recipients .= '<w:r><w:t>This is<w:br />'.$recommendation.'</w:t></w:r>';
+            $recipients .= ''.$recommendation->recommendation.'<w:br/>';
+        }
+
+        return $recipients;
+    }
+
     public function getDuration(ForeignProgram $program)
     {
         return   Helpers::calc_duration($program->start_date, $program->end_date);
@@ -356,7 +372,11 @@ class ForeignProgramController extends Controller
 
     public function getDocCount(ForeignProgram $program)
     {
-        //return 'No data';
+        $yearNow = date('Y', strtotime('now'));
+
+        $count = Document::where('program_type', $program->program_type)->where('created_at', 'LIKE', '%'.$yearNow.'%')->get()->count();
+
+        return $count+1;
     }
     public function getVenue(ForeignProgram $program)
     {
