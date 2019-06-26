@@ -1,3 +1,18 @@
 Create 1 user write permissions to TIMS table, read permissions to CECB_ERP
 Migrade BD
 Seed Data
+
+document gerate functions
+generate individual reports like employee program history
+indivual reports
+todolist
+
+calender function optional
+
+bottom status bar optional
+
+other errors form errors
+
+date format
+
+input old programs old dates

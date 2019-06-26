@@ -67,7 +67,7 @@ class TemplateManagerController extends Controller
 
         $validated = $request->validate([
             'program_type' => 'required',
-            'template_name' => 'required|max:50',
+            'template_name' => 'required|max:150',
             'document_type' => 'required',
             'template' => 'required|file|max:5000|mimes:docx'
         ]);
@@ -140,7 +140,7 @@ class TemplateManagerController extends Controller
         $validated = $request->validate([
             'program_type' => 'required',
             'document_type' => 'required',
-            'template_name' => 'required|max:50',
+            'template_name' => 'required|max:150',
             'template' => ''
         ]);
 

@@ -310,6 +310,12 @@ class ForeignProgramController extends Controller
         return date('dS F Y', strtotime($program->start_date));
     }
 
+    public function getStartEndDate(ForeignProgram $program)
+    {
+        //(14th – 28th April 2018)
+        return date('dS F Y', strtotime($program->start_date));
+    }
+
     public function getEndDateLong(ForeignProgram $program)
     {
         return date('dS F Y', strtotime($program->end_date));
@@ -349,13 +355,12 @@ class ForeignProgramController extends Controller
         return date('H:i', strtotime($program->application_closing_date_time));
     }
 
-
-
-
-
-
-
     public function getOrganisedById(ForeignProgram $program)
+    {
+        return $program->organisation->name;
+    }
+
+    public function getOrganisedBy(ForeignProgram $program)
     {
         return $program->organisation->name;
     }
@@ -378,10 +383,12 @@ class ForeignProgramController extends Controller
 
         return $count+1;
     }
+
     public function getVenue(ForeignProgram $program)
     {
         return $program->venue;
     }
+
 
 
 

@@ -72,7 +72,7 @@ class DocumentController extends Controller
                 <form style="display: inline-block;" method="POST" action="'.route('document.destroy', $row->file_name) .'">'.
                     csrf_field().
                     method_field('DELETE').
-                    '<button  class="btn btn-link" style="display: inline-block; color: red; padding: 0; margin-top: -8px;" onclick="return confirm("Are you sure?")"><i class="glyphicon glyphicon-trash"></i></button>'.
+                    '<button  class="btn btn-link" style="display: inline-block; color: red; padding: 0; margin-top: -8px;" onclick="return confirm(\'Are you sure?\')"><i class="glyphicon glyphicon-trash"></i></button>'.
                 '</form>';
             })
             ->toJson();
@@ -168,7 +168,6 @@ class DocumentController extends Controller
      */
     public function destroy($id)
     {
-        return 'TEST';
         $deletedRows = Document::where('file_name', $id)->delete();
 
         if($deletedRows > 0){
@@ -207,6 +206,10 @@ class DocumentController extends Controller
         $program =  app('App\Http\Controllers\ProgramController')->getProgram($request->program_type, $request->program_id);
 
 //        return $programController->getRecipients($program);
+
+
+        COPY PAGE FOR EVERY TRAINEE
+
         /**
          * Get the template
          */
