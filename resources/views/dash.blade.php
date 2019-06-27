@@ -2,8 +2,26 @@
 
 @section('main-content')
 
+    <link rel="stylesheet" href="{{ asset('vendor/fullcalendar/fullcalendar.css')}}">
+
     @include('layouts._alert')
 
+    <div class="col-md-4">
+        <div class="panel-heading clearfix">
+            <p>Program Calender</p>
+        </div>
+        <div class="panel panel-default">
+
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="panel-heading clearfix">
+            <p>Tasks</p>
+        </div>
+        <div class="panel panel-default">
+
+        </div>
+    </div>
     <div class="col-md-8">
         <div class="panel-heading clearfix">
             <p>Recent Programs</p>
@@ -22,12 +40,11 @@
         </div>
     </div>
     <div class="col-md-4">
+        <div class="panel-heading clearfix">
+            <p>Messages</p>
+        </div>
         <div class="panel panel-default">
-            <div class="panel-body">
-                <div class="page-heading">
-                    <h1>CECB - Training Information Management System</h1>
-                </div>
-            </div>
+
         </div>
     </div>
     <script>
@@ -46,4 +63,6 @@
             });
         }
     </script>
+
+
 @endsection
