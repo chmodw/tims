@@ -11,6 +11,12 @@ calender function optional
 
 bottom status bar optional
 
+internal messages maybe
+
+logout not working
+
+email not need
+
 other errors form errors
 
 date format

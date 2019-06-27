@@ -6,7 +6,7 @@
 
     <div class="panel panel-default">
         <div class="panel-heading clearfix">
-            <form meth` od="POST" action="{{ route('inhouse.destroy', $program->program_id) }}">
+            <form method="POST" action="{{ route('inhouse.destroy', $program->program_id) }}">
                 {{ csrf_field() }}
                 {{method_field('DELETE')}}
                 <button  class="btn btn-danger pull-right" style="margin-right:8px; margin-top: 14px;" onclick="return confirm('Are you sure?')"><i class="glyphicon glyphicon-trash margin-right-sm"></i>&nbsp;Delete</button>

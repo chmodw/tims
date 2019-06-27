@@ -245,11 +245,9 @@ class InHouseProgramController extends Controller
     public function destroy($id)
     {
         $program = InHouseProgram::where('program_id', $id)->delete();
-        $costs = Cost::where('program_id', $id)->delete();
 
-        if($program && $costs){
+        if($program){
             return redirect('/inhouse')->with('success', ' The New In-House Program has been Deleted successfully');
-
         }else{
             return Redirect::back()->withInput(Input::all())->with('failed ', ' System Could not Delete the In-House program. please contact the administrator');
         }

@@ -17,6 +17,7 @@
             <p class="" style="">New In House Program</p>
             <a href="{{route('inhouse.index')}}" class="btn btn-default pull-right"><i class="glyphicon glyphicon-arrow-left margin-right-sm"></i>Back</a>
         </div>
+
         <div class="panel-body">
             @include('layouts._alert')
             <div class="col-md-8 col-md-offset-2">
@@ -84,7 +85,7 @@
                     </div>
                 </div>
                 <div class="row">
-
+                    @include('programs.partials.employeementselects')
                 </div>
                 <div class="row">
                     <div class="col-md-6">
@@ -136,30 +137,33 @@
                     <div id="resource-person-container">
                     </div>
 
-                    @if(old('resource_person_name'.$i) != null)
+
+                    @if(old('resource_person_name2') != null)
                         @for($i = 2; $i <= 16; $i++)
                             @if(old('resource_person_name'.$i) != null)
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <label for="resource_person_name{{$i}}" class="required">Resource Person {{$i+1}} Name</label>
+                                        <label for="resource_person_name{{$i}}" class="required">Resource Person {{$i}} Name</label>
                                         <input type="text" id="resource_person_name{{$i}}" placeholder="Name" class="form-control" value="{{old('resource_person_name'.$i)}}" name="resource_person_name{{$i}}" required>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="form-group">
-                                        <label for="resource_person_designation{{$i}}" class="required">Resource Person {{$i+1}} Designation</label>
+                                        <label for="resource_person_designation{{$i}}" class="required">Resource Person {{$i}} Designation</label>
                                         <input type="text" class="form-control" id="resource_person_designation{{$i}}" name="resource_person_designation{{$i}}" value="{{old('resource_person_designation'.$i)}}" placeholder="Designation" required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <label for="resource_person_cost{{$i}}" class="required">Resource Person {{$i+1}} Cost</label>
+                                        <label for="resource_person_cost{{$i}}" class="required">Resource Person {{$i}} Cost</label>
                                         <input type="number" class="form-control" id="resource_person_cost{{$i}}" name="resource_person_cost{{$i}}" value="{{old('resource_person_cost'.$i)}}" placeholder="cost" required>
                                     </div>
                                 </div>
                             @endif
                         @endfor
                     @endif
+
+
                     <div class="col-md-12">
                         <button class="btn btn-default pull-right margin-left-sm" id="remove-resource-person"><i class="glyphicon glyphicon-remove-circle"></i></button>
                         <button class="btn btn-primary pull-right" id="add-resource-person"><i class="glyphicon glyphicon-plus"></i></button>
@@ -195,6 +199,8 @@
                             @endif
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="col-md-6">
                         <div class="form-group has-feedback {{$errors->has('application_closing_date') ? 'has-error' : ''}}">
                             <label for="application_closing_date" class="required">Application Closing Date</label>
@@ -292,7 +298,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <button type="submit" name="_submit" class="btn btn-primary mb-2 mr-2 pull-right" value="reload_page">Save</button>
-                        <button type="reset" name="reset" class="btn btn-default mb-2 mr-2 pull-right" value="" style="margin-right: 15px;">Clear</button>
+                        <button type="reset" name="reset" class="btn btn-default mb-2 mr-2 pull-right" value="reset" style="margin-right: 15px;">Clear</button>
                     </div>
                 </div>
             </form>
