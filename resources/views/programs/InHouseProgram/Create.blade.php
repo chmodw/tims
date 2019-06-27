@@ -20,7 +20,7 @@
 
         <div class="panel-body">
             @include('layouts._alert')
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
             <form method="POST" action="{{ route('inhouse.store') }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" value="InHouseProgram" name="program_type">

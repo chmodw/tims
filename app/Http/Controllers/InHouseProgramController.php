@@ -41,6 +41,8 @@ class InHouseProgramController extends Controller
     {
         $orgs = app('App\Http\Controllers\OrganisationController')->index();
 
+//        return $orgs;
+
         return view('programs/InHouseProgram/create')->with('orgs', $orgs);
     }
 

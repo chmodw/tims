@@ -207,9 +207,6 @@ class DocumentController extends Controller
 
 //        return $programController->getRecipients($program);
 
-
-        COPY PAGE FOR EVERY TRAINEE
-
         /**
          * Get the template
          */

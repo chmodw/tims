@@ -11,7 +11,7 @@
         </div>
         <div class="panel-body">
             @include('layouts._alert')
-            <div class="col-md-8 col-md-offset-2">
+            <div class="col-md-10 col-md-offset-1">
 
                 <form method="POST" action="{{ route('foreign.update', $program->program_id) }}" enctype="multipart/form-data">
                     {{method_field('PATCH')}}

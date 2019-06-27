@@ -302,8 +302,8 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <button type="submit" name="_submit" class="btn btn-primary mb-2 mr-2 pull-right" value="reload_page">Save</button>
-                            <button type="reset" name="reset" class="btn btn-default mb-2 mr-2 pull-right" value="" style="margin-right: 15px;">Clear</button>
+                            <button type="submit" name="_submit" class="btn btn-primary mb-2 mr-2 pull-right" value="">Save</button>
+                            <button type="reset" name="reset" class="btn btn-default mb-2 mr-2 pull-right" value="reset" style="margin-right: 15px;">Clear</button>
                         </div>
                     </div>
                 </form>

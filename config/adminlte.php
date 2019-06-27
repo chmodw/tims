@@ -35,7 +35,7 @@ return [
     | ligth variant: blue-light, purple-light, purple-light, etc.
     |
     */
-    'skin' => 'blue',
+    'skin' => 'yellow',
     /*
     |--------------------------------------------------------------------------
     | Layout
@@ -46,7 +46,7 @@ return [
     | removes the sidebar and places your menu in the top navbar
     |
     */
-    'layout' => 'top-nav',
+    'layout' => 'fixed',
     /*
     |--------------------------------------------------------------------------
     | Collapse Sidebar
@@ -92,63 +92,52 @@ return [
             'icon' => 'tachometer',
         ],
         'PROGRAMS',
-//        [
-//            'text' => 'Local',
-//            'url'  => 'local/',
-//            'icon' => 'location-arrow',
-//        ],
-//        [
-//            'text' => 'Foreign',
-//            'url'  => 'foreign/',
-//            'icon' => 'globe',
-//        ],
-//        [
-//            'text' => 'Post-Grad',
-//            'url'  => 'postgrad/',
-//            'icon' => 'graduation-cap',
-//        ],
-//        [
-//            'text' => 'In-House',
-//            'url'  => 'inhouse/',
-//            'icon' => 'thumb-tack',
-//        ],
-//        'ACCOUNT SETTINGS',
-//        [
-//            'text' => 'Profile',
-//            'url'  => 'admin/settings',
-//            'icon' => 'user',
-//        ],
-//        [
-//            'text' => 'Change Password',
-//            'url'  => 'admin/settings',
-//            'icon' => 'lock',
-//        ],
         [
-            'text'    => 'Programs',
-            'icon'    => 'th-list',
-            'submenu' => [
-                [
-                    'text' => 'Local',
-                    'url'  => 'local/',
-                    'icon' => 'location-arrow',
-                ],
-                [
-                    'text' => 'Foreign',
-                    'url'  => 'foreign/',
-                    'icon' => 'globe',
-                ],
-                [
-                    'text' => 'Post-Grad',
-                    'url'  => 'postgrad/',
-                    'icon' => 'graduation-cap',
-                ],
-                [
-                    'text' => 'In-House',
-                    'url'  => 'inhouse/',
-                    'icon' => 'thumb-tack',
-                ],
-            ],
+            'text' => 'Local',
+            'url'  => 'local/',
+            'icon' => 'location-arrow',
         ],
+        [
+            'text' => 'Foreign',
+            'url'  => 'foreign/',
+            'icon' => 'globe',
+        ],
+        [
+            'text' => 'Post-Grad',
+            'url'  => 'postgrad/',
+            'icon' => 'graduation-cap',
+        ],
+        [
+            'text' => 'In-House',
+            'url'  => 'inhouse/',
+            'icon' => 'thumb-tack',
+        ],
+//        [
+//            'text'    => 'Programs',
+//            'icon'    => 'th-list',
+//            'submenu' => [
+//                [
+//                    'text' => 'Local',
+//                    'url'  => 'local/',
+//                    'icon' => 'location-arrow',
+//                ],
+//                [
+//                    'text' => 'Foreign',
+//                    'url'  => 'foreign/',
+//                    'icon' => 'globe',
+//                ],
+//                [
+//                    'text' => 'Post-Grad',
+//                    'url'  => 'postgrad/',
+//                    'icon' => 'graduation-cap',
+//                ],
+//                [
+//                    'text' => 'In-House',
+//                    'url'  => 'inhouse/',
+//                    'icon' => 'thumb-tack',
+//                ],
+//            ],
+//        ],
         'EMPLOYEES',
         [
             'text' => 'Employees',
@@ -183,22 +172,33 @@ return [
             'url'         => 'templatemanager/',
             'icon'        => 'file',
         ],
-        'ACCOUNT',
+//        'ACCOUNT',
+//        [
+//            'text'    => 'Account',
+//            'icon'    => 'user',
+//            'submenu' => [
+//                [
+//                    'text' => 'Users',
+//                    'url'  => 'users/',
+//                    'icon' => 'user',
+//                ],
+//                [
+//                    'text' => 'Roles',
+//                    'url'  => 'roles/',
+//                    'icon' => 'flag',
+//                ],
+//            ],
+//        ],
+        'ACCOUNT SETTINGS',
         [
-            'text'    => 'Account',
-            'icon'    => 'user',
-            'submenu' => [
-                [
-                    'text' => 'Users',
-                    'url'  => 'users/',
-                    'icon' => 'user',
-                ],
-                [
-                    'text' => 'Roles',
-                    'url'  => 'roles/',
-                    'icon' => 'flag',
-                ],
-            ],
+            'text' => 'Users',
+            'url'  => 'users/',
+            'icon' => 'user',
+        ],
+        [
+            'text' => 'Roles',
+            'url'  => 'roles/',
+            'icon' => 'flag',
         ],
 //        [
 //            'text' => 'Change Password',
