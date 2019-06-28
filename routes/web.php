@@ -72,6 +72,9 @@ Route::get('payment/get/{program_id}','paymentController@get')->middleware('auth
 
 Route::resource('templatemanager','TemplateManagerController')->middleware('auth');
 
+
+Route::resource('payment','PaymentController')->middleware('auth');
+
 /**
  * Show images stored in the storage
  */

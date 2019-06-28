@@ -92,13 +92,82 @@
             </div>
             {{--Status Bar--}}
             @include('programs.partials.sidebar')
-            <div class="col-md-12">
+
+            <div class="col-md-9">
                 <div class="panel panel-default">
                     <div class="panel-heading clearfix">
                         <p>Documents</p>
                     </div>
                     <div class="panel-body">
                         @include('programs.partials.docselect', ['program_type' => 'LocalProgram'])
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading clearfix">
+                        <p>Payments</p>
+                    </div>
+                    <div class="panel-body">
+
+                        <table class="table table-bordered">
+                            <colgroup>
+                                <col class="bg-gray">
+                                <col span="2" class="" style="background: #DCDCDC;">
+                                <col span="2" class="" style="background: #D3D3D3;">
+                                <col span="2" class="" style="background: #C0C0C0;">
+                                <col class="bg-teal">
+                                <col span="2" class="bg-success">
+                            </colgroup>
+                            <thead>
+                                <th>Section/Unit</th>
+
+                                <th>Member Count</th>
+                                <th>Total Member Fee (Rs)</th>
+
+                                <th>Non-Member Count</th>
+                                <th>Non-member Fee (Rs)</th>
+
+                                <th>Student Count</th>
+                                <th>Total Student Fee (Rs)</th>
+
+                                <th>Program Fee (Rs)</th>
+
+                                <th>Employee Count</th>
+                                <th>Total Payment<th>
+                            </thead>
+                            <tbody>
+                                @foreach($payments as $key => $payment)
+                                    <tr>
+                                        <td>{{$key}}</td>
+                                        <td>{{$payment['member_count']}}</td>
+                                        <td>Rs. {{$payment['member_total_cost']}}/=</td>
+                                        <td>{{$payment['nonmember_count']}}</td>
+                                        <td>Rs. {{$payment['nonmember_total_cost']}}/=</td>
+                                        <td>{{$payment['student_count']}}</td>
+                                        <td>Rs. {{$payment['student_total_cost']}}/=</td>
+                                        <td>Rs. {{$payment['program_fee']}}/=</td>
+                                        <td>{{$payment['total_count']}}</td>
+                                        <td>Rs. {{$payment['total_cost']}}/=</td>
+                                        <td>
+                                            <form action="{{ route('payment.store') }}" method="POST">
+                                                {{ csrf_field() }}
+
+
+
+                                                        all the cost detials
+                                                        and trainee counts
+                                                        program id
+
+
+                                                <input type="submit" value="paid" name="paid" class="btn btn-sm btn-primary">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>

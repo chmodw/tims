@@ -3,9 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Program;
+use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
+
+
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        return $request;
+    }
+
     /**
      * get all the current programs from the programs
      * @param $programId
@@ -13,7 +28,7 @@ class PaymentController extends Controller
      */
     private function getPrograms($programId)
     {
-        return Program::where('program_id', $programId)->select('trainee_id','program_id','recommendation','type')->get();
+        return Program::where('program_id', $programId)->select('trainee_id','program_id','recommendation','type', 'member_type')->get();
     }
 
     /**
@@ -64,6 +79,9 @@ class PaymentController extends Controller
         if($programDetails['program_type'] == 'InHouseProgram')
         {
             return $this->processInhouse($programDetails['program_details'], $programId);
+        }elseif ($programDetails['program_type'] == 'LocalProgram')
+        {
+            return $this->processLocal($programDetails['program_details'], $programId);
         }
 
         return null;
@@ -71,35 +89,55 @@ class PaymentController extends Controller
 
     private function processInhouse($programDetails, $programId)
     {
-        $columns = ['section', 'per person'];
 
-        $data = [];
-
-
-
-//        return $programs;
-
-
-//per_person_fee	"1000.0"
-//resource_person
-//
-//cost	"1"
-//
-//other_costs
-//0
-//name	"food"
-//value	"100"
-//1
-//name	"drinks"
-//value	"200"
-
-
+        return ;
 
     }
 
-    private function processLocal()
+    private function processLocal($programDetails, $programId)
     {
-        return 'hello';
+        $count = [];
+
+        // Count trainees by section
+        foreach($this->getPrograms($programId) as $program)
+        {
+            //add the section as key
+            if(!array_key_exists($program->recommendation, $count))
+            {
+                $count[$program->recommendation] = [
+                    'member_count' => 0, 'nonmember_count' => 0, 'student_count' => 0, 'total_count' => 0,
+                    'member_total_cost' => 0, 'nonmember_total_cost' => 0, 'student_total_cost' => 0,'program_fee' => 0, 'total_cost' => 0
+                ];
+            }
+
+            if($program->member_type == 'Member')
+            {
+                $count[$program->recommendation]['member_count'] +=1;
+                $count[$program->recommendation]['member_total_cost'] += $programDetails['member_fee'];
+                $count[$program->recommendation]['program_fee'] += $programDetails['program_fee'];
+                $count[$program->recommendation]['total_cost'] += $programDetails['program_fee'];
+                $count[$program->recommendation]['total_cost'] += $programDetails['member_fee'];
+            }elseif($program->member_type == 'Non-Member')
+            {
+                $count[$program->recommendation]['nonmember_count'] +=1;
+                $count[$program->recommendation]['nonmember_total_cost'] += $programDetails['non_member_fee'];
+                $count[$program->recommendation]['program_fee'] += $programDetails['program_fee'];
+                $count[$program->recommendation]['total_cost'] += $programDetails['program_fee'];
+                $count[$program->recommendation]['total_cost'] += $programDetails['non_member_fee'];
+            }elseif($program->member_type == 'Student')
+            {
+                $count[$program->recommendation]['student_count'] +=1;
+                $count[$program->recommendation]['student_total_cost'] += $programDetails['student_fee'];
+                $count[$program->recommendation]['program_fee'] += $programDetails['program_fee'];
+                $count[$program->recommendation]['total_cost'] += $programDetails['program_fee'];
+                $count[$program->recommendation]['total_cost'] += $programDetails['student_fee'];
+            }
+
+            $count[$program->recommendation]['total_count'] += 1;
+
+        }
+
+        return $count;
     }
 
     private function processForeign()
@@ -112,25 +150,12 @@ class PaymentController extends Controller
         return 'hello';
     }
 
-//allowances per day
-//    section/unit
-//    trainee count
-//    others costs
-//    program fee
-//    total cost
-//    actions
-//        mark as payed
-
-
     /**
      * returns the payment data as datatable JSON
      * @param $programId
      */
     public function get($programId)
     {
-//        return Datatables()->of($this->process($programId))
-//            ->addIndexColumn()
-//            ->toJson();
         return $this->process($programId);
     }
 }

@@ -203,9 +203,10 @@ class TraineeController extends Controller
     {
         $trainee = app('App\Http\Controllers\EmployeeController')->find($request->select_option, $request->search_content);
 
-        $trainee = $trainee->toArray();
+        if(isset($trainee))
+        {
+            $trainee = $trainee->toArray();
 
-        if(isset($trainee)){
             return redirect()->back()->with(compact('trainee'));
         }
 
