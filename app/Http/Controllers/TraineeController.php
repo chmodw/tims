@@ -44,14 +44,14 @@ class TraineeController extends Controller
      */
     public function store(Request $request)
     {
-
         $validatedData = $request->validate([
             'program_id' => 'required|max:255',
             'epf_no' => 'required|max:20',
             'type' => 'required',
             'DGMRecommendation' => '',
             'AGMRecommendation' => '',
-            'recommendation_radio' => 'required'
+            'recommendation_radio' => 'required',
+            'memberType' => 'required'
         ]);
 
         $program = new Program();
@@ -62,7 +62,7 @@ class TraineeController extends Controller
             $program->recommendation = $validatedData[$validatedData['recommendation_radio']];
             $program->type = $validatedData['type'];
             $program->created_by = auth()->user()->email;
-
+            $program->member_type = $validatedData['memberType'];
             $saved = $program->save();
 
             if($saved){
@@ -158,12 +158,17 @@ class TraineeController extends Controller
     {
         if (file_exists(base_path() . '/App/' . $class . '.php')) {
 
+
+
+//            same database
+
+
             $programs = Program::join('CECB_ERP.dbo.cmn_EmployeeVersion', 'CECB_ERP.dbo.cmn_EmployeeVersion.EPFNo', 'TIMS.dbo.programs.trainee_id')
                 ->join('CECB_ERP.dbo.hrm_Designation', 'CECB_ERP.dbo.hrm_Designation.DesignationId', 'CECB_ERP.dbo.cmn_EmployeeVersion.DesignationId')
                 ->join('CECB_ERP.dbo.cmn_workspace', 'CECB_ERP.dbo.cmn_workspace.WorkSpaceId', 'CECB_ERP.dbo.cmn_EmployeeVersion.WorkSpaceId')
                 ->join('CECB_ERP.dbo.cmn_WorkSpaceType', 'CECB_ERP.dbo.cmn_WorkSpaceType.WorkSpaceTypeId', 'CECB_ERP.dbo.cmn_workspace.WorkSpaceTypeId')
                 ->where('TIMS.dbo.programs.type', $class)->where('TIMS.dbo.programs.program_id', $id)
-                ->select('cmn_EmployeeVersion.EPFNo', 'CECB_ERP.dbo.cmn_EmployeeVersion.Initial', 'CECB_ERP.dbo.cmn_EmployeeVersion.DateOfAppointment', 'CECB_ERP.dbo.cmn_EmployeeVersion.EmployeeRecruitmentType', 'CECB_ERP.dbo.cmn_EmployeeVersion.Name', 'CECB_ERP.dbo.hrm_Designation.DesignationName', 'CECB_ERP.dbo.cmn_WorkSpaceType.WorkSpaceTypeName', 'TIMS.dbo.programs.program_id', 'TIMS.dbo.programs.type', 'TIMS.dbo.programs.recommendation')
+                ->select('cmn_EmployeeVersion.EPFNo', 'CECB_ERP.dbo.cmn_EmployeeVersion.Initial', 'CECB_ERP.dbo.cmn_EmployeeVersion.DateOfAppointment', 'CECB_ERP.dbo.cmn_EmployeeVersion.EmployeeRecruitmentType', 'CECB_ERP.dbo.cmn_EmployeeVersion.Name', 'CECB_ERP.dbo.hrm_Designation.DesignationName', 'CECB_ERP.dbo.cmn_WorkSpaceType.WorkSpaceTypeName', 'TIMS.dbo.programs.program_id', 'TIMS.dbo.programs.type', 'TIMS.dbo.programs.recommendation', 'TIMS.dbo.programs.member_type')
                 ->get();
 
 

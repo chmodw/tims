@@ -66,8 +66,9 @@ Route::resource('document','DocumentController')->middleware('auth');
 
 // Routes for Budget
 Route::resource('budget','budgetController')->middleware('auth');
+
 //Routes for payment
-Route::resource('payment','paymentController')->middleware('auth');
+Route::get('payment/get/{program_id}','paymentController@get')->middleware('auth');
 
 Route::resource('templatemanager','TemplateManagerController')->middleware('auth');
 

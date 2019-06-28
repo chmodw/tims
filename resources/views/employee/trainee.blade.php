@@ -135,6 +135,23 @@
                                     <td>{{session('trainee')['EmployeeRecruitmentType']}}</td>
                                 </tr>
                                 <tr>
+                                    <th>Member Type</th>
+                                    <td>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" required value="Member" name="memberType"> Member</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" required value="Non-Member" name="memberType"> None-Member</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <label class="form-check-label">
+                                                <input type="radio" class="form-check-input" required name="memberType" value="Student"> Student</label>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
                                     <th></th>
                                     <td>
                                         {{ csrf_field() }}
@@ -168,6 +185,7 @@
                         <th scope="col">Experience</th>
                         <th scope="col">Recommendation</th>
                         <th scope="col">Recruitment Type</th>
+                        <th scope="col">Member Type</th>
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -195,6 +213,7 @@
                 {data: 'Experience', name: 'Experience'},
                 {data: 'recommendation', name: 'recommendation'},
                 {data: 'EmployeeRecruitmentType', name: 'EmployeeRecruitmentType'},
+                {data: 'member_type', name: 'member_type'},
                 {data: 'RemoveForm', name: 'RemoveForm', orderable: false, searchable: false},
             ]
         });

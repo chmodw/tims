@@ -20,6 +20,7 @@ class CreateProgramsTable extends Migration
             $table->string('program_id');
             $table->string('recommendation');
             $table->string('type');
+            $table->string('member_type');
             $table->string('created_by');
             $table->string('updated_by')->nullable();
             $table->timestamps();
