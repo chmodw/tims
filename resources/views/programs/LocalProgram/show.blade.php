@@ -113,11 +113,11 @@
 
                         <table class="table table-bordered">
                             <colgroup>
-                                <col class="bg-gray">
-                                <col span="2" class="" style="background: #DCDCDC;">
-                                <col span="2" class="" style="background: #D3D3D3;">
-                                <col span="2" class="" style="background: #C0C0C0;">
-                                <col class="bg-teal">
+                                <col class="bg-gray-light">
+                                <col span="2" class="">
+                                <col span="2" class="bg-gray-light">
+                                <col span="2" class="">
+                                <col class="bg-gray-light">
                                 <col span="2" class="bg-success">
                             </colgroup>
                             <thead>
@@ -151,18 +151,16 @@
                                         <td>{{$payment['total_count']}}</td>
                                         <td>Rs. {{$payment['total_cost']}}/=</td>
                                         <td>
-                                            <form action="{{ route('payment.store') }}" method="POST">
-                                                {{ csrf_field() }}
-
-
-
-                                                        all the cost detials
-                                                        and trainee counts
-                                                        program id
-
-
-                                                <input type="submit" value="paid" name="paid" class="btn btn-sm btn-primary">
-                                            </form>
+                                            <a class="btn btn-danger btn-xs" href="{{route('payment.create',
+                                            ['program'=> serialize([
+                                                'program_id' => $program->program_id,
+                                                'program_type' => 'LocalProgram',
+                                                'program_fee' => $program->program_fee,
+                                                'member_fee' => $program->member_fee,
+                                                'non_member_fee' => $program->non_member_fee,
+                                                'student_fee' => $program->student_fee
+                                            ]),
+                                            'payments'=> serialize(['section' => $key,'data' => $payment])])}}">Pay</a>
                                         </td>
                                     </tr>
                                 @endforeach

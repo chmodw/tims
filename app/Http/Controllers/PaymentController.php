@@ -9,6 +9,19 @@ class PaymentController extends Controller
 {
 
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        $program = unserialize($request->program);
+        $payment = unserialize($request->payments);
+
+        return view('programs/payments/create')->with('payment', $payment)->with('program' , $program);
+
+    }
 
     /**
      * Store a newly created resource in storage.
