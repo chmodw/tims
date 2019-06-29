@@ -53,7 +53,7 @@
 
 
             <div class="col-md-6 col-md-offset-3">
-                <form action="{{route('payment.store')}}"method="POST">
+                <form action="{{route('payment.store')}}"method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="payment_data" value="{{serialize($payment)}}">
                     <input type="hidden" name="program_id" value="{{$program['program_id']}}">
@@ -61,10 +61,24 @@
                         <div class="col-md-12">
                             <div class="form-group has-feedback {{$errors->has('invoice_number') ? 'has-error' : ''}}">
                                 <label for="invoice_number" class="required">Invoice/Cheque Number</label>
-                                <input type="text" value="{{old('invoice_number')}}" class="form-control" name="invoice_number_id" id="invoice_number" placeholder="Invoice/Cheque Number" required>
+                                <input type="text" value="{{old('invoice_number')}}" class="form-control" name="invoice_number" id="invoice_number" placeholder="Invoice/Cheque Number" required>
                                 @if ($errors->has('invoice_number'))
                                     <span class="help-block">{{ $errors->first('invoice_number') }}</span>
                                 @endif
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group has-feedback {{$errors->has('invoice_file') ? 'has-error' : ''}}">
+                                <label for="invoice_file">Invoice/Cheque</label>
+                                <input type="file" class="form-control-file"  id="invoice_file" name="invoice_file">
+                                @if ($errors->has('invoice_file'))
+                                    <span class="help-block" style="display: block;width: 100%;margin-top: 0.25rem;font-size: 80%;color: #dc3545;">{{ $errors->first('invoice_file') }}</span>
+                                @endif
+                                <small id="invoice_fileHelpBlock" class="form-text text-muted">
+                                    Only DOC,PDF,DOCX,JPG,JPEG and PNG are allowed. Max size 4999KB.
+                                </small>
                             </div>
                         </div>
                     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Program;
+use App\SectionPayment;
 use Illuminate\Http\Request;
 
 class PaymentController extends Controller
@@ -31,7 +32,20 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        return $request;
+        $validated = $request->validate([
+            'payment_data' => 'required',
+            'program_id' => 'required',
+            'invoice_number' => 'required',
+            'invoice_file' => 'mimes:doc,pdf,docx,jpg,jpeg,png|max:4999',
+        ]);
+
+        $payments = new SectionPayment();
+
+
+
+        return $validated;
+
+
     }
 
     /**
