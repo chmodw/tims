@@ -16,11 +16,12 @@ class CreateSectionPaymentsTable extends Migration
         Schema::create('section_payments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('program_id');
+            $table->string('section_name');
             $table->text('payment_data');
             $table->string('invoice_number');
-            $table->string('invoice_file');
+            $table->string('invoice_file')->nullable();
             $table->string('created_by');
-            $table->string('updated_by');
+            $table->string('updated_by')->nullable();
             $table->timestamps();
         });
     }

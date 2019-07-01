@@ -5,11 +5,31 @@ namespace App\Http\Controllers;
 use App\Program;
 use App\SectionPayment;
 use Illuminate\Http\Request;
+use PhpOffice\PhpWord\Style\Section;
 
 class PaymentController extends Controller
 {
 
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request)
+    {
+        $paymentDetails = SectionPayment::find($request->id);
+        $programData = $request->input();
+
+        if(!empty($paymentDetails) && !empty($programData))
+        {
+            return view('programs/payments/show')->with('payment', unserialize($paymentDetails->payment_data))->with('details', $paymentDetails)->with('program_data', $programData);
+        }
+
+        return abort(404);
+
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -39,13 +59,51 @@ class PaymentController extends Controller
             'invoice_file' => 'mimes:doc,pdf,docx,jpg,jpeg,png|max:4999',
         ]);
 
+        $payment =  unserialize($validated['payment_data']);
+
         $payments = new SectionPayment();
 
+        $payments->program_id = $validated['program_id'];
+        $payments->section_name = $payment['section'];
+        $payments->payment_data = $validated['payment_data'];
+        $payments->invoice_number = $validated['invoice_number'];
 
+        if ($request->file('invoice_file') != null) {
+            //get the file ext
+            $ext = $request->file('invoice_file')->getClientOriginalExtension();
+            //save the file in the storage
+            $fileName = $validated['program_id'] . "-" . $payment['section'] .'.' . $ext;
+            $savedFile = $request->file('invoice_file')->storeAs('public/payment_invoices', $fileName);
+            $payments->invoice_file = $fileName;
+        }
 
-        return $validated;
+        $payments->created_by = auth()->user()->email;
 
+        $saved = $payments->save();
 
+        if($saved)
+        {
+
+            $programId = SectionPayment::find($payments->id)->get('program_id')->first()->program_id;
+            $programType = Program::where('program_id', $programId)->first('type')->type;
+
+            return redirect('/'.strtolower(str_replace('Program','',$programType)).'/'.$programId)->with('success', ' The Payment has been successfully Saved');
+
+        }else{
+            return Redirect::back()->withInput(Input::all())->with('failed ', ' System Could not save the Invoice.');
+        }
+
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        return $id;
     }
 
     /**
@@ -133,10 +191,17 @@ class PaymentController extends Controller
             {
                 $count[$program->recommendation] = [
                     'member_count' => 0, 'nonmember_count' => 0, 'student_count' => 0, 'total_count' => 0,
-                    'member_total_cost' => 0, 'nonmember_total_cost' => 0, 'student_total_cost' => 0,'program_fee' => 0, 'total_cost' => 0
+                    'member_total_cost' => 0, 'nonmember_total_cost' => 0, 'student_total_cost' => 0,'program_fee' => 0, 'total_cost' => 0, 'paid' => false
                 ];
             }
+            //check if the payment has been paid
 
+            $oldPayment = SectionPayment::where('program_id', $programId)->where('section_name',$program->recommendation)->first();
+            if(!empty($oldPayment))
+            {
+                $count[$program->recommendation]['paid'] = $oldPayment->id;
+            }
+            //process the values member type
             if($program->member_type == 'Member')
             {
                 $count[$program->recommendation]['member_count'] +=1;
@@ -162,6 +227,8 @@ class PaymentController extends Controller
 
             $count[$program->recommendation]['total_count'] += 1;
 
+
+
         }
 
         return $count;
@@ -184,5 +251,29 @@ class PaymentController extends Controller
     public function get($programId)
     {
         return $this->process($programId);
+    }
+
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+
+        $programId = SectionPayment::find($id)->get('program_id')->first()->program_id;
+        $programType = Program::where('program_id', $programId)->first('type')->type;
+
+        return SectionPayment::find($id);
+
+        $deletedRows = SectionPayment::find($id)->delete();
+
+        if($deletedRows > 0){
+            return redirect('/'.strtolower(str_replace('Program','',$programType)).'/'.$programId)->with('success', ' The Payment has been successfully Deleted');
+        }else{
+            return back()->with('failed', "System Could not Delete the Requested Payment");
+        }
     }
 }

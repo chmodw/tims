@@ -36,7 +36,7 @@ Route::get('inhouse/get', 'InHouseProgramController@getInhousePrograms')->middle
 Route::resource('inhouse','InHouseProgramController')->middleware('auth');
 
 Route::get('employee/get', 'EmployeeController@getEmployee');
-Route::resource('employee','EmployeeController')->middleware('auth')->except('destroy', 'create', 'edit')->middleware('auth');
+Route::resource('employee','EmployeeController')->except('destroy', 'create', 'edit')->middleware('auth');
 
 Route::get('postgrad/get', 'PostGradProgramController@getPostGradPrograms');
 Route::resource('postgrad','PostGradProgramController')->middleware('auth');
@@ -69,11 +69,13 @@ Route::resource('budget','budgetController')->middleware('auth');
 
 //Routes for payment
 Route::get('payment/get/{program_id}','paymentController@get')->middleware('auth');
+//custom route for payment show
+Route::get('payment/details','paymentController@show')->name('payment.details')->middleware('auth');
+Route::resource('payment','PaymentController')->except('show')->middleware('auth');
 
 Route::resource('templatemanager','TemplateManagerController')->middleware('auth');
 
 
-Route::resource('payment','PaymentController')->middleware('auth');
 
 /**
  * Show images stored in the storage

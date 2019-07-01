@@ -151,7 +151,16 @@
                                         <td>{{$payment['total_count']}}</td>
                                         <td>Rs. {{$payment['total_cost']}}/=</td>
                                         <td>
-                                            <a class="btn btn-danger btn-xs" href="{{route('payment.create',
+                                            @if($payment['paid'] != false)
+                                                <a href="{{route('payment.details',[
+                                                'id'=>$payment['paid'],
+                                                'program_id'=>$program->program_id,
+                                                'program_type' => 'LocalProgram',
+                                                'program_title' => $program->program_title,
+                                                'section_name' => $key
+                                                ])}}" class="btn btn-success btn-xs">View</a>
+                                            @else
+                                                <a class="btn btn-danger btn-xs" href="{{route('payment.create',
                                             ['program'=> serialize([
                                                 'program_id' => $program->program_id,
                                                 'program_type' => 'LocalProgram',
@@ -161,6 +170,8 @@
                                                 'student_fee' => $program->student_fee
                                             ]),
                                             'payments'=> serialize(['section' => $key,'data' => $payment])])}}">Pay</a>
+                                            @endif
+
                                         </td>
                                     </tr>
                                 @endforeach
