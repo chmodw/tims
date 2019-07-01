@@ -246,6 +246,14 @@ class InHouseProgramController extends Controller
      */
     public function destroy($id)
     {
+
+        $filename = InHouseProgram::where('program_id', $id)->first()->brochure_url;
+
+        if (Storage::exists('public/brochures/'.$filename))
+        {
+            Storage::delete('public/brochures/'.$filename);
+        }
+
         $program = InHouseProgram::where('program_id', $id)->delete();
 
         if($program){

@@ -225,6 +225,14 @@ class LocalProgramController extends Controller
      */
     public function destroy($id)
     {
+
+        $filename = LocalProgram::where('program_id', $id)->first()->brochure_url;
+
+        if (Storage::exists('public/brochures/'.$filename))
+        {
+            Storage::delete('public/brochures/'.$filename);
+        }
+
         $deletedRows = LocalProgram::where('program_id', $id)->delete();
 
         if($deletedRows > 0){

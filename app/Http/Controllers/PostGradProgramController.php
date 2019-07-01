@@ -205,6 +205,14 @@ class PostGradProgramController extends Controller
      */
     public function destroy($id)
     {
+
+        $filename = PostGradProgram::where('program_id', $id)->first()->brochure_url;
+
+        if (Storage::exists('public/brochures/'.$filename))
+        {
+            Storage::delete('public/brochures/'.$filename);
+        }
+
         $deletedRows = PostGradProgram::where('program_id', $id)->delete();
 
         if($deletedRows > 0){

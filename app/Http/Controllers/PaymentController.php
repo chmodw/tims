@@ -6,6 +6,7 @@ use App\Program;
 use App\SectionPayment;
 use Illuminate\Http\Request;
 use PhpOffice\PhpWord\Style\Section;
+use Illuminate\Support\Facades\Storage;
 
 class PaymentController extends Controller
 {
@@ -72,7 +73,7 @@ class PaymentController extends Controller
             //get the file ext
             $ext = $request->file('invoice_file')->getClientOriginalExtension();
             //save the file in the storage
-            $fileName = $validated['program_id'] . "-" . $payment['section'] .'.' . $ext;
+            $fileName = str_replace(' ','', $validated['program_id'] . "-" . $payment['section'] .rand(rand(0,999999),rand(0,99999)).'.' . $ext);
             $savedFile = $request->file('invoice_file')->storeAs('public/payment_invoices', $fileName);
             $payments->invoice_file = $fileName;
         }
@@ -266,7 +267,12 @@ class PaymentController extends Controller
         $programId = SectionPayment::find($id)->get('program_id')->first()->program_id;
         $programType = Program::where('program_id', $programId)->first('type')->type;
 
-        return SectionPayment::find($id);
+        $filename = SectionPayment::find($id)->invoice_file;
+
+        if (Storage::exists('public/payment_invoices/'.$filename))
+        {
+            Storage::delete('public/payment_invoices/'.$filename);
+        }
 
         $deletedRows = SectionPayment::find($id)->delete();
 

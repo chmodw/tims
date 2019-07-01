@@ -236,6 +236,14 @@ class ForeignProgramController extends Controller
      */
     public function destroy($id)
     {
+
+        $filename = ForeignProgram::where('program_id', $id)->first()->brochure_url;
+
+        if (Storage::exists('public/brochures/'.$filename))
+        {
+            Storage::delete('public/brochures/'.$filename);
+        }
+
         $deletedRows = ForeignProgram::where('program_id', $id)->delete();
 
         if($deletedRows > 0){
