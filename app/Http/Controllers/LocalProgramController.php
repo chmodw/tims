@@ -106,8 +106,8 @@ class LocalProgramController extends Controller
         /**
          * get the payment details
          */
-        $paymentController = new PaymentController();
-        $payments = $paymentController->get($id);
+//        $paymentController = new PaymentController();
+//        $payments = $paymentController->get($id);
 
         if(!empty($program))
         {
@@ -120,7 +120,7 @@ class LocalProgramController extends Controller
              */
             $available_documents =  app('App\Http\Controllers\TemplateManagerController')->getTemplates('local_program');
 
-                return view('programs.LocalProgram.show')->with(compact('program'))->with(compact('program_status'))->with(compact('available_documents'))->with(compact('payments'));
+                return view('programs.LocalProgram.show')->with(compact('program'))->with(compact('program_status'))->with(compact('available_documents'))/**->with(compact('payments'))*/;
         }
         /**
          * if the program not found redirect back with error

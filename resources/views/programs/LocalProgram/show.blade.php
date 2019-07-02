@@ -15,6 +15,7 @@
                 <a class="btn btn-default pull-right" style="margin-right:8px;" href="{{url('program/LocalProgram/'.$program->program_id)}}"><i class="glyphicon glyphicon-user margin-right-sm"></i>Employees</a>
                 <a class="btn btn-warning pull-right" style="margin-right:8px;" href="{{route('local.edit', $program->program_id)}}"><i class="glyphicon glyphicon-pencil margin-right-sm"></i>&nbsp;Edit</a>
                 <a class="btn btn-primary pull-right" style="margin-right:8px;" href="{{route('local.create')}}"><i class="glyphicon glyphicon-plus margin-right-sm"></i>&nbsp;New</a>
+                <a class="btn btn-primary pull-right" style="margin-right:8px;" href="{{route('payment.index', ['program'=>$program->program_id,'program_type'=>'LocalProgram'])}}"><i class="glyphicon glyphicon-plus margin-right-sm"></i>&nbsp;Payments</a>
                 <a href="{{route('local.index')}}" class="btn btn-default pull-right margin-right-sm"><i class="glyphicon glyphicon-arrow-left margin-right-sm"></i>Back</a>
             </div>
         </div>
@@ -111,72 +112,72 @@
                     </div>
                     <div class="panel-body">
 
-                        <table class="table table-bordered">
-                            <colgroup>
-                                <col class="bg-gray-light">
-                                <col span="2" class="">
-                                <col span="2" class="bg-gray-light">
-                                <col span="2" class="">
-                                <col class="bg-gray-light">
-                                <col span="2" class="bg-success">
-                            </colgroup>
-                            <thead>
-                                <th>Section/Unit</th>
+{{--                        <table class="table table-bordered">--}}
+{{--                            <colgroup>--}}
+{{--                                <col class="bg-gray-light">--}}
+{{--                                <col span="2" class="">--}}
+{{--                                <col span="2" class="bg-gray-light">--}}
+{{--                                <col span="2" class="">--}}
+{{--                                <col class="bg-gray-light">--}}
+{{--                                <col span="2" class="bg-success">--}}
+{{--                            </colgroup>--}}
+{{--                            <thead>--}}
+{{--                                <th>Section/Unit</th>--}}
 
-                                <th>Member Count</th>
-                                <th>Total Member Fee (Rs)</th>
+{{--                                <th>Member Count</th>--}}
+{{--                                <th>Total Member Fee (Rs)</th>--}}
 
-                                <th>Non-Member Count</th>
-                                <th>Non-member Fee (Rs)</th>
+{{--                                <th>Non-Member Count</th>--}}
+{{--                                <th>Non-member Fee (Rs)</th>--}}
 
-                                <th>Student Count</th>
-                                <th>Total Student Fee (Rs)</th>
+{{--                                <th>Student Count</th>--}}
+{{--                                <th>Total Student Fee (Rs)</th>--}}
 
-                                <th>Program Fee (Rs)</th>
+{{--                                <th>Program Fee (Rs)</th>--}}
 
-                                <th>Employee Count</th>
-                                <th>Total Payment<th>
-                            </thead>
-                            <tbody>
-                                @foreach($payments as $key => $payment)
-                                    <tr>
-                                        <td>{{$key}}</td>
-                                        <td>{{$payment['member_count']}}</td>
-                                        <td>Rs. {{$payment['member_total_cost']}}/=</td>
-                                        <td>{{$payment['nonmember_count']}}</td>
-                                        <td>Rs. {{$payment['nonmember_total_cost']}}/=</td>
-                                        <td>{{$payment['student_count']}}</td>
-                                        <td>Rs. {{$payment['student_total_cost']}}/=</td>
-                                        <td>Rs. {{$payment['program_fee']}}/=</td>
-                                        <td>{{$payment['total_count']}}</td>
-                                        <td>Rs. {{$payment['total_cost']}}/=</td>
-                                        <td>
-                                            @if($payment['paid'] != false)
-                                                <a href="{{route('payment.details',[
-                                                'id'=>$payment['paid'],
-                                                'program_id'=>$program->program_id,
-                                                'program_type' => 'LocalProgram',
-                                                'program_title' => $program->program_title,
-                                                'section_name' => $key
-                                                ])}}" class="btn btn-success btn-xs">View</a>
-                                            @else
-                                                <a class="btn btn-danger btn-xs" href="{{route('payment.create',
-                                            ['program'=> serialize([
-                                                'program_id' => $program->program_id,
-                                                'program_type' => 'LocalProgram',
-                                                'program_fee' => $program->program_fee,
-                                                'member_fee' => $program->member_fee,
-                                                'non_member_fee' => $program->non_member_fee,
-                                                'student_fee' => $program->student_fee
-                                            ]),
-                                            'payments'=> serialize(['section' => $key,'data' => $payment])])}}">Pay</a>
-                                            @endif
+{{--                                <th>Employee Count</th>--}}
+{{--                                <th>Total Payment<th>--}}
+{{--                            </thead>--}}
+{{--                            <tbody>--}}
+{{--                                @foreach($payments as $key => $payment)--}}
+{{--                                    <tr>--}}
+{{--                                        <td>{{$key}}</td>--}}
+{{--                                        <td>{{$payment['member_count']}}</td>--}}
+{{--                                        <td>Rs. {{$payment['member_total_cost']}}/=</td>--}}
+{{--                                        <td>{{$payment['nonmember_count']}}</td>--}}
+{{--                                        <td>Rs. {{$payment['nonmember_total_cost']}}/=</td>--}}
+{{--                                        <td>{{$payment['student_count']}}</td>--}}
+{{--                                        <td>Rs. {{$payment['student_total_cost']}}/=</td>--}}
+{{--                                        <td>Rs. {{$payment['program_fee']}}/=</td>--}}
+{{--                                        <td>{{$payment['total_count']}}</td>--}}
+{{--                                        <td>Rs. {{$payment['total_cost']}}/=</td>--}}
+{{--                                        <td>--}}
+{{--                                            @if($payment['paid'] != false)--}}
+{{--                                                <a href="{{route('payment.details',[--}}
+{{--                                                'id'=>$payment['paid'],--}}
+{{--                                                'program_id'=>$program->program_id,--}}
+{{--                                                'program_type' => 'LocalProgram',--}}
+{{--                                                'program_title' => $program->program_title,--}}
+{{--                                                'section_name' => $key--}}
+{{--                                                ])}}" class="btn btn-success btn-xs">View</a>--}}
+{{--                                            @else--}}
+{{--                                                <a class="btn btn-danger btn-xs" href="{{route('payment.create',--}}
+{{--                                            ['program'=> serialize([--}}
+{{--                                                'program_id' => $program->program_id,--}}
+{{--                                                'program_type' => 'LocalProgram',--}}
+{{--                                                'program_fee' => $program->program_fee,--}}
+{{--                                                'member_fee' => $program->member_fee,--}}
+{{--                                                'non_member_fee' => $program->non_member_fee,--}}
+{{--                                                'student_fee' => $program->student_fee--}}
+{{--                                            ]),--}}
+{{--                                            'payments'=> serialize(['section' => $key,'data' => $payment])])}}">Pay</a>--}}
+{{--                                            @endif--}}
 
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+{{--                                        </td>--}}
+{{--                                    </tr>--}}
+{{--                                @endforeach--}}
+{{--                            </tbody>--}}
+{{--                        </table>--}}
                     </div>
                 </div>
             </div>
